@@ -1,0 +1,12 @@
+<!--pages/login/dialog.wxml-->
+<view class='loginCover' hidden='{{dialogHidden}}'>
+  <view class='loginDialog'>
+    <text class='loginTitle'></text>
+    <button class='green wechatLogin' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">
+      <image src='/images/worker/login_icon.png' class='login_icon'></image>
+      <text>微信帐号快速登录</text>
+    </button>
+    <navigator url="/member/bindPhone" hover-class='none' class='phone_login'>手机号登录</navigator>
+  </view>
+</view>
+

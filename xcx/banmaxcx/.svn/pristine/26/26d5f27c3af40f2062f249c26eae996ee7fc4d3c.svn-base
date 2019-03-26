@@ -1,0 +1,3 @@
+<!--guide/activity.wxml-->
+<dialog dialog-hidden="{{isShowDialog}}"></dialog>
+<web-view src="{{url}}"></web-view>

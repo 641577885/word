@@ -1,0 +1,60 @@
+<!--pages/worker/my/eduExper.wxml-->
+<form bindsubmit='submit'>
+<view class='b_content'>
+ <navigator class='b_input' url='/pages/fill/inputFill?placeholder=请输入&num=50&dataName=name&content={{name}}&empty=true&bartitle=学校' hover-class='none'>
+    <text class='b_input_title_01'>学校</text>
+    <view class='b_input_right'>
+         <view class='input_text'>{{name}}</view>
+      <image src='/images/position/jt_gray.png' class='b_input_icon'></image>
+    </view>
+  </navigator>
+ <navigator class='b_input' url='/pages/fill/inputFill?placeholder=请输入&num=50&dataName=major&content={{major}}&empty=true&bartitle=专业' hover-class='none'>
+    <text class='b_input_title_01'>专业</text>
+    <view class='b_input_right'>
+           <view class='input_text'>{{major}}</view>
+      <image src='/images/position/jt_gray.png' class='b_input_icon'></image>
+    </view>
+  </navigator>
+  <view class='b_input'>
+    <text class='b_input_title_01'>学历</text>
+    <view class='b_input_right'>
+      <picker bindchange="bindEduChange"  class='datepicker' value="{{education}}" range="{{edulist}}" name='education'>
+        <view class="picker">
+          {{edulist[education]}}
+        </view>
+      </picker>
+      <image src='/images/position/jt_gray.png' class='b_input_icon'></image>
+    </view>
+  </view>
+  <view class='b_input'>
+    <text class='b_input_title_01'>开始时间</text>
+    <view class='b_input_right'>
+      <picker mode="date" value="{{stime}}" class='datepicker' fields='month' bindchange="bindStarDateChange" name='stime' end='{{date}}'>
+        <view class="picker">
+         {{stime}}
+        </view>
+      </picker>
+      <image src='/images/position/jt_gray.png' class='b_input_icon'></image>
+    </view>
+  </view>
+  <view class='b_input'>
+    <text class='b_input_title_01' >结束时间</text>
+    <view class='b_input_right'>
+      <picker mode="date" value="{{etime}}" class='datepicker' fields='month' bindchange="bindEndDateChange" name='etime' end='{{date}}'>
+        <view class="picker">
+         {{etime}}
+        </view>
+      </picker>
+      <image src='/images/position/jt_gray.png' class='b_input_icon'></image>
+    </view>
+  </view>
+  <navigator class='b_input' url='/pages/fill/textareaFill?placeholder=请输入&num=300&dataName=content&content={{content}}&bartitle=在校经历' hover-class='none'>
+    <text class='b_input_title_01'>在校经历</text>
+    <view class='b_input_right'>
+           <view class='input_text'>{{content}}</view>
+      <image src='/images/position/jt_gray.png' class='b_input_icon'></image>
+    </view>
+  </navigator>
+</view>
+<button class='btn' form-type='submit' >保存</button>
+</form>

@@ -1,0 +1,734 @@
+//调取发送请求的文件
+const bm = require('../../utils/common.js')
+const Page = require('../../utils/ald-stat.js').Page;
+var app = getApp();
+Page({
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    empty_text_01: '',
+    empty_text_02: '暂时没有找到相关需求信息。',
+    hiddentext: false, //底部加载
+    page: 1, //页数，开始是1从第一页开始请求
+    limit: 5, //请求的个数，可自定义设置
+    index: 0,
+    hiddenpart: true, //局部文档隐藏切换
+    hiddens: true, //全体文档隐藏切换-----------删掉
+    ispro: false, //是否在请求中
+    isnext: true, //是否有下一页
+    salary: 0, //薪水开关
+    hidden: false, //显示框的显示隐藏
+    tab: false, //左右切换
+    list: [], //接口实际数据,
+    grtdata: [], //后台 获取到的全部数据
+    swiperIndex: 0,//设置卡片布局默认显示第一个
+    template:true,//定义模板类型
+    listlength:'',//定义卡片数量，来显示刷新功能
+    F5flag:"true",//定义刷新按钮的状态是否显示
+    dh:",",
+    tab1:true,
+    tab2:true,
+    leixing: [ //类型
+      {
+        id: 0,
+        data: "全部"
+      },
+      {
+        id: 1,
+        data: "远程办公"
+      },
+      {
+        id: 2,
+        data: "驻场办公"
+      }
+    ],
+    xueli: [ //学历
+      {
+        id: 0,
+        data: "不限"
+      },
+      {
+        id: 1,
+        data: "中专以下"
+      },
+      {
+        id: 2,
+        data: "高中 "
+      },
+      {
+        id: 3,
+        data: "大专"
+      },
+      {
+        id: 4,
+        data: "本科"
+      },
+      {
+        id: 5,
+        data: "硕士"
+      },
+      {
+        id: 6,
+        data: "博士"
+      }
+    ],
+    jingyan: [ //经验
+      {
+        id: 0,
+        data: "不限"
+      },
+      {
+        id: 1,
+        data: "应届生"
+      },
+      {
+        id: 2,
+        data: "1年以内 "
+      },
+      {
+        id: 3,
+        data: "1-3年"
+      },
+      {
+        id: 4,
+        data: "3-5年"
+      },
+      {
+        id: 5,
+        data: "5-10年"
+      },
+      {
+        id: 6,
+        data: "10以上"
+      }
+    ],
+    xinshui: [ //薪水
+      {
+        id: 0,
+        data: "不限"
+      },
+      {
+        id: 1,
+        data: "3k以下"
+      },
+      {
+        id: 2,
+        data: "3k-5k "
+      },
+      {
+        id: 3,
+        data: "5k-10k"
+      },
+      {
+        id: 4,
+        data: "10k-20k"
+      },
+      {
+        id: 5,
+        data: "20k-50k"
+      },
+      {
+        id: 6,
+        data: "50k以上"
+      }
+    ],
+    id: 0,
+    profession: 0, //专业、职业
+    _type:0,
+    buts: 0, //类型
+    fuwus1: 0, //服务可驻场
+    fuwus2: 0, //服务支持三无
+    but: 0, //学历
+    salaryMax: 0, //薪水
+    salaryMin: 0, //薪水
+    experience: 0, //经验
+    url: '/b/worker/lists' //当前页面的URL
+  },
+  //卡片切换时改变index值
+  swiperChange(e) {
+    
+    console.log(e.detail.current)
+    this.setData({
+      swiperIndex: e.detail.current
+    })
+    if (this.data.listlength - 1 == this.data.swiperIndex){
+      //说明已经刷新到最后一张，要显示刷新功能
+      this.setData({
+        F5flag:false
+      })
+    }else{
+      //说明不再最后一张，不显示刷新功能
+      this.setData({
+        F5flag: true
+      })
+    }
+  },
+  //点击时切换模板类型
+  templatechange:function(e){
+    if (this.data.hiddenpart==true){
+      if(this.data.template==true){
+          this.setData({
+            template:false
+          })
+      }else{
+        this.setData({
+          template: true
+        })
+      }
+    }
+    console.log(this.data)
+  },
+  // 头部产品经理单项选项
+  bindPickerChange: function(e) {
+    if (this.data.array[e.detail.value].type =="dmd"){
+      var aid = this.data.array[e.detail.value].skills;
+    }else{
+      var aid = this.data.array[e.detail.value].profession;
+    }
+    this.setData({
+      index: e.detail.value,
+      profession: aid,
+      _type: this.data.array[e.detail.value].type
+    })
+    this.setData({
+      list: []
+    })
+    this.getAllData(); 
+  },
+  // 学历单选
+  butto: function(event) {
+    var that = this;
+    var toggleBtnVal = that.data.but;
+    var itemId = event.currentTarget.id;
+    if (toggleBtnVal == itemId) {
+      that.setData({
+        but: 0
+      })
+    } else {
+      that.setData({
+        but: itemId
+      })
+    }
+  },
+  // 服务复选1
+  fuwuButto1: function(event) {
+    var that = this;
+    if (that.data.fuwus1 == 0) {
+      that.setData({
+        fuwus1: 1
+      })
+    } else {
+      that.setData({
+        fuwus1: 0
+      })
+    }
+  },
+  // 服务复选2
+  fuwuButto2: function(event) {
+    var that = this;
+    if (that.data.fuwus2 == 0) {
+      that.setData({
+        fuwus2: 1
+      })
+    } else {
+      that.setData({
+        fuwus2: 0
+      })
+    }
+  },
+  //类型单选
+  buttos: function(event) {
+    var that = this;
+    var toggleBtnVal = that.data.buts;
+    var itemId = event.currentTarget.id;
+    if (toggleBtnVal == itemId) {
+      that.setData({
+        buts: 0,
+      })
+    } else {
+      that.setData({
+        buts: itemId
+      })
+    }
+    that.Submit()
+    console.log(this.data)
+  },
+  // 经验单选
+  experienceBut: function(event) {
+    var that = this;
+    var experienceBut = that.data.experience;
+    var itemId = event.currentTarget.id;
+    if (experienceBut == itemId) {
+      that.setData({
+        experience: 0
+      })
+    } else {
+      that.setData({
+        experience: itemId
+      })
+    }
+  },
+  // 薪水单选
+  salaryBut: function(event) {
+    var that = this,
+      salaryButVal = that.data.salary,
+      itemId = event.currentTarget.id,
+      itemval = that.data.xinshui[itemId].data,
+      salaryData = that.publicSalary(itemId, itemval); //调用公共函数
+    // console.log("最小值：" + that.data.salaryMin + "," + "最大值：" + that.data.salaryMax);
+    that.setData({
+      salaryMin: salaryData[0],
+      salaryMax: salaryData[1]
+    })
+    if (salaryButVal == itemId) {
+      that.setData({
+        salary: 0
+      })
+    } else {
+      that.setData({
+        salary: itemId
+      })
+    }
+  },
+  //拆分金额最大值和最小值的函数，注意仅适合100k以下
+  publicSalary: function(itemId, itemval) {
+    if (itemId !== '0') {
+      var data = itemval.replace(/[^0-9]/ig, "");
+      //console.log("长度"+data.length)
+      var max, min;
+      if (data.length == 1) {
+        if (data == 3) {
+          max = data * 1000 - 1;
+          min = 0;
+        } else {
+          max = data * 1000;
+          min = 0;
+        }
+      } else if (data.length == 2) {
+        if (data[0] < data[1]) {
+          max = data[1] * 1000;
+          min = data[0] * 1000;
+        } else {
+          max = 0;
+          min = data * 1000;
+        }
+      } else if (data.length == 3) {
+        max = (data[1] + data[2]) * 1000;
+        min = data[0] * 1000;
+        console.log("max:" + max, "min:" + min)
+      } else if (data.length == 4) {
+        max = (data[2] + data[3]) * 1000;
+        min = (data[0] + data[1]) * 1000;
+      }
+    } else {
+      max = 0;
+      min = 0;
+    }
+    //console.log("最小值：" + min + "," + "最大值：" +max);
+    var data = [min, max];
+    return data;
+  },
+  // 重置按钮
+  Reset: function() {
+    var that = this;
+    that.setData({
+      buts: 0,
+      fuwus1: 0,
+      fuwus2: 0,
+      but: 0,
+      salary: 0,
+      experience: 0,
+      salaryMax: 0,
+      salaryMax: 0
+    })
+  },
+  //确认
+  Submit: function() {
+    var that= this;
+    this.setData({
+      tab1: true,
+      tab2: true,
+      bottomflag:true,
+      list: []
+    })
+    that.getAllData()
+  },
+  // 切换
+  tabBut1: function(event) {
+
+    console.log("类型点击")
+    if(this.data.tab1==true){
+      console.log("tab1=true")
+      this.setData({
+        tab1: false,
+        bottomflag: false,
+      })
+    }else{
+      console.log("tab1=false")
+      this.setData({
+        tab1: true,
+        bottomflag:false,
+      })
+    }
+    this.setData({
+      tab2: true
+    })
+  },
+  tabBut2: function(event) {
+    if (this.data.tab2 == true) {
+      console.log("tab2=true")
+      this.setData({
+        tab2: false,
+         bottomflag: false,
+      })
+    } else {
+      console.log("tab2=false")
+      this.setData({
+        tab2: true,
+        bottomflag:false,
+      })
+    }
+    this.setData({
+      tab1: true
+    })
+  },
+  // 生命周期函数--监听页面加载
+  onShow: function(options) {
+    var that = this;
+    // var isRefresh = wx.getStorageSync("isRefresh");
+    // if (isRefresh) {
+    //   wx.removeStorageSync("isRefresh");
+    //   that.onLoad();
+    // }
+    //当前时间
+    var times = that.timeJudge().m;
+    //本地存储的时间
+    wx.getStorage({
+      key: 'timeJudge',
+      success: function (res) {
+        var timex;
+        timex = res.data.m;
+        if (times - timex > 4) {
+          console.log('这个函数已经执行！');
+          wx.setStorage({
+            key: "timeJudge",
+            data: that.timeJudge()
+          })
+          that.onLoad();
+        }
+      }
+    })
+
+  },
+  //页面上拉触底事件的处理函数
+  pullBottom: function() {
+    var that = this
+    if (!that.data.ispro) { //没有在请求中，开始加载数据
+      if (that.data.grtdata.pages.allpage > that.data.grtdata.pages.page) { //有下一页数据
+        wx.showToast({
+          mask: true,
+          title: '加载中...',
+          icon: 'loading',
+        })
+        that.setData({
+          ispro: false
+        }) //标记在请求中
+        that.setData({
+          page: that.data.page + 1
+        });
+        that.getAllData();
+      } else {
+        that.setData({
+          page: 0
+        }) //显示下拉结束加载
+        wx.showToast({
+          mask: true,
+          title: '加载中...',
+          icon: 'loading',
+          duration: 500
+        })
+        that.setData({
+          hiddentext: true
+        }) //显示下拉结束加载
+        that.setData({
+          ispro: false
+        }) //标记在请求中
+      }
+    }
+  },
+  onPullDownRefresh:function(e){
+    var that = this;
+    that.setData({
+      page: 0, list: []
+    }) //显示下拉结束加载
+
+    that.getAllData();
+ 
+  },
+  
+  // //页面下拉触底事件的处理函数
+  getpull: function() {
+    var that = this;
+    that.setData({
+      page: 0, list:[]
+    }) //显示下拉结束加载
+
+    that.getAllData();
+  },
+  // 处理当前页面局部有数据和没数据时的情况
+  hiddensBata: function(event) {
+    var that = this;
+    if (event == 0) {
+      that.setData({
+        hiddens: false,
+        hiddentext: false
+      })
+    } else {
+      that.setData({
+        hiddens: true
+      })
+    }
+  },
+  // 处理当前页面有数据和没数据时的情况
+  hiddenpartBata: function(event) {
+    var that = this;
+    if (event == "") {
+      that.setData({
+        hiddenpart: false
+      })
+    } else {
+      that.setData({
+        hiddenpart: true
+      })
+    }
+  },
+  // 获取当前下拉列表的选项值
+  getAllData: function() {
+
+    var that = this;
+    if (that.data._type == 0) {
+      if (that.data.buts == 2){
+        var DataView = {
+          work_way: 0, //类型
+          education: that.data.but, //学历
+          resident: 1, //服务可驻场
+          sanwu: that.data.fuwus2, //服务支持三无
+          work_year: that.data.experience, //经验
+          highsalary: that.data.salaryMax, //薪水 最大 
+          lowsalary: that.data.salaryMin, //薪水 最小 
+          page: that.data.page, //当前页码 
+          limit: that.data.limit //一页多少条数据
+        };
+      }else{
+        var DataView = {
+          work_way: that.data.buts, //类型
+          education: that.data.but, //学历
+          resident: that.data.fuwus1, //服务可驻场
+          sanwu: that.data.fuwus2, //服务支持三无
+          work_year: that.data.experience, //经验
+          highsalary: that.data.salaryMax, //薪水 最大 
+          lowsalary: that.data.salaryMin, //薪水 最小 
+          page: that.data.page, //当前页码 
+          limit: that.data.limit //一页多少条数据
+        };
+      }
+     
+    } else {
+      if (that.data.buts==2){
+        var DataView = {
+          work_way: 0, //类型
+          education: that.data.but, //学历
+          resident: 1, //服务可驻场
+          sanwu: that.data.fuwus2, //服务支持三无
+          work_year: that.data.experience, //经验
+          highsalary: that.data.salaryMax, //薪水 最大 
+          lowsalary: that.data.salaryMin, //薪水 最小 
+          page: that.data.page, //当前页码 
+          limit: that.data.limit //一页多少条数据
+        };
+      }else{
+        var DataView = {
+          work_way: that.data.buts, //类型
+          education: that.data.but, //学历
+          resident: that.data.fuwus1, //服务可驻场
+          sanwu: that.data.fuwus2, //服务支持三无
+          work_year: that.data.experience, //经验
+          highsalary: that.data.salaryMax, //薪水 最大 
+          lowsalary: that.data.salaryMin, //薪水 最小 
+          page: that.data.page, //当前页码 
+          limit: that.data.limit //一页多少条数据
+        };
+      }
+   
+      if (that.data._type == "dmd") {
+        DataView.skills = that.data.profession
+      } else {
+        DataView.profession = that.data.profession
+      }
+    }
+    //结束掉下拉加载事件，此函数多次出发无影响。
+    wx.stopPullDownRefresh()
+    that.getDataUrl(DataView);
+  },
+  // 发送请求
+  getDataUrl: function (getdata) {
+    wx.showLoading({
+      title: '正在刷新',
+    })
+    var that = this,
+    url = that.data.url;
+    that.setData({ hiddentext: false }) 
+    bm.requsetData(url, 'get', getdata, function(data) {
+      if (data.data.errcode == 0) {
+          if (data.data.has_profession == 0) {
+            console.log("有数据吗")
+            wx.hideLoading()
+            that.hiddenpartBata(data.data.has_profession); //判断当前页面有没有数据
+          } else {
+            that.setData({
+              grtdata: data.data
+            });
+            that.setData({
+              array: data.data.choose_list,
+            });
+            if(that.data._type==0){
+              if (data.data.choose_list[0].type=="dmd"){
+                that.data.profession = data.data.choose_list[0].skills
+              } else {
+                that.data.profession = data.data.choose_list[0].profession
+              }
+              that.setData({
+                _type: data.data.choose_list[0].type
+              });
+            }
+            var a = that.data.list;
+            for (var i in data.data.list) {
+              a.push(data.data.list[i])
+            }
+            that.setData({
+              list: a,
+            });
+            wx.hideLoading()
+            that.hiddensBata(that.data.list); //判断当前页面的局部有没有数据
+            that.setData({
+              listlength:a.length
+            })
+            console.log(that.data.list)
+            if (that.data.listlength - 1 == that.data.swiperIndex) {
+              //说明已经刷新到最后一张，要显示刷新功能
+              that.setData({
+                F5flag: false
+              })
+            } else {
+              //说明不再最后一张，不显示刷新功能
+              that.setData({
+                F5flag: true
+              })
+            }
+          }
+      } else {
+      
+        wx.showToast({
+          mask: true,
+          title: data.data.errmsg,
+          icon: 'none',
+          duration: 500
+        })
+        
+      }
+    })
+  },
+  //刷新数据
+  F5Click:function(){
+    var that = this
+    if (!that.data.ispro) { //没有在请求中，开始加载数据
+      if (that.data.grtdata.pages.allpage > that.data.grtdata.pages.page) { //有下一页数据
+        wx.showToast({
+          mask: true,
+          title: '加载中...',
+          icon: 'loading'
+        })
+        that.setData({
+          ispro: false
+        }) //标记在请求中
+        that.setData({
+          page: that.data.page + 1
+        });
+        that.getAllData();
+      } else {
+        wx.showToast({
+          mask: true,
+          title: '没有更多数据',
+          icon: 'none',
+          duration: 1000
+        })
+        that.setData({
+          hiddentext: false
+        }) //显示下拉结束加载
+        that.setData({
+          ispro: false
+        }) //标记在请求中
+      }
+    }
+  },
+  sendDemand: function() {
+    wx.switchTab({
+      url: '/pages/publish/loading'
+    })
+  },
+  getFormId: function (e) {
+    console.log(e)
+    var formid = e.detail.formId;
+    app.addformId(formid)
+  },
+  onLoad:function(){
+    var that = this;
+    wx.setStorage({
+      key: "timeJudge",
+      data: that.timeJudge()
+    })
+    this.setData({
+      template:false
+    })
+    that.setData({ list: [] });
+    var data = app.globalData.role;
+    that.getAllData(); //发送请求
+  },
+  //时间判断
+  timeJudge: function () {
+    var now = new Date();
+    var year = now.getFullYear();
+    var month = now.getMonth() + 1;
+    var day = now.getDate();
+    if (month < 10) {
+      month = '0' + month;
+    };
+    if (day < 10) {
+      day = '0' + day;
+    };
+    //如果需要时分秒，就放开
+    var h = now.getHours();
+    var m = now.getMinutes();
+    var s = now.getSeconds();
+    var formatDate = {
+      year: year,
+      month: month,
+      day: day,
+      h: h,
+      m: m,
+      s:s,
+    };
+    return formatDate;
+  },
+
+  // 缓存
+  huancun:function(e){
+    var uid = e.currentTarget.dataset.uid;
+    var profession = this.data.array[this.data.index].profession,
+      id = this.data.array[this.data.index].id,
+      utype = this.data.array[this.data.index].type;
+    if (utype == 'dmd') { utype = 2 } else { utype=1};
+    wx.setStorageSync('relationship', {uid:uid, id: id, profession: profession, type: utype })
+  }
+})

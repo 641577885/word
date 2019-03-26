@@ -1,0 +1,2 @@
+<!--pages/applyTicket/pages/moc/mocRechange.wxml-->
+<web-view src='http://www.ksbanma.com/html/moc/mocRechange.html' bindmessage="msgHandler"></web-view>

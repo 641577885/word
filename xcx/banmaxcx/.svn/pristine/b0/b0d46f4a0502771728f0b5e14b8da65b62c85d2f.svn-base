@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "需求",
+  "enablePullDownRefresh": true,
+  "onReachBottomDistance": 10,
+  "backgroundColor": "#fede01"
+  
+}

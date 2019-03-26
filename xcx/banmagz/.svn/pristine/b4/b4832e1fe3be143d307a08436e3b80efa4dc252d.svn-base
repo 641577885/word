@@ -1,0 +1,201 @@
+<!--pages/index/index.wxml-->
+<view class='topbar'>
+  <view class='topbarLeft'>
+    <view class='myIcon' bindtap='toggleSilder'><image src='/images/index/myIcon.png' mode='aspectFill'></image></view>
+    <view class='topbarTxt {{checkIndex==item.id?"action":""}}' wx:for="{{selectList}}" wx:key data-check="{{item.id}}" bindtap='tabSwitch'>{{item.name}}</view>
+  </view>
+  <view class='topbarRight' bindtap='msgLink'>
+    <view class='msgBtn'><image src='/images/index/msgIcon.png' mode="aspectFill"></image></view>
+  </view>
+</view>
+<block wx:if="{{checkIndex==0 || checkIndex==2}}">
+  <view class='mapCantainer'>
+    <map
+      id='myMap' 
+      latitude="{{latitude}}" 
+      longitude="{{longitude}}"
+      markers='{{markers}}' 
+      show-location 
+      include-points
+      scale='14'
+      style='width:100%; height:100%'
+    ></map>
+    <cover-view class='lingCantainer' wx:if="{{showtip}}">
+      <cover-image class='ling' src='/images/index/ling.png' mode='aspectFill'></cover-image>
+      <cover-view class='lingTxt'>已为您找到{{pnums}}位合适的创客，完善招聘信息</cover-view>
+    </cover-view>
+    <cover-view class='boxCantainer' wx:if="{{showLoad}}">
+      <cover-view class='boxItem'>
+        <cover-view class="sing-com one"></cover-view>
+        <cover-view class="sing-com two"></cover-view>
+        <cover-view class="sing-com three"></cover-view>
+        <cover-view class="sing-com four"></cover-view>
+      </cover-view>
+    </cover-view>
+  </view>
+  <view class='demandCantainer'>
+    <view class='tipCantainer'><image src='/images/index/tip.png' mode='aspectFill'></image><text>选择您需要的人才类型和薪资范畴</text></view>
+    <view class='demandInfo'>
+      <navigator url='/pages/picker/jobPicker' hover-class='none'>
+        <view class='inpCantainer'>
+          <view class='iconCantianer'><image class='position' src='/images/index/position.png' mode="aspectFill"></image></view>
+          <view class='fillList'>
+            <view class=' instruct'>岗位类型</view>
+            <view class="section">
+              <view>{{jobData.jobName}}</view>
+              <image  mode="aspectFill" src="/images/business/select_03.png"></image>
+            </view>
+          </view>
+        </view>
+      </navigator>
+      <picker range="{{priceList}}" value="{{value}}" range-key='data' bindchange='bindChange'>
+      <view class='inpCantainer' style='border: none' wx:if="{{checkIndex==2}}">
+        <view class='iconCantianer'><image class='money' src='/images/index/money.png' mode="aspectFill"></image></view>
+        <view class='fillList'>
+          <view class=' instruct'>预算</view>
+          <view class="section">
+            <view>{{priceList[priceidx].data}}</view>
+            <image  mode="aspectFill" src="/images/business/select_03.png"></image>
+          </view>
+        </view>
+      </view>
+      </picker>
+      <view class='inpCantainer' style='border: none' wx:if="{{checkIndex==0}}">
+        <view class='iconCantianer'><image class='money' src='/images/index/money.png' mode="aspectFill"></image></view>
+        <view class='fillList'>
+          <view class=' instruct'>预算</view>
+          <view class="section">
+            <input type='number' value='{{price}}' bindinput='fillPrice' placeholder='0.00' maxlength='10' name='money'></input>
+            <text>元</text>
+          </view>
+        </view>
+      </view>
+      <form report-submit bindsubmit='zwPublish'>
+        <button class='findBtn' form-type='submit'>一键召唤人才</button>
+      </form>
+    </view>
+  </view>
+</block>
+<block wx:else>
+  <view class='demand demand_01' wx:if='{{demand_curr==1}}'>
+    <view class='demand_01_title'>您想要做什么</view>
+    <view class='demand_01_content'>
+        <view  wx:for='{{demand01_list}}' wx:key bindtap='click_demand_01' data-demandid='{{item.id}}' class='demand_01_list'>
+          <view class='demand_01_icon'><image src='/images/relType/icon.png' wx:if='{{item.click}}'></image></view>
+          <view class='demand_01_list_text'>{{item.name}}</view>
+        </view>
+    </view>
+  </view>
+  <!-- 需求第二页 -->
+  <view class='demand demand_02' wx:if='{{demand_curr==2}}'>
+    <view class='demand_02_title'>
+      <view>{{demand02_title}}</view>
+      <view class='demand_02_title_right' bindtap='edit_demand'>上一步</view>
+    </view>
+    <view class='demand_01_title'>需要什么服务</view>
+    <view class='demand_01_content_02'>
+      <view class='demand_01_fw {{item.click}}' wx:for='{{demand02_list}}' wx:key bindtap='click_demand_02' data-demandtwoid='{{item.id}}'>{{item.name}}</view>
+    </view>
+  </view>
+  <!-- 需求第三页 -->
+  <view class='demand demand_03' wx:if='{{demand_curr==3}}'>
+  <form report-submit bindsubmit='demand_03_submit'>
+    <view class='demand_03_main'>
+      <view class='demand_03_content_01'>
+        <view class='demand_03_content_title'>标题描述</view> 
+        <view class='demand_02_title_right' bindtap='edit_demand_02'>上一步</view>
+      </view>
+      <input class='demand_03_content_01_input' placeholder='例如：公司形象logo' name='title'></input>
+    </view>
+    <view class='demand_03_main_02'>
+      <view class='demand_03_content_01'>
+        <view class='demand_03_content_title'>需求描述</view> 
+      </view>
+      <textarea class='demand_03_main_02_textarea' maxlength='200' value='{{xq_val}}'  bindinput='bindnum' name='content'>
+        <view class='demand_03_num'>{{textarea_length}}/200字</view>
+      </textarea>
+      <view class='demand_03_mb_list'>
+        <view class='demand_03_mb_style {{item.click?"on":"off"}}' wx:for='{{mb_list}}' wx:key='mb_list' id='{{index}}' bindtap='demand03_tab_click'>{{item.content}}</view>
+      </view>
+    </view>
+    <view class='demand_03_main_03'>
+      <view class='demand_03_main_03_input'>
+        <view class='demand_03_input_title'>项目周期</view>
+        <view class='demand_03_input_main'>
+          <picker bindchange="bindPickerChange" value="{{index}}" range="{{demand_03_array}}">
+            <view class="demand_03_picker">
+              {{demand_03_array[index]}}
+            </view>
+          </picker>
+        </view>
+      </view>
+      <view class='demand_03_main_03_input_02'>
+        <view class='demand_03_input_title'>预算</view>
+        <view class='demand_03_input_main'>
+          <input type='number' value='' placeholder='0.00' maxlength='10' name='money'></input>
+          <text>元</text>
+        </view>
+      </view>
+    </view>
+    <button class='btnBlack' form-type='submit'>发布需求</button>
+    </form>
+  </view>
+</block>
+<block wx:if="{{showRz}}">
+  <cover-view class='sideBar' bindtap='hideShowRz'></cover-view>
+  <cover-view class='rzCantainer' bindtap='goAuth'><cover-image src='/images/index/rz_img.png'></cover-image></cover-view>
+</block>
+<dialog dialog-hidden="{{isShowDialog}}"></dialog>
+<block wx:if="{{showSilde}}">
+  <cover-view class='sideBar' bindtap='toggleSilder'></cover-view> 
+  <cover-view class='sidebaeItem'>
+    <cover-view>
+      <cover-image class='sideBarImg' bindtap='golink' id='userinfo' src='{{userInfo.avatar}}'></cover-image>
+      <cover-view class='sideBarName'>{{userInfo.name}}</cover-view>
+    </cover-view>
+    <cover-view class='sideBarBtnCantainer'>
+      <cover-view class='sideBarBtn' bindtap='golink' id='message'>
+        <cover-view class='sideBarIcon'><cover-image src='/images/index/sideMsg.png'></cover-image></cover-view>
+        <cover-view class='sideBarTxt'>消息</cover-view>
+      </cover-view>
+      <cover-view class='sideBarBtn' bindtap='golink' id='olwork'>
+        <cover-view class='sideBarIcon'><cover-image src='/images/index/sidework.png'></cover-image></cover-view>
+        <cover-view class='sideBarTxt'>远程办公</cover-view>
+      </cover-view>
+      <cover-view class='sideBarBtn' bindtap='golink' id='package'>
+        <cover-view class='sideBarIcon'><cover-image src='/images/index/sidehb.png'></cover-image></cover-view>
+        <cover-view class='sideBarTxt'>红包</cover-view>
+      </cover-view>
+    </cover-view>
+    <cover-view class='sideBarList'>
+        <cover-view class='sideBarListItem' bindtap='golink' id='company'>
+          <cover-image src='/images/index/coIcon.png'></cover-image>
+          <cover-view class="sideBarListTxt">公司信息</cover-view>
+        </cover-view>
+        <cover-view class='sideBarListItem' bindtap='golink' id='wallet'>
+          <cover-image src='/images/index/wallet.png'></cover-image>
+          <cover-view class="sideBarListTxt">我的钱包</cover-view>
+        </cover-view>
+        <cover-view class='sideBarListItem' bindtap='golink' id='position'>
+          <cover-image src='/images/index/zwIcon.png'></cover-image>
+          <cover-view class="sideBarListTxt">职位列表</cover-view>
+        </cover-view>
+        <!-- <cover-view class='sideBarListItem'>
+          <cover-image src='/images/index/demand.png'></cover-image>
+          <cover-view class="sideBarListTxt">需求招聘</cover-view>
+        </cover-view> -->
+        <cover-view class='sideBarListItem' bindtap='golink' id='mission'>
+          <cover-image src='/images/index/mission.png'></cover-image>
+          <cover-view class="sideBarListTxt">任务大厅</cover-view>
+        </cover-view>
+        <!-- <cover-view class='sideBarListItem' bindtap='golink'>
+          <cover-image src='/images/index/account.png'></cover-image>
+          <cover-view class="sideBarListTxt">账号设置</cover-view>
+        </cover-view> -->
+        <cover-view class='sideBarListItem' bindtap='golink' id='MiniProgram'>
+          <cover-image src='/images/index/change.png'></cover-image>
+          <cover-view class="sideBarListTxt">切换身份</cover-view>
+        </cover-view>
+    </cover-view>
+  </cover-view>
+</block>

@@ -1,0 +1,26 @@
+/* pages/business/my/index.wxss */
+page{background: #f4f4f4}
+.b_info{width: 658rpx;height: 160rpx;background: #fff;border-bottom: 1rpx solid #e5e5e5;display: flex;justify-content: space-between;padding: 0 46rpx;align-items: center;}
+.b_info_main{display: flex}
+.avatar{width: 100rpx;height: 100rpx;border-radius: 8rpx;background: #ccc;overflow: hidden;}
+.avatar image{width: 100rpx;height: 100rpx;}
+.b_info_zl{margin-left: 39rpx;}
+.name{font-size: 36rpx;color: #000;line-height: 44rpx;margin-top: 8rpx;font-weight: bold}
+.position{font-size: 24rpx;color: #000;line-height: 30rpx;margin-top: 12rpx;font-weight: bold}
+.auth{width: 50px;}
+.auth_icon{width: 31rpx;height: 35rpx;margin: 0 auto}
+.auth_icon image{width: 31rpx;height: 35rpx;}
+.auth_text{font-size: 22rpx;line-height: 35rpx;margin-top: 5rpx;text-align: center;font-weight: bold}
+.b_list{width: 100%;height: 113rpx;background: #fff;display: flex;align-items: center;}
+.b_list_main_01{width: 249rpx;height: 73rpx;}
+.b_list_main_02{width: 250rpx;height: 73rpx;border-left:1rpx solid #eeeeee;border-right: 1rpx solid #eeeeee; }
+.b_list_num{width: 100%;line-height: 34rpx;text-align: center;font-size: 35rpx;font-weight: bold}
+.b_list_title{width: 100%;line-height: 26rpx;text-align: center;font-size:22rpx;margin-top: 7rpx;}
+
+.b_content{width: 716rpx;background: #fff;margin-top: 30rpx;padding-left: 34rpx;}
+.b_input{width: 686rpx;height:87rpx;border-bottom: 1rpx solid #e5e5e5;display: flex;justify-content: space-between;align-items: center;padding-right: 30rpx;}
+.b_input_02{width: 686rpx;height:87rpx;display: flex;justify-content: space-between;align-items: center;padding-right: 30rpx;}
+.b_input_right{display: flex;align-items: center}
+.b_input_title_01{font-size: 30rpx;color: #000}
+.b_input_title_02{font-size: 24rpx;color: #888888}
+.b_input_icon{width: 16rpx;height: 25rpx;margin-left: 30rpx;}

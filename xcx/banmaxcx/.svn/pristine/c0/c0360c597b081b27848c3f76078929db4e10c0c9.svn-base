@@ -1,0 +1,56 @@
+<dialog dialog-hidden="{{isShowDialog}}"></dialog>
+<view class='resumeCantainer'>
+  <scroll-view scroll-y class='resumeBody' bindscrolltoupper='scrolltop'>
+    <view class='resumeDetail'>
+      <view class='resumethumb'>
+        <image src='{{userInfo.avatar}}' width='aspectFill'></image>
+      </view>
+      <view class='reasumeInfo'>
+        <view>
+          <text class='resumeInfoName'>{{userInfo.name}}</text>
+          <!-- <view class='resumeInfoJob'>高级产品经理</view> -->
+        </view>
+        <view class='resumeInfoAbilty'>
+          <view>能力：
+            <text>{{markInfo.ability}}</text>
+          </view>
+          <view>服务：
+            <text>{{markInfo.service}}</text>
+          </view>
+          <view>响应：
+            <text>{{markInfo.response}}</text>
+          </view>
+        </view>
+        <!-- <view class='resumeTip'>数据基于腾讯云TbaaS区块链技术存储</view> -->
+      </view>
+      <navigator url='/report/report?uid={{uid}}&type=resume'>
+        <view class='resumeReport'></view>
+      </navigator>
+    </view>
+    <view class='scoreInfo'>
+      <view class='scoreItemCantainer' wx:for="{{pjList}}" wx:key>
+        <view class='scoreItem'>
+          <view class='scoreName'>{{item.seller.name}} - {{item.seller.position}}</view>
+          <view class='scoreNote'>{{item.content}}</view>
+          <view class='hireAbility'>
+            <view>能力：
+              <text class="red">{{item.ability}}</text>
+            </view>
+            <view>服务：
+              <text class='green'>{{item.service}}</text>
+            </view>
+            <view>响应：
+              <text class="red">{{item.response}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class='nulltext' wx:if="{{showBox}}">
+        <view class='nullimg'>
+          <image src='/images/mull.png'></image>
+        </view>
+        <view >还没有人对TA留下评价</view>
+      </view>
+    </view>
+  </scroll-view>
+</view>

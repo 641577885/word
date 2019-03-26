@@ -1,0 +1,7 @@
+/* pages/picker/abilityPicker.wxss */
+.Cantainer{ position: absolute; top: 0; bottom: 120rpx; left: 0; right: 0; }
+.tagTip{ text-align: center; font-size: 24rpx; color: #666; margin: 20rpx 0;}
+.tagList{ padding: 0 30rpx;}
+.tagList view{ display: inline-block; height: 48rpx; font-size: 26rpx; line-height:48rpx; color: #333; text-align: center; border: 1rpx solid #e5e5e5; border-radius: 5rpx; vertical-align: top; padding: 0 20rpx; margin: 0 20rpx 20rpx 0; box-sizing: border-box }
+.tagList view.action{ background: #fede01; border: 0 none}
+.yeBtn{ position: fixed; bottom: 12rpx; left: 5%; height:76rpx; width:90%; background:linear-gradient(to right,#fede01,#fdc100); text-align: center; color:#000000; font-size:30rpx; border-radius:38rpx;line-height:76rpx;}

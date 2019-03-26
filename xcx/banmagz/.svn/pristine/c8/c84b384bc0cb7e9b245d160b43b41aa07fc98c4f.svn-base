@@ -1,0 +1,109 @@
+<!--pages/business/position/jobDemand.wxml-->
+<view class='swiper_tab'>
+  <input style='display:none' name='swiper_tab' value='{{currentTab}}'></input>
+  <view class="swiper_tab_item  {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">
+    职位
+    <view class='xhx' wx:if='{{currentTab==0}}'></view>
+  </view>
+  <view class="swiper_tab_item {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">
+    需求
+    <view class='xhx' wx:if='{{currentTab==1}}'></view>
+  </view>
+</view>
+<swiper current="{{currentTab}}" class="swiper_box" duration="300" bindchange="bindqh">
+  <swiper-item>
+    <scroll-view scroll-y bindscrolltolower='getMoreData' wx:if='{{ts_01 == 1}}'>
+      <view class='dlist'>
+        <navigator class='dlist_main' wx:for='{{list}}' wx:key='list' hover-class='none' url='/business/position/linkup?id={{item.id}}' data-id='{{item.id}}' wx:key='list'>
+          <view class='dcontent_01'>
+            <view class='dtitle'>
+              <view>{{item.name}}</view>
+              <view class='online_style' wx:if='{{item.work_way==1}}'>支持在线</view>
+            </view>
+            <view class='dopen'>
+              <block wx:if="{{item.status == 1}}">
+                <text class='dopen_color_01'>审核中</text>
+              </block>
+              <block wx:elif="{{item.status == 2}}">
+                <text class='dopen_color_01'>已开放</text>
+              </block>
+              <block wx:else>
+                <text class='dopen_color_02'>已关闭</text>
+              </block>
+              <image class='djt_02' src='/images/right.png'></image>
+            </view>
+          </view>
+          <view class='dcontent_02'>
+            <view class='dicon_01'>
+              <image class='dicon_img' src='/images/eye.jpg'></image>
+            </view>
+            <view class='dnum'>{{item.clicks}}</view>
+            <view class='dicon_02'>
+              <image class='dicon_img' src='/images/taolun.jpg'></image>
+            </view>
+            <view class='dnum'>{{item.chats}}</view>
+            <view class='dicon_03'>
+              <image class='dicon_img' src='/images/xjt.jpg'></image>
+            </view>
+            <view class='dnum'>{{item.shares}}</view>
+          </view>
+        </navigator>
+      </view>
+    </scroll-view>
+    <view class='explainCantainer' wx:else>
+      <view class='explain'>
+        你还未发布过任何职位
+      </view>
+      <view class='bg'>
+        <image src='/images/business/firstpublish.png'></image>
+      </view>
+      <button class='btn' bindtap='sendPosition'>发布你的第一个职位吧</button>
+    </view>
+  </swiper-item>
+  <swiper-item>
+    <scroll-view scroll-y bindscrolltolower='getMoreData' wx:if='{{ts_02 == 1}}'>
+      <view class='dlist'>
+        <navigator class='dlist_main' wx:for='{{dlist}}' wx:key='dlist' hover-class='none' url='/business/position/linkup' data-id='{{item.id}}'>
+          <view class='dcontent_01'>
+            <view class='dtitle'>{{item.title}}</view>
+            <view class='dopen'>
+              <block wx:if="{{item.status == 1}}">
+                <text class='dopen_color_01'>审核中</text>
+              </block>
+              <block wx:elif="{{item.status == 2}}">
+                <text class='dopen_color_01'>已开放</text>
+              </block>
+              <block wx:else>
+                <text class='dopen_color_02'>已关闭</text>
+              </block>
+              <image class='djt_02' src='/images/you.jpg'></image>
+            </view>
+          </view>
+          <view class='dcontent_02'>
+            <view class='dicon_01'>
+              <image class='dicon_img' src='/images/eye.jpg'></image>
+            </view>
+            <view class='dnum'>{{item.clicks}}</view>
+            <view class='dicon_02'>
+              <image class='dicon_img' src='/images/taolun.jpg'></image>
+            </view>
+            <view class='dnum'>{{item.chats}}</view>
+            <view class='dicon_03'>
+              <image class='dicon_img' src='/images/xjt.jpg'></image>
+            </view>
+            <view class='dnum'>{{item.shares}}</view>
+          </view>
+        </navigator>
+      </view>
+    </scroll-view>
+    <view class='explainCantainer' wx:else>
+      <view class='explain'>
+        你还未发布过任何需求
+      </view>
+      <view class='bg'>
+        <image src='/images/business/firstpublish.png'></image>
+      </view>
+      <button class='btn' bindtap='sendDemand'>发布你的第一个需求吧</button>
+    </view>
+  </swiper-item>
+</swiper>

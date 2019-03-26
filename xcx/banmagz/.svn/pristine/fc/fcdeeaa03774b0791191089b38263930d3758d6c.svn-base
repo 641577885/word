@@ -1,0 +1,21 @@
+<view class='onlineContanier'>
+  <view class='onlineMain' wx:if='{{lists.length!=0}}'>
+    <view class='onlineList showtop' wx:for='{{lists}}' wx:for-item='vo' wx:key data-id='{{vo.pid}}' bindtap='linkToUrl'> 
+      <view class='listTop'>
+        <view class='listTopimg'><image src='{{vo.avatar}}' mode='widthFix'></image></view>
+        <view class='listToptxt'>{{vo.content}}</view>
+        <view class='listTopprice'>￥{{vo.price}}</view>
+      </view>
+        <view class='listBottom'>
+          <view class='listBottomstatu'>{{vo.status}}</view>
+          <view class='listBottomtime'>{{vo.btime}}~{{vo.etime}}</view>
+        </view>
+    </view>
+  </view>
+  <view wx:else>
+    <view class='empty_icon'><image src='/images/empty/empty_bg.png'></image></view>
+    <view class='empty_text'>
+      <view class='empty_text_01'>您还没有任何在线工作</view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,20 @@
+<view class='fillContanier'>
+  <view class='fillTop showbottom'>
+    <view class='fillTopCon'>
+       <view class='fillInfo'>
+          <view class='fillText'>2/3能力要求</view>
+       </view>
+       <view class='warn'>你希望的人才具备的能力要求</view>
+    </view>
+  </view>
+  <view class='tagTip'>最多选择三个</view>
+  <scroll-view class='Cantainer'>
+    <view class='tagList'>
+      <view wx:for='{{tagList}}' wx:key class="{{item.checked?'action':''}}" bindtap='tagPicker' data-value='{{item.name}}'>{{item.name}}</view>
+    </view>
+  </scroll-view>
+  <view class='Bottom'>
+       <view bindtap="notsure" class='notsure'>我不确定要做的需求</view>
+       <button bindtap="next" class='next'>下一步</button>
+    </view>
+</view>

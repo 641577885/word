@@ -1,0 +1,11 @@
+<!--help/help.wxml-->
+<form bindsubmit="formSubmit">
+<view class='help'>
+  <view class='title'>意见反馈</view>
+  <textarea name='content'></textarea>
+  <button class='btn' formType="submit">提交</button>
+</view>
+</form>
+<view class='kf_btn'>
+  <button open-type="contact">联系客服</button>
+</view>

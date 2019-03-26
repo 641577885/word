@@ -1,0 +1,75 @@
+{
+	"description": "项目配置文件。",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.0.8",
+	"appid": "wxc334d30284ddd9c6",
+	"projectname": "%E7%8F%AD%E9%A9%AC%E9%9B%87%E4%B8%BB",
+	"isGameTourist": false,
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": -1,
+			"list": [
+				{
+					"id": 0,
+					"name": "邀请成员",
+					"pathName": "business/my/invitation",
+					"query": "token=MDAwMDAwMDAwMMmLoNiFt7myh7qbY7CGm2a0jGiofYxpsLKnp7CDc3Si",
+					"scene": "1011"
+				},
+				{
+					"id": 1,
+					"name": "认证",
+					"pathName": "business/auth/busAuth",
+					"query": ""
+				},
+				{
+					"id": 2,
+					"name": "分享1",
+					"pathName": "pages/share/share",
+					"query": "id=79",
+					"scene": "1011"
+				},
+				{
+					"id": 3,
+					"name": "分享2",
+					"pathName": "pages/share/share02",
+					"query": "id=41",
+					"scene": "1011"
+				},
+				{
+					"id": -1,
+					"name": "分享3",
+					"pathName": "pages/share/share03",
+					"query": "uid=1",
+					"scene": "1001"
+				}
+			]
+		}
+	}
+}

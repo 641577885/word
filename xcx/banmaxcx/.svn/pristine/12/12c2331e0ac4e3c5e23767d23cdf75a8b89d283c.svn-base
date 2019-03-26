@@ -1,0 +1,45 @@
+<form bindsubmit="formSubmit">
+<view class='top_title'>小马将会根据你的求职意向和服务能力推荐相匹配的雇主</view>
+<view class='title'>期望职位：</view>
+<view class='b_content'>
+  <navigator wx:for='{{dream_list}}' wx:for-item='vo' class='positionadd' url="/worker/jobwanted/addpost?type=2&id={{vo.id}}&cityName={{vo.city_name}}" wx:key='dream_list' hover-class='none'>
+        <view class='margin_top10'>
+          <view class='font_size30'>
+            <text>[{{vo.city_name}}]</text>
+            <text class='margin_left10'>{{vo.profession_name}}</text>
+          </view>
+          <view class='font_size22 color999 margin_top10'>
+            <text>{{vo.price}}元</text>
+            <text class='margin_left10' wx:if='{{vo.industry_name}}'>{{vo.industry_name}}</text>
+            <text class='margin_left10' wx:else>不限</text>
+          </view>
+        </view>
+  </navigator>
+</view>
+<view class='width100 auto dream_btn'>
+  <navigator url="/worker/jobwanted/addpost?type=1" hover-class='none'>
+    <view class='border_bottome5e5e5 padding_top20 padding_bottom20 font_size30  display_flex center'>
+      <image class=' wh30 margin_top5' src='/images/addIcon.png'></image>
+      <view class='display_flex margin_left10 colorffa200'>添加期望职位</view>
+    </view>
+  </navigator>
+</view>
+<view class='title_02'>能提供的服务：</view>
+<view class='b_content'>
+  <view class='b_input_02' bindtap='bindfw'>
+    <text class='b_input_title_01'>能提供的服务</text>
+    <view class='b_input_right'>
+      <view class='b_input_title_02'>
+        已选{{fw_num}}项
+      </view>
+      <image src='/images/position/jt_gray.png' class='b_input_icon'></image>
+    </view>
+  </view>
+</view>
+<view class='bottom'>
+  <view class='bottom_title'></view>
+  <view class='bottom_btn'>
+    <button class='jobSubmit' formType="submit">提交</button>
+  </view>
+</view>
+</form>

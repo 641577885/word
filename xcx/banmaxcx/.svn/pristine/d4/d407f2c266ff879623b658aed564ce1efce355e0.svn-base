@@ -1,0 +1,11 @@
+<!--auth/auth.wxml-->
+<camera device-position='front' flash='off' class='camera'>
+  <cover-view class='camera_main'>
+    <cover-image src='https://bm.jiangcdn.com/auth/auth/bg.png' class='camera_bg'></cover-image>
+    <cover-view class='camera_title' wx:if='{{title_show==0}}'>{{title}}</cover-view>
+    <cover-view class='camera_title_02' wx:if='{{title_show==1}}'>请读出以下数字</cover-view>
+    <cover-view class='camera_title_vcode' wx:if='{{title_show==1}}'>{{validate_data}}</cover-view>
+  </cover-view>
+</camera>
+<button class='star_btn' bindtap='{{video_bind}}'wx:if='{{btn_show==1}}'>{{video_text}}{{time}}</button>
+<button class='star_btn' wx:if='{{btn_show==0}}'>识别中（等待5-10秒）</button>

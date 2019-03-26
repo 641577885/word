@@ -1,0 +1,4 @@
+/* pages/openvip/vipExplain.wxss */
+page{
+  background: #40424c
+}

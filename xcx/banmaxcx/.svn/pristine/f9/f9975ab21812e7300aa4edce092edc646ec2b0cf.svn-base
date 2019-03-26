@@ -1,0 +1,55 @@
+// pages/worker/my/mycentre.js
+var bm=require('../../utils/common.js')
+var app = getApp()
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    user_info:'',
+    fwData:'',
+    fw_num:0
+  },
+  getFormId: function (e) {
+    var formid = e.detail.formId;
+    app.addformId(formid)
+  },
+  onShow:function(){
+    var that = this 
+    bm.requsetData("/w/user/center", "post", '', function (data) {
+
+      that.setData({
+        user_info: data.data.user_info,
+      })
+    })
+    var tag = []
+    bm.requsetData('/w/resume/detail?scene=service_tag', 'get', '', function (data) {
+
+      var service_tag_arr = data.data.service_tag_arr
+      for (var key in service_tag_arr){
+        var fw = { id: key, fwName: service_tag_arr[key]}
+        tag.push(fw)
+      }
+      that.setData({
+        fwData: tag,
+        fw_num: tag.length
+      })
+    })
+    
+  },
+  bindfw:function(){
+    var that = this
+    if (that.data.fwData){
+      var fw = JSON.stringify(that.data.fwData)
+      wx.navigateTo({
+        url: '/pages/picker/fwPicker?fw=' + fw + '&fw_type=1',
+      })
+    }else{
+      wx.navigateTo({
+        url: '/pages/picker/fwPicker?fw_type=1',
+      })
+    }
+    
+  }
+})

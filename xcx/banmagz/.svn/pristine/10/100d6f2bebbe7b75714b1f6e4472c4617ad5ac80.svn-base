@@ -1,0 +1,6 @@
+/* pages/login/dialog.wxss */
+.loginCover{ position: absolute; top: 0; left: 0; bottom:0;right: 0; display: flex; justify-content: space-around; align-items: center; background: rgba(0,0,0,0.5); box-sizing: border-box; z-index: 11;} 
+.loginDialog{ display: block; width: 560rpx; height: 400rpx; background: #fff; border-radius: 10rpx;}
+.loginTitle{ display: block; width: 100%; text-align: center; font-size: 36rpx; color: #000; margin-top: 55rpx;}
+.loginDialog button{ width: 80%; margin-top:30rpx; font-size: 36rpx;}
+.green{ background: #09bb07 !important; color: #fff;}

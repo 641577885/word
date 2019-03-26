@@ -1,0 +1,28 @@
+/* pages/workerlist/lists.wxss */
+page{ background: #fafafa; position: absolute; top: 0; right: 0; bottom: 0; left: 0;}
+.auto{margin-left: auto;margin-right: auto;}.margin_top8{margin-top: 8rpx}
+.pickerItem{ display: flex;}.pickerItem image{display: block; width: 28rpx; height: 16rpx; margin-left: 15rpx;margin-top:20rpx;}
+.position_fixed{position: fixed}.head{width: 100%;background: #fede01; }
+.second{width: 90%; display: flex; justify-content: space-between;}
+.tab-nav{width: 100%;background: #fede01;display: flex; justify-content: center;margin-top: 35rpx;padding-bottom: 15rpx}
+.tab-nav button.on{  background: #ffffff;color: #040400;}
+ .tab-nav button{margin: 0; width: 45%;display: inline-block;line-height: 60rpx;background: #e4c701;color: #7d6c00;  font-size: 30rpx;text-align: center;border-radius:10rpx;}
+ button::after{border:none;}
+ .position_relative{position: relative;left: 60%;display: inline-block}
+ .screenCantainer{display: flex; align-items: center; justify-content: space-between; width: 100%; height: 88rpx; border-bottom: 1rpx solid #dadada; background: #fff; }
+.screenCantainer picker{ display: flex; justify-content: center; align-items: center; height: 100%; flex: 1; text-align: center; font-size: 30rpx; color: #353535;}
+.screenCantainer picker:last-child,.screenCantainer picker:nth-last-child(2){ border-left: 1rpx solid #dadada;}
+.screenCantainer picker image{ width: 24rpx; height: 20rpx; margin-left: 15rpx;}
+.listContent{width: 100%;height: 350rpx;}
+.listContenttarget{height: 283rpx;padding:25rpx 32rpx;border-bottom:1rpx solid #dadada }
+.textLine{padding:5rpx 20rpx;background: linear-gradient(to right,#fedd01 , #fdc100);font-size: 25rpx;display: inline-block;float:right;margin-left: 20rpx;margin-top: 5rpx;border-radius: 7rpx}
+.listContenttext{display: flex; justify-content: space-between;font-size: 40rpx}.listContenttext text{display: inline-block}
+.color{color: #fe5a01}.viewCantainer{padding-top: 260rpx;} 
+.particulars{margin-top: 28rpx;display: flex;font-size: 28rpx;color: #a9a9a9;}
+.particulars view{padding:0 20rpx 0 20rpx;color: #a9a9a9;border-right: 2rpx solid #dadada;}
+.particulars view:first-child{ padding-left:0}
+.particulars view:last-child{border: none}.particulars text:last-child{margin-left: 20rpx}
+.headPortrait{margin-top: 50rpx;display: flex;justify-content: space-between}
+.circle{width: 60rpx;height: 60rpx;background: coral;border-radius:30rpx; }
+.headPortraittext{font-size: 28rpx;width: 88%;display: flex;justify-content: space-between;color: #a9a9a9}
+.headPortraittext text{ line-height: 65rpx}

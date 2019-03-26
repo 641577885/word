@@ -1,0 +1,2 @@
+<!--pages/share/shareImg.wxml-->
+<web-view src='{{url}}'></web-view>

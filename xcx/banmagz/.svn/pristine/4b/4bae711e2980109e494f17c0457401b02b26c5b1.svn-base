@@ -1,0 +1,30 @@
+page{ background: #f5f5f5;}
+.onlineContanier{width: 100%;height: 100%}
+.onlineList{width: 100%; padding-left: 30rpx; background: #fff; margin-bottom: 30rpx; box-sizing: border-box}
+.onlineListAdc{width: 100%; height: 200rpx; margin-bottom: 30rpx; }
+.onlineListAdc image{ width: 100%; height: 100%}
+.listTopBar{ display: flex; align-items: center; justify-content: space-between; height: 60rpx; padding-right: 30rpx; border-bottom: 1rpx solid #eeeeee}
+.listStatusTxt{ color: #fe5a01; font-size: 26rpx;}
+.listTimeTxt{ color: #a9a9a9; font-size: 26rpx;}
+.listTopimg{width: 138rpx;height: 138rpx;border-radius: 2rpx;border: 1rpx solid #dfdfdf;margin-right: 20rpx; overflow: hidden}
+.listTopimg image{ width: 100%; height: 100%}
+.listTop{padding-top: 30rpx;display: flex}
+.listToptxt{font-size: 28rpx;width:372rpx;padding-right: 20rpx; line-height: 34rpx}
+.listBottom{display: flex;justify-content: flex-start; align-items: center; padding-bottom:18px; margin-top: 30rpx;}
+.listBottom view{ font-size: 24rpx; border-width: 1rpx; border-style: solid; height: 46rpx; line-height: 46rpx; border-radius: 10rpx; margin-right: 15rpx; padding: 0 15rpx; box-sizing: border-box;}
+.listTopprice{width: 150rpx; text-align: right; font-size: 36rpx;color: #fe5a01;padding-right: 0}
+.yc_style{color: #8296b1; border-color: #8296b1}
+.sw_style{color: #82b182; border-color: #82b182}
+.zc_style{color: #b182a4; border-color: #b182a4}
+.prostate{ display: inline-block; width: 84rpx; height: 34rpx; text-align: center; line-height: 34rpx; font-size: 22rpx; border-radius: 10rpx; margin-right: 10rpx; vertical-align: top}
+.red{ color: #fff;background: rgb(255,112,64) linear-gradient(to right,rgb(255,64,64),rgb(255,112,64))}
+.pink{ color: #fe5a01; background: #fff4f2; }
+
+.emptyCantainer{ position: absolute; top: 0; bottom: 0; width: 100%; padding-top: 130rpx;}
+.emptyImg{ width: 612rpx; height: 578rpx; margin: 0 auto}
+.emptyImg image{ width: 612rpx; height: 578rpx;}
+.emptyInfo{ text-align: center}
+.emptyTxt1{ font-size: 42rpx; color: #333333;}
+.emptyTxt2{ font-size: 24rpx; color: #999999; margin-top: 10rpx;}
+.emptyBtnCantainer{ position: absolute; bottom: 0; left: 0; right:0; padding: 30rpx;}
+.emptyBtnCantainer button{ width: 100%; background: #000; color: #fff;}

@@ -1,0 +1,182 @@
+{
+  "pages": [
+    "pages/login/loading",
+    "pages/business/list",
+    "pages/business/demand",
+    "pages/business/mycentre",
+    "pages/message/message",
+    "pages/publish/publishType",
+    "pages/details/zwDetails",
+    "pages/details/xqDetails",
+    "pages/details/jobEdit",
+    "pages/details/demandEdit",
+    "pages/tcash/wallet",
+    "pages/tcash/problem",
+    "pages/tcash/tcash",
+    "pages/bank/bankcard",
+    "pages/bank/bank",
+    "pages/picker/jobPicker",
+    "pages/picker/abilityPicker",
+    "pages/picker/indusPicker",
+    "pages/picker/cityPicker",
+    "pages/search/search",
+    "pages/searchresult/maskinglist",
+    "pages/fill/inputFill",
+    "pages/fill/textareaFill",
+    "pages/pay/pay",
+    "pages/yzm/yzm",
+    "pages/openvip/openvip",
+    "pages/openvip/vipExplain",
+    "pages/share/share",
+    "pages/share/share02",
+    "pages/share/share03",
+    "pages/applyTicket/apply",
+    "pages/applyTicket/eleticket",
+    "pages/applyTicket/applysuccess",
+    "pages/applyTicket/history",
+    "pages/applyTicket/seeticket",
+    "pages/applyTicket/detailticket",
+    "pages/applyTicket/mocRechange"
+  ],
+  "subPackages": [
+    {
+      "root": "business",
+      "pages": [
+        "auth/auth",
+        "auth/busAuth",
+        "auth/complishinfo",
+        "auth/perAuth",
+        "findProject/fillinfo",
+        "findProject/fillTag",
+        "findProject/jobDetail",
+        "findProject/need",
+        "findProject/notSure",
+        "findProject/pubSuccess",
+        "my/companyinfo",
+        "my/mycompany",
+        "my/personInfo",
+        "position/describe",
+        "position/details",
+        "position/jobDemand",
+        "position/linkup",
+        "publishJob/jobmove",
+        "publishJob/jobType",
+        "publishJob/jobType2",
+        "publishJob/jobType4",
+        "my/invitation"
+      ]
+    },
+    {
+      "root": "message",
+      "pages": [
+        "dialog",
+        "bmDialog"
+      ]
+    },
+    {
+      "root": "olwork",
+      "pages": [
+        "addRecord",
+        "evaluate",
+        "onlineList",
+        "posDetail"
+      ]
+    },
+    {
+      "root": "order",
+      "pages": [
+        "replacepay",
+        "setpay",
+        "renew"
+      ]
+    },
+    {
+      "root": "member",
+      "pages": [
+        "bindPhone",
+        "fillCode",
+        "login"
+      ]
+    },
+    {
+      "root": "setting",
+      "pages": [
+        "coSearch",
+        "hideCompany",
+        "mySetting",
+        "secretSetting",
+        "say",
+        "sayInput",
+        "modifyPhone"
+      ]
+    },
+    {
+      "root": "resume",
+      "pages": [
+        "gyResume",
+        "pjResume",
+        "resume"
+      ]
+    },
+    {
+      "root": "report",
+      "pages": [
+        "report"
+      ]
+    },
+    {
+      "root": "wallet",
+      "pages": [
+        "money",
+        "mocDetail",
+        "aboutMoc",
+        "task"
+      ]
+    }
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fede01",
+    "navigationBarTitleText": "班马佳薪",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#7f8389",
+    "selectedColor": "#7f8389",
+    "borderStyle": "#cccccc",
+    "backgroundColor": "#f7f7fa",
+    "list": [
+      {
+        "pagePath": "pages/business/list",
+        "iconPath": "/images/worker/resume_01.png",
+        "selectedIconPath": "/images/worker/resume_02.png",
+        "text": "创客"
+      },
+      {
+        "pagePath": "pages/business/demand",
+        "iconPath": "/images/worker/job_01.png",
+        "selectedIconPath": "/images/worker/job_02.png",
+        "text": "职位"
+      },
+      {
+        "pagePath": "pages/publish/publishType",
+        "iconPath": "/images/worker/add.png",
+        "selectedIconPath": "/images/worker/add.png",
+        "text": "发布"
+      },
+      {
+        "pagePath": "pages/message/message",
+        "iconPath": "/images/worker/message_01.png",
+        "selectedIconPath": "/images/worker/message_02.png",
+        "text": "消息"
+      },
+      {
+        "pagePath": "pages/business/mycentre",
+        "iconPath": "/images/worker/my_01.png",
+        "selectedIconPath": "/images/worker/my_02.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "debug": false
+}

@@ -1,0 +1,186 @@
+<!--pages/workerlist/lists.wxml qiehuan.jpg-->
+<view class='head {{pullup==true?"position_fixed":""}}'>
+  <!-- 头部选择导向 -->
+  <view class='second auto'>
+    <picker range='{{array}}' value='{{arrayidx}}' range-key="profession_name" bindchange="bindPickerChange">
+      <view class='pickerItem'>{{array.length>0?array[arrayidx].profession_name:'搜索结果'}}
+        <image mode='aspectFill' src='/images/worklist/xia.png'></image>
+      </view>
+    </picker>
+    <view class='telicon' bindtap='checkBox'>
+      <!--切换图标  -->
+      <view bindtap="switcher">
+        <image mode='aspectFill' src='/images/qiehuan.jpg' style='width:35rpx;height:35rpx '></image>
+      </view>
+      <navigator hover-class="none" url="/pages/search/search?getValue=1">
+        <icon type="search" class='margin_top12' style='margin-left:20rpx;' color='black' size="18" />
+      </navigator>
+    </view>
+  </view>
+  <!--左右导航  -->
+  <form report-submit='true' bindsubmit='getFormId'>
+    <view class='tab-nav ' style='z-index: 3'>
+      <button class='{{current==0?"on":""}}' data-current="0" form-type='submit' bindtap='tab'>支持远程</button>
+      <button class='{{current==1?"on":""}}' data-current="1" form-type='submit' bindtap='tab'>需要驻场</button>
+    </view>
+  </form>
+  <view class='screenCantainer'>
+    <picker range="{{sortlist}}" value="{{sortidx}}" range-key="data" bindchange="tuijianBut">
+      <view class='picker'>
+        <text>{{sortlist[sortidx].data}}</text>
+        <image mode='aspectFill' src='/images/worklist/sanjiao.jpg'></image>
+      </view>
+    </picker>
+    <!-- <picker range='{{skillList}}' value='{{skillidx}}' bindchange='jinengButo'>
+      <view class='display_flex'>
+        <view class='ovhiden60'>{{skillidx==0?'技能':skillList[skillidx]}}</view>
+        <image mode='aspectFill' src='/images/worklist/sanjiao.jpg'></image>
+      </view>
+    </picker> -->
+    <view class='septal'></view>
+    <picker range='{{priceList}}' value='{{priceidx}}' range-key='data' bindchange='jineBut'>
+      <view class='picker'>
+        <text>{{priceidx==0?'金额':priceList[priceidx].data}}</text>
+        <image mode='aspectFill' src='/images/worklist/sanjiao.jpg'></image>
+      </view>
+    </picker>
+  </view>
+</view>
+<view class='mask' wx:if="{{showVip}}" bindtap='nomask'> </view>
+<view class='{{pullup==true?"viewCantainer":""}}' wx:if="{{showCantainer}}">
+  <block wx:if="{{list.length>0}}">
+    <!--列表1  -->
+    <view class='{{hiddenswcr==false?"display_none":""}}'>
+      <!--在线  -->
+      <view hover-class='none' wx:for="{{list}}" wx:key>
+        <view class='listContent  {{hiddenzz==false?"display_none":""}}'>
+          <view class='listContenttarget' bindtap='maskClick' data-id='{{item.id}}'>
+            <view class='listContenttext'>
+              <text>{{item.title}}</text>
+              <view>
+                <text class='wbys'>外包预算</text>
+                <text class='color'>￥{{item.pricestr}}</text>
+                <!-- <text class='color {{item.negotiate==1?"display_none":""}}'>{{item.lowsalary==item.highsalary?item.lowsalary:item.lowsalary+'-'+item.highsalary}}元/月</text>
+                <text class='color {{item.negotiate==0?"display_none":""}}'>面议</text> -->
+              </view>
+            </view>
+            <view class='jinenxx {{item.skills_name==""?"display_none":""}}'>
+              <text wx:for="{{item.skills_name}}" wx:key="unique">{{item}}</text>
+            </view>
+            <view class='particularss'>
+              <text>{{item.content}}</text>
+            </view>
+            <view class='headPortrait'>
+              <image mode='aspectFill' class='circle' src='{{item.seller.avatar}}'></image>
+              <view class='headPortraittext'>
+                <view class='sdaqwe'>
+                  <text class='{{item.seller.name==""?"display_none":""}}'>{{item.seller.name}}</text>
+                  <text class='{{item.seller.company_short_name==""?"display_none":""}}'>{{'-'+item.seller.company_short_name}}</text>
+                  <text class='{{item.seller.position==""?"display_none":""}}'>{{'-'+item.seller.position}}</text>
+                </view>
+                <text>{{item.ctime}}</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <!--坐班  -->
+      <navigator url='/pages/details/zwDetails?id={{item.id}}&navtype=0' hover-class='none' wx:for="{{list}}" wx:key>
+        <view class='listContent  {{hiddenzz==true?"display_none":""}}'>
+          <view class='listContenttarget'>
+            <view class='listContenttext'>
+              <text>{{item.title}}</text>
+              <view>
+                <text class='wbys'>外包预算</text>
+                <text class='color'>{{item.pricestr}}</text>
+                <!-- <text class='color'>{{item.negotiate==1?"面议":item.lowsalary/1000+"k-"+item.highsalary/1000+"k"}}</text> -->
+              </view>
+            </view>
+            <view class='jinenxx'>
+              <text wx:for="{{item.skills_name}}" wx:key="unique">{{item}}</text>
+            </view>
+            <view class='particulars'>
+              <view>{{item.city_name==""?"不限":item.city_name}}</view>
+              <view>{{item.work_year_name}}</view>
+              <view>{{item.education_name==''?"不限":item.education_name}}</view>
+            </view>
+            <view class='headPortrait'>
+              <image mode='aspectFill' class='circle' src='{{item.seller.avatar}}'></image>
+              <view class='headPortraittext'>
+                <view class='sdaqwe'>
+                  <text class='{{item.seller.name==""?"display_none":""}}'>{{item.seller.name}}</text>
+                  <text class='{{item.seller.company_short_name==""?"display_none":""}}'>{{'-'+item.seller.company_short_name}}</text>
+                  <text class='{{item.seller.position==""?"display_none":""}}'>{{'-'+item.seller.position}}</text>
+                </view>
+                <text>{{item.ctime}}</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </navigator>
+    </view>
+    <view class='text_align {{hiddentext==false?"display_none":""}}'>~~亲，已经到底了~~</view>
+    <view style='height:100%' class='{{hiddenswcr==true?"display_none":""}}'>
+      <!--列表2  -->
+      <view class='list {{hiddenswcr==true?"display_none":""}}'>
+        <swiper class="swipers" autoplay="{{false}}" previous-margin="{{'64rpx'}}" next-margin="{{'64rpx'}}" bindchange="swiperChange">
+          <block wx:for="{{list}}" wx:key="{{index}}">
+            <view hover-class="none">
+              <swiper-item class="swipers-item" data-id="{{item.id}}" bindtap='maskClick'>
+                <view class="slide-image">
+                  <view class='header'>
+                    <view class='header_top_r'>发布时间</view>
+                    <view class='header_top_t'>{{item.ctime}}</view>
+                    <view class='header_top'>{{item.title}}</view>
+                    <view class='header_content_bottom_text {{hiddenzz==true?"display_none":""}}'>
+                      <image class="address_dw" src='/images/dizhi.png'></image>
+                      <text class='address_dw_text'>{{item.city_name}}</text>
+                    </view>
+                    <view class='header_content_bottom'>{{item.content}}</view>
+                    <view class='header_price'>{{item.pricestr}}</view>
+                    <!-- <view class='header_price {{hiddenzz==false?"display_none":""}}'>{{item.lowsalary==item.highsalary?item.lowsalary:item.lowsalary+'-'+item.highsalary}}元/月</view>
+                    <view class='header_price {{hiddenzz==true?"display_none":""}}'>{{item.negotiate==1?"面议":item.lowsalary/1000+"k-"+item.highsalary/1000+"k"}}</view> -->
+                    <view class='header_price_text'>外包预算</view>
+                  </view>
+                  <view class='bottom'>
+                    <view class='bottomImg'>
+                      <image mode='aspectFill' src='https://bm.jiangcdn.com/banma/demandList/message_02.png'></image>
+                    </view>
+                    <view class='swipersimg'>
+                      <image mode='aspectFill' src='{{item.seller.avatar}}'></image>
+                    </view>
+                    <view class='swipercontent'>
+                      <text class='content_text01'>{{item.name}}</text>
+                      <text class='content_text02'>{{item.seller.company_name}}</text>
+                    </view>
+                  </view>
+                </view>
+              </swiper-item>
+            </view>
+          </block>
+        </swiper>
+      </view>
+    </view>
+    <!-- <view class='asd {{hiddenxyy==true?"display_none":""}} ' bindtap='getnext'>
+      <image src='/images/change.png'></image>
+    </view>-->
+  </block>
+  <!--没有数据时显示  -->
+  <block wx:else>
+    <view class='empty_icons'>
+      <image src='https://bm.jiangcdn.com/guide/wykzp/bmjx/info/xiaoma.png'></image>
+    </view>
+    <view class='empty_texts'>
+      <view class='empty_text_a'>{{empty_text_01}}</view>
+      <view class='empty_text_a'>{{empty_text_02}}</view>
+    </view>
+    <button bindtap='clickSkip' class='bt'>{{empty_text_03}}</button>
+  </block>
+</view>
+<view class='tipCantainer' wx:if='{{showVip}}'>
+  <view class='bigTip'>未开通会员</view>
+  <view class='smallTip'>非会员每日只能查看10次工作机会
+    <navigator url='/pages/openvip/vipExplain' hover-class='none'>了解会员特权</navigator>
+  </view>
+  <button class='openVip' hover-class='none' form-type='submit' bindtap='openvip'>开通会员</button>
+</view>

@@ -1,0 +1,2 @@
+<!--pages/share/sharedemand.wxml-->
+<web-view src='{{url}}'></web-view>

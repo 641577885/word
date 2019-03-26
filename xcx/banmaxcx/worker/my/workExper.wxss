@@ -1,0 +1,19 @@
+/* pages/worker/my/workExper.wxss */
+.b_content{width: 716rpx;background: #fff;padding-left: 34rpx;}
+.b_input{width: 686rpx;height:87rpx;border-bottom: 1rpx solid #e5e5e5;display: flex;justify-content: space-between;align-items: center;padding-right: 30rpx;}
+.b_input_02{width: 686rpx;height:87rpx;display: flex;justify-content: space-between;align-items: center;padding-right: 30rpx;}
+.b_input_right{display: flex;align-items: center;font-size:30rpx;color:#72777e;}
+.b_input_title_01{font-size: 30rpx;color: #000}
+.b_input_title_02{font-size: 24rpx;color: #888888}
+.b_input_icon{width: 16rpx;height: 25rpx;margin-left: 30rpx;}
+.input_text{width: 370rpx;height: 87rpx;line-height: 87rpx;font-size: 30rpx;color: #72777e;padding: 0 20rpx;text-align: right;overflow: hidden;white-space:nowrap;text-overflow:ellipsis;}
+.datepicker{width: 460rpx;height: 87rpx;line-height: 87rpx;font-size: 30rpx;color: #72777e;text-align: right}
+.picker{color: #72777e}
+.content_title{width: 690rpx;height: 60rpx;background: #f4f4f4;padding: 0 30rpx;font-size: 30rpx;line-height: 60rpx;}
+.content_textarea{border-bottom: 1rpx solid #e5e5e5;}
+.content_textarea textarea{width: 680rpx;height: 100rpx;padding: 35rpx;font-size:26rpx;color:#ccc}
+.btn{width:580rpx;height:76rpx;border-radius:38rpx;margin:37rpx auto 0;background:linear-gradient(to right, #fede01 , #fdc100);line-height:76rpx;font-size:30rpx;margin-bottom: 60rpx;}
+.none{display: none}
+.dis{display: block}
+.xt_style{font-size: 24rpx}
+button::after{border: none}

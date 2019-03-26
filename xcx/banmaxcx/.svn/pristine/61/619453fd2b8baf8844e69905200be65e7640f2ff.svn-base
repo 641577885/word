@@ -1,0 +1,458 @@
+// 请求公用方法文件
+const bm = require('../../utils/common.js')
+var app = getApp();
+Page({ 
+  data: {
+    tuijian: [ //推荐
+      {
+        id: 'ctime-desc',
+        data: "推荐"
+      },
+      {
+        id: 'recommend',
+        data: "最新"
+      }
+    ],
+    jine: [ //金额
+      {
+        id: 0,
+        data: "不限"
+      },
+      {
+        id: 1,
+        data: "3K以下"
+      },
+      {
+        id: 2,
+        data: "3K-5K"
+      },
+      {
+        id: 3,
+        data: "5K-10K"
+      },
+      {
+        id: 4,
+        data: "10K-20K"
+      },
+      {
+        id: 5,
+        data: "20K-50K"
+      },
+      {
+        id: 6,
+        data: "50K以上"
+      }
+    ],
+    jn:0,
+    empty_text_01:'',
+    empty_text_02:'暂时没有找到相关职位信息。',
+    hiddentext: false, //底部加载
+    index: 0,
+    indexs:0,
+    array: [],
+    hiddenpart: true,
+    show: false, //筛选数据，有数据时正常显示
+    hiddens: true, //筛选数据，没有数据时正常显示
+    current: 0,
+    ispro: false, //是否在请求中
+    page: 1, //页数，开始是1从第一页开始请求
+    limit: 6, //请求的个数，可自定义设置
+    page2: 1, //页数，开始是1从第一页开始请求
+    listdata1: [], //接口实际数据
+    listdata2: [], //接口实际数据
+    isnext: true, //是否有下一页
+    list1: [], //接口列表
+    list2: [], //接口列表
+    id: 0, //左右切换的id
+    tab: 0, //左右切换
+    salarymax: 0, ////金额
+    salarymin: 0, ////金额
+    tuijia: 'ctime-desc',//推荐
+    tuijia2: 'ctime-desc', //推荐2
+    jineng: 'a',//技能
+    jineng2:'a',//技能
+    jine2max: 0, //需求最大金额
+    jine2min: 0, //需求最小金额
+    hidden: false, //下拉列表的显示隐藏
+    profession:0,
+  },
+  // 头部产品经理单项选项
+  bindPickerChange: function(e) {
+    var aid = this.data.array[e.detail.value].profession;
+    this.setData({
+      list1: [],
+      list2: [],
+      profession: aid,
+      index: e.detail.value,
+    })
+    this.position();
+    this.needData();
+    this.getDataUrl3(aid);
+  },
+  // 切换选项
+  tab: function(event) {
+    var that = this;
+    that.setData({
+      current: event.target.dataset.current
+    })
+    that.setData({
+      hidden: false
+    })
+    if (event.target.dataset.current == 0) {
+      that.setData({list1:[]})
+      that.position()
+    } else {
+      that.setData({list2: []})
+      that.needData()
+    }
+  },
+  //滑动事件
+  eventchange: function(event) {
+    this.setData({
+      current: event.detail.current
+    })
+  },
+  //推荐
+  tuijianBut: function (event) {
+    var that = this,
+    itemId = event.detail.value,
+    itemval = that.data.tuijian[itemId].id;
+    console.log(itemval);
+    that.setData({ tuijia: itemval, indexs: itemId})
+    that.setData({ list1: [] });that.position();
+  },
+  // 推荐2
+  tuijianBut2: function (event) {
+    var that = this,
+      itemId = event.detail.value,
+      itemval = that.data.tuijian[itemId].id;
+    console.log(itemval);
+    that.setData({ tuijia2: itemval })
+    that.setData({ list2: [] });that.needData();
+  },
+  //技能1
+  jinengButo: function(event) {
+    var that = this;
+    console.log(event.detail.value);
+    that.setData({ jineng: event.detail.value })
+    that.setData({ list1: [] });that.position();
+  },
+  //技能2
+  jinengButo2: function (event) {
+    var that = this;
+    that.setData({ jineng2: event.detail.value })
+    that.setData({ list2: [] }); that.needData();
+  },
+  // 金额
+  jineBut: function(event) {
+    var that = this,
+      itemId = event.detail.value,
+      itemval = that.data.jine[itemId].data,
+      salaryData = that.publicSalary(itemId, itemval); //调用公共函数
+    console.log("min:" + salaryData[0] + "," + "max:" + salaryData[1])
+    that.setData({salarymin: salaryData[0],salarymax: salaryData[1]})
+    that.setData({ list1: [] }); that.position();
+  },
+  //金额2
+  jineBut2: function(event) {
+    var that = this,
+      itemId = event.detail.value,
+      itemval = that.data.jine[itemId].data,
+      salaryData = that.publicSalary(itemId, itemval); //调用公共函数
+     console.log("min:" + salaryData[0] +","+ "max:" + salaryData[1])
+    that.setData({jine2min: salaryData[0],jine2max: salaryData[1]})
+    that.setData({ list2: [] }); that.needData();
+  },
+  //拆分金额最大值和最小值的函数，注意仅适合100k以下
+  publicSalary: function(itemId, itemval) {
+    if (itemId !== '0') {
+      var data = itemval.replace(/[^0-9]/ig, "");
+      //console.log("长度"+data.length)
+      var max, min;
+      if (data.length == 1) {
+        if (data == 3) {
+          max = data * 1000 - 1;
+          min = 0;
+        } else {
+          max = data * 1000;
+          min = 0;
+        }
+      } else if (data.length == 2) {
+        if (data[0] < data[1]) {
+          max = data[1] * 1000;
+          min = data[0] * 1000;
+        } else {
+          max = 0;
+          min = data * 1000;
+        }
+      } else if (data.length == 3) {
+        max = (data[1] + data[2]) * 1000;
+        min = data[0] * 1000;
+      } else if (data.length == 4) {
+        max = (data[2] + data[3]) * 1000;
+        min = (data[0] + data[1]) * 1000;
+      }
+    } else {
+      max = 0;
+      min = 0;
+    }
+    //console.log("最小值：" + min + "," + "最大值：" +max);
+    var data = [min, max];
+    return data;
+  },
+  //上拉请求函数
+  getpullData1: function() {
+    var that = this,
+      list = that.data.listdata1;
+    if (that.pullBottom(list)) {
+      that.setData({
+        page: that.data.page + 1
+      })
+      that.position();
+    }
+  },
+  //上拉请求函数
+  getpullData2: function() {
+    var that = this,
+      list = that.data.listdata2;
+    if (that.pullBottom(list)) {
+      that.setData({
+        page2: that.data.page2 + 1
+      })
+      that.needData();
+    }
+  },
+  //请求函数
+  pullBottom: function(list) {
+    var that = this
+    if (!that.data.ispro) { //没有在请求中，开始加载数据
+      if (list.pages.allpage > list.pages.page) { //有下一页数据
+        wx.showToast({
+          mask: true,
+          title: '加载中...',
+          icon: 'loading',
+          duration: 500
+        })
+        that.setData({
+          hiddentext: false
+        }) //显示下拉结束加载
+        that.setData({
+          ispro: false
+        }) //标记在请求中
+        return true;
+      } else {
+        wx.showToast({
+          mask: true,
+          title: '加载中...',
+          icon: 'loading',
+          duration: 300,
+        })
+        that.setData({
+          hiddentext: true
+        }) //显示下拉结束加载
+        that.setData({
+          ispro: false
+        }) //标记在请求中
+        return false;
+      }
+    }
+  },
+  getFormId: function (e) {
+    var formid = e.detail.formId;
+    app.addformId(formid)
+  },
+  //生命周期函数--监听页面加载
+  onShow: function(options) {
+    var that = this;
+    this.setData({
+      list1: [],
+      list2: []
+    })
+    // 做了一个延时器，从而达到同步
+    setTimeout(function() {
+      that.setData({
+        ispro: false
+      }) //标记在请求中
+    }, 200)
+    wx.showToast({
+      title: '正在加载',
+      icon: 'loading',
+      duration: 500
+    })
+    setTimeout(function () {
+      that.needData(); //调取需求发送的函数
+      that.position(); //调取职位发送的函数
+    }, 500)
+  },
+  // 在线列表
+  position: function() {
+    var url = "/w/position/lists",
+      that = this;
+    if (that.data.profession == 0) {
+      var DataView = {
+        work_way: 1, //类型
+        sort: that.data.tuijia, //推荐
+        skills: that.dataamend(that.data.jineng),//技能
+        highsalary: that.data.salarymax, //薪水 最大 
+        lowsalary: that.data.salarymin, //薪水 最小 
+        page: that.data.page, //当前页码 
+        limit: that.data.limit //一页多少条数据
+      };
+    } else {
+      var DataView = {
+        profession: that.data.profession, //职位
+        sort: that.data.tuijia, //推荐
+        work_way: 1, //类型
+        skills: that.dataamend(that.data.jineng),//技能
+        highsalary: that.data.salarymax, //薪水 最大 
+        lowsalary: that.data.salarymin, //薪水 最小 
+        page: that.data.page, //当前页码 
+        limit: that.data.limit //一页多少条数据
+      };
+    }
+    that.getDataUrl(url, DataView);
+  },
+  // 坐班列表数据
+  needData: function () {
+    var url = "/w/position/lists",
+      that = this;
+    if (that.data.profession == 0) {
+      DataView = {
+        work_way: 2, //类型
+        sort: that.data.tuijia2, //推荐
+        skills: that.dataamend(that.data.jineng2),//技能,//技能
+        highsalary: that.data.jine2max, //需求最大金额
+        lowsalary: that.data.jine2min, //需求最小金额
+        page: that.data.page2, //一页多少条数据
+        limit: that.data.limit //一页多少条数据
+      }
+    } else {
+      DataView = {
+        work_way: 2, //类型
+        profession: that.data.profession, //职位
+        sort: that.data.tuijia2, //推荐
+        skills: that.dataamend(that.data.jineng2),//技能
+        highsalary: that.data.jine2max, //需求最大金额
+        lowsalary: that.data.jine2min, //需求最小金额
+        page: that.data.page2, //一页多少条数据
+        limit: that.data.limit //一页多少条数据
+      }
+    }
+    that.getDataUrl2(url, DataView);
+  },
+  dataamend:function(data){
+    if (data == 'a'){
+      var list = [];
+     // console.log(data);
+      return list;
+    }else{
+      var list = []
+      list.push(data);
+      console.log(list)
+      return list;
+    }
+  },
+  // 处理当前页面有数据和没数据时的情况
+  hiddensBata: function(event) {
+    var that = this;
+    if (event == 0) {
+      that.setData({
+        hiddenpart: false,
+        hiddentext: false
+      })
+    } else {
+      that.setData({
+        hiddenpart: true
+      })
+    }
+  },
+  // 处理当前页面局部有数据和没数据时的情况
+  hiddenpartBata: function(data) {
+    var that = this;
+    if (data == "") {
+      that.setData({
+        hiddenpart: false,
+        hiddentext: false,
+        
+      })
+    } else {
+      that.setData({
+        hiddenpart: true
+      })
+    }
+  },
+  // 发送请求1 ajax请求数据  依据实际请求进行修改
+  getDataUrl: function(url, getdata) {
+    var that = this;
+    console.log(getdata);
+    bm.requsetData(url, 'get', getdata, function(data) {
+      console.log(data.data)
+      that.setData({
+        listdata1: that.dataDispose(data.data)
+      })
+      that.timestampToTime(that.data.listdata1.list);
+      var a = that.data.list1;
+      for (var i in that.data.listdata1.list) {
+        a.push(that.data.listdata1.list[i])
+      }
+      that.hiddenpartBata(a)
+      that.setData({
+        list1: a
+      });
+    })
+  },
+  // 发送请求2 ajax请求数据  依据实际请求进行修改
+  getDataUrl2: function(url, getdata) {
+    var that = this;
+    console.log(getdata);
+    bm.requsetData(url, 'get', getdata, function(data) {
+      console.log(data.data)
+      that.setData({
+        listdata2: that.dataDispose(data.data)
+      })
+      that.timestampToTime(that.data.listdata2.list);
+      that.setData({
+        array: data.data.choose_list
+      });
+      that.getDataUrl3(data.data.choose_list[0].profession);
+      var a = that.data.list2;
+      for (var i in that.data.listdata2.list) {
+        a.push(that.data.listdata2.list[i])
+      }
+      that.hiddenpartBata(a)
+      that.setData({
+        list2: a
+      });
+    })
+  },
+  getDataUrl3:function(id){
+    var that=this;
+     id=JSON.stringify(id);var b='100';
+     id = id.substr(0, id.length - 3).concat(b);
+     var url = '/c/config/skill?id=' + id,list;
+    bm.requsetData(url, 'post',list,function (data) {
+      that.setData({
+        jn: data.data
+        })
+      //console.log(that.data.jn);
+    })
+  },
+  dataDispose: function(data) {
+    if (data.errcode !== 0) {
+      wx.showToast({
+        mask: true,
+        title: data.errmsg,
+        icon: 'none',
+        duration: 300
+      })
+      this.hiddensBata(data.errcode)
+    } else {
+      return data;
+    }
+  },
+  timestampToTime: function(list) {
+    for (var i in list) {
+      list[i].ctime = bm.formatDate(list[i].ctime);
+    }
+  }
+})

@@ -1,0 +1,226 @@
+<!--整体文档  -->
+<form report-submit bindsubmit='getFormId'>
+  <!-- 头部功能-->
+  <view class='width100 backgroundfede01 position_fixed display_flex_center padding_top27 padding_bottom27'>
+    <view class='width90  display_flex_space_between'>
+      <picker class="picker" bindchange="bindPickerChange" value="{{index}}" range="{{array}}" range-key="title">
+        <view class='picker {{hiddenpart==true?"":"display_none"}}'>
+          <text id='{{array[index].skills}}'>{{grtdata.choose_list[index].title}}</text>
+          <image class='shangxi float_right margin_top20 margin_left15 ' src='/images/xia.png'></image>
+        </view>
+      </picker>
+      <view style='width:100rpx;'>
+      <image src='/images/qiehuan.jpg' class='float_right switchimages' bindtap='templatechange'></image> 
+      <navigator hover-class="none" url="/pages/search/search">
+      
+        <icon type="search" class='float_right margin_top8 ' color='black' size="18" />
+       
+      </navigator>
+      </view>
+    </view>
+  </view>
+
+
+
+  <view class='position_fixed top90 backgroundfff {{hiddenpart==true?"":"display_none"}} ' style='width:100%;z-index: 999;'>
+    <!--分类选择 -->
+    <view class="section backgroundfff">
+      <view class='display_flex_center padding_top27 padding_bottom27 border_bottom'>
+        <view class='head font_size30' bindtap='tabBut1' data-current="0">
+        <text hidden='{{buts==0?false:true}}'>类型</text>
+        <text hidden='{{buts==0?true:false}}'>{{leixing[buts].data}}</text>
+          <image class='daosanjiao' src='/images/sanjiao.jpg'></image>
+        </view>
+        <view class='head font_size30 border_left' bindtap='tabBut2' data-current="1">要求
+          <image class='daosanjiao' src='/images/sanjiao.jpg'></image>
+        </view>
+      </view>
+    </view>
+    <view style='height:100%;width:100%;' class='position_fixed backgroundfff' hidden='{{tab1&&tab2==true?true:false}}'>
+
+        <!--内容1  -->
+          <view class='padding_top38 overflow padding_bottom38 backgroundfff'  hidden='{{tab1}}'>
+            <view class='width85  padding_bottom100' style='margin:0 auto;height:200rpx;'>
+              <!--类型  -->
+              <view>
+                <view class='font_size28 colorc3c3c3'>类型</view>
+                <view class='font_size26 padding_top25 color828282'>
+                  <view wx:for="{{leixing}}" wx:key='id' class='padding_1020 border_radius30 inline_block margin_right30 margin_botton30 {{buts==item.id?"background borderafff":"bordera9a9a9"}}' bindtap='buttos' id='{{item.id}}'>{{item.data}}</view>
+                </view>
+              </view>
+            </view>
+          </view>
+
+        <!--内容2  -->
+
+          <view class='padding_top38 padding_bottom38 backgroundfff' hidden='{{tab2}}' style='overflow-y:scroll;height:850rpx;' >
+            <view  class='width85 padding_bottom100 auto' style='height:auto;'>
+              <!--服务  -->
+              <view>
+                <view class='font_size28 colorc3c3c3'>服务</view>
+                <view class='font_size26 padding_top25 color828282' style='height'>
+                  <view class='padding_1020 border_radius30 inline_block margin_right30 margin_botton30 {{fuwus1==1?"background borderafff":"bordera9a9a9"}}' bindtap='fuwuButto1' id='1'>不限</view>
+                  <view class='padding_1020 border_radius30 inline_block margin_right30 margin_botton30 {{fuwus2==1?"background borderafff":"bordera9a9a9"}}' bindtap='fuwuButto2' id='1'>支持三无</view>
+                </view>
+              </view>
+              <!--学历  -->
+              <view>
+                <view class='font_size28 colorc3c3c3'>学历</view>
+                <view class='font_size26 padding_top25 color828282'>
+                  <view wx:for="{{xueli}}" wx:key='id' class='padding_1020 border_radius30 inline_block margin_right30 margin_botton30 {{but==item.id?"background borderafff":"bordera9a9a9"}}' bindtap='butto' id='{{item.id}}'>{{item.data}}</view>{{item.id}}
+                </view>
+              </view>
+              <!--经验  -->
+              <view>
+                <view class='font_size28 colorc3c3c3'>经验</view>
+                <view class='font_size26 padding_top25 color828282'>
+                  <view wx:for="{{jingyan}}" wx:key='id' class='padding_1020 border_radius30 inline_block margin_right30 margin_botton30 {{experience==item.id?"background borderafff":"bordera9a9a9"}}' bindtap='experienceBut' id='{{item.id}}'>{{item.data}}</view>
+                </view>
+              </view>
+              <!-- 薪水  -->
+              <view>
+               <!-- dmd=职位 -->
+                <view class='font_size28 colorc3c3c3'  hidden='{{array[index].type =="pos"?true:false}}'>薪水</view>
+                <view class='font_size26 padding_top25 color828282' hidden='{{array[index].type =="pos"?true:false}}'>
+                  <view wx:for="{{xinshui}}" wx:key='id' class='padding_1020 border_radius30 inline_block margin_right30 margin_botton30 {{salary==item.id?"background borderafff":"bordera9a9a9"}}' bindtap='salaryBut' id='{{item.id}}'>{{item.data}}</view>
+                </view>
+              </view>
+
+            </view>
+          </view>
+
+      <view >
+        <view style='width:100%;position:fixed;' class=' bottom'  hidden='{{tab2==true?true:false}}'>
+          <view class=' width97 auto' style='padding:0;margin:0 auto;'>
+            <button class='width40 inline_block backgroundblack colorfff' style='height:100%' form-type='submit' bindtap='Reset'>重置</button>
+            <button class='width60 inline_block background' style='height:100%' form-type='submit' bindtap='Submit'>确认</button>
+          </view>
+        </view>
+      </view>
+      <!--底部导航  -->
+    </view>
+  </view>
+  <!--内容  -->
+  <scroll-view scroll-y class='top  {{hidden==false?"":"display_none"}} {{hiddenpart==true?"":"display_none"}} '  hidden='{{!template}}' >
+    <!--可循环内容 -->
+    <view wx:for="{{list}}" wx:key="unique" class='content border_bottom' >
+      <navigator hover-class="none" class="navigators  fffs" data-uid="{{item.uid}}"  url='/resume/resume?uid={{item.uid}}' bindtap="huancun" style='background:#fff;'>
+        <view class='width90 auto  display_flex_space_between padding_bottom10' id="{{item.uid}}" >
+          <view class='display_flex'>
+            <image class='circle145  {{item.is_mosaic==1?"filter_blur2":""}}'  src='{{item.avatar}}'></image>
+            <view class='{{item.sex==1?"boy":"girl"}} inline_block section'></view>
+          </view>
+          <view class='width75'>
+            <view class=' display_flex_space_between padding_bottom10'>
+              <view class=' display_flex_space_between ' style='width:350rpx;'>
+                <text class='font_size34'>{{item.name}} </text>
+              </view>
+              <text class='colorfe5a01 font_size34'>￥{{item.price}}</text>
+            </view>
+            <view class=' display_flex_space_between'  style='display:{{item.ismember==1?"":"none"}};'>
+            <text class='vip'> VIP</text>
+            </view>
+            <view class=' display_flex_space_between'>
+              <!-- <text class='font_size28 width75 colorfea9a9a9' wx:if="{{_type!='dmd'}}">{{item.profession_name}}</text>
+              <text class='font_size28 width75 colorfea9a9a9' wx:else><block wx:for="{{item.stags_name}}" wx:for-item="vo" wx:key="{{vo}}">{{vo}}</block></text> -->
+              <!-- <text class='colorfe5a01 font_size28 colorfea9a9a9'>最低要求</text> -->
+            </view>
+            <view class='padding_bottom15'>
+              <text class='font_size28 colorfea9a9a9'>{{item.work_year_name}}工作经验
+              <view hidden='{{item.education==0?true:false}}'>-{{item.education_name}}</view>
+              </text>
+            </view>
+          </view>
+        </view>
+        <view class='textbox font_size30 colorfe666666 auto' hidden='{{item.profession_name.length>0?false:true}}' style='padding:0 40rpx;'>
+        <view class='mode_item'>{{item.profession_name}}</view>
+        </view>
+       <view class='contentbottom-wrap'>
+          <view class='contentbottom'>
+            <image src='/images/business/fire.jpg'></image> 服务:
+            <p wx:for="{{item.service_tags_name}}"  wx:key="{{itemName}}" wx:for-item="itemName" wx:for-index="dhindex">
+                <text style="display:{{dhindex==0?'none':''}}">{{dh}}</text>
+                {{itemName}}
+            </p>
+          </view>
+          </view>
+      </navigator>
+    </view>
+    <view class='text_align {{hiddentext==false?"display_none":""}}'>~~亲，已经到底了~~</view>
+  </scroll-view>
+  <!-- 点击切换页布局 -->
+
+
+
+  <!-- 此处对应卡片布局 -->
+  <view class='list' hidden='{{template}}'>
+  <view class='swipers-wrap'>
+    <swiper class="swipers"  autoplay="{{false}}" previous-margin="{{'64rpx'}}" next-margin="{{'64rpx'}}" bindchange="swiperChange">
+      <block wx:for="{{list}}" wx:key="{{index}}">
+      <navigator hover-class="none" url='/resume/resume?uid={{item.uid}}' bindtap="huancun">
+        <swiper-item class="swipers-item" >
+          <view class="slide-image">
+          <view class='header'>
+            <image  class='topbackground' src='/images/business/topheader.jpg'> </image>
+            <view class='contentpng-wrap'>
+             <image  class='contentpng' src='{{item.avatar}}' mode="widthFix"> </image>
+            </view> 
+          </view>
+          <view class='contents'>
+            <view class='content-name'>
+              {{item.name}}
+            </view>
+            <view class='content-year'>
+              {{item.education_name}} - {{item.work_year_name}}
+              <text hidden='{{item.profession_name==undefined?true:false}}'> - {{item.profession_name}}</text>
+            </view>
+            <view class='content-tags'>
+              <block wx:for="{{item.service_tags_name}}" wx:key="{{index}}" wx:for-item="tags_item">
+                  <view class='tags_item'> 
+                    {{tags_item}}
+                  </view>
+              </block>
+            </view>
+            <view class='content-price'  hidden='{{item.profession_name==undefined?true:false}}'>
+                ￥{{item.price}}
+            </view>
+             <view class='content-prices'  hidden='{{item.profession_name==undefined?false:true}}'>
+                面议
+            </view>
+            <view class='content-text'>
+              <p>{{item.advantage}}</p>
+            </view>
+          </view>
+          </view>
+        </swiper-item>
+        </navigator>
+      </block>
+      
+    </swiper>
+        <view class='bottoms' bindtap='F5Click' hidden='{{F5flag}}'>
+            <image src='/images/business/pagenumber.jpg'></image>
+        </view>
+    </view>
+
+  </view>
+<!-- 卡片布局结束 /images/worker/kong.png -->
+  <view class='explainCantainer {{hiddens==true?"display_none":""}}'>
+    <view class='empty_icon' style='top:280rpx'>
+      <image src='/images/worker/kong.png'></image>
+    </view>
+    <view class='empty_text'>
+      <view class='empty_text_01'>{{empty_text_01}}</view>
+      <view class='empty_text_02'>{{empty_text_02}}</view>
+    </view>
+    <button class='bt'>邀请好友发布外包需求</button>
+  </view>
+</form>
+<view class='explainCantainer {{hiddenpart==true?"display_none":""}}'>
+  <view class='explain'>
+    你还未发布过任何内容
+  </view>
+  <view class='bg'>
+    <image src='//bm.jiangcdn.com/banma/empty/empty.png'></image>
+  </view>
+  <button class='btn border_radius5' bindtap='sendDemand' form-type='submit'>发布你的第一个职位/需求</button>
+</view>

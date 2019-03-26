@@ -1,0 +1,4 @@
+<!--pages/fill/textareaFill.wxml-->
+<view class='textnum'>{{numPrint}}/{{num}}</view>
+<textarea placeholder='{{placeholder}}' value='{{content}}' bindinput='fillTxt'></textarea>
+<button class='fillBtn' plain bindtap='checkFill'>确定</button>

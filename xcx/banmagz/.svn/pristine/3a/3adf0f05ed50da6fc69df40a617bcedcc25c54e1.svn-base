@@ -1,0 +1,31 @@
+<!--pages/business/position/linkup.wxml-->
+<view class='top'>以下2人沟通过该职位</view>
+<view class='list'>
+  <view class='list_main' wx:for='{{list}}' wx:key='list'>
+    <view class='list_main_01'>
+      <view class='content_left'>
+        <view class='avatar'>
+          <image src='{{item.avatar}}'></image>
+        </view>
+        <view class='info'>
+          <view class='name'>{{item.name}}</view>
+          <view class='position'>{{item.position}}</view>
+          <view class='position'>{{item.edu}}</view>
+        </view>
+      </view>
+      <view class='content_right'>
+        <view class='price'>￥{{item.price}}</view>
+        <view class='yq'>最低要求</view>
+      </view>
+    </view>
+    <view class='list_main_02'>
+    {{item.content}}
+    </view>
+    <view class='list_main_03'>
+      <view class='icon_01'><image src='../../../images/worklist/taolun.jpg'></image></view>
+      <view class='num'>{{item.num_01}}</view>
+      <view class='icon_02'><image src='../../../images/worklist/ydl.jpg'></image></view>
+      <view class='num'>{{item.num_02}}</view>
+    </view>
+  </view>
+</view>

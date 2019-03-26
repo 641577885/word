@@ -1,0 +1,159 @@
+<!--pages/worker/search/company.wxml-->
+<view class='width90 auto display_flex space_between padding_top35 padding_bottom35 border_bottom'>
+  <view class='inline_block'>
+    <view class='font_size50'>{{list.name}}</view>
+    <view class='font_size28 padding_top35 color5d5d5d'>{{list.finance_stage_name}}-{{list.industry_name}}-{{list.staff_size_name}}</view>
+  </view>
+  <view class='inline_block'>
+    <image class='gongsi border_radius20' src='{{list.logo}}'></image>
+  </view>
+</view>
+<view class='width90 auto padding_top35 padding_bottom35'>
+  <view class='font_size32'>历史访问：
+    <text class='colorfe5a01'>{{list.visits}}</text>
+  </view>
+  <view class='display_flex space_between margin_top25'>
+    <view class='margin_left15'>
+      <image wx:for="{{visitlist}}" wx:key="liulan" class='jiluyuan border_radius30 border5 margin_left-18' src='{{item.avatar}}'></image>
+    </view>
+    <view class='colorfe013d'>
+      <text>{{dianzan}}</text>
+      <image class='xin border_radius20 float_right margin_left15 {{xin==true?"":"hidden"}}' src='../../../images/worklist/xin.png' bindtap='xinData'></image>
+      <image class='xin border_radius20 float_right margin_left15 {{xin==true?"hidden":""}}' src='../../../images/worklist/xin2.png' bindtap='xinData'></image>
+    </view>
+  </view>
+</view>
+<view class='padding_top25 backgroundfafafa'></view>
+  <view class=' padding_top35 padding_bottom35'>
+    <view class='  auto display_flex space_between font_size32 tab-nav border_bottom'>
+    <view class='{{current1==0?"on":""}} ' data-current="0" bindtap='tab'>公司信息</view>
+    <view class='{{current1==1?"on":""}} ' data-current="1" bindtap='tab'>驻场职位</view>
+    <view class='{{current1==2?"on":""}}' data-current="2" bindtap='tab'>远程职位</view>
+  </view>
+  <swiper class=' border_bottom xiala' current="{{current1}}" bindchange="eventchange" style='{{current1==0?"height:800rpx":"height:600rpx"}}'>
+    <swiper-item>
+      <!--公司介绍  -->
+      <!-- <view class='width90 auto padding_top25 padding_bottom25'>
+        <view class='font_size30 color5d5d5d border_bottom'>
+          <view class='inline_block border_bottomfede01 padding_bottom20'>公司介绍</view>
+        </view>
+        <view class='padding_top35 font_size28 color5d5d5d'>{{list.introduction}}
+        </view>
+      </view> -->
+      <!--公司高层介绍  -->
+      <!-- <view class='padding_top25 backgroundfafafa'></view>
+              <view class='width90 auto padding_top25 padding_bottom25'>
+                      <view class='font_size30 color5d5d5d border_bottom'>
+                        <view class='inline_block border_bottomfede01 padding_bottom20'>企业高管</view>
+                      </view>
+                      <view class='padding_top25 font_size30 width80 display_flex'>
+                            <view class='margin_right25'>
+                                <image class='gongsi border_radius20'  src='../../../images/worklist/1_100017.jpg'></image> 
+                            </view>
+                            <view>
+                              <view class='font_size50'>西瓜</view>
+                              <view class='font_size28 padding_top15 padding_bottom20 color5d5d5d'>CEO</view>
+                            </view>
+                      </view>
+                      <view class='padding_top25 font_size30 color5d5d5d'>
+                            乱七八糟的字符有一大堆乱七八糟的字符，有一大堆乱七八糟的字符有一大堆乱七八糟的字符，有一大堆乱七八糟的字符有一大堆乱七八糟的字符有一大堆。
+                      </view>
+              </view>  -->
+      <!--公司地址介绍  -->
+      <view class='padding_top25 backgroundfafafa '></view>
+      <view class='width90 auto padding_top25'>
+        <view class='font_size30 color5d5d5d border_bottom'>
+          <view class='inline_block border_bottomfede01 padding_bottom20'>公司地址</view>
+        </view>
+        <view class='padding_top25 font_size30 padding_bottom25'>
+          <view>{{list.address}}</view>
+        </view>
+      </view>
+      <!--公司官网介绍  -->
+      <view class='padding_top25  backgroundfafafa padding_bottom25'></view>
+      <view class='width90 auto padding_top25'>
+        <view class='font_size30 color5d5d5d border_bottom'>
+          <view class='inline_block border_bottomfede01 padding_bottom20'>公司官网</view>
+        </view>
+        <view class='padding_top25 font_size30'>
+          <view>{{list.website}}</view>
+        </view>
+      </view>
+    </swiper-item>
+    <swiper-item>
+      <view class='xiala2 {{hiddenpart==true?"":"hidden"}}'>
+        <scroll-view class='xiala2' scroll-y bindscrolltolower="getpullData">
+          <!--可循环内容2 -->
+          <view wx:for="{{list2}}" wx:key="unique" class='padding_top25 padding_bottom25 border_bottom '>
+            <navigator hover-class="none" url="/pages/details/zwDetails?id={{item.id}}">
+              <view class='display_flex space_between width90 auto'>
+               <text class='font_size32 padding_leftright20'>{{item.profession_name}}</text>
+                <text class='colorfe5a01 font_size32 font_weight600'>{{item.lowsalary}}-{{item.highsalary}}</text>
+              </view>
+              <view class='margin_top30 font_size26 color5d5d5d width90 auto '>
+                <text class='padding_leftright20 border_right'>暂未开启</text>
+                <text class='padding_leftright20 border_right'>{{item.work_year_name}}</text>
+                <text class='padding_leftright20'>{{item.education_name}}</text>
+              </view>
+            </navigator>
+            <view class='width90 auto padding_top20 padding_bottom10 font_size26 display_flex space_between'>
+              <view class=' width70 margin_top35'>
+                <image class=' circle60 border_radius30 float_left margin_top-10' src='{{item.seller.avatar}}'></image>
+                <text class=' font_size26 margin_left10'>{{item.seller.company_name}}-{{item.seller.position}}元</text>
+              </view>
+              <text class='margin_top45 colorbababa font_size26'>{{item.ctime}}</text>
+            </view>
+          </view>
+          <view class='text_align {{hiddentext==false?"hidden":""}}'>~~亲，已经到底了~~</view>
+        </scroll-view>
+      </view>
+       <view class='{{hiddenpart==true?"hidden":""}}'>
+        <view class='empty_icon' style='top:0rpx'>
+          <image src='//bm.jiangcdn.com/banma/empty/empty_bg.png'></image>
+         </view>
+        <view class='empty_text' style='top:460rpx'>
+          <view class='empty_text_01'>{{empty_text_01}}</view>
+          <view class='empty_text_02'>{{empty_text_02}}</view>
+        </view>
+       </view>
+    </swiper-item>
+    <swiper-item>
+      <view class='xiala2 {{hiddenpart2==true?"":"hidden"}}'>
+        <scroll-view class='xiala2' scroll-y bindscrolltolower="getpullData2">
+          <!--可循环内容2  -->
+          <view wx:for="{{list3}}" wx:key="unique" class=' border_bottom padding_top25 padding_bottom25'>
+            <navigator hover-class="none" url="/pages/details/zwDetails?id={{item.id}}">
+              <view class='display_flex space_between width90 auto'>
+                <text class='font_size34 padding_leftright20'>{{item.profession_name}}</text>
+                <text class='colorfe5a01 font_size34 font_weight600'>{{item.lowsalary}}-{{item.highsalary}}元</text>
+              </view>
+              <view class='margin_top30 font_size30 colorbababa width90 auto '>
+                <text class='padding_leftright20 border_right'>暂未开启</text>
+                <text class='padding_leftright20 border_right'>{{item.work_year==0?item.work_year_name:item.work_yea}}</text>
+                <text class='padding_leftright20'>{{item.education_name}}</text>
+              </view>
+              <view class='margin_top30 font_size30 colorbababa width90 auto  display_flex space_between'>
+                <text class='padding_leftright20'>{{item.negotiate}}</text>
+                <text class='padding_leftright20'>{{item.ctime}}</text>
+              </view>
+            </navigator>
+          </view>
+          <view class='text_align {{hiddentext==false?"hidden":""}}'>~~亲，已经到底了~~</view>
+        </scroll-view>
+
+
+
+      </view>
+      <view class='{{hiddenpart2==true?"hidden":""}}'>
+        <view class='empty_icon' style='top:0rpx'>
+          <image src='//bm.jiangcdn.com/banma/empty/empty_bg.png'></image>
+         </view>
+        <view class='empty_text' style='top:460rpx'>
+          <view class='empty_text_01'>{{empty_text_01}}</view>
+          <view class='empty_text_02'>{{empty_text_02}}</view>
+        </view>
+       </view>
+    </swiper-item>
+  </swiper>
+
+</view>

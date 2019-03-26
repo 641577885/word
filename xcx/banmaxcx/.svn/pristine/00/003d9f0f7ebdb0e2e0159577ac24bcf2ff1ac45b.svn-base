@@ -1,0 +1,42 @@
+/* pages/demandList/index.wxss */
+page{ background: #fafafa}
+.tapbar{ display: flex; align-items: center; justify-content: space-between; height: 90rpx; padding: 0 35rpx; background: #fede01;}
+.pickerItem{ display: flex; align-items: center; font-size: 38rpx; color: #000000;}
+.pickerItem image{ display: block; width: 28rpx; height: 16rpx; margin-left: 15rpx;}
+.screenSeach image{ width: 37rpx; height: 35rpx;}
+.screenCantainer{ display: flex; align-items: center; justify-content: space-between; width: 100%; height: 88rpx; border-bottom: 1rpx solid #dadada; background: #fff; }
+.screenCantainer view{ display: flex; justify-content: center; align-items: center; height: 100%; flex: 1; text-align: center; font-size: 30rpx; color: #353535;}
+.screenCantainer view image{ width: 24rpx; height: 20rpx; margin-left: 15rpx;}
+.viewCantainer{ position: absolute; top: 180rpx; bottom: 0; left: 0; right: 0;}
+
+.viewItemCantainer{ padding:30rpx 0 0 30rpx; }
+.viewItem{ padding:0 30rpx 30rpx 0; border-bottom: 1rpx solid #eeeeee; }
+.viewTitle,.viewTag,.sellerCantainer{ display: flex; align-items: center; justify-content: space-between;}
+.viewTag,.sellerCantainer{ margin-top: 30rpx;}
+.titleTxt{ display: block; width: 80%; font-size: 34rpx; color: #000;}
+.priceTxt{ font-size: 34rpx; color: #fe5a01;}
+.tagCantainer{ display: flex; align-items: center; justify-content: flex-start; width: 80%;}
+.tagItem{height: 42rpx; line-height: 40rpx; border-radius: 8rpx; border: 1rpx solid #dfdfdf; padding: 0 15rpx; box-sizing: border-box; margin-right: 15rpx;}
+.timeTxt{ font-size: 24rpx; color: #bfbfbf;}
+.contentTxt{ color: #666666; font-size: 28rpx; margin-top: 20rpx}
+.sellerInfo{ display: flex; align-items: center; justify-content: flex-start; width:50%;}
+.sellerInfo image{ width: 58rpx; height: 58rpx;}
+.sellerInfo text{ font-size: 26rpx; color: #000; margin-left: 25rpx;}
+.companyItem{ font-size: 24rpx; color: #bfbfbf}
+
+.silderCantainer{ display: flex; justify-content: space-around; position: absolute;width: 100%; top: 0; bottom: 0; left: 120%; right: 0; background: rgba(0,0,0,0.6); transition: left linear 0.3s;}
+.silderCantainer.action{ left: 0;}
+.cancelView{ width: 20%;}
+.firstView{ width: 35%; background: #f5f5f5; padding-bottom: 112rpx;}
+.secondView{ width: 45%; background: #fff; padding-bottom: 112rpx;}
+.firstView view{ display: flex; align-items: center; justify-content: center; height: 91rpx; text-align: center; font-size: 26rpx; color: #000; border-right: 1rpx solid #e5e5e5; box-sizing: border-box;}
+.firstView view.action{ background: #fff; border-bottom: 1rpx solid #e5e5e5; border-right: 1rpx solid #fff;}
+.silderButton{ display: flex; align-items: center; justify-content: space-between; position: absolute; right: 0; bottom: 0; background: #fff; width: 80%; padding: 10rpx; box-sizing: border-box;}
+.reset{ width: 270rpx; background: #fdc100 linear-gradient(to right,#fedd01 , #fdc100)}
+.submit{ width: 360rpx; color: #fff; background: #ff5d3e;}
+.reset::after,.submit::after{ border: 0 none; margin: 0}
+.viewicon{ position: relative; width: 44rpx;height: 44rpx;border: 1rpx solid #c9c9c9;border-radius: 50%; box-sizing: border-box}
+.viewicon icon{ position: absolute; top: -1rpx; left: -1rpx;}
+
+.secviewItem{ display: flex; align-items: center; padding-left: 24rpx; height: 91rpx;}
+.secviewTxt{ height: 100%; width: 289rpx; line-height: 90rpx; font-size: 30rpx; color: #000; border-bottom: 1rpx solid #e5e5e5; margin-left: 26rpx;}

@@ -1,0 +1,4 @@
+<!--pages/fill/inputFill.wxml-->
+<view class='textnum'>日薪要求</view>
+<input placeholder='{{placeholder}}' value='{{content}}' bindinput='fillTxt' maxlength='{{num}}' type='number'></input>
+<button class='fillBtn' plain bindtap='checkFill'>确定</button>

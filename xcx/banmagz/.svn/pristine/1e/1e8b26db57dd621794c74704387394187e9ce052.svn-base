@@ -1,0 +1,520 @@
+//调取发送请求的文件
+const bm = require('../../utils/common.js')
+var app = getApp();
+Page({
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    empty_text_01: '',
+    empty_text_02: '暂时没有找到相关需求信息。',
+    hiddentext: false, //底部加载
+    page: 1, //页数，开始是1从第一页开始请求
+    limit: 6, //请求的个数，可自定义设置
+    index: 0,
+    hiddenpart: true, //局部文档隐藏切换
+    hiddens: true, //全体文档隐藏切换-----------删掉
+    ispro: false, //是否在请求中
+    isnext: true, //是否有下一页
+    salary: 0, //薪水开关
+    hidden: false, //显示框的显示隐藏
+    tab: false, //左右切换
+    list: [], //接口实际数据,
+    grtdata: [], //后台 获取到的全部数据
+    leixing: [ //类型
+      {
+        id: 0,
+        data: "全部"
+      },
+      {
+        id: 1,
+        data: "在线工作"
+      },
+      {
+        id: 2,
+        data: "只坐班"
+      }
+    ],
+    xueli: [ //学历
+      {
+        id: 0,
+        data: "不限"
+      },
+      {
+        id: 1,
+        data: "中转以下"
+      },
+      {
+        id: 2,
+        data: "高中 "
+      },
+      {
+        id: 3,
+        data: "大专"
+      },
+      {
+        id: 4,
+        data: "本科"
+      },
+      {
+        id: 5,
+        data: "硕士"
+      },
+      {
+        id: 6,
+        data: "博士"
+      }
+    ],
+    jingyan: [ //经验
+      {
+        id: 0,
+        data: "不限"
+      },
+      {
+        id: 1,
+        data: "应届生"
+      },
+      {
+        id: 2,
+        data: "1年以内 "
+      },
+      {
+        id: 3,
+        data: "1-3年"
+      },
+      {
+        id: 4,
+        data: "3-5年"
+      },
+      {
+        id: 5,
+        data: "5-10年"
+      },
+      {
+        id: 6,
+        data: "10以上"
+      }
+    ],
+    xinshui: [ //薪水
+      {
+        id: 0,
+        data: "不限"
+      },
+      {
+        id: 1,
+        data: "3k以下"
+      },
+      {
+        id: 2,
+        data: "3k-5k "
+      },
+      {
+        id: 3,
+        data: "5k-10k"
+      },
+      {
+        id: 4,
+        data: "10k-20k"
+      },
+      {
+        id: 5,
+        data: "20k-50k"
+      },
+      {
+        id: 6,
+        data: "50k以上"
+      }
+    ],
+    id: 0,
+    profession: 0, //专业、职业
+    buts: 0, //类型
+    fuwus1: 0, //服务可驻场
+    fuwus2: 0, //服务支持三无
+    but: 0, //学历
+    salaryMax: 0, //薪水
+    salaryMin: 0, //薪水
+    experience: 0, //经验
+    url: '/b/worker/lists' //当前页面的URL
+  },
+  // 头部产品经理单项选项
+  bindPickerChange: function(e) {
+    var aid = this.data.array[e.detail.value].profession;
+    this.setData({
+      index: e.detail.value,
+      profession: aid,
+    })
+    this.setData({
+      list: []
+    })
+    this.getAllData(); 
+  },
+  // 学历单选
+  butto: function(event) {
+    var that = this;
+    var toggleBtnVal = that.data.but;
+    var itemId = event.currentTarget.id;
+    if (toggleBtnVal == itemId) {
+      that.setData({
+        but: 0
+      })
+    } else {
+      that.setData({
+        but: itemId
+      })
+    }
+  },
+  // 服务复选1
+  fuwuButto1: function(event) {
+    var that = this;
+    if (that.data.fuwus1 == 0) {
+      that.setData({
+        fuwus1: 1
+      })
+    } else {
+      that.setData({
+        fuwus1: 0
+      })
+    }
+  },
+  // 服务复选2
+  fuwuButto2: function(event) {
+    var that = this;
+    if (that.data.fuwus2 == 0) {
+      that.setData({
+        fuwus2: 1
+      })
+    } else {
+      that.setData({
+        fuwus2: 0
+      })
+    }
+  },
+  //类型单选
+  buttos: function(event) {
+    var that = this;
+    var toggleBtnVal = that.data.buts;
+    var itemId = event.currentTarget.id;
+    if (toggleBtnVal == itemId) {
+      that.setData({
+        buts: 0,
+      })
+    } else {
+      that.setData({
+        buts: itemId
+      })
+    }
+  },
+  // 经验单选
+  experienceBut: function(event) {
+    var that = this;
+    var experienceBut = that.data.experience;
+    var itemId = event.currentTarget.id;
+    if (experienceBut == itemId) {
+      that.setData({
+        experience: 0
+      })
+    } else {
+      that.setData({
+        experience: itemId
+      })
+    }
+  },
+  // 薪水单选
+  salaryBut: function(event) {
+    var that = this,
+      salaryButVal = that.data.salary,
+      itemId = event.currentTarget.id,
+      itemval = that.data.xinshui[itemId].data,
+      salaryData = that.publicSalary(itemId, itemval); //调用公共函数
+    // console.log("最小值：" + that.data.salaryMin + "," + "最大值：" + that.data.salaryMax);
+    that.setData({
+      salaryMin: salaryData[0],
+      salaryMax: salaryData[1]
+    })
+    if (salaryButVal == itemId) {
+      that.setData({
+        salary: 0
+      })
+    } else {
+      that.setData({
+        salary: itemId
+      })
+    }
+  },
+  //拆分金额最大值和最小值的函数，注意仅适合100k以下
+  publicSalary: function(itemId, itemval) {
+    if (itemId !== '0') {
+      var data = itemval.replace(/[^0-9]/ig, "");
+      //console.log("长度"+data.length)
+      var max, min;
+      if (data.length == 1) {
+        if (data == 3) {
+          max = data * 1000 - 1;
+          min = 0;
+        } else {
+          max = data * 1000;
+          min = 0;
+        }
+      } else if (data.length == 2) {
+        if (data[0] < data[1]) {
+          max = data[1] * 1000;
+          min = data[0] * 1000;
+        } else {
+          max = 0;
+          min = data * 1000;
+        }
+      } else if (data.length == 3) {
+        max = (data[1] + data[2]) * 1000;
+        min = data[0] * 1000;
+        console.log("max:" + max, "min:" + min)
+      } else if (data.length == 4) {
+        max = (data[2] + data[3]) * 1000;
+        min = (data[0] + data[1]) * 1000;
+      }
+    } else {
+      max = 0;
+      min = 0;
+    }
+    //console.log("最小值：" + min + "," + "最大值：" +max);
+    var data = [min, max];
+    return data;
+  },
+  // 重置按钮
+  Reset: function() {
+    var that = this;
+    that.setData({
+      buts: 0,
+      fuwus1: 0,
+      fuwus2: 0,
+      but: 0,
+      salary: 0,
+      experience: 0,
+      salaryMax: 0,
+      salaryMax: 0
+    })
+  },
+  //确认
+  Submit: function() {
+    var that = this;
+    this.setData({
+      hidden: false,
+      list: []
+    })
+    that.getAllData()
+  },
+  // 切换
+  tabBut1: function(event) {
+    var that = this;
+    that.setData({
+      tab: 0
+    })
+    if (that.data.id == 1) {
+      that.setData({
+        hidden: true
+      })
+    } else {
+      that.setData({
+        hidden: (!that.data.hidden)
+      })
+    }
+    that.setData({
+      id: 2
+    })
+  },
+  tabBut2: function(event) {
+    var that = this;
+    that.setData({
+      tab: 1
+    })
+    if (that.data.id == 2) {
+      that.setData({
+        hidden: true
+      })
+    } else {
+      that.setData({
+        hidden: (!that.data.hidden)
+      })
+    }
+    that.setData({
+      id: 1
+    })
+  },
+  // 生命周期函数--监听页面加载
+  onShow: function(options) {
+    var that = this;
+    that.setData({list: []});
+    var data = app.globalData.role;
+    that.getAllData(); //发送请求
+  },
+  //页面上拉触底事件的处理函数
+  pullBottom: function() {
+    var that = this
+    if (!that.data.ispro) { //没有在请求中，开始加载数据
+      if (that.data.grtdata.pages.allpage > that.data.grtdata.pages.page) { //有下一页数据
+        wx.showToast({
+          mask: true,
+          title: '加载中...',
+          icon: 'loading',
+          duration: 500
+        })
+        that.setData({
+          ispro: false
+        }) //标记在请求中
+        that.setData({
+          page: that.data.page + 1
+        });
+        that.getAllData();
+      } else {
+        that.setData({
+          page: 0
+        }) //显示下拉结束加载
+        wx.showToast({
+          mask: true,
+          title: '加载中...',
+          icon: 'loading',
+          duration: 500
+        })
+        that.setData({
+          hiddentext: true
+        }) //显示下拉结束加载
+        that.setData({
+          ispro: false
+        }) //标记在请求中
+      }
+    }
+  },
+  //页面下拉触底事件的处理函数
+  getpull: function() {
+    var that = this;
+    that.setData({
+      page: 0, list:[]
+    }) //显示下拉结束加载
+    wx.showToast({
+      mask: true,
+      title: '正在刷新',
+      icon: 'loading',
+      duration: 500
+    })
+    that.getAllData();
+  },
+  // 处理当前页面局部有数据和没数据时的情况
+  hiddensBata: function(event) {
+    var that = this;
+    if (event == 0) {
+      that.setData({
+        hiddens: false,
+        hiddentext: false
+      })
+    } else {
+      that.setData({
+        hiddens: true
+      })
+    }
+  },
+  // 处理当前页面有数据和没数据时的情况
+  hiddenpartBata: function(event) {
+    var that = this;
+    if (event == "") {
+      that.setData({
+        hiddenpart: false
+      })
+    } else {
+      that.setData({
+        hiddenpart: true
+      })
+    }
+  },
+  // 获取当前下拉列表的选项值
+  getAllData: function() {
+    var that = this;
+    if (that.data.profession == 0) {
+      var DataView = {
+        work_way: that.data.buts, //类型
+        education: that.data.but, //学历
+        resident: that.data.fuwus1, //服务可驻场
+        sanwu: that.data.fuwus2, //服务支持三无
+        work_year: that.data.experience, //经验
+        highsalary: that.data.salaryMax, //薪水 最大 
+        lowsalary: that.data.salaryMin, //薪水 最小 
+        page: that.data.page, //当前页码 
+        limit: that.data.limit //一页多少条数据
+      };
+    } else {
+      var DataView = {
+        skills: that.data.profession, //职位
+        work_way: that.data.buts, //类型
+        education: that.data.but, //学历
+        resident: that.data.fuwus1, //服务可驻场
+        sanwu: that.data.fuwus2, //服务支持三无
+        work_year: that.data.experience, //经验
+        highsalary: that.data.salaryMax, //薪水 最大 
+        lowsalary: that.data.salaryMin, //薪水 最小 
+        page: that.data.page, //当前页码 
+        limit: that.data.limit //一页多少条数据
+      };
+    }
+    that.getDataUrl(DataView);
+  },
+  // 发送请求
+  getDataUrl: function(getdata) {
+    var that = this,
+      url = that.data.url;
+    bm.requsetData(url, 'get', getdata, function(data) {
+      console.log(data.data)
+      if (data.data.errcode == 0) {
+        wx.showToast({
+          mask: true,
+          title: '正在刷新',
+          icon: 'loading',
+          duration: 500
+        })
+        setTimeout(function() {
+          if (data.data.has_profession == 0) {
+            that.hiddenpartBata(data.data.has_profession); //判断当前页面有没有数据
+          } else {
+            that.setData({
+              grtdata: data.data
+            });
+            that.setData({
+              array: data.data.choose_list
+            });
+            var a = that.data.list;
+            for (var i in data.data.list) {
+              a.push(data.data.list[i])
+            }
+            that.setData({
+              list: a
+            });
+            that.hiddensBata(that.data.list); //判断当前页面的局部有没有数据
+          }
+        }, 500)
+      } else {
+        console.log(data.data.errmsg);
+        wx.showToast({
+          mask: true,
+          title: data.data.errmsg,
+          icon: 'none',
+          duration: 500
+        })
+      }
+    })
+  },
+  sendDemand: function() {
+    wx.switchTab({
+      url: '/pages/publish/publishType'
+    })
+  },
+  getFormId: function (e) {
+    var formid = e.detail.formId;
+    app.addformId(formid)
+  },
+
+  // 缓存
+  huancun:function(){
+    var profession = this.data.array[this.data.index].profession,
+      id = this.data.array[this.data.index].id,
+      utype = this.data.array[this.data.index].type;
+    if (utype == 'dmd') { utype = 1 } else { utype=2};
+    wx.setStorageSync('relationship', { id: id, profession: profession, type: utype })
+  }
+})

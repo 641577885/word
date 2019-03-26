@@ -1,0 +1,129 @@
+// pages/business/search/search.js
+//调取发送请求的文件
+const bm = require('../../utils/common.js')
+var app = getApp();
+Page({
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    history: [],
+    guess: [],
+    getValue:0
+  },
+  /*点击搜索*/
+  searchbtn:function(e){
+    var that = this,
+      getData =[]; 
+    console.log(that.data.getValue);
+    if (that.data.getValue == 1) {
+      //获取本地存储
+      wx.getStorage({
+        key: 'lishi1',
+        success: function (res) {
+          that.setData({ history: res.data });
+        }
+      })
+      //  存储
+      for (var i in that.data.history) { getData.push(that.data.history[i]); }
+      getData.unshift(e.detail.value);
+      if (getData.length > 7) {
+        getData.splice(getData.length - 1, 1)
+      }
+      wx.setStorage({
+        key: "lishi1",
+        data: getData,
+      });
+      //获取本地存储
+      setTimeout(function () {
+        wx.getStorage({
+          key: 'lishi1',
+          success: function (res) {
+            that.setData({ history: res.data });
+          }
+        }) 
+        }, 1000)
+       //跳转
+      var urldata = '/worker/search/search?goodValue=';
+      wx.navigateTo({
+        url: urldata + e.detail.value,
+      })
+    } else if (that.data.getValue == 2) {
+            wx.getStorage({
+            key: 'lishi2',
+            success: function (res) {
+            that.setData({ history: res.data });
+            }
+          })
+          //存储本地reverse()
+      for (var i in that.data.history) { getData.push(that.data.history[i]);}
+      getData.unshift(e.detail.value);
+      if (getData.length >7) {
+        getData.splice(getData.length - 1, 1)}
+          wx.setStorage({
+              key: "lishi2",
+              data: getData,
+            });
+            //获取本地存储
+          setTimeout(function () {
+            wx.getStorage({
+              key: 'lishi2',
+              success: function (res) {
+                that.setData({ history: res.data });
+              }
+            })
+          }, 2000)
+      //跳转
+      var urldata = '/worker/search/maskinglist?goodValue=';
+      wx.navigateTo({
+        url: urldata + e.detail.value,
+      })
+    }
+  },
+  //生命周期函数--监听页面加载
+  onLoad: function (options) {
+    var that=this;
+    that.setData({getValue: options.getValue});
+    that.judge();
+    if (options.getValue==1){
+      wx.getStorage({
+        key: 'lishi1',
+        success: function (res) {
+          that.setData({ history: res.data });
+        }
+      })
+    }else{
+      wx.getStorage({
+        key: 'lishi2',
+        success: function (res) {
+          that.setData({ history: res.data });
+        }
+      })
+    }
+
+
+
+
+  },
+  judge:function(){
+    var that=this;
+    var data=app.globalData.role;
+    console.log(data);
+  },
+  getDatalist:function(data){
+    var that=this;
+    var list = data.currentTarget.id;
+    console.log(list);
+    if (that.data.getValue == 1) {
+      var urldata = '/worker/search/search?goodValue=';
+      wx.navigateTo({
+        url: urldata + list,
+      })
+   }else if (that.data.getValue == 2) {
+      var urldata = '/worker/search/maskinglist?goodValue=';
+      wx.navigateTo({
+        url: urldata + list,
+      })
+   }
+  }
+})

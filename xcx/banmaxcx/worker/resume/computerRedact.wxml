@@ -1,0 +1,18 @@
+<!--pages/worker/resume/computerRedact.wxml-->
+<view class='padding_top87 text_align_center'>
+   <view class='color999 font_size35'>第一步：用电脑浏览器打开网址</view>
+   <view class='font_size40 margin_top10'>sao.ksanl.com</view>
+   <view class='margin_top60 display_flex center'>
+        <view class='border_5e5e5 width55 display_flex center  border_radius50 backgroundf3f3f3 box_shadow_nc6c6c6'>
+           <view class='width70 margin_left50'>
+            <input class=" font_size30 align_items_center" disabled="disabled" placeholder="sao.ksanl.com"/>
+           </view>
+     
+        <image class='border_radius20 wh45 margin_top5' bindtap="getData" src='../../../images/worklist/but.jpg'></image>
+        </view>
+   </view>
+   <view class='color999 font_size35 margin_top80'>第二步：点击下发按钮</view>
+   <view class=' font_size35 margin_top10'>扫面电脑上的二维码</view>
+   <image class='whdiannao margin_top10' src='../../../images/worklist/computer.jpg'></image>
+   <button class='backgroundbt width80 border_radius50 margin_top60' bindtap="getQRcode">点击扫码</button>
+</view>

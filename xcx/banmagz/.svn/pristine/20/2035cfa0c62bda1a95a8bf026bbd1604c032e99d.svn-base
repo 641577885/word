@@ -1,0 +1,19 @@
+<view class='needContanier'>
+  <view class='needTop showbottom'>
+    <view class='needTopCon'>
+      <view class='needText'>3/3需求描述</view>
+      <view class='warn'>请详细描述你的需求有助于增加匹配准确度</view>
+      <navigator class='cancelBtn' open-type='reLaunch' hover-class='none' url='/pages/business/demand'>取消</navigator>
+    </view>
+  </view>
+  <view class='needtext'>
+    <textarea class='text' placeholder-class='placeholder' maxlength='200' placeholder='例如：班马加薪是一款全工种在线工作兼职小程序，产品中包含发需求、发职位、在线工作管理、人才匹配......' bindinput='checkNumber' bindblur='checkContent'></textarea>
+    <text class='number'>{{num}}/200字</text>
+  </view>
+  <view class='Bottom'>
+    <!-- <button bindtap="notsure" class='notsure'>我不确定要做的需求</button> -->
+    <form report-submit='true' bindsubmit='getFormId'>
+      <button bindtap="createDemand" form-type='submit' class='next'>下一步</button>
+    </form>
+  </view>
+</view>

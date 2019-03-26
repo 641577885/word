@@ -1,0 +1,199 @@
+// pages/worker/my/workinfo.js
+const app = getApp();
+const bm = require('../../utils/common.js')
+const aliUploader = require("../../utils/oss/uploadAliyun.js");
+const webim = require('../../utils/webim.js');
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    avatar: '',
+    upavatar: '',
+    name: '',
+    wx_code: '',
+    sex: ['男','女'],
+    sexindex:0,
+    date:'',
+    birth:'',
+    //组件简历百分比
+    fastResume_rate: 0,
+    fastResumeshow: false,
+    rest: 0,
+    fast_step: [],
+    fastResume_text:false
+  },
+  bindsexChange: function (e) {
+    this.setData({
+      sexindex: e.detail.value
+    })
+  },
+  binddateChange: function (e) {
+    this.setData({
+      date: e.detail.value
+    })
+  },
+  bindbirthChange: function (e) {
+    this.setData({
+      birth: e.detail.value
+    })
+  },
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    var that = this
+    var date = new Date();
+    bm.requsetData('/w/user/person_info?scene=detail', 'post', '', function (data) {
+      console.log(data)
+     that.setData({
+       avatar: data.data.data.avatar,
+       name: data.data.data.name,
+       wx_code: data.data.data.wx,
+       sexindex: parseInt(data.data.data.sex) - 1,
+       date: data.data.data.start_work_date,
+       birth: data.data.data.birth_date,
+       uptime: date.getTime()
+     })
+    })
+    //快速填写
+    if (options.fill_type == 'show'){
+      that.setData({
+        fastResumeshow:true
+      })
+      bm.requsetData("/w/resume/fill_state", "post", '', function (data) {
+          that.setData({
+            fastResume_rate: parseInt(data.data.resume_status.score),
+            rest: data.data.resume_status.rest,
+            fast_step: data.data.resume_status.fast_step
+          })
+      })
+    }else{
+      that.setData({
+        fastResumeshow: false
+      })
+    }
+    
+  },
+  //上传头像
+  upavatar: function () {
+    wx.showLoading({
+      title: '头像上传中',
+    })
+    var that = this
+    wx.chooseImage({
+      count: 1,
+      sizeType: ['original', 'compressed'],
+      sourceType: ['album', 'camera'],
+      success: function (res) {
+        let tempFilePaths = res.tempFilePaths[0];
+        let date = new Date();
+        let uid = app.globalData.uid.toString()
+        let dir = 'avatar/' + uid;
+        var uptime = that.data.uptime
+        aliUploader(tempFilePaths, dir, uptime,
+          function () {
+            wx.hideLoading()
+            that.setData({
+              avatar: '//bm.jiangcdn.com/' + dir + '/' + uptime + '.' + tempFilePaths.split(".").pop() + "?" + date.getTime(),
+              upavatar: '//bm.jiangcdn.com/' + dir + '/' + uptime + '.' + tempFilePaths.split(".").pop()
+            })
+          }, function (res) {
+            wx.hideLoading()
+            wx.showToast({
+              title: '头像上传失败!请重试',
+              icon:'none'
+            })
+          });
+      },
+    })
+  },
+  
+  //提交
+  submitinfo: function (e) {
+    var that = this
+    var name = e.detail.value.name
+    var wx_code = e.detail.value.wx_code
+    var sex = parseInt(e.detail.value.sex) + 1
+    var avatar = that.data.upavatar
+    var date = e.detail.value.date
+    var birth = e.detail.value.birth
+    var query = { avatar: avatar, name: name, sex: sex, start_work_time: date, wx: wx_code, birthday: birth}
+    bm.requsetData('/w/user/person_info?scene=edit', 'post', query, function (data) {
+      if (data.data.errcode == 0) {
+        wx.showToast({
+          title: '保存成功',
+          icon: 'sueecss',
+          duration: 2000,
+          success: function () {
+            app.setwebIMNick(name);
+            app.globalData.selfHeadUrl = avatar;
+            app.setwebIMAvatar(avatar);
+            setTimeout(function () {
+              wx.navigateBack()
+            }, 2000)
+          }
+        })
+      } else {
+        wx.showToast({
+          title: data.data.errmsg,
+          icon:'none'
+        })
+      }
+    })
+  },
+  gonext: function (e) {
+    var that = this
+    var name = e.detail.value.name
+    var wx_code = e.detail.value.wx_code
+    var sex = parseInt(e.detail.value.sex) + 1
+    var avatar = that.data.avatar
+    var date = e.detail.value.date
+    var birth = e.detail.value.birth
+    var query = { avatar: avatar, name: name, sex: sex, start_work_time: date, wx: wx_code, birthday: birth }
+    bm.requsetData('/w/user/person_info?scene=edit', 'post', query, function (data) {
+      if (data.data.errcode == 0) {
+        wx.showToast({
+          title: '保存成功',
+          icon: 'sueecss',
+          duration: 2000,
+          success: function () {
+            app.setwebIMNick(name);
+            app.globalData.selfHeadUrl = avatar;
+            app.setwebIMAvatar(avatar);
+            setTimeout(function () {
+              var fast_step = that.data.fast_step
+              if (fast_step.advantage == 0) {
+                wx.navigateTo({
+                  url: '/worker/my/myFill?type=advantage&fill_type=show',
+                })
+              } else {
+                if (fast_step.work_exp == 0) {
+                  wx.navigateTo({
+                    url: '/worker/my/workExper?type=1&fill_type=show&id=',
+                  })
+                } else {
+                  if (fast_step.project_exp == 0) {
+                    wx.navigateTo({
+                      url: '/worker/my/projectExper?type=1&fill_type=show&id=',
+                    })
+                  } else {
+                    wx.redirectTo({
+                      url: '/worker/my/myresume',
+                    })
+                  }
+                }
+              }
+            }, 2000)
+          }
+        })
+      } else {
+        wx.showToast({
+          title: data.data.errmsg,
+          icon: 'none'
+        })
+      }
+    })
+  },
+})

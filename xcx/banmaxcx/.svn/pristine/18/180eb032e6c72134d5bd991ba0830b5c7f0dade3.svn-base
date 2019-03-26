@@ -1,0 +1,67 @@
+// pages/login/dialog.js
+const bm = require('../utils/common.js')
+var tls = require('../utils/tls.js')
+const app=getApp()
+Component({
+  /**
+   * 组件的属性列表
+   */
+  properties: {
+    dialogHidden: {
+      type: Boolean,
+      value: true
+    }
+  },
+
+  /**
+   * 组件的初始数据
+   */
+  data: {
+
+  },
+  methods: {
+    //获取手机号码权限
+    getPhoneNumber: function (e) {
+      var that=this;
+      if (e.detail.errMsg == 'getPhoneNumber:fail user deny') {
+        wx.showModal({
+          title: '提示',
+          showCancel: false,
+          content: '未授权',
+          success: function (res) { }
+        })
+      } else {
+        var is_reg = app.globalData.auth == 0 ? 1 : 0;
+        var session_id = wx.getStorageSync('PHPSESSID');//本地取存储的sessionID  
+        bm.sessionRequset('/c/login/lxtel_reg', { encdata: e.detail.encryptedData, iv: e.detail.iv, role: 1, is_reg: is_reg, scene: "auto" }, function (data) {
+          if (!data.errcode) {
+            app.globalData.token = data.token
+            app.globalData.auth = data.auth;
+            app.globalData.lxtel = data.userinfo.lxtel;
+            app.globalData.weiAccount = data.userinfo.wx;
+            app.globalData.loginInfo.identifier = app.globalData.uid = data.userinfo.id;
+            app.globalData.loginInfo.identifierNick = data.userinfo.name;
+            app.globalData.selfHeadUrl = data.userinfo.avatar;
+            tls.init({
+              sdkappid: app.globalData.loginInfo.sdkAppID,
+              identifier: app.globalData.loginInfo.identifier
+            })
+            app.login(function () {
+              app.initIM();
+            });
+            app.setwebIMNick(data.userinfo.name);
+            app.setwebIMAvatar(data.userinfo.avatar);
+            wx.reLaunch({
+              url: '/worker/my/jobWanted'
+            })
+          } else {
+            wx.showToast({
+              title: data.errmsg,
+              icon: 'none'
+            })
+          }
+        }, session_id)
+      }
+    },
+  }
+})

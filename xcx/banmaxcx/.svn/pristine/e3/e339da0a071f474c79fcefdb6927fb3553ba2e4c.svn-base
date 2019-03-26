@@ -1,0 +1,2 @@
+<!--pages/share/share02.wxml-->
+<canvas style="width:100%;height:{{contentHeight}}px;background:#fff" canvas-id="myCanvas" bindlongtap='save'></canvas>

@@ -1,0 +1,34 @@
+// pages/business/follow.js
+var app=getApp();
+const bm = require('../../utils/common.js')
+const Page = require('../../utils/ald-stat.js').Page;
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    isShowDialog: false,
+    list:{}
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    var that = this;
+    bm.requsetData('/w/position/lists?showtype=reg', 'post', '', function (data) {
+      console.log(data)
+      if(data.data.errcode == 0){
+        that.setData({
+           list:data.data.list
+        })
+      }else{
+        wx.showToast({
+          title: data.data.errmsg,
+          icon:'none'
+        })
+      }
+    })
+  }
+})

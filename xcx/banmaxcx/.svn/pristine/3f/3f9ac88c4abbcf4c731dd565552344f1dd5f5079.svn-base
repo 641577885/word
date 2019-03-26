@@ -1,0 +1,107 @@
+<!--pages/worker/my/mycentre.wxml-->
+<form report-submit='true' bindsubmit='getFormId'>
+<scroll-view scroll-y class='mycenterCantainer'>
+  <!--这个是头部的个人信息  -->
+  <view class='top_style' hover-class='none'>
+    <view>
+      <view class='info'>
+        <navigator class='avatar' hover-class='none' url='/worker/my/myresume'>
+          <image src='{{user_info.avatar}}' mode='aspectFill'></image>
+        </navigator>
+        <view class='info_main'>
+          <view class='name'>{{user_info.name}}</view>
+          <view class='resume_deg'>
+            <text class='resume_deg_main'>您的简历完成度{{user_info.resume_rate}}%</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <navigator class='vip_icon' hover-class='none' url='/pages/openvip/openvip'>
+      <image src='/images/worker/{{user_info.ismember==1?"vip_02":"vip"}}.png'></image>
+    </navigator>
+  </view>
+  <!--求职状态  -->
+  <view class='padding30'>
+    <view class='recordCantainer'>
+      <navigator class='recordItem' hover-class='none' url='/record/uprecord'>
+        <button form-type='submit' hover-class='none'>
+          <view class='font_size35'>{{user_info.drop_num}}</view>
+          <view class='font_size22'>沟通过的雇主</view>
+        </button>
+      </navigator>
+      <navigator class='recordItem' hover-class='none' url='/olwork/onlineList'>
+        <button form-type='submit' hover-class='none'>
+          <view class='font_size35'>{{user_info.work_num}}</view>
+          <view class='font_size22'>在线工作</view>
+        </button>
+      </navigator>
+      <navigator class='recordItem' hover-class='none' url='/wallet/money?mock={{user_info.mock}}'>
+        <button form-type='submit' hover-class='none'>
+          <view class='font_size35'>{{user_info.mock}}</view>
+          <view class='font_size22'>红包</view>
+        </button>
+      </navigator>
+    </view>
+  </view>
+  <!--隔层  -->
+  <view class='padding_top30 backgrounde5e5e5'></view>
+  <!--列表1  -->
+  <view class='width90 auto '>
+    <navigator url='{{user_info.annex==1?"/worker/resume/resumeAccessory":"/worker/resume/uploading"}}'>
+      <view class='border_bottome5e5e5 padding_top20 padding_bottom20 font_size30 display_flex space_between'>
+        <view>附件简历</view>
+        <image class=' wh2030 margin_top10' src='/images/right.png'></image>
+      </view>
+    </navigator>
+    <navigator url="/worker/jobwanted/manage">
+      <view class='padding_top20 padding_bottom20 font_size30 display_flex space_between'>
+        <view>管理求职意向</view>
+        <image class=' wh2030 margin_top10' src='/images/right.png'></image>
+      </view>
+    </navigator>
+    <!-- <view class='padding_top20 padding_bottom20 font_size30 display_flex space_between'>
+           <view>创客问答</view>
+           <image class=' wh2030 margin_top10' src='/images/right.png'></image>
+      </view> -->
+  </view>
+  <!--隔层  -->
+  <view class='padding_top30 backgrounde5e5e5'></view>
+  <!--列表2  -->
+  <view class='width90 auto overflow_x'>
+    <!-- <navigator class='border_bottome5e5e5 padding_top20 padding_bottom20 font_size30 display_flex space_between' hover-class='none' url='/record/concern'>
+           <view>关注</view>
+           <image class=' wh2030 margin_top10' src='/images/right.png'></image>
+      </navigator> -->
+    <navigator class='border_bottome5e5e5 padding_top20 padding_bottom20 font_size30 display_flex space_between' hover-class='none' url='/pages/tcash/wallet'>
+      <view>钱包</view>
+      <image class=' wh2030 margin_top10' src='/images/right.png'></image>
+    </navigator>
+    <!-- <navigator class='border_bottome5e5e5 padding_top20 padding_bottom20 font_size30 display_flex space_between' hover-class='none' url='/pages/bank/bankcard'>
+           <view>银行卡</view>
+           <image class=' wh2030 margin_top10' src='/images/right.png'></image>
+      </navigator> -->
+    <navigator class='border_bottome5e5e5 padding_top20 padding_bottom20 font_size30 display_flex space_between' hover-class='none' url='/wallet/task'>
+      <view>任务大厅</view>
+      <image class=' wh2030 margin_top10' src='/images/right.png'></image>
+    </navigator>
+    <!-- <view class='border_bottome5e5e5 padding_top20 padding_bottom20 font_size30 display_flex space_between'>
+           <view>意见反馈</view>
+           <image class=' wh2030 margin_top10' src='/images/right.png'></image>
+      </view> -->
+    <navigator class='border_bottome5e5e5 padding_top20 padding_bottom20 font_size30 display_flex space_between' url='/setting/secretSetting' hover-class='none'>
+      <view>隐私</view>
+      <image class=' wh2030 margin_top10' src='/images/right.png'></image>
+    </navigator>
+    <navigator class='border_bottome5e5e5 padding_top20 padding_bottom20 font_size30 display_flex space_between' url='/setting/mySetting' hover-class='none'>
+      <view>设置</view>
+      <image class=' wh2030 margin_top10' src='/images/right.png'></image>
+    </navigator>
+    <navigator target="miniProgram" open-type="navigate" app-id="wxc334d30284ddd9c6" path="" extra-data="" version="develop" hover-class='none'>
+      <view class=' padding_top20 padding_bottom20 font_size30 display_flex space_between'>
+        <view>切换身份</view>
+        <image class=' wh2030 margin_top10' src='/images/right.png'></image>
+      </view>
+    </navigator>
+  </view>
+</scroll-view>
+</form>

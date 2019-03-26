@@ -1,0 +1,129 @@
+const bm = require('../utils/common.js')
+var app = getApp()
+
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    active: 0,//当前所在滑块的 index
+    // hiddentext:false,
+    current: 1,//页数，开始是1从第一页开始请求
+    list: [],
+    lists: [],
+    page: 1,
+    allpage: 1,
+    limit: 5,
+    order: '',
+    addCount: '',
+    desCount: ''
+  },
+  //tab切换
+  tab: function (event) {
+    this.setData({ active: event.target.dataset.current })
+    this.getlistData()
+    if (this.data.active == 1) {
+      this.setData({ addCount: this.data.addCount })
+    } else if (this.data.active == 2) {
+      this.setData({ desCount: this.data.desCount })
+    }
+  },
+  //滑动事件
+  eventchange: function (event) {
+    this.setData({ active: event.detail.active })
+    this.getlistData()
+    if (this.data.active == 1) {
+      this.setData({ addCount: this.data.addCount })
+    } else if (this.data.active == 2) {
+      this.setData({ desCount: this.data.desCount })
+    }
+  },
+  onLoad: function (options) {
+    this.getlistData()
+  
+  },
+  getlistData: function () {
+    wx.showLoading({ title: '加载中', duration: 2000 })
+    var that = this
+    bm.requsetData('/c/action/getAllAccLog', 'get', { limit: that.data.limit, page: that.data.page }, function (data) {
+      if (data.data.errcode != 0) {
+        wx.showToast({
+          mask: true,
+          title: data.data.errmsg,
+          icon: 'none',
+          duration: 2000
+        })
+      } else {
+        that.setData({ lists: data.data.list, addCount: data.data.addCount, desCount: data.data.desCount })
+        console.log(that.data.lists)
+      }
+      wx.hideLoading()
+    })
+  },
+  evlower: function () {
+    var that = this
+    that.setData({ page: that.data.page + 1 })
+    that.getlistData();
+    if (that.data.page > that.data.allpage) {
+      wx.showToast({
+        title: '已没有更多数据',
+        icon: 'none',
+        duration: 500
+      })
+      // that.setData({ hiddentext: true })
+    } else {
+      // that.setData({ hiddentext: false })
+    }
+  },
+
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
+  }
+})

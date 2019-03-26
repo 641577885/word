@@ -1,0 +1,10 @@
+/* setting/modifyPhone.wxss */
+.title{display: block;height: 64rpx;line-height: 64rpx;margin-top:66rpx;padding-left: 44rpx;font-weight: bold;font-size: 36rpx;}
+.form01_input{width: 665rpx;height: 90rpx;margin: 45rpx auto 0;display: flex;align-items: center;border-bottom: 1rpx solid #e9eefb;position: relative}
+.qh{width: 40%;height: 45rpx;border-right: 1rpx solid #e9eefb;font-size: 30rpx;line-height: 45rpx;box-sizing: border-box;text-align: center}
+.form01_input input{width: 300rpx;height: 45rpx;font-size: 30rpx;padding: 0 30rpx;}
+.form_btn{width: 665rpx;height: 80rpx;margin: 60rpx auto 0;background: #000;border-radius: 5rpx;line-height: 80rpx;font-size: 30rpx;color: #fff}
+.form02_input{width: 450rpx;height: 90rpx}
+.form_btn_open{background: #fff;font-size: 30rpx;padding: 0;position: absolute;bottom: -128rpx;right: 0}
+.form_btn_open::after{border: 0 none}
+.vcode_border{width: 605rpx;height: 90rpx;margin: 45rpx auto 0;font-size: 30rpx;border-bottom: 1rpx solid #e9eefb;padding: 0 30rpx;}

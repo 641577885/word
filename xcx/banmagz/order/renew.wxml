@@ -1,0 +1,40 @@
+<!--pages/pay/setpay.wxml-->
+<view class='Cantainer'>
+  <picker bindchange='periodPicker' value='{{periodindex}}' range='{{periodArray}}' bindchange='choosePeriod'>
+    <view class='fillList'>
+      <view class=' instruct'>雇佣时长</view>
+      <view class="section">{{periodArray[periodindex]}}</view>
+    </view>
+  </picker>
+  <view class='fillList'>
+    <view class=' instruct'>开始时间</view>
+    <view class="section">{{start_time}}</view>
+  </view>
+  <view class='priceList'>
+    <view class=' instruct'>金额</view>
+    <input class='priceInput' type='number' value='{{byprice}}' data-type='by' placeholder='0' cursor-spacing="10" bindinput='fillPrice' />
+  </view>
+  <view class='serverList'>
+    <view class='instruct'>技术服务费</view>
+    <view class="section maright">+{{byServiceFee}}元</view>
+  </view>
+  <checkbox-group bindchange="checkboxChange">
+    <label class="checkbox">
+      <view>
+          <checkbox wx:if='{{countMoney}}' value="1" checked="{{showRed}}" />
+          <checkbox wx:else disabled='true' value="1" />
+          <text>使用红包抵扣</text>
+      </view>
+      <text>-{{bymaxcount}}元</text>
+    </label>
+  </checkbox-group>
+  <view class='setpayBottom'>
+    <view class='setpayLine'>
+      <text>总金额</text>
+      <text>{{byAllPrice}}元</text>
+    </view>
+  </view>
+</view>
+<form report-submit='true' bindsubmit='getFormId'>
+  <button class='btn' form-type='submit' bindtap='setOrder'>续签</button>
+</form>

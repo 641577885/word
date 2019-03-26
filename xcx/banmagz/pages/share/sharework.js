@@ -1,0 +1,85 @@
+// business/my/invitation.js
+var app = getApp();
+var bm = require('../../utils/common.js')
+const Page = require('../../utils/ald-stat.js').Page;
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    pro_info:null,
+    beizhu:'',
+    token:null,
+    isShowDialog: true,
+    isreg: true,
+    at:null
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    var that = this
+    console.log(options)
+    that.setData({
+      token: options.tk
+    })
+    if (app.globalData.auth) {
+      that.getdata();
+    } else {
+      app.authCallback = auth => {
+        if (app.globalData.auth == 0) {
+          that.setData({
+            isShowDialog: false
+          })
+        }
+        that.getdata();
+      }
+    }
+    
+  },
+  join:function(){
+    var that = this
+    var token = that.data.token
+    bm.requsetData('/b/project/share_join', 'post', { token: token }, function (data) {
+      if(data.data.errcode == 0){
+        wx.showToast({
+          title: data.data.errmsg,
+        })
+        setTimeout(function(){
+          wx.switchTab({
+            url: '/pages/business/mycentre',
+          })
+        },1500)
+      }else{
+        wx.showToast({
+          title: data.data.errmsg,
+          icon:'none'
+        })
+      }
+    })
+  },
+  getdata:function(){
+    var that = this
+    var token = that.data.token
+    bm.requsetData('/b/project/share_info?token=' + token, 'get', '', function (data) {
+      if (data.data.errcode == 0) {
+        if (data.data.pro_info.beizhu.length>10){
+          var beizhu = data.data.pro_info.beizhu.slice(0,10) + '...'
+        }else{
+          var beizhu = data.data.pro_info.beizhu
+        }
+        that.setData({
+          pro_info: data.data.pro_info,
+          beizhu: beizhu
+        })
+      } else {
+        wx.showToast({
+          title: data.data.errmsg,
+          icon: 'none'
+        })
+      }
+    })
+  }
+})

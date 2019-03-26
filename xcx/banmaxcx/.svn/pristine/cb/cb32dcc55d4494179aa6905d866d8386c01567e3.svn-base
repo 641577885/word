@@ -1,0 +1,4 @@
+<!--component/indexback.wxml-->
+<view class='indexback' bindtap='indexback'>
+  <image src='https://bm.jiangcdn.com/indexback/icon/indexback_icon.png'></image>
+</view>

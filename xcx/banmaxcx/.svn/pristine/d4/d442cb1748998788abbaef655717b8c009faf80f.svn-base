@@ -1,0 +1,35 @@
+<!--pages/pay/replacepay.wxml-->
+<view class='orderTip' wx:if='{{showComfirm}}'>来自{{user.name}}创建的雇佣订单</view>
+<view class='content'>
+  <view class='info'>
+    <view class='orderType'>雇佣类型：{{order.is_dz?'定制':'包月'}}</view>
+    <view class='orderDate'>雇佣周期：{{order.begintime}}～{{order.endtime}}</view>
+  </view>
+</view>
+<view class='content_02'>
+  <view class='title'>工作内容</view>
+  <text>{{order.beizhu}}</text>
+</view>
+<view class='content_03'>
+  <view class='content_input content_input_border'>
+    <view class='title'>技术服务费</view>
+    <view class='price'><text>+{{order.service_price}}</text>元</view>
+  </view>
+  <checkbox-group bindchange="checkboxChange">
+  <label class="checkbox">
+    <view>
+      <checkbox value="1" checked='{{showRed}}' />
+      <text>使用红包抵扣</text>
+    </view>
+    <text>-{{maxcount}}元</text>
+  </label>
+  </checkbox-group>
+</view>
+<view class='time_out'>24:00:00后失效</view>
+<view class='bottomCantainer'>
+  <view class='content_input'>
+    <view class='title'>总金额</view>
+    <view class='price'><text>{{allprice}}</text>元</view>
+  </view>
+  <button class='hireBtn' bindtap='setOrder'>确认雇佣</button> 
+</view>

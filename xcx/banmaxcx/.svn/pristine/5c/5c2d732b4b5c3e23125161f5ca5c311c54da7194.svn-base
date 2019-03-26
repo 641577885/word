@@ -1,0 +1,64 @@
+<!--pages/worker/my/workExper.wxml-->
+<form bindsubmit='formsubmit'>
+<fastResume fastResume_rate='{{fastResume_rate}}'rest='{{rest}}' wx:if='{{fastResumeshow}}'fastResume_text='{{fastResume_text}}'></fastResume>
+<view class='b_content'>
+ <navigator class='b_input' url='/pages/fill/inputFill?placeholder=请输入&num={{num}}&dataName=name&content={{name}}&bartitle=项目名称' hover-class='none'>
+    <text class='b_input_title_01'>项目名称</text>
+    <view class='b_input_right'>
+     <view class='input_text'>{{name}}</view>
+      <image src='/images/position/jt_gray.png' class='b_input_icon'></image>
+    </view>
+  </navigator>
+  <navigator class='b_input' url='/pages/fill/inputFill?placeholder=请输入&num={{num}}&dataName=character&content={{character}}&bartitle=项目角色' hover-class='none'>
+    <text class='b_input_title_01'>项目角色</text>
+    <view class='b_input_right'>
+         <view class='input_text'>{{character}}</view>
+      <image src='/images/position/jt_gray.png' class='b_input_icon'></image>
+    </view>
+  </navigator>
+   <navigator class='b_input' url='/pages/fill/inputFill?placeholder=请输入&num={{num}}&dataName=url&content={{url}}&bartitle=项目URL' hover-class='none'>
+    <text class='b_input_title_01'>项目URL</text>
+    <view class='b_input_right'>
+         <view class='input_text'>{{url}}</view>
+      <image src='/images/position/jt_gray.png' class='b_input_icon'></image>
+    </view>
+  </navigator>
+ <navigator class='b_input' url='/pages/fill/textareaFill?placeholder=请输入&num={{num}}&dataName=profit&content={{profit}}&bartitle=项目业绩' hover-class='none'>
+    <text class='b_input_title_01'>项目业绩</text>
+    <view class='b_input_right'>
+         <view class='input_text'>{{profit}}</view>
+      <image src='/images/position/jt_gray.png' class='b_input_icon'></image>
+    </view>
+  </navigator>
+        <picker mode="date" value="{{stime}}" class='datepicker' fields='month' bindchange="bindStarDateChange" name='stime' end='{{date}}'>
+  <view class='b_input'>
+    <text class='b_input_title_01'>开始时间</text>
+    <view class='b_input_right'>
+        <view class="picker">
+         {{stime}}
+        </view>
+      <image src='/images/position/jt_gray.png' class='b_input_icon'></image>
+    </view>
+  </view>
+  </picker>
+    <picker mode="date" value="{{etime}}" class='datepicker' fields='month' bindchange="bindEndDateChange" end='{{date}}'>
+  <view class='b_input'>
+    <text class='b_input_title_01'>结束时间</text>
+    <view class='b_input_right'>
+        <view class="picker">
+         {{etime}}
+        </view>
+      <image src='/images/position/jt_gray.png' class='b_input_icon'></image>
+    </view>
+  </view>
+   </picker>
+  <navigator class='b_input' url='/pages/fill/textareaFill?placeholder=请输入&num=300&dataName=content&content={{content}}&bartitle=项目描述' hover-class='none'>
+    <text class='b_input_title_01'>项目描述</text>
+    <view class='b_input_right'>
+         <view class='input_text'>{{content}}</view>
+      <image src='/images/position/jt_gray.png' class='b_input_icon'></image>
+    </view>
+   </navigator>
+</view>
+<button class='btn' form-type='submit'>保存</button>
+</form>

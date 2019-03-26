@@ -1,0 +1,119 @@
+<!--pages/worker/my/myresume.wxml-->
+<!-- <view class='overflow_x margin_top110'> -->
+<scroll-view scroll-y class='overflow_x padding_bottom110'>
+  <fastResume fastResume_rate='{{fastResume_rate}}'rest='{{rest}}'fastResume_text='{{fastResume_text}}' wx:if='{{fastResumeshow}}' bindtap='gonext'></fastResume>
+  <!--个人信息  -->
+  <view class='border_bottome5e5e5 padding_top30 padding_bottom30'>
+    <view class='width90 auto'>
+      <navigator class='display_flex' hover-class='none' url='/worker/my/workinfo'>
+        <image class='wh100 backgroundfede01 border_radius8' src='{{user_info.avatar}}' mode='aspectFill'></image>
+        <view class='infoCantainer'>
+          <view>
+            <view class='font_size35 inline_block'>{{user_info.name}}</view>
+            <image class='wh40 sexIcon' src='{{user_info.sex_name=="女"?"/images/worklist/nv.jpg":"/images/worklist/nan_03.png"}}'></image>
+            <view class='font_size22 padding_top10 letter_spacing2'>编辑个人信息</view>
+          </view>
+        </view>
+       </navigator>
+    </view>
+  </view>
+  <!--列表1  -->
+  <view class='width90 auto '>
+    <navigator url="/worker/jobwanted/manage" hover-class='none'>
+      <view class='border_bottome5e5e5 padding_top20 padding_bottom20 font_size30 display_flex space_between'>
+        <view>管理求职意向</view>
+        <image class=' wh2030' src='/images/right.png'></image>
+      </view>
+    </navigator>
+    <navigator url="/worker/resume/uploading" hover-class='none'>
+      <view class='border_bottome5e5e5 padding_top20 padding_bottom20 font_size30 display_flex space_between'>
+        <view>上传附件简历</view>
+        <image class=' wh2030' src='/images/right.png'></image>
+      </view>
+    </navigator>
+    <view bindtap='choosevideo'>
+      <view class='padding_top20 padding_bottom20 font_size30 display_flex space_between'>
+        <view>上传个人视频</view>
+        <image class=' wh2030' src='/images/right.png'></image>
+      </view>
+    </view>
+  </view>
+  <!--隔层1  -->
+  <view class='padding_top15 padding_bottom15 backgrounde5e5e5 color666 font_size30'>
+    <view class='width90 auto color888'>简历详情</view>
+  </view>
+  <!--列表2  -->
+  <view class='width90 auto  overflow_x'>
+    <navigator hover-class='none' url='/worker/my/myFill?type=advantage'>
+      <view class='border_bottome5e5e5 padding_top20 padding_bottom20 font_size30 display_flex space_between'>
+        <view>我的优势</view>
+        <view>
+          <image class=' wh2030' src='/images/right.png'></image>
+        </view>
+      </view>
+    </navigator>
+    <navigator url="/worker/my/myFill?type=homepage" hover-class='none'>
+      <view class='padding_top20 padding_bottom20 font_size30 display_flex space_between'>
+        <view>社交主页</view>
+        <image class=' wh2030' src='/images/right.png'></image>
+      </view>
+    </navigator>
+  </view>
+  <!--隔层2  -->
+  <view class='padding_bottom20 backgrounde5e5e5'></view>
+  <!--列表3  -->
+  <view class='width90 auto  overflow_x'>
+    <navigator hover-class='none' wx:for='{{exp_list}}' wx:for-item='vo' url='/worker/my/workExper?type=2&id={{vo.id}}'>
+      <view class='border_bottome5e5e5 padding_top20 padding_bottom20 font_size30 display_flex space_between'>
+        <view>{{vo.company}}</view>
+        <image class=' wh2030' src='/images/right.png'></image>
+      </view>
+    </navigator>
+    <navigator hover-class='none' class=' padding_top20 padding_bottom20 font_size30  display_flex center' url='/worker/my/workExper?type=1&id=' hover-class='none'>
+      <image class=' wh30 margin_top5' src='/images/addIcon.png'></image>
+      <view class='display_flex margin_left10 colorfede01'>工作经历</view>
+    </navigator>
+  </view>
+  <!--添加杂项  -->
+  <view>
+    <!--隔层2  -->
+    <view class='padding_bottom20 backgrounde5e5e5'></view>
+    <!--列表4  -->
+    <view class='width90 auto overflow_x'>
+      <navigator hover-class='none' wx:for='{{pro_exp}}' wx:for-item='vo' url='/worker/my/projectExper?type=2&id={{vo.id}}'>
+        <view class='border_bottome5e5e5 padding_top20 padding_bottom20 font_size30 display_flex space_between'>
+          <view>{{vo.name}}</view>
+          <image class=' wh2030' src='/images/right.png'></image>
+        </view>
+      </navigator>
+      <navigator hover-class='none' class='padding_top20 padding_bottom20 font_size30  display_flex center' url='/worker/my/projectExper?type=1&id=' hover-class='none'>
+        <image class=' wh30 margin_top5' src='/images/addIcon.png'></image>
+        <view class='display_flex margin_left10 colorfede01'>项目经验</view>
+      </navigator>
+    </view>
+  </view>
+  <view>
+  <!--隔层2  -->
+    <view class='padding_bottom20 backgrounde5e5e5'></view>
+    <!--列表4  -->
+    <view class='width90 auto overflow_x'>
+      <navigator hover-class='none' wx:for='{{edu_exp}}' wx:for-item='vo' url='/worker/my/eduExper?type=2&id={{vo.id}}'>
+        <view class='border_bottome5e5e5 padding_top20 padding_bottom20 font_size30 display_flex space_between'>
+          <view>{{vo.name}}</view>
+          <image class=' wh2030' src='/images/right.png'></image>
+        </view>
+      </navigator>
+      <navigator hover-class='none' class='padding_top20 padding_bottom20 font_size30  display_flex center' url='/worker/my/eduExper?type=1&id=' hover-class='none'>
+        <image class=' wh30 margin_top5' src='/images/addIcon.png'></image>
+        <view class='display_flex margin_left10 colorfede01'>教育经历</view>
+      </navigator>
+    </view>
+  </view>
+  <!--隔层3  -->
+  <!-- </view> -->
+</scroll-view>
+<view class='width100 padding_top20 padding_bottom20 backgroundfede01 font_size30 position_fixed bottom'>
+  <navigator url='/resume/resume?uid={{user_info.id}}&preview=1' hover-class='none'>
+    <view class='text_align_center'>查看我的简历</view>
+  </navigator>
+</view>

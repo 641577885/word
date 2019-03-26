@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "dialog": "/login/dialog"
+  },
+  "navigationBarTitleText": "班马佳薪雇主版"
+}

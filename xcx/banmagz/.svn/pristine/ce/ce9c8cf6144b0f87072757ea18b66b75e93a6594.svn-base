@@ -1,0 +1,12 @@
+<!--pages/setting/secretSetting.wxml-->
+<view>
+  <navigator url='/pages/setting/hideCompany'>
+    <view class='listItem'>
+      <text class='listTxt'>屏蔽公司</text>
+    </view>
+  </navigator>
+  <view class='listItem1'>
+    <text class='listTxt'>隐藏简历</text>
+    <switch class='resumeSwitch'></switch>
+  </view>
+</view>

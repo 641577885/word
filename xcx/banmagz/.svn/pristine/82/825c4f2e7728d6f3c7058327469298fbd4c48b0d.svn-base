@@ -1,0 +1,26 @@
+<!--pages/picker/cityPicker.wxml-->
+<view class='cityCantianer'>
+  <scroll-view scroll-y scroll-into-view='{{toView}}' scroll-with-animation style='height:100%;'>
+    <!-- <view class='cityPosition' id='top'>
+      <view class='cityTitle'>定位城市</view>
+      <view class='cityPositionTxt'>杭州</view>
+    </view>
+    <view class='cityItemCantainer' >
+      <view class='cityTitle'>热门城市</view>
+      <view class='cityItemList'>
+        <view class='cityItem'>全国</view>
+        <view class='cityItem'>全国</view>
+        <view class='cityItem'>全国</view>
+        <view class='cityItem'>全国</view>
+        <view class='cityItem'>全国</view>
+      </view>
+    </view> -->
+    <view class='cityItemCantainer' id='view{{index}}' wx:for='{{CityList}}' wx:for-item='vo' wx:key>
+      <view class='cityTitle'>{{index}}</view>
+      <view class='cityItemList'>
+        <view class='cityItem' wx:for='{{vo}}' wx:for-item='ct' wx:key data-id='{{ct.id}}' data-cityname='{{ct.name}}' bindtap='checkCity'>{{ct.name}}</view>
+      </view>
+    </view>
+  </scroll-view>
+  <view class='zmBar'><text wx:for='{{letterList}}' wx:key bindtap='scrollToView' data-view='{{item}}'>{{item}}</text></view>
+</view>

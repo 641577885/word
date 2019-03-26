@@ -1,0 +1,27 @@
+<view class='onlineContanier' wx:if='{{showBox}}'>
+  <view class='onlineMain' wx:if='{{lists.length!=0}}'>
+    <view class='onlineList showtop' wx:for='{{lists}}'  wx:for-index="idx" wx:for-item='vo' wx:key data-index='{{idx}}' bindtap='linkToUrl'> 
+      <view class='listTop'>
+        <view class='listTopimg'><image src='{{vo.seller.avatar}}' mode='aspectFill'></image></view>
+        <view class='listToptxt'>{{vo.pro.beizhu}}</view>
+        <view class='listTopprice'>￥{{vo.pro.allprice}}</view>
+      </view>
+      <view class='listBottom'>
+        <view class='listBottomstatu {{vo.pro.state=="complaining"?"red":""}}{{vo.pro.state=="firing"?"red":""}}'>{{vo.pro.state_name}}</view>
+        <view class='listBottomtime'>{{vo.pro.begintime}}~{{vo.pro.endtime}}</view>
+      </view>
+    </view>
+  </view>
+  <view class='emptyCantainer' wx:else>
+    <view class='emptyImg'><image src='/images/empty/empty.png'></image></view>
+    <view class='emptyInfo'>
+      <view class='emptyTxt1'>没有任何雇佣记录</view>
+      <view class='emptyTxt2'>快速寻找合适您的职位</view>
+    </view>
+    <view class='emptyBtnCantainer'>
+      <form report-submit bindsubmit='link2List'>
+        <button form-type='submit'>寻找合适的职位</button>
+      </form>
+    </view>
+  </view>
+</view>

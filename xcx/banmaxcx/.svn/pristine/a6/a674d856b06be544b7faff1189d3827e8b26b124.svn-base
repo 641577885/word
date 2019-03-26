@@ -1,0 +1,63 @@
+<!--pages/demandList/inform.wxml-->
+<view style='height: 100%; overflow:hidden'>
+  <view style='height:100%'>
+    <!-- 头部功能-->
+    <view style='z-index: 3' class='width100 backgroundfede01 position_fixed display_flex_center padding_top27 padding_bottom27'>
+      <view class='width90  display_flex_space_between'>
+        <picker class="picker" bindchange="bindPickerChange" value="{{index}}" range="{{array}}" range-key="profession_name">
+          <view class="picker">
+            <text id='{{array[index].profession}}'>{{array[index].profession_name}}</text>
+            <image class='shangxi float_right margin_top20 margin_left15 ' src='../../../images/worklist/xia.png' style='margin-left:10rpx'></image>
+          </view>
+        </picker>
+        <navigator hover-class="none" url="/pages/search/search?getValue=1">
+          <!-- <icon type="search" class='float_right margin_top8 ' color='black' size="18" /> -->
+          <image class='shanglist float_right  margin_left15 ' src='../../images/listCard_03.png'></image>
+        </navigator>
+      </view>
+    </view>
+
+<view class='list'>
+<swiper autoplay="{{false}}" previous-margin="{{'80rpx'}}" next-margin="{{'80rpx'}}" bindchange="swiperChange">
+  <block wx:for="{{snenicCards}}" wx:key="{{index}}">
+    <swiper-item bindtap='card_click'>
+      <view  class="slide-image infobg {{swiperIndex == index ? 'active' : ''}}">
+           <!-- <view class='showBg'></view>  -->
+              <view class='shownum'>
+                <image src='../../images/fire_03.png' class='icon'></image>
+                <view class='num'>40000</view>
+              </view>
+              <view class='title'>我要做一个网站</view>
+              <view class='entitle'>Web Designer</view>
+              <view class='contitle'>网站二次开发</view>
+              <view class='contents'><text>{{content}}</text></view>
+              <view class='skillall'>
+                <view wx:for='{{skill}}' wx:for-item='vo'>{{vo.name}}</view>
+              </view>
+                <view class='price'>{{price}}</view>
+           <view class='infobottom'>
+              <view class='infoboth'>
+                 <view class='showimg'>
+                    <image src='../../images/touxiang_07.png'></image>
+                  </view>
+                  <view class='infomation'>
+                    <view class='name'>老牛</view>
+                    <view class='telphon'>
+                        <view class='telicon' bindtap='contant'><image src='../../images/tel_23.png'></image>
+                        <view class='telnum'>158*****123</view>
+                    </view>
+                      </view>
+                  </view>
+              </view>
+              <view class='messge'><image src='../../images/worker/message_02.png'></image></view>
+           </view>
+      </view>
+    </swiper-item>
+  </block>  
+</swiper>
+</view>
+
+
+
+</view>
+</view>

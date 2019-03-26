@@ -1,0 +1,37 @@
+<view class='positiontypeContainer'>
+  <view class='positiontypeMain'>
+    <view class='positiontypeMainTop'>
+        <view class='positiontypeMainTopC'>
+          <view class='positiontypeTitle'>1/3选择岗位类型</view>
+          <view class='positiontypelook'>给岗位选择一个相应的职位类型</view>
+          <navigator class='cancelBtn' open-type='reLaunch' hover-class='none' url='/pages/business/demand'>取消</navigator>
+        </view>
+    </view>
+  </view>
+  <view class='fillListCantainer'>
+    <picker bindchange='bindchange' value='{{index}}' range='{{workArray}}'>
+      <view class='fillList'>
+          <view class=' instruct'>工作方式</view>
+          <view class="section">
+              <view>{{workArray[index]}}</view>
+              <image class='img'  mode="" src="/images/business/select_03.png"></image>
+          </view>
+      </view>
+    </picker>
+    <navigator url='/pages/picker/jobPicker'>
+      <view class='fillList'>
+        <view class=' instruct'>岗位类型</view>
+        <view class="section">
+          <view>{{jobData.jobName}}</view>
+          <image class='img'  mode="" src="/images/business/select_03.png"></image>
+        </view>
+      </view>
+    </navigator>
+  </view>
+</view>
+<view class='bottom'>
+  <!-- <view class='movehome'> 您的公司已在其他平台发布18个在招职位，<text class='movego'>去搬家</text></view> -->
+  <view class='positiontypeMainBottom'>
+      <button class='comfirmnext' plain="{{plain}}" bindtap="nextStep">下一步 </button>
+  </view>
+</view>

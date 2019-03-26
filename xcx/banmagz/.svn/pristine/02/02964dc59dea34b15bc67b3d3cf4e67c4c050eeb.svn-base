@@ -1,0 +1,104 @@
+const bm = require('../../utils/common.js')
+var app = getApp()
+var token = app.globalData.token
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    title: '',
+    period: 0,
+    periodarr: ['请选择', '一个月', '三个月', '半年', '一年',],
+    price: ''
+  },
+  bindPicker: function (e) {
+    this.setData({ profession: e.detail.value })
+  },
+  bindPickerperiod: function (e) {
+    this.setData({ period: e.detail.value })
+  },
+  inputtext: function (e) {
+    var that=this;
+    that.setData({ title: e.detail.value });
+    if (bm.regEx(that.data.title, 'isnum')) {
+      wx.showToast({
+        title: '请输入文字',
+        icon: 'none',
+      })
+      that.setData({title:''})
+      return;
+
+    }
+  },
+  price: function (e) {
+    this.setData({ price: e.detail.value })
+    console.log(this.data.price)
+    if (!bm.regEx(this.data.price, 'isnum')) {
+      wx.showToast({
+        title: '请输入数字',
+        icon: 'none',
+      })
+      return;
+    }
+  },
+  cancel:function(){
+    wx.navigateBack({
+      delta: 1
+    })
+  },
+  next: function () {
+    var that = this;
+    if (!that.data.title) {
+      wx.showToast({
+        title: '请填写你要做什么',
+        icon: 'none'
+      })
+      return false;
+    }
+    if (bm.regEx(this.data.title, 'isnum')) {
+      wx.showToast({
+        title: '请输入文字',
+        icon: 'none',
+      })
+      return false;
+    }
+    if (that.data.period == 0) {
+      wx.showToast({
+        title: '请填入项目周期',
+        icon: 'none'
+      })
+      return false;
+    }
+    if (that.data.price == "") {
+      wx.showToast({
+        title: '请输入价格',
+        icon: 'none'
+      })
+      return false;
+    }
+    if (!bm.regEx(this.data.price, 'isnum')) {
+      wx.showToast({
+        title: '请输入数字',
+        icon: 'none',
+      })
+      return;
+    }
+    // bm.requsetData("/b/demand/create?access_token=" + token, "post", { title: that.data.title, period: that.data.period, price: that.data.price }, function (data) {
+    //   if (data) {
+    //     wx.navigateTo({
+    //       url: 'skill',
+    //     })
+    //   } else {
+    //     wx.showToast({
+    //       title: res.data.errmsg,
+    //       icon: 'none'
+    //     })
+    //   }
+    // })
+    wx.reLaunch({
+      url: 'finish',
+    })
+  },
+
+})

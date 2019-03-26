@@ -1,0 +1,32 @@
+var app = getApp();
+var bm = require('../../utils/common.js')
+const Page = require('../../utils/ald-stat.js').Page;
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+
+    url: ''
+
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    wx.showToast({
+      mask: true,
+      title: '正在刷新',
+      icon: 'loading',
+      duration: 500
+    })
+    var tk = app.globalData.token
+    var host = app.globalData.host
+    var role = app.globalData.role
+    console.log(host)
+    var url = host + '/html/applyticket/apply.html?tk=' + tk + '&host=' + host + '&role=' + role
+    this.setData({ url: url })
+  }
+})

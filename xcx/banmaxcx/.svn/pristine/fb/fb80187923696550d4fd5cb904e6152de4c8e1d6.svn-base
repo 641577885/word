@@ -1,0 +1,251 @@
+<!--help/privacy.wxml-->
+<view class='content'>
+  <view class='title'>提示条款</view>
+  <view class='main'>
+    <text space='emsp'>  您的信任对我们非常重要，我们深知个人信息对您的重要性，我们将按法律法规要求，采取相应安全保护措施，尽力保护您的个人信息安全可控。鉴此，班马佳薪服务提供者（或简称“我们”）制定本《法律声明及隐私权政策》（下称“本政策 /本隐私权政策”）并提醒您：</text>
+  </view>
+  <view class='main'>
+    <text space='emsp'>  本政策适用于班马佳薪产品或服务。如我们关联公司的产品或服务中使用了班马佳薪提供的产品或服务但未设独立法律声明及隐私权政策的，则本政策同样适用于该部分产品或服务。</text>
+  </view>
+  <view class='main'>
+    <text space='emsp'>  需要特别说明的是，<text class='border font'>本政策不适用于其他第三方向您提供的服务，也不适用于班马佳薪中已另行独立设置法律声明及隐私权政策的产品或服务。</text>例如班马佳薪上的创客依托班马佳薪向您提供服务时，您向创客提供的个人信息不适用本政策。</text>
+  </view>
+  <view class='main'>
+    <text><text class='border font' space='emsp'>  在使用班马佳薪各项产品或服务前，请您务必仔细阅读并透彻理解本政策，在确认充分理解并同意后使用相关产品或服务。一旦您开始使用班马佳薪各项产品或服务，即表示您已充分理解并同意本政策。</text></text>
+  </view>
+  <view class='title'>定义</view>
+  <view class='main'>
+   <text><text class='font'space='emsp'>  班马佳薪：</text>连接雇主与创客的互联网信息及在线雇佣平台，促成创客和雇主达成交易，包括班马佳薪网站（域名为itszebra.com）、客户端、微信小程序等，本协议中的“本平台”“平台运营商”指班马佳薪。</text>
+  </view>
+  <view class='main'>
+   <text><text class='font'space='emsp'>  个人信息：</text>指以电子或者其他方式记录的能够单独或者与其他信息结合识别特定自然人身份或者反映特定自然人活动情况的各种信息。</text>
+  </view>
+  <view class='main'>
+   <text><text class='font'space='emsp'>  个人敏感信息：</text>包括身份证件号码、个人生物识别信息、银行账号、财产信息、行踪轨迹、交易信息、14岁以下（含）儿童的个人信息等。</text>
+  </view>
+  <view class='main'>
+   <text><text class='font'space='emsp'>  个人信息删除：</text>指在实现日常业务功能所涉及的系统中去除个人信息的行为，使其保持不可被检索、访问的状态。</text>
+  </view>
+  <view class='title'>法律声明</view>
+  <view class='main'>
+   <text><text class='font'space='emsp'>  【权利归属】</text>除非班马佳薪另行声明，<text class='border font'>班马佳薪内的所有产品、技术、软件、程序、数据及其他信息（包括文字、图标、图片、照片、音频、视频、图表、色彩组合、版面设计等）的所有权利（包括版权、商标权、专利权、商业秘密及其他相关权利）均归班马佳薪所有。未经本平台许可，任何人不得以包括通过机器人、蜘蛛等程序或设备监视、复制、传播、展示、镜像、上载、下载等方式擅自使用班马佳薪内的任何内容。</text>本平台的“班马佳薪”等文字或标识，以及班马佳薪的其他标识、徽记、产品和服务名称均为本平台在中国和其他国家的商标，如有宣传、展示等任何使用需要，您必须取得本平台事先书面授权。</text>
+  </view>
+  <view class='main'>
+   <text><text class='font'space='emsp'>  【责任限制】</text>鉴于班马佳薪提供的信息发布服务属于电子公告牌（BBS）性质，班马佳薪上关于班马佳薪用户或其发布的相关简历（包括但不限于工作年限、工作经验、 个人描述和说明、 展示的作品等图片文字资料）、需求或招聘（包括但不限于招聘公司、需求或工作岗位描述和说明等图片文字资料）的信息均由用户自行提供，会员依法应对其提供的任何信息承担全部责任。班马佳薪转载的作品（包括论坛、微信公众号等内容）出于传递更多信息之目的，并不意味我们赞同其观点或已经证实其内容的真实性。</text>
+  </view>
+  <view class='main'>
+   <text><text class='font'space='emsp'>  【知识产权保护】</text>我们尊重知识产权，反对并打击侵犯知识产权的行为。知识产权权利人若认为班马佳薪内容（包括但不限于班马佳薪用户发布的任何信息）侵犯其合法权益的，应该及时向班马佳薪提出书面权利通知，并提供身份证明、权属证明、具体链接（URL）及详细侵权情况证明。班马佳薪在收到上述法律文件后，将依据相应的法律法规以及平台规则及时处理。</text>
+  </view>
+  <view class='title'>隐私权政策</view>
+  <view class='title_02'>一、我们如何收集和使用您的信息</view>
+  <view class='main'>
+   <text><text space='emsp'>  我们会出于本政策所述的以下目的，收集和使用您的个人信息：</text></text>
+  </view>
+  <view class='title_02'>1.1帮助您成为我们的用户</view>
+  <view class='main'>
+   <text><text space='emsp'>  为成为我们的用户，以便我们为您提供服务，您需要提供手机号码，并创建用户名和密码。</text></text>
+  </view>
+  <view class='main'>
+   <text><text space='emsp' class='font border'>  在注册过程中，如果您提供以下额外信息补全个人资料，将有助于我们给您提供完整的服务：您的真实姓名、性别、出生年月日、身份证明、银行账号、您本人的真实头像。但如果您不提供这些信息，将会影响到您使用被雇主雇佣、提现等服务，但不会影响使用班马佳薪的基本浏览、搜索等功能。</text></text>
+  </view>
+  <view class='title_02'>1.2为您展示和推送创客或服务</view>
+  <view class='main'>
+   <text><text space='emsp' class='font border'>  为改善我们的产品或服务、向您提供个性化的搜索及雇佣服务，我们会根据您的浏览、搜索记录、设备信息、位置信息、雇佣信息，提取您的浏览、搜索偏好、行为习惯、位置信息等特征，基于特征标签进行间接人群画像并展示、推送信息。</text></text>
+  </view>
+  <view class='title_02'>1.3向您提供产品或服务</view>
+  <view class='title_02'>1.3.1、您向我们提供的信息</view>
+  <view class='main'>
+   <text><text space='emsp'>  为便于向您交付作品或服务，您需提供企业名称、营业执照、联系人姓名、联系电话、联系邮箱等。平台创客向您交付时，我们会在征得您同意后将上述信息共享给创客。如果您拒绝提供此类信息，我们将无法完成相关交付服务。</text></text>
+  </view>
+  <view class='main'>
+   <text><text space='emsp' class='font border'>  为完成雇佣交易，您使用微信支付或银行账号进行付款时，可能需要提供您的微信支付账号或银行账号，以便我们了解您的支付状态。</text></text>
+  </view>
+  <view class='title_02'>1.3.2、我们在您使用服务过程中收集的信息</view>
+  <view class='main'>
+   <text><text space='emsp'>  为向您提供更契合您需求的页面展示和搜索结果、了解产品适配性、识别账号异常状态，我们会收集关于您使用的服务以及使用方式的信息并将这些信息进行关联，这些信息包括：</text></text>
+  </view>
+  <view class='main'>
+   <text><text space='emsp'>  设备信息：我们会根据您在班马佳薪平台授权及使用中授予的具体权限，接收并记录您所使用的设备相关信息（例如设备型号、操作系统版本、设备设置、唯一设备标识符等软硬件特征信息）、设备所在位置相关信息（例如IP地址、GPS位置以及能够提供相关信息的WLAN接入点、蓝牙和基站等传感器信息）。</text></text>
+  </view>
+  <view class='main'>
+   <text><text space='emsp'>  日志信息：当您使用我们的微信小程序或客户端提供的产品或服务时，我们会自动收集您对我们服务的详细使用情况，作为有关网络日志保存。例如您的搜索查询内容、IP地址、浏览器的类型、电信运营商、使用的语言、访问日期和时间及您访问的网页记录等。</text></text>
+  </view>
+  <view class='main'>
+    <text><text class='border font' space='emsp'>  请注意，单独的设备信息、日志信息等是无法识别特定自然人身份的信息。</text>如果我们将这类非个人信息与其他信息结合用于识别特定自然人身份，或者将其与个人信息结合使用，则在结合使用期间，这类非个人信息将被视为个人信息，除取得您授权或法律法规另有规定外，我们会将该类个人信息做匿名化、去标识化处理。</text>
+  </view>
+  <view class='main'>
+   <text><text space='emsp'>  为展示您账户的雇佣信息，我们会收集您在使用我们服务过程中产生的雇佣信息用于向您展示及便于您对雇佣订单进行管理。</text></text>
+  </view>
+  <view class='main'>
+   <text><text space='emsp'>  当您与我们联系时，我们可能会保存您的通信/通话记录和内容或您留下的联系方式等信息，以便与您联系或帮助您解决问题，或记录相关问题的处理方案及结果。</text></text>
+  </view>
+  <view class='title_02'>1.3.3征得授权同意的例外</view>
+  <view class='main'>
+   <text><text space='emsp'>  根据相关法律法规规定，以下情形中收集您的个人信息无需征得您的授权同意：</text></text>
+  </view>
+  <view class='main'>
+   <text><text space='emsp'>  1、与国家安全、国防安全有关的；</text></text>
+  </view>
+  <view class='main'>
+   <text><text space='emsp'>  2、与公共安全、公共卫生、重大公共利益有关的；</text></text>
+  </view>
+  <view class='main'>
+   <text><text space='emsp'>  3、与犯罪侦查、起诉、审判和判决执行等有关的；</text></text>
+  </view>
+  <view class='main'>
+   <text><text space='emsp'>  4、出于维护个人信息主体或其他个人的生命、财产等重大合法权益但又很难得到您本人同意的；</text></text>
+  </view>
+  <view class='main'>
+   <text><text space='emsp'>  5、所收集的个人信息是您自行向社会公众公开的；</text></text>
+  </view>
+  <view class='main'>
+   <text><text space='emsp'>  6、从合法公开披露的信息中收集个人信息的，如合法的新闻报道、政府信息公开等渠道；</text></text>
+  </view>
+  <view class='main'>
+   <text><text space='emsp'>  7、根据您的要求签订合同所必需的；</text></text>
+  </view>
+  <view class='main'>
+   <text><text space='emsp'>  8、用于维护所提供的产品或服务的安全稳定运行所必需的，例如发现、处置产品或服务的故障；</text></text>
+  </view>
+  <view class='main'>
+   <text><text space='emsp'>  9、为合法的新闻报道所必需的；</text></text>
+  </view>
+  <view class='main'>
+   <text><text space='emsp'>  10、学术研究机构基于公共利益开展统计或学术研究所必要，且对外提供学术研究或描述的结果时，对结果中所包含的个人信息进行去标识化处理的；</text></text>
+  </view>
+  <view class='main'>
+   <text><text space='emsp'>  11、法律法规规定的其他情形。</text></text>
+  </view>
+  <view class='main'>
+   <text><text space='emsp'>  如我们停止运营班马佳薪产品或服务，我们将及时停止继续收集您个人信息的活动，将停止运营的通知以逐一送达或公告的形式通知您，对所持有的个人信息进行删除或匿名化处理。</text></text>
+  </view>
+  <view class='title'>二、我们如何使用 Cookie 和同类技术</view>
+  <view class='title_02'>2.1Cookie</view>
+  <view class='main'>
+   <text><text space='emsp'>  为确保班马佳薪平台正常运转、为您获得更轻松的访问体验、向您推荐您可能感兴趣的内容，我们会在您的计算机或移动设备上存储名为Cookie的小数据文件。Cookie通常包含标识符、站点名称以及一些号码和字符。借助于Cookie，网站能够存储您的偏好等数据。</text></text>
+  </view>
+  <view class='main'>
+   <text><text space='emsp'>  您可根据自己的偏好管理或删除Cookie。有关详情，请参见AboutCookies.org。您可以清除计算机上保存的所有Cookie，大部分网络浏览器都设有阻止Cookie的功能。但如果您这么做，则需要在每一次访问我们的平台时更改用户设置。如需详细了解如何更改浏览器设置，请访问您使用的浏览器的相关设置页面。</text></text>
+  </view>
+  <view class='title_02'>2.2网站信标和像素标签</view>
+  <view class='main'>
+   <text><text space='emsp'>  除Cookie外，我们还会在网站上使用网站信标和像素标签等其他同类技术。例如，我们向您发送的电子邮件可能含有链接至我们网站内容的地址链接，如果您点击该链接，我们则会跟踪此次点击，帮助我们了解您的产品或服务偏好以便于我们主动改善客户服务体验。网站信标通常是一种嵌入到网站或电子邮件中的透明图像。借助于电子邮件中的像素标签，我们能够获知电子邮件是否被打开。如果您不希望自己的活动以这种方式被追踪，则可以随时从我们的寄信名单中退订。</text></text>
+  </view>
+  <view class='title'>三、我们如何共享、转让、公开披露您的个人信息</view>
+  <view class='title_02'>3.1共享</view>
+  <view class='main'>
+   <text><text space='emsp'>  我们不会与班马佳薪以外的公司、组织和个人共享您的个人信息，但以下情况除外：</text></text>
+  </view>
+  <view class='main'>
+   <text><text space='emsp'>  3.1.1在获取明确同意的情况下共享：获得您的明确同意后，我们会与其他方共享您的个人信息。</text></text>
+  </view>
+  <view class='main'>
+   <text><text space='emsp'>  3.1.2在法定情形下的共享：我们可能会根据法律法规规定、诉讼争议解决需要，或按行政、司法机关依法提出的要求，对外共享您的个人信息。</text></text>
+  </view>
+  <view class='title_02'>3.2转让</view>
+  <view class='main'>
+   <text><text space='emsp'>  我们不会将您的个人信息转让给任何公司、组织和个人，但以下情况除外：</text></text>
+  </view>
+  <view class='main'>
+   <text><text space='emsp'>  3.2.1在获取明确同意的情况下转让：获得您的明确同意后，我们会向其他方转让您的个人信息；</text></text>
+  </view>
+  <view class='main'>
+   <text><text space='emsp'>  3.2.2在班马佳薪服务提供者发生合并、收购或破产清算情形，或其他涉及合并、收购或破产清算情形时，如涉及到个人信息转让，我们会要求新的持有您个人信息的公司、组织继续受本政策的约束，否则我们将要求该公司、组织和个人重新向您征求授权同意。</text></text>
+  </view>
+  <view class='title_02'>3.3公开披露</view>
+  <view class='main'>
+   <text><text space='emsp'>  我们仅会在以下情况下，公开披露您的个人信息：</text></text>
+  </view>
+   <view class='main'>
+    <text><text class='border font' space='emsp'>  3.2.2如果我们确定您出现违反法律法规或严重违反班马佳薪相关协议规则的情况，或为保护班马佳薪及其用户或公众的人身财产安全免遭侵害，我们可能依据法律法规或班马佳薪相关协议规则未征得您同意的情况下披露关于您的个人信息，</text>包括相关违规行为以及班马佳薪已对您采取的措施。例如，若您严重违反班马佳薪规则，我们可能会公开披露您的主体信息与处罚情况。</text>
+  </view>
+  <view class='title_02'>3.4共享、转让、公开披露个人信息时事先征得授权同意的例外</view>
+  <view class='main'>
+   <text><text space='emsp'>  以下情形中，共享、转让、公开披露您的个人信息无需事先征得您的授权同意：</text></text>
+  </view>
+  <view class='main'>
+   <text><text space='emsp'>  1、与国家安全、国防安全有关的；</text></text>
+  </view>
+  <view class='main'>
+   <text><text space='emsp'>  2、与公共安全、公共卫生、重大公共利益有关的；</text></text>
+  </view>
+  <view class='main'>
+   <text><text space='emsp'>  3、与犯罪侦查、起诉、审判和判决执行等有关的；</text></text>
+  </view>
+  <view class='main'>
+   <text><text space='emsp'>  4、出于维护您或其他个人的生命、财产等重大合法权益但又很难得到本人同意的；</text></text>
+  </view>
+  <view class='main'>
+   <text><text space='emsp'>  5、您自行向社会公众公开的个人信息；</text></text>
+  </view>
+  <view class='main'>
+   <text><text space='emsp'>  6、从合法公开披露的信息中收集个人信息的，如合法的新闻报道、政府信息公开等渠道。</text></text>
+  </view>
+  <view class='main'>
+   <text><text space='emsp'>  根据法律规定，共享、转让经去标识化处理的个人信息，且确保数据接收方无法复原并重新识别个人信息主体的，不属于个人信息的对外共享、转让及公开披露行为，对此类数据的保存及处理将无需另行向您通知并征得您的同意。</text></text>
+  </view>
+  <view class='title'>四、我们如何保护您的个人信息安全</view>
+  <view class='main'>
+   <text><text space='emsp'>  4.1我们已采取符合业界标准、合理可行的安全防护措施保护您提供的个人信息安全，防止个人信息遭到未经授权访问、公开披露、使用、修改、损坏或丢失。我们会使用加密技术提高个人信息的安全性，我们会使用受信赖的保护机制防止个人信息遭到恶意攻击，我们会部署访问控制机制，尽力确保只有授权人员才可访问个人信息，以及我们会举办安全和隐私保护培训课程，加强员工对于保护个人信息重要性的认识。</text></text>
+  </view>
+  <view class='main'>
+   <text><text space='emsp'>  4.2互联网并非绝对安全的环境，<text class='font border'>我们强烈建议您不要使用非班马佳薪推荐的通信方式发送个人信息。</text>您可以通过我们的服务建立联系和相互分享。当您通过我们的服务创建交流、交易或分享时，您可以自主选择沟通、交易或分享的对象，作为能够看到您的交易内容、联络方式、交流信息或分享内容等相关信息的第三方。</text></text>
+  </view>
+  <view class='main'>
+   <text><text space='emsp'>  在使用班马佳薪服务进行雇佣交易时，您不可避免地要向雇佣对方或潜在的雇佣对方披露自己的个人信息。请您妥善保护自己的个人信息，仅在必要的情形下向他人提供。如您发现自己的个人信息尤其是您的账户或密码发生泄露，请您立即联络班马佳薪客服，以便我们根据您的申请采取相应措施。</text></text>
+  </view>
+  <view class='main'>
+   <text><text space='emsp'>  请注意，您在使用我们服务时自愿共享甚至公开分享的信息，可能会涉及您或他人的个人信息甚至个人敏感信息，如您在评价时选择上传包含个人信息的图片。请您更加谨慎地考虑，是否在使用我们的服务时共享甚至公开分享相关信息。</text></text>
+  </view>
+  <view class='main'>
+   <text><text space='emsp'>  请使用复杂密码，协助我们保证您的账号安全。我们将尽力保障您发送给我们的任何信息的安全性。如果我们的物理、技术或管理防护设施遭到破坏，导致信息被非授权访问、公开披露、篡改或毁坏，导致您的合法权益受损，我们将承担相应的法律责任。</text></text>
+  </view>
+  <view class='main'>
+   <text><text space='emsp'>  4.3在不幸发生个人信息安全事件后，我们将按照法律法规的要求向您告知：安全事件的基本情况和可能的影响、我们已采取或将要采取的处置措施、您可自主防范和降低风险的建议、对您的补救措施等。事件相关情况我们将以邮件、信函、电话、推送通知等方式告知您，难以逐一告知个人信息主体时，我们会采取合理、有效的方式发布公告。</text></text>
+  </view>
+  <view class='title'>五、我们如何处理未成年人的个人信息</view>
+  <view class='main'>
+   <text><text space='emsp'>  如果没有父母或监护人的同意，未成年人不得创建自己的班马佳薪账户。<text class='font border'>如您为未成年人的，建议您请您的父母或监护人仔细阅读本隐私权政策，并在征得您的父母或监护人同意的前提下使用我们的服务或向我们提供信息。</text></text></text>
+  </view>
+  <view class='main'>
+   <text><text space='emsp'>  对于经父母或监护人同意使用我们的产品或服务而收集未成年人个人信息的情况，我们只会在法律法规允许、父母或监护人明确同意或者保护未成年人所必要的情况下使用、共享、转让或披露此信息。</text></text>
+  </view>
+  <view class='title'>六、您的个人信息如何在全球范围转移</view>
+  <view class='main'>
+   <text><text space='emsp'>  我们在中华人民共和国境内运营中收集和产生的个人信息，存储在中国境内，以下情形除外：</text></text>
+  </view>
+  <view class='main'>
+   <text><text space='emsp'>  1、法律法规有明确规定；</text></text>
+  </view>
+  <view class='main'>
+   <text><text space='emsp'>  2、获得您的明确授权；</text></text>
+  </view>
+  <view class='main'>
+   <text><text space='emsp'>  3、您通过互联网进行跨境雇佣交易等个人主动行为。</text></text>
+  </view>
+  <view class='main'>
+   <text><text space='emsp'>  针对以上情形，我们会确保依据本隐私权政策对您的个人信息提供足够的保护。</text></text>
+  </view>
+  <view class='title'>七、本隐私权政策如何更新</view>
+  <view class='main'>
+   <text><text space='emsp'>  针对以上情形，我们会确保依据本隐私权政策对您的个人信息提供足够的保护。</text></text>
+  </view>
+  <view class='main'>
+   <text><text space='emsp'>  我们的隐私权政策可能变更。未经您明确同意，我们不会限制您按照本隐私权政策所应享有的权利。</text></text>
+  </view>
+  <view class='main'>
+   <text><text space='emsp'>  对于重大变更，我们会提供显著的通知（包括我们会通过班马佳薪公示的方式进行通知）。</text></text>
+  </view>
+  <view class='main'>
+   <text><text space='emsp'>  本政策所指的重大变更包括但不限于：</text></text>
+  </view>
+  <view class='main'>
+   <text><text space='emsp'>  1、我们的服务模式发生重大变化。如处理个人信息的目的、处理的个人信息类型、个人信息的使用方式等；</text></text>
+  </view>
+  <view class='main'>
+   <text><text space='emsp'>  2、我们在控制权等方面发生重大变化。如并购重组等引起的所有者变更等；</text></text>
+  </view>
+  <view class='main'>
+   <text><text space='emsp'>  3、个人信息共享、转让或公开披露的主要对象发生变化；</text></text>
+  </view>
+</view>

@@ -1,0 +1,16 @@
+<!--pages/yzm/yzm.wxml-->
+<form bindsubmit="formSubmit"> 
+  <view class='content'>
+    <view class='title'>{{text}}需要短信验证，验证码已发送至手机{{lxtel}}，轻按提示操作</view>
+    <view class='yzm'>  
+      <block wx:for="{{Length}}" wx:key="item">  
+        <input class='iptbox' value="{{Value.length>=index+1?Value[index]:''}}" disabled password='{{ispassword}}' catchtap='Tap'></input>  
+      </block>  
+    </view>  
+    <input name="password" type='number' password="{{true}}" class='ipt' maxlength="{{Length}}" focus="{{isFocus}}" bindinput="Focus"></input> 
+    <view class='again_yzm' bindtap='{{again}}'>{{second}}{{second_text}}</view> 
+    <view>  
+      <button class="btn-area" formType="submit">下一步</button>  
+    </view>  
+  </view>
+</form>  

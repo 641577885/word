@@ -1,0 +1,79 @@
+<view class='posDetailContanier'>
+  <view class='posDetailMain'>
+    <view class='posDetailList showtop' > 
+      <view class='listTop'>
+        <view class='listTopimg'><image src='{{userInfo.avatar}}'></image></view>
+          <view class='between'>
+              <view class='content'>
+              <view class='listBottomname'>{{proInfostatus_name}}</view>
+              <view class='listBottomtime showpd'>{{proInfo.begintime}}~{{proInfo.endtime}}</view>
+            </view>
+            <view class='listTopprice'>￥{{proInfo.allprice}}</view>
+          </view>
+      </view>
+      <view class='listToptxt'>{{proInfo.beizhu}}</view>
+    </view>
+    <view class='posDetailper'>
+      <view class='posboth'>
+        <view class='posperson'>协作者</view>
+        <view class='photoimg padtop' >
+          <view wx:for='{{memberInfo}}' class='showleft' wx:key>
+            <image class='circle' mode="heightFix" src="{{item.avatar}}"></image> 
+          </view>
+        </view>
+      </view>
+      <view class='posadd  padtop' >
+        <button open-type="share" bindtap='addimg' class='btn'><image class='add'  mode=""  src="../../../images/worker/add_03.jpg"></image></button>
+      </view>
+    </view>
+    <block wx:if='{{workRecord.length!=0}}'>
+      <view class='posDetailwork'>
+          <view class='poswork'>工作汇报</view>
+      </view>
+      <block wx:for='{{workRecord}}' wx:key>
+        <view class='poscontent'>{{item.content}}</view>
+        <view class='posshare'>
+          <view class='shareboth'>
+              <view class='sharaimg'><image class='share' src='../../../images/worker/share_03.jpg'></image></view>
+              <view class='sharatime'>{{item.ctime}}</view>
+          </view>
+        </view>
+      </block>
+    </block>
+    <view class='addbtn' wx:if='{{role == 1}}'>
+      <navigator url='addRecord?type=addwork'><image  mode="" class='addbtnimg' src="../../../images/worker/addbtn_03.png"></image></navigator>
+    </view>
+    <block wx:else>
+      <block wx:if='{{proInfo.status == 5}}'>
+        <view class='posconfirm'>
+            <button class='confirm' bindtap="setPlain">确认发工资</button>
+        </view>
+      </block>
+      <block wx:if='{{proInfo.status == 6}}'>
+        <view class='posbottoms {{show==1?"showblock":"shownone"}}'>
+          <view class='posconfirm'>
+            <button class='evaluate' bindtap="setevaluate">评价</button>
+            <button class='hireonce' bindtap="rehire">再次雇佣</button> 
+          </view>
+        </view> 
+      </block>
+      <block>
+        <view class='manageCantainer'>
+          <button class='btnBlack' bindtap='showMoreManange'>更多管理</button>
+        </view>
+      </block>
+    </block>
+  </view>
+</view>
+<action-sheet hidden="{{actionSheetHidden}}" bindchange="showMoreManange">
+  <action-sheet-item class='action_item' bindtap='fire'>
+    <button  class='sharebutton'>解雇</button>
+  </action-sheet-item>
+  <action-sheet-item  class='action_item' bindtap='complain'>
+    <button class='sharebutton'>投诉</button>
+  </action-sheet-item>
+  <action-sheet-item  class='action_item' bindtap='rehire'>
+    <button class='sharebutton'>续约</button>
+  </action-sheet-item>
+  <action-sheet-cancel class="cancel">取消</action-sheet-cancel>
+</action-sheet>

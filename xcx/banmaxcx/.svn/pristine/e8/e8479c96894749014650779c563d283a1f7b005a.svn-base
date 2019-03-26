@@ -1,0 +1,168 @@
+// pages/worker/my/projectExper.js
+const bm = require('../../utils/common.js')
+Page({
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    //类型
+    type:1,
+    //项目名称
+    name:'',
+    //项目角色
+    character:'',
+    //项目链接
+    url:'',
+    //项目描述
+    content:'',
+    //项目业绩
+    profit:'',
+    //开始时间
+    stime: bm.formatMonth(),
+    //结束时间
+    etime: bm.formatMonth(),
+    //项目ID
+    id:'',
+    num:'100',
+    date: bm.formatToday(),
+    //组件简历百分比
+    fastResume_rate: 0,
+    fastResumeshow: false,
+    rest: 0,
+    fast_step: [],
+    fastResume_text: false
+  },
+  //选择开始时间
+  bindStarDateChange: function (e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      stime: e.detail.value
+    })
+  },
+  //选择结束时间
+  bindEndDateChange: function (e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      etime: e.detail.value
+    })
+  },
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    var that =this
+    var id = options.id
+    var type = options.type
+    this.setData({
+      id: id,
+      type: type
+    })
+    if (type == 2){
+      bm.requsetData('/w/resume/project_exper?scene=detail', 'post', {id:id}, function (data) {
+         console.log(data)
+         var da = data.data.data
+         that.setData({ 
+           name: da.name,
+           character: da.character,
+           url: da.url,
+           profit: da.profit,
+           stime: da.stime_date,
+           etime: da.etime_date,
+           content: da.content,
+           type: 3
+           })
+      })
+    }
+    //快速填写
+    if (options.fill_type == 'show') {
+      that.setData({
+        fastResumeshow: true
+      })
+      bm.requsetData("/w/resume/fill_state", "post", '', function (data) {
+        that.setData({
+          fastResume_rate: parseInt(data.data.resume_status.score),
+          rest: data.data.resume_status.rest,
+          fast_step: data.data.resume_status.fast_step
+        })
+      })
+    } else {
+      that.setData({
+        fastResumeshow: false
+      })
+    }
+  },
+  formsubmit:function(e){
+    console.log(this.data.name)
+    var type = this.data.type
+    if (!this.data.name) {
+      wx.showToast({
+        title: '请输入项目名称',
+        icon: 'none'
+      })
+      return false;
+    } 
+     
+    if (!this.data.character) {
+       wx.showToast({
+         title: '请输入项目角色',
+         icon: 'none'
+       })
+       return false;
+     } 
+    // if (!this.data.content) {
+    //    wx.showToast({
+    //      title: '请描述项目',
+    //      icon: 'none'
+    //    })
+    //    return false;
+    //  } 
+    if (!this.data.profit) {
+        wx.showToast({
+          title: '请描述项目业绩',
+          icon: 'none'
+        })
+        return false;
+      } 
+    if (this.data.stime == 0 && this.data.etime == 0) {
+       wx.showToast({
+         title: '请输入时间段',
+         icon: 'none'
+       })
+       return false;
+     }
+    if (this.data.stime > this.data.etime) {
+       wx.showToast({
+         title: '起始时间必须小于结束时间',
+         icon: 'none'
+       })
+       return false;
+     }
+    //添加和编辑
+    var ad = ''
+    var id=''
+    if(type == 1){
+       ad='add'
+    }else if(type==3){
+      ad='edit',
+        id = this.data.id
+    }
+      bm.requsetData('/w/resume/project_exper?scene='+ad, 'post', { name: this.data.name, character: this.data.character, url: this.data.url, stime: this.data.stime, etime: this.data.etime, content: this.data.content, profit: this.data.profit,id }, function (res) {
+        console.log(res)
+        if (!res.data.errcode) {
+          wx.showToast({
+            title: '保存成功',
+          })
+          setTimeout(function () {
+            wx.navigateBack({
+              
+            })
+          }, 2000)
+        } else {
+          wx.showToast({
+            title: res.data.errmsg,
+            icon:'none'
+          })
+        }
+      })
+  }
+})

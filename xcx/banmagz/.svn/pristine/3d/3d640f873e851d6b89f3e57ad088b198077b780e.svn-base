@@ -1,0 +1,22 @@
+<!--pages/index/pbDetail.wxml-->
+<view class='lingCantainer'>
+  <image class='ling' src='/images/index/ling.png' mode='aspectFill'></image>
+  <view class='lingTxt'>已为您找到{{pnums}}位优合适的创客，完善招聘信息</view>
+</view>
+<view class='detailCantainer'>
+  <view class='detailItem'>
+    <view class='title'>职位标题</view>
+    <input class='titleInp' value='{{title}}' placeholder='请填写标题' bindinput='fillTitle'></input>
+  </view>
+  <view class='DetailCantainer'>
+    <view class='positionDetail'>职位描述</view>
+    <view class='areaCantainer'>
+      <textarea class='detailsArea' value='{{detail}}' placeholder='请输入描述' bindinput='fillDetails' maxlength="100"></textarea>
+      <view class='detailNums'>{{nums}}/100字</view>
+    </view>
+  </view>
+</view>
+<view class='detailsTip'>发布职位表示你已同意遵守《班马加薪职位信息发布规则》所有职位均有专人审核，禁止发布违法、虚假等职位</view>
+<form report-submit bindsubmit='getformId'>
+  <button class='openBtn' form-type='submit' open-type='getUserInfo' bindgetuserinfo="bindGetUserInfo">发布职位</button>
+</form>

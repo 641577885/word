@@ -1,0 +1,367 @@
+page{
+    background: #fafafa;
+}
+.posDetailContanier {
+  width: 100%;
+  height: 100%;
+  padding-bottom: 130rpx;
+}
+
+.posDetailMain {
+  width: 100%;
+}
+
+.box {
+  height: 100%;
+}
+
+.posDetailList {
+  padding: 30rpx 30rpx 0;
+}
+
+.listTopimg {
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 2rpx;
+  margin-right: 26rpx;
+  overflow: hidden;
+}
+
+.listTopimg image {
+  width: 100%;
+  height: 100%
+}
+
+.between {
+  display: flex;
+  justify-content: space-between;
+  width: 549rpx;
+}
+
+.listTop {
+  display: flex;
+}
+
+.listToptxt {
+  font-size: 34rpx;
+  color: #666;
+  padding: 30rpx 0;
+  border-bottom: 1rpx solid #eee;
+}
+
+.listBottom {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 18px;
+  border-bottom: 1rpx solid #eee;
+}
+
+.listTopprice {
+  font-size: 36rpx;
+  color: #fe5a01;
+  padding-right: 0;
+}
+.listBottomname{
+  font-size: 30rpx;
+  color: #333;
+}
+
+.listBottomtime {
+  padding-bottom: 10rpx;
+  font-size: 26rpx;
+  color: #a9a9a9;
+}
+
+.showpd {
+  padding-top: 10rpx;
+}
+
+.posDetailper {
+  padding: 0 30rpx;
+  display: flex;
+  border-bottom: 1rpx solid #eeeeee;
+  justify-content: space-between;
+}
+
+.posperson {
+  font-size: 28rpx;
+  color: #666;
+  line-height: 90rpx;
+}
+
+.posimg {
+  display: flex;
+}
+
+.posboth {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.posDetailwork {
+  border-bottom: 1rpx solid #eee;
+}
+
+.poswork {
+  width: 104rpx;
+  font-size: 26rpx;
+  color: #333;
+  line-height: 68rpx;
+  border-bottom: 1rpx solid #fede01;
+}
+
+.poscontent {
+  font-size: 26rpx;
+  color: #333;
+  margin-top: 30rpx;
+}
+
+.posshare {
+  margin-top: 20rpx;
+}
+
+.add, .share {
+  width: 28rpx;
+  height: 28rpx;
+}
+
+/* 照片 */
+
+.padtop {
+  margin-left: 26px;
+  vertical-align: middle;
+}
+
+.photoimg {
+  display: flex;
+  position: relative;
+}
+
+.showleft {
+  width: 46rpx;
+  height: 46rpx;
+  border-radius: 50%;
+  background: #000;
+  border: 3rpx solid #fff;
+  overflow: hidden;
+  margin-left: -10rpx;
+}
+
+.circle {
+  width: 100%;
+  height: 100%
+}
+
+.shareboth {
+  display: flex;
+  justify-content: space-between;
+}
+
+.sharatime {
+  font-size: 26rpx;
+  color: #8b8b8b;
+  line-height: 56rpx;
+}
+
+.posbottom {
+  display: flex;
+  position: fixed;
+  bottom: 10rpx;
+}
+
+.confirm {
+  background: #000;
+  color: #fff;
+  width: 645rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  font-size: 29rpx;
+}
+
+.dot {
+  width: 43rpx;
+  height: 12rpx;
+  margin-right: 27rpx;
+}
+.showblock {
+  display: flex;
+}
+
+.shownone {
+  display: none;
+}
+
+.manageCantainer {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  padding: 20rpx;
+  background: #fff;
+  box-sizing: border-box;
+}
+
+.manageCantainer button {
+  font-size: 34rpx;
+}
+
+button::after {
+  border: none;
+}
+
+button {
+  background: #fff;
+}
+
+.addbtn {
+  position: fixed;
+  right: 56rpx;
+  bottom: 55rpx;
+}
+
+.addbtnimg {
+  width: 110rpx;
+  height: 110rpx;
+  box-shadow: 4rpx 15rpx 100rpx #fed401;
+  border-radius: 50%;
+}
+
+.sharebutton::after {
+  border: none;
+}
+
+action-sheet {
+  background: #fff;
+}
+
+.action_item {
+  height: 100rpx;
+  width: 690rpx;
+  margin: 0 auto;
+  padding: 0;
+  border-bottom: 1rpx solid #ccc;
+}
+
+.action_item:last-child {
+  border-bottom: 0 none;
+}
+
+.sharebutton {
+  height: 100%;
+  line-height: 100rpx;
+  text-align: center;
+  color: #333;
+}
+.posconfirm {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  padding: 10rpx;
+  bottom: 0;
+  left: 0;
+  right: 0
+}
+.workStatusCantainer,.workContent{ border-top: 30rpx solid #fafafa; background: #fff; padding-bottom: 30rpx;}
+.workStatusTitle{ padding-left: 30rpx;border-top: 5rpx solid #fe5a01;}
+.workStatusTxt{ display: flex; align-items: center; justify-content: space-between; border-bottom: 1rpx solid #eeeeee; height: 70rpx; line-height: 70rpx; font-size: 26rpx; color: #333333; padding: 10rpx 30rpx 0 0}
+.workStatusTxt text{ color: #fe5a01;}
+.workStatusNote{ padding: 30rpx;}
+.workbody{ color: #333; font-size: 26rpx; line-height: 36rpx;}
+.workImgCantainer{ display: flex; justify-content: flex-start; }
+.workImgItem{ width: 138rpx; height: 138rpx; border-radius:10rpx; overflow: hidden; margin: 12rpx 12rpx 0 0; }
+.workImgItem image{ width: 100%; height: 100%;}
+.workContent{ padding-left: 30rpx;}
+
+.explainCantainer{ background: #fffaec; border: 1rpx solid #eee; padding: 20rpx; width: 688rpx; box-sizing: border-box; margin: 0 auto; border-radius: 5rpx; margin-bottom: 30rpx;}
+.explaintxt{ font-size: 26rpx; color: #333; margin-bottom: 10rpx;}
+.complain{font-size: 30rpx;color: #fe5a01;text-align: center;line-height: 60rpx;}
+/* 清风 */
+.leftevaluate{
+  width: 250rpx;
+  font-size: 30rpx;
+  border: 1rpx solid #cecece;
+  background:#fff;
+  color:#7c7c7d;
+  height: 80rpx;
+  line-height: 80rpx;
+}
+.righthireonce{
+  width: 470rpx;
+  font-size: 30rpx;
+  background:#000;
+  color:#fff;
+  height: 80rpx;
+  line-height: 80rpx;
+}
+.workDaily{
+  background:#fafafa;
+  padding-top: 80rpx;
+  text-align: center;
+  overflow: hidden
+}
+.noWorkImg{
+  width: 612rpx;
+  height: 402rpx;
+}
+.noWorkText{
+  text-align: center;
+}
+.top-noWorkText{
+  font-size: 40rpx;
+}
+.bottom-noWorkText{
+  color:#999999;
+  font-size: 22rpx;
+  margin-top: 25rpx;
+}
+.addworkDaily{
+  width: 100%;
+  height: 80rpx;
+  font-size: 30rpx;
+  background: #000;
+  color: #fff;
+  text-align: center;
+  line-height: 80rpx;
+}
+.listBottomtime text{
+  border-width: 1rpx;
+  border-style: solid;
+  height: 44rpx;
+  padding: 0 8rpx;
+  box-sizing: border-box;
+  margin-right: 10rpx;
+  border-radius: 10rpx;
+  font-size: 24rpx;
+}
+.jujue{
+  color:#0060ff;
+  line-height:46rpx;
+  font-size:22rpx;
+  text-align:center;
+  border:1rpx solid #0060ff;
+  display:inline-block;
+  border-radius:5rpx;
+}
+.refusefire{
+  margin: 0;
+  width: 150rpx;
+  height: 50rpx;
+  line-height: 70rpx;
+  border-radius: 10rpx;
+  font-size: 24rpx;
+  display: inline-block
+}
+.tiptext{
+  font-size: 26rpx;
+  color:#fe5a01;
+  padding: 0 30rpx;
+  box-sizing: border-box;
+}
+
+.yc_style{color: #8296b1; border-color: #8296b1}
+.sw_style{color: #82b182; border-color: #82b182}
+.zc_style{color: #b182a4; border-color: #b182a4}
+.pay_style{color: #fe5a01; border-color: #fe5a01;}

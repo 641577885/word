@@ -1,0 +1,130 @@
+<wxs module="Filter" src="../filter/filter.wxs"></wxs>
+<dialog dialog-hidden="{{isShowDialog}}"></dialog>
+<view class='resumeCantainer'>
+  <scroll-view scroll-y class='resumeBody' bindscroll='{{userInfo.ismember?"scrollView":""}}' wx:if='{{showBox}}'>
+    <view>
+      <view class='resumeBasicTop'>
+        <view class='resumeVipthumbCantainer man'>
+          <view class='resumeVipthumb'><image src='{{userInfo.avatar}}' mode='aspectFill'></image></view>
+        </view>
+        <view class='resumeName'>{{userInfo.name}}<text class='resumeIcon'></text></view>
+        <view class='tagCantainer'>
+          <text wx:if="{{resumeInfo.sanwu}}">三天无理由</text>
+          <text wx:if="{{resumeInfo.resident}}">可驻场</text>
+          <text wx:if="{{resumeInfo.work_way}}">支持远程</text>
+        </view>
+        <view class='resumeAbilty'>
+          <view>能力：{{markInfo.ability}}</view>
+          <view>服务：{{markInfo.service}}</view>
+          <view>响应：{{markInfo.response}}</view>
+        </view>
+        <view class='resumeSelfDesc'>{{resumeInfo.advantage}}</view>
+        <view class='resumeBasicStatus'>
+          <view>
+              <text>{{userInfo.projects}}</text>
+              <text>雇佣</text>
+          </view>
+          <view>
+            <navigator url='/resume/pjResume?uid={{uid}}'>
+              <text>{{userInfo.marks}}</text>
+              <text>评价</text>
+            </navigator>
+          </view>
+        </view>
+      </view>
+      <!-- <view class='basicTip'>数据基于腾讯云TbaaS区块链技术存储</view> -->
+    </view>
+    <view class='resumeInfo' style='border-top:100rpx solid #fafafa'>
+      <!--基本信息-->
+      <view class='resumeItem'>
+        <view class='resumeTitle'>基本信息</view>
+        <view class='resumeBasic'>
+          <text class='eduIcon'>{{resumeInfo.education_name}}</text>
+          <text class='expIcon'>{{userInfo.start_work_time_name}}</text>
+          <text class='ageIcon'>{{userInfo.age}}岁</text>
+        </view>
+      </view>
+      <!--期望职位-->
+      <view class='resumeItem'>
+        <view class='resumeTitle'>期望职位</view>
+        <view class='JobItem' wx:for='{{dreamInfo}}' wx:key>
+          <view class='expItemTop'>
+            <text class='expItemJob'>{{item.profession_name}}</text>
+            <text class='expItemPrice'>￥{{item.price}}</text>
+          </view>
+          <view class='jobindus'>期望行业-<text wx:for='{{item.industry_arr_name}}' wx:for-item="vo" wx:key>{{vo}}{{index==item.industry_arr_name.length-1?'':'，'}}</text></view>
+        </view>
+      </view>
+      <!--工作经历-->
+      <view class='resumeItem' wx:if="{{workInfo.length>0}}">
+        <view class='resumeTitle'>工作经历</view>
+        <view class='expItem' wx:for='{{workInfo}}' wx:key>
+          <view class='expItemTop'>
+            <text class='expItemJob'>{{item.profession_name}}</text>
+            <text class='expItemTime'>{{item.stime}}~{{item.etime}}</text>
+          </view>
+          <view class='expItemDescript'>{{item.content}}</view>
+          <view class='expItemCompany'>{{item.company}}</view>
+        </view>
+      </view>
+      <!--项目经历-->
+      <view class='resumeItem' wx:if="{{expInfo.length>0}}">
+        <view class='resumeTitle'>项目经历</view>
+        <view class='projectItem' wx:for='{{expInfo}}' wx:key>
+          <view class='projectItemTop'>
+            <text class='projectName'>{{item.name}}</text>
+            <text class='projectJob'>{{item.character}}</text>
+          </view>
+          <view class='projectCompany'>{{item.stime}}~{{item.etime}}</view>
+          <view class='projectDescript'>{{item.content}}</view>
+        </view>
+      </view>
+      <!--教育经历-->
+      <view class='resumeItem' wx:if="{{eduInfo.length>0}}">
+        <view class='resumeTitle'>教育经历</view>
+        <view class='projectItem' wx:for='{{eduInfo}}' wx:key>
+          <view class='projectItemTop'>
+            <text class='projectName'>{{item.name}}</text>
+            <text class='projectJob'>{{Filter.GetEduExp(item.education)}}</text>
+          </view>
+          <view class='projectItemTop2'>
+            <view>{{item.major}}</view>
+            <view>{{item.stime}}~{{item.etime}}</view>
+          </view>
+          <view class='projectDescript'>{{item.content}}</view>
+        </view>
+      </view>
+      <!-- <view class='resumeBottomTip'>班马佳薪基于腾讯云区块链服务TBaaS</view> -->
+    </view>
+  </scroll-view>
+</view>
+<view class='floatBtnCantainer'>
+  <view class='floatContact' bindtap='checkContact'>立即联系</view>
+  <navigator url='/order/setpay?uid={{uid}}'>
+    <view class='floatHire' >立即雇佣</view>
+  </navigator>
+</view>
+<view class='floatCircleCantainer'>
+  <!-- <view class='floatCircle collectIcon'></view> -->
+  <view class='floatCircle shareIcon' bindtap='actionSheetTap'></view>
+  <action-sheet hidden="{{actionSheetHidden}}" bindchange="actionSheetbindchange">
+    <block>
+        <action-sheet-item  class='action_item'>
+          <button  class='sharebutton' bindtap='goimg'>
+            <image src='/images/resume_icon_01.png'></image>
+            <text>{{actionSheetItems[0].txt}}</text>
+          </button>
+        </action-sheet-item>
+        <action-sheet-item  class='action_item_02'>
+          <button open-type='share' class='sharebutton'>
+            <image src='/images/resume_icon_02.png'></image>
+            <text>{{actionSheetItems[1].txt}}</text>
+          </button>
+        </action-sheet-item>
+    </block>
+    <action-sheet-cancel class="cancel">取消</action-sheet-cancel>
+  </action-sheet>
+</view>
+<view class='videoCover' wx:if='{{showVideo}}' bindtap='closevideo'>
+  <video id="myVideo" src="{{resumeInfo.video}}" objectFit='contain' autoplay controls></video>
+</view>

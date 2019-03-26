@@ -1,0 +1,69 @@
+<!--wallet/invited.wxml-->
+<!-- <view class='inviteTip'>
+   <view class='report'>斑马快报</view>
+   <view class='bannerText'>白衣邀请老鬼注册。获得20元的红包</view>
+</view> -->
+<view class='inviteTip' wx:for='{{history}}' wx:for-item='vo'>
+   <view class='report'>斑马快报</view>
+   <view class='bannerText'>{{vo.inviter_name}}邀请{{vo.invitee_name}}注册。获得{{vo.money}}元的红包</view>
+</view>
+<view class='inviteBanner'><image src='../images/inbanner_02.png'></image></view>
+<view class='inMainTop'>
+  <view class='inMainMain'>
+     <view class='mainBoth'>
+        <text class='record'>我的邀请记录</text>
+        <navigator class='situation' url='rules'>规则说明</navigator>
+     </view>
+     <view class='inNav'> <progress percent="20"  stroke-width='10' color="#fede01" /></view>
+     <view class='numBoth'>
+       <text>0</text>
+       <text>5位</text>
+       <text>10位</text>
+       <text>15位</text>
+       <text>20位</text>
+     </view>
+  </view>
+</view>
+ <!-- <view class='inMianCenter'>
+  <view class='inCenterBoth'> 
+   </view>
+</view>  -->
+
+
+<view class="mocContainer"  >
+  <view class='tab'>
+      <view class='tab-nav'>
+          <view class='{{active==0?"on":""}}' data-current="0" bindtap='tab'>全国PK榜</view>
+          <!-- <view class='{{active==1?"on":""}}' data-current="1" bindtap='tab'>好友PK榜</view> -->
+      </view>
+      <swiper class='tab-box' current="{{active}}" bindchange="eventchange">
+        <swiper-item>
+          <view class='asdasd'>
+            <scroll-view class='box' scroll-y bindscrolltoupper="evupper" bindscrolltolower="evlower">
+            <view class='discount'>排行邀请人数每月更新，重新计算</view>
+            <view class='inList' wx:for='{{rank}}' wx:for-item='vo'>
+              <view class='listLeft'><image src='{{vo.avatar}}'></image></view>
+              <view class='listRight'>
+                 <view class='listname'>{{vo.name}}</view>
+                 <view class='listfriend'>共邀约{{vo.num}}名好友</view>
+              </view>
+            </view>
+            <!-- <view wx:if='{{rank.length==0}}'>暂无记录</view> -->
+             <view wx:if='{{rank.length==0}}' class='explainCantainer' >
+                  <view class='empty_icon'>
+                            <image src='https://bm.jiangcdn.com/banma/empty/empty_bg.png'></image>
+                  </view>
+                     <view class='empty_text_01'>当前{{empty_text_01}}为空</view>
+              </view>
+            </scroll-view>
+          </view>
+        </swiper-item>
+    </swiper>
+  </view>
+</view>  
+<view class='inBottom'>
+ <view class='inBottomMain'>
+   <button class='friends' open-type='share'>分享给好友</button>
+   <button class='wechart active' bindtap='wechart'>分享朋友圈</button>
+ </view>
+</view>

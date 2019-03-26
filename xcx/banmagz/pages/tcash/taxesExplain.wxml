@@ -1,0 +1,3 @@
+<!--pages/tcash/taxesExplain.wxml-->
+<web-view src='{{url}}'></web-view>
+

@@ -1,0 +1,22 @@
+<!--message/bmDialog.wxml-->
+<scroll-view class='content' scroll-y bindscrolltolower='more'>
+  <view class='list' wx:for='{{list}}' wx:key='xmlist'>
+    <view class='time_content'>
+      <text class='time'>{{item.ctime}}</text>
+    </view>
+    <view wx:if='{{item.format=="graphic"}}' bindtap='bindurl' data-jump='{{item.jump}}' data-url='{{item.url}}'>
+      <view class='msg_bk'>
+        <view class='title'>{{item.content.title}}</view>
+        <view class='msg_img'><image src='{{item.content.img}}'></image></view>
+        <view class='msg_desc'>{{item.content.desc}}</view>
+      </view>
+    </view>
+    <view wx:if='{{item.format=="text"}}' bindtap='bindurl' data-jump='{{item.jump}}' data-url='{{item.url}}'>
+      <view class='msg_bk'>
+      <view class='msg_desc'>{{item.content.text}}</view>
+      <view class='msg_link' wx:if='{{item.jump!=0}}'>点击前往>></view>
+      </view>
+    </view>
+  </view>
+</scroll-view>
+<view class='msgempty' wx:if='{{empty}}'>当前无消息</view>

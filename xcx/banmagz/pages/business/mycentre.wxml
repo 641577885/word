@@ -1,0 +1,120 @@
+<!--pages/business/my/index.wxml-->
+<form>
+  <view class='b_info'>
+    <navigator class='b_info_main' url='/business/my/personInfo' hover-class="none">
+      <view class='avatar'>
+        <image src='{{avatar}}' mode='aspectFill'></image>
+      </view>
+      <view class='b_info_zl'>
+        <view class='name'>{{name}}</view>
+        <view class='position'>{{company_name}} {{position}}</view>
+      </view>
+    </navigator>
+    <navigator class='auth' url='/business/auth/auth' hover-class="none">
+      <view class='auth_icon'>
+        <image src='/images/business/auth_icon_01.png' wx:if='{{auth == 1}}'></image>
+        <image src='/images/business/my_auth_icon.jpg' wx:else></image>
+      </view>
+      <view class='auth_text'>资质认证</view>
+    </navigator>
+  </view>
+  <view class='b_list'>
+    <!-- <navigator class='b_list_main_01' hover-class='none' url='/business/position/jobDemand'>
+      <view class='b_list_num'>{{resume_num}}</view>
+      <view class='b_list_title'>沟通过的创客</view>
+    </navigator> -->
+        <navigator class='b_list_main_02 b_list_main_03' hover-class='none' url='/business/position/linkup?flag=1'>
+      <view class='b_list_num'>{{num}}</view>
+      <view class='b_list_title'>收到的简历</view>
+    </navigator>
+    <navigator class='b_list_main_02' hover-class='none' url='/olwork/onlineList'>
+      <view class='b_list_num'>{{work_num}}</view>
+      <view class='b_list_title'>在线工作</view>
+    </navigator>
+    <navigator class='b_list_main_01' hover-class='none' url='/wallet/mission'>
+      <view class='b_list_num'>{{moc}}</view>
+      <view class='b_list_title'>红包</view>
+    </navigator>
+  </view>
+  <view class='b_content'>
+    <navigator class='b_input_02' hover-class="none" url='{{comp_exist==0?"/business/my/companyinfo?infotype=1":"/business/my/mycompany"}}'>
+      <text class='b_input_title_01'>我的公司</text>
+      <text class='b_input_title_03' hidden='{{comp_perf == 1?true:false}}'>{{company_name}} {{industry_str}}</text>
+      <view class='b_input_right'>
+        <text class='b_input_title_02'>{{comp_perf == 1?'':'未完善'}}</text>
+        <text class='b_input_title_04' hidden='{{comp_perf == 1?false:true}}'>{{company_name}} {{industry_str}}</text>
+        <image src='/images/position/jt_gray.png' class='b_input_icon'></image>
+      </view>
+    </navigator>
+  </view>
+  <swiper class='swiper' indicator-dots='true' autoplay="true" interval="3000" duration="1000">
+    <swiper-item wx:for="{{adv_list}}" wx:key>
+      <view class='content_images' data-jump='{{item.jump}}' data-url='{{item.url}}' bindtap='jumpLink'>
+        <image src='{{item.image}}' mode='aspectFill' ></image>
+      </view>
+    </swiper-item>
+  </swiper>
+  <view class='b_content'>
+    <navigator class='b_input' hover-class="none" url='/pages/tcash/wallet'>
+      <text class='b_input_title_01'>钱包</text>
+      <view class='b_input_right'>
+        <text class='b_input_title_02'></text>
+        <image src='/images/position/jt_gray.png' class='b_input_icon'></image>
+      </view>
+    </navigator>
+    <navigator class='b_input' hover-class="none" url='/pages/applyTicket/apply'>
+      <text class='b_input_title_01'>申请发票</text>
+      <view class='b_input_right'>
+        <text class='b_input_title_02'></text>
+        <image src='/images/position/jt_gray.png' class='b_input_icon'></image>
+      </view>
+    </navigator>
+    <!-- <navigator class='b_input' hover-class="none" url='/pages/bank/bankcard'>
+    <text class='b_input_title_01'>银行卡</text>
+    <view class='b_input_right'>
+      <text class='b_input_title_02'></text>
+      <image src='/images/position/jt_gray.png' class='b_input_icon'></image>
+    </view>
+  </navigator> -->
+    <navigator class='b_input' hover-class="none" url='/wallet/mission'>
+      <view class='hb_style'>
+        <text class='b_input_title_01'>任务大厅</text>
+        <image src='https://bm.jiangcdn.com/vip/vip_icon/hb_icon.png'class='hb_icon'></image>
+      </view>
+      <view class='b_input_right'>
+        <text class='b_input_title_02'></text>
+        <image src='/images/position/jt_gray.png' class='b_input_icon'></image>
+      </view>
+    </navigator>
+    <navigator class='b_input' hover-class="none" url='/setting/mySetting'>
+      <text class='b_input_title_01'>设置</text>
+      <view class='b_input_right'>
+        <text class='b_input_title_02'></text>
+        <image src='/images/position/jt_gray.png' class='b_input_icon'></image>
+      </view>
+    </navigator>
+    <navigator class='b_input' hover-class="none" url='/help/problem'>
+      <text class='b_input_title_01'>常见问题</text>
+      <view class='b_input_right'>
+        <text class='b_input_title_02'></text>
+        <image src='/images/position/jt_gray.png' class='b_input_icon'></image>
+      </view>
+    </navigator>
+    <navigator class='b_input' hover-class="none" url='/help/help'>
+      <text class='b_input_title_01'>帮助与反馈</text>
+      <view class='b_input_right'>
+        <text class='b_input_title_02'></text>
+        <image src='/images/position/jt_gray.png' class='b_input_icon'></image>
+      </view>
+    </navigator>
+    <navigator target="miniProgram" open-type="navigate" app-id="wxd1e27439a32965eb" path="" extra-data="" version="release" hover-class='none'>
+      <view class='b_input_02'>
+        <text class='b_input_title_01'>切换身份</text>
+        <view class='b_input_right'>
+          <text class='b_input_title_02'></text>
+          <image src='/images/position/jt_gray.png' class='b_input_icon'></image>
+        </view>
+      </view>
+    </navigator>
+  </view>
+</form>

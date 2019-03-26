@@ -1,0 +1,196 @@
+<!--pages/business/position/relsease.wxml-->
+<form report-submit='true' bindsubmit='getFormId'>
+  <view class='jobCantainer' style='bottom: {{bottom}}rpx'>
+    <scroll-view scroll-y style='height:100%'>
+      <!-- <view class='go_pc'>
+      <view class='go_pc_content'>
+        <text class=''>在电脑上发布新职位</text>
+        <image src='/images/position/jt_black.png'></image>
+      </view>
+    </view> -->
+      <navigator class='bottom30' wx:if="{{!company_id}}" hover-class='none' url='/pages/fill/inputFill?num=30&dataName=companyname&content={{companyname}}&placeholder=请输入公司名称'>
+        <view class='res_input'>
+          <view class='input_hd necessary'>公司名称</view>
+          <view class='input_bd'>
+            <view class='input_text'>{{companyname}}</view>
+            <view class='input_bg'>
+              <image src='/images/position/jt_gray.png'></image>
+            </view>
+          </view>
+        </view>
+      </navigator>
+      <view class='res_input bottom30' wx:else>
+        <view class='input_hd necessary'>公司名称</view>
+        <view class='input_bd'>
+          <view class='input_text'>{{companyname}}</view>
+          <view class='input_bg'>
+            <image src='/images/position/jt_gray.png'></image>
+          </view>
+        </view>
+      </view>
+      <navigator hover-class='none' url='/pages/fill/inputFill?num=20&dataName=title&content={{title}}&placeholder=请输入职位标题'>
+        <view class='res_input'>
+          <view class='input_hd necessary'>职位标题</view>
+          <view class='input_bd'>
+            <view class="picker">{{title}}</view>
+            <view class='input_bg'>
+              <image src='/images/position/jt_gray.png'></image>
+            </view>
+          </view>
+        </view>
+      </navigator>
+      <navigator hover-class='none' url='/pages/picker/jobPicker'>
+        <view class='res_input'>
+          <view class='input_hd necessary'>职位类型</view>
+          <view class='input_bd'>
+            <view class="picker">{{jobData.jobName}}</view>
+            <view class='input_bg'>
+              <image src='/images/position/jt_gray.png'></image>
+            </view>
+          </view>
+        </view>
+      </navigator>
+      <block wx:if="{{workIndex == 1}}">
+        <navigator hover-class='none' wx:if="{{!company_id}}" url='/pages/picker/areaPicker'>
+          <view class='res_input'>
+            <view class='input_hd necessary'>工作地点</view>
+            <view class='input_bd'>
+              <view class="picker">{{work_address}}</view>
+              <view class='input_bg'>
+                <image src='/images/position/jt_gray.png'></image>
+              </view>
+            </view>
+          </view>
+        </navigator>
+        <view class='res_input' wx:else>
+          <view class='input_hd necessary'>工作地点</view>
+          <view class='input_bd'>
+            <view class="picker">{{work_address}}</view>
+            <view class='input_bg'>
+              <image src='/images/position/jt_gray.png'></image>
+            </view>
+          </view>
+        </view>
+      </block>
+      <view class='middle'>职位类型、职位名称和工作地点发布后不可修改</view>
+      <view class='res_input'>
+        <view class='input_hd necessary'>工作性质</view>
+        <picker mode='selector' bindchange='workChange' value='{{workIndex}}' range='{{workArray}}'>
+          <view class='input_bd'>
+            <view class="picker">{{workArray[workIndex]}}</view>
+            <view class='input_bg'>
+              <image src='/images/position/jt_gray.png'></image>
+            </view>
+          </view>
+        </picker>
+      </view>
+      <view class='res_input' bindtap='chooseSkill'>
+        <view class='input_hd'>技能要求</view>
+        <view class='input_bd'>
+          <view class="picker">已选中{{tagData.length}}个</view>
+          <view class='input_bg'>
+            <image src='/images/position/jt_gray.png'></image>
+          </view>
+        </view>
+      </view>
+      <!-- <view class='res_input' wx:if="{{workIndex==0}}">
+        <view class='input_hd'>时长单位</view>
+        <picker mode='selector' bindchange='unitChange' value='{{unitIndex}}' range='{{unitArray}}'>
+          <view class='input_bd'>
+            <view class="picker">{{unitArray[unitIndex]}}</view>
+            <view class='input_bg'>
+              <image src='/images/position/jt_gray.png'></image>
+            </view>
+          </view>
+        </picker>
+      </view> -->
+      <view class='res_input' wx:if="{{workIndex==0}}">
+        <view class='input_hd'>时长单位</view>
+        <view class='input_bd'>
+          <view class="picker">{{unitArray[0]}}</view>
+          <view class='input_bg'>
+            <image src='/images/position/jt_gray.png'></image>
+          </view>
+        </view>
+      </view>
+      <view class='res_input' wx:else>
+        <view class='input_hd'>薪资面议</view>
+        <view class='input_bg'>
+          <switch checked='{{negotiate}}' bindchange="switchFace" />
+        </view>
+      </view>
+      <view class='res_input' wx:if='{{!negotiate}}' bindtap='checkPrice'>
+        <view class='input_hd necessary'>薪资要求</view>
+        <view class='input_bd'>
+          <view class="picker">{{lowsalary}}{{unit==1?"K":"元"}}-{{highsalary}}{{unit==1?"K":"元"}}</view>
+          <view class='input_bg'>
+            <image src='/images/position/jt_gray.png'></image>
+          </view>
+        </view>
+      </view>
+      <view class='res_input res_input_02'>
+        <view class='input_hd'>经验要求</view>
+        <picker mode='selector' range='{{expArray}}' value='{{expIndex}}' bindchange='expChange' name='experience'>
+          <view class='input_bd'>
+            <view class="picker">
+              {{expArray[expIndex]}}
+            </view>
+            <view class='input_bg'>
+              <image src='/images/position/jt_gray.png'></image>
+            </view>
+          </view>
+        </picker>
+      </view>
+      <view class='res_input'>
+        <view class='input_hd'>最低学历</view>
+        <picker mode='selector' range='{{eduArray}}' value='{{eduIndex}}' bindchange='eduChange' name='edu'>
+          <view class='input_bd'>
+            <view class="picker">{{eduArray[eduIndex]}}</view>
+            <view class='input_bg'>
+              <image src='/images/position/jt_gray.png'></image>
+            </view>
+          </view>
+        </picker>
+      </view>
+      <navigator hover-class='none' url='/pages/fill/textareaFill?num=200&dataName=content&content={{content}}&placeholder=请输入职位描述'>
+        <view class='res_input res_input_02' bindtap='describe'>
+          <view class='input_hd necessary'>职位描述</view>
+          <view class='input_bd'>
+            <view class='picker'>{{content}}</view>
+            <view class='input_bg'>
+              <image src='/images/position/jt_gray.png'></image>
+            </view>
+          </view>
+        </view>
+      </navigator>
+      <text class='bottom_ts'>发布职位表示你已同意遵守《班马加薪职位信息发布规则》所有职位均有专人审核，禁止发布手机兼职，淘宝兼职等职位</text>
+    </scroll-view>
+  </view>
+  <view class='btn_bg'>
+    <block wx:if='{{type == 2}}'>
+      <button class='open_btn' bindtap='saveJob' form-type='submit'>保存</button>
+      <button class='del_btn' bindtap='delJob' form-type='submit'>删除</button>
+    </block>
+    <block wx:if='{{type == 1}}'>
+      <button class='fb_btn' bindtap='saveJob' form-type='submit'>发布</button>
+    </block>
+  </view>
+  <view class='CoverView' wx:if="{{showBox}}" bindtap="cancelBox"></view>
+  <view class='CoverViewItem' wx:if="{{showBox}}">
+    <view class='cancelView'>
+      <text class='cancel' bindtap="cancelBox">取消</text>
+      <text class='priceTxt' wx:if='{{unit==1}}'>薪资（月薪，单位千元）</text>
+      <text class='priceTxt' wx:if='{{unit==2}}'>薪资（日薪，单位百元）</text>
+      <text class='priceTxt' wx:if='{{unit==3}}'>薪资（时薪，单位元）</text>
+      <text class='click' bindtap="cancelBox">选择</text>
+    </view>
+    <picker-view indicator-style="height: 40px;" style="width: 100%; height: 200px;" value="{{value}}" bindchange="bindChange">
+      <picker-view-column>
+        <view wx:for="{{lowList}}" style="line-height: 40px;">{{item}}</view>
+      </picker-view-column>
+      <picker-view-column>
+        <view wx:for="{{highList}}" style="line-height: 40px;">{{item}}</view>
+      </picker-view-column>
+    </picker-view>
+  </view>
+</form>

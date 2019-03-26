@@ -1,0 +1,98 @@
+const bm = require('../utils/common.js')
+const aliUploader = require("../utils/oss/uploadAliyun.js");
+const app=getApp();
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    pid:Number,
+    type:'addwwork',
+    textareaTip:'请输入工作汇报内容',
+    num:0,
+    content:'',
+    srcList:[],
+  },
+  fillContent:function(e){
+    this.setData({
+      content:e.detail.value,
+      num:e.detail.cursor
+    })
+  },
+  uploadImg:function(){
+    var that =this;
+    wx.chooseImage({
+      count: 1, // 默认9
+      sizeType: ['original', 'compressed'],
+      sourceType: ['album', 'camera'],
+      success: function (res) {
+        let tempFilePaths = res.tempFilePaths[0];
+        let date = new Date();
+        let array = that.data.srcList;
+        let dir;
+        if (that.data.type == 'addwork') {
+          dir ='workRecord'
+        }else{
+          dir = 'tsRecord'
+        }
+        aliUploader(tempFilePaths, dir, date.getTime(),
+          function () {
+            array.push('//bm.jiangcdn.com/' + dir + '/' + app.globalData.uid+'/'+  date.getTime() + '.' + tempFilePaths.split(".").pop());
+            that.setData({
+              srcList: array
+            })
+          }, function (res) {
+            common.msg("图片添加失败")
+          });
+      }
+    })
+  },
+  comfirmnext:function(){
+    var that=this;
+    var _link,tip;
+    if (that.data.type == 'addwork') {
+      _link = '/w/project/tousu/create';
+      tip='请输入工作内容';
+    } else {
+      _link ='/b/project/tousu/create';
+      tip='请输入投诉内容';
+    }
+    if(!that.data.content){
+      wx.showToast({
+        title: tip,
+        icon:'none'
+      })
+    }
+    bm.requsetData(_link, 'post', { pid:that.data.pid,content: that.data.content,srcList: that.data.srcList},function(res){
+      if(!res.data.errcode){
+        wx.navigateBack()
+      }else{
+        wx.showToast({
+          title: res.data.errmsg,
+          icon:'none'
+        })
+      }
+    })
+  },
+  onLoad:function(options){
+    var _type=options.type;
+    this.setData({ type: _type,pid:options.pid})
+    if(_type=='addwork'){
+      wx.setNavigationBarTitle({
+        title: '添加工作汇报',
+      })
+      this.setData({ textareaTip:'请输入工作汇报内容'})
+    } else if (_type == 'addts'){
+      wx.setNavigationBarTitle({
+        title: '投诉',
+      })
+      this.setData({ textareaTip: '请输入投诉内容' })
+    }else{
+      wx.setNavigationBarTitle({
+        title: '解雇',
+      })
+      this.setData({ textareaTip: '请输入解雇内容' })
+    }
+  }
+})

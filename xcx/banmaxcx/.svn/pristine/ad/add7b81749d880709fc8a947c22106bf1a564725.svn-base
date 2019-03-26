@@ -1,0 +1,25 @@
+// pages/worker/my/mycentre.js
+var bm=require('../../utils/common.js')
+var app = getApp()
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    user_info:'',
+  },
+  getFormId: function (e) {
+    var formid = e.detail.formId;
+    app.addformId(formid)
+  },
+  onShow:function(){
+    var that = this 
+    bm.requsetData("/w/user/center", "post", '', function (data) {
+      console.log(data)
+      that.setData({
+        user_info: data.data.user_info,
+      })
+    })
+  }
+})

@@ -1,0 +1,114 @@
+<!--record/concern.wxml-->
+<view class="concontainer" style='height:100%;overflow:hidden'>
+  <!-- <view>tab切换效果</view> -->
+  <view class='tab' style='height:100%;position:relative'>
+    <view class='tab-nav'>
+      <view class='{{current==0?"on":""}}' data-current="0" bindtap='tab'>职位</view>
+      <view class='{{current==1?"on":""}}' data-current="1" bindtap='tab'>需求</view>
+      <view class='{{current==2?"on":""}}' data-current="2" bindtap='tab'>牛人</view>
+    </view>
+    <swiper class='tab-box' style='height:100%' current="{{current}}" bindchange="eventchange">
+      <swiper-item>
+        <view class="deliver">
+          <view class='explainCantainer {{hiddenpart==true?"display_none":""}}'>
+            <view class='empty_icon'>
+              <image src='https://bm.jiangcdn.com/banma/empty/empty_bg.png'></image>
+            </view>
+            <view class='empty_text'>
+              <view class='empty_text_01'>{{empty_text_01}}为空</view>
+              <view class='empty_text_02'>{{empty_text_02}}</view>
+            </view>
+          </view>
+          <view class="deliverAll">
+            <scroll-view scroll-y class='box' scroll-y bindscrolltolower="getpullData1">
+              <navigator class="deliver_list" url='' wx:for='{{lists}}' wx:for-item='vo'>
+                <view class="deliver_list_info">
+                  <view class="list_job">
+                    <view class='title'>{{vo.title}}</view>
+                    <view class='online'>接受在线工作</view>
+                  </view>
+                  <view class="list_price">{{vo.price.low}}K-{{vo.price.high}}K</view>
+                </view>
+                <view class="deliver_list_company">{{vo.cname}}</view>
+                <view class="deliver_list_company">{{vo.require}}</view>
+                <view class="deliver_list_x"></view>
+                <view class="deliver_list_person">
+                  <view class='deliver_both'>
+                    <view class="list_avatar">
+                      <image class='img' src='{{vo.avatar}}'></image>
+                    </view>
+                    <view class="list_name">{{vo.sname}}</view>
+                  </view>
+                  <view class="list_time">1</view>
+
+                </view>
+              </navigator>
+            </scroll-view>
+          </view>
+        </view>
+      </swiper-item>
+      <swiper-item>
+        <view class="deliver">
+          <view class='explainCantainer {{hiddenpart==true?"display_none":""}}'>
+            <view class='empty_icon'>
+              <image src='https://bm.jiangcdn.com/banma/empty/empty_bg.png'></image>
+            </view>
+            <view class='empty_text'>
+              <view class='empty_text_01'>{{empty_text_01}}为空</view>
+              <view class='empty_text_02'>{{empty_text_02}}</view>
+            </view>
+          </view>
+          <view class="detailAll">
+            <scroll-view scroll-y class='box' scroll-y bindscrolltolower="getpullData1">
+              <navigator class="deliver_list" url=''>
+                <view class="showcenter">
+                  <view class="firstLine">
+                    <view class='plat_all'>
+                      <view class="plat_left">11</view>
+                      <view class="plat_right">急招</view>
+                    </view>
+                    <view class="price">111</view>
+                  </view>
+                  <view class="secondLine">
+                    <view class="fontname">11</view>
+                  </view>
+                  <view class="threeLine">
+                    <view class="fontmix">2个月</view>
+                    <view class="fontmix">电商类</view>
+                    <view class="fontmix">平台</view>
+                  </view>
+                  <view class="fourtLine">
+                    <view class='plat_all'>
+                      <view class="plat_img">
+                        <img src="img/person_03.png" />
+                      </view>
+                      <view class="plat_font">11</view>
+                    </view>
+                    <view class="date">04月02日</view>
+                  </view>
+                </view>
+              </navigator>              
+            </scroll-view>
+          </view>
+        </view>
+      </swiper-item>
+      <swiper-item>
+        <view class="MainLeft">
+          <view class="showalpa" wx:for='{{letterList}}' bindtap='alpabtn' data-view='{{item}}'>{{item}}</view>
+        </view>
+        <view class="MainRight">
+          <view class="detailAll">
+            <!-- <navigator class="showLine" wx:for='{{niurenlist}}' wx:for-item='vo' url=''> -->
+             <navigator class="showLine">
+              <view class="detailName">
+                 <image class='nimage' src="{{src}}"></image>
+              </view>
+              <view class="detailPrice">陈晓君3</view>
+              <view class="detailLinetwo">享贞科技－HRM</view>
+           </navigator>
+          </view>
+        </view>
+      </swiper-item>
+    </swiper>
+  </view>
+</view>

@@ -1,0 +1,11 @@
+/* pages/member/fillCode.wxss */
+.fillcode{ padding: 0 24rpx;}
+.fillcodecantainer{ position: relative; display: flex; width: 100%; justify-content: space-around; box-sizing: border-box; margin-top: 46rpx; }
+.codeItem{ width: 96rpx; height: 96rpx; line-height: 96rpx; text-align: center; background: #f5f5f5; border-radius: 6rpx; box-sizing: border-box;}
+.codeItem.action{ border: 3rpx solid #000;}
+.codeItem.action::after{ display: block; width: 96rpx; height: 96rpx; content: "-"; font-size: 44rpx; text-align: center; line-height: 96rpx; color: #a8a8a8;}
+.codeCountDown{ font-size: 32rpx; color: #72777e; text-align: center;}
+.codeCountDown text{ color: #000000; font-weight: bold;}
+.codeResend{  text-align: center; margin-top: 34rpx}
+.codeResend text{ font-size: 32rpx; color: #0060ff; text-decoration: underline;}
+.codeInp{width: 0; height: 0;text-indent: 999em; opacity: 0}

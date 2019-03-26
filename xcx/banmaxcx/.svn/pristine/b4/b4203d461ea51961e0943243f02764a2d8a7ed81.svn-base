@@ -1,0 +1,8 @@
+<!--pages/setting/hideCompany.wxml-->
+<view class='companyItemCantainer'>
+  <view class='companyItem' wx:for="{{companyList}}" wx:for-index="idx" wx:key="co">
+    <text bindtap='edit' data-id="{{item.id}}" data-content='{{item.notice}}'>{{item.notice}}</text>
+    <view class='deleteIcon' data-id="{{item.id}}" data-index="{{idx}}" bindtap='DeleteCo'></view>
+  </view>
+  <navigator class='Background' plain hover-class='none' url='/setting/sayInput?type=1'>+添加打招呼语</navigator>
+</view>

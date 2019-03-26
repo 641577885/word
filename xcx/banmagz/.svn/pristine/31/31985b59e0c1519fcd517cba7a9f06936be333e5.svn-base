@@ -1,0 +1,40 @@
+<!--business/demand/demand03.wxml-->
+<form bindsubmit='submit'>
+<view class='main'>
+  <view class='content_01'>
+    <view class='content_title'>标题描述</view> 
+  </view>
+  <input class='content_01_input' placeholder='例如：公司形象logo' name='title'></input>
+</view>
+<view class='main_02'>
+  <view class='content_01'>
+    <view class='content_title'>需求描述</view> 
+  </view>
+  <textarea class='main_02_textarea' maxlength='200' value='{{xq_val}}'  bindinput='bindnum' name='content'>
+    <view class='num'>{{textarea_length}}/200字</view>
+  </textarea>
+  <view class='mb_list'>
+    <view class='mb_style {{item.click?"on":"off"}}' wx:for='{{mb_list}}' wx:key='mb_list' id='{{index}}' bindtap='selct_click'>{{item.content}}</view>
+  </view>
+</view>
+<view class='main_03'>
+  <view class='main_03_input'>
+    <view class='input_title'>项目周期</view>
+    <view class='input_main'>
+      <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+        <view class="picker">
+          {{array[index]}}
+        </view>
+      </picker>
+    </view>
+  </view>
+  <view class='main_03_input_02'>
+    <view class='input_title'>预算</view>
+    <view class='input_main'>
+      <input type='number' value='' placeholder='0.00' maxlength='10' name='money'></input>
+      <text>元</text>
+    </view>
+  </view>
+</view>
+<button class='btnBlack' form-type='submit'>下一步</button>
+</form>

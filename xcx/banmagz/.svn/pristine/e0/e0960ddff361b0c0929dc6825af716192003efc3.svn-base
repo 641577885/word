@@ -1,0 +1,156 @@
+<form report-submit='true' bindsubmit='getFormId'>
+  <view class='msgCantainer'>
+    <view class='opcantainer'>
+      <button form-type='submit' bindtap='excontactMsg'>{{have_change==1?"查看手机微信":"交换手机微信"}}</button>
+      <button form-type='submit' bindtap='goHire'>发起雇佣</button>
+    </view>
+    <view class='msgProItem' wx:if='{{orderList!=""}}'>
+      <navigator url='/olwork/posDetail?id={{orderList.pro.id}}' hover-class='none'>
+        <view class='msgProTop'>
+          <view class='msgProDetail'><view class='ddIcon'>订单</view>{{orderList.pro.beizhu}}</view>
+          <view class='msgProPrice'>￥{{orderList.pro.allprice}}</view>
+        </view>
+        <view class='msgProStatusItem'>
+          <text class='msgProStatus abnormal'>{{orderList.pro.state_name}}</text>
+          <text class='msgProTime'>{{orderList.pro.begintime}} ~ {{orderList.pro.endtime}}</text>
+        </view>
+      </navigator>
+    </view>
+    <view class='msgItemCantainer {{orderList!=""?"topTop":""}}' bindtap='outMore'>
+      <scroll-view class='DialogCantainer' scroll-y style='height:100%;' scroll-into-view="{{toview}}" bindscrolltoupper="getLastMsg">
+        <view class='loadIcon' wx:if="{{showLoad}}"><image src='/images/loading.gif' mode='aspectFill' ></image></view>
+        <view class='TipShow' wx:if="{{isemial==0}}">
+          <view>
+            <text>完善您的邮箱信息创客才能投递简历，</text><navigator url='/business/my/personInfo' hover-class='none'>前往完善</navigator>
+          </view>
+        </view>
+        <view wx:for='{{msgs}}' wx:for-index="idx" id='view{{idx}}' wx:key>
+          <view class="{{(item.content=='[:demand]' || item.content=='[:position]'|| item.content=='[:hire]') && item.isSelfSend?'hidden':''}}">
+            <view class='noticeTime' wx:if="{{item.strtime>0}}"></view>
+            <view class='noticeTime' wx:else>{{item.strtime}}</view>
+            <!--请求交换微信-->
+            <view class='dialogItem {{item.isSelfSend?"selfItem":"fromItem"}}'>
+              <view class='dialogThumb'>
+                <image src='{{selfHeadUrl}}' wx:if='{{item.isSelfSend}}' mode='aspectFill'></image>
+                <navigator url='/resume/resume?uid={{selToID}}' hover-class='none' wx:else>
+                  <image src='{{friendHeadUrl}}' mode='aspectFill'></image>
+                </navigator>
+              </view>
+              <block wx:if="{{item.content=='[:excontact]'}}">
+                <block wx:if='{{item.isSelfSend}}'>
+                  <view class='dialogCover'>
+                    <view class='dialogWechat'>您发起了交换联系方式，请耐心等待</view>
+                  </view>
+                </block>
+                <block wx:else>
+                  <view class='dialogCover'>
+                    <view class='dialogWechat'>请求跟您交换联系方式</view>
+                    <view class='dialogWechatBtn'  wx:if="{{!contactStatus}}">
+                      <button class='refuse' data-status='2' data-ext='{{item.ext}}' data-type="contact" bindtap='requsetReply'>拒绝</button>
+                      <button class='agree' data-status='1' data-ext='{{item.ext}}' data-type="contact" bindtap='requsetReply'>同意</button>
+                    </view>
+                  </view>
+                </block>
+              </block>
+              <block wx:elif="{{item.content=='[:contact]'}}">
+                <view class='contactDialogCantainer'>
+                  <view class='contactDialog'>
+                    <view class='contactTxt'>
+                      <view class='contactBody'>
+                        <image src='https://bm.jiangcdn.com/banma/dialog/cell_Icon.png' mode='aspectFill'></image>
+                        <text class='contactBody'>{{item.ext}}</text>
+                      </view>
+                      <view class='copyBtn' wx:if='{{!item.isSelfSend}}' data-cell='{{item.ext}}' bindtap='addCell'>添加</view>
+                    </view>
+                    <view class='contactTip'>手机号码</view>
+                  </view>
+                  <view class='contactDialog' wx:if="{{item.ext2}}">
+                    <view class='contactTxt'>
+                      <view class='contactBody'>
+                        <image src='https://bm.jiangcdn.com/banma/dialog/wechat_Icon.png' mode='aspectFill'></image>
+                        <text class='contactBody'>{{item.ext2}}</text>
+                      </view>
+                      <view class='copyBtn' wx:if='{{!item.isSelfSend}}' data-wechat='{{item.ext2}}' bindtap='clipWechat'>复制</view>
+                    </view>
+                    <view class='contactTip'>微信号码</view>
+                  </view>
+                </view>
+              </block>
+              <block wx:elif="{{item.content=='[:resume]'}}">
+                <block wx:if='{{item.isSelfSend}}'>
+                  <view class='dialogCover'>
+                    <view class='dialogWechat'>您发起了索要简历请求，请耐心等待</view>
+                  </view>
+                </block>
+                <block wx:else>
+                  <view class='dialogCover'>
+                    <view class='dialogWechat'>我已经向您的邮箱里发送了一份简历，请您查阅</view>
+                  </view>
+                </block>
+              </block>
+              <block wx:elif="{{item.content=='[:order]'}}">
+                <view class='dialogCover'>
+                  <view class='dialogWechat'>订单信息</view>
+                </view>
+              </block>
+              <block wx:elif="{{item.content=='[:IMAGES]'}}">
+                <view class='dialogImage' data-img='{{item.ext}}' bindtap='previewImg'>
+                  <image src='{{item.ext}}' mode='widthFix'></image>
+                </view>
+              </block>
+              <block wx:elif="{{item.content=='[:default]'}}">
+                <view class='dialogCover'>{{item.ext}}</view>
+              </block>
+              <block wx:elif="{{item.content=='[:hire]'}}">
+                <navigator url='/order/replacepay1?id={{item.ext.temp_oid}}' open-type='redirect' hover-class='none'>
+                  <view class='dialogCover'>
+                    <view class='hireCantainer'>
+                      <view class="hireTitle"><view class='ddIcon'>邀请雇佣</view>{{item.ext.is_dz==0?"包月雇佣":"定制雇佣"}}</view>
+                      <view class='hirePrice'>
+                        <view class='hireStatus'>未支付</view>
+                        <text class='wantPrice'>￥{{item.ext.allprice}}</text>
+                      </view>
+                      <view class='hireContent'>{{item.ext.beizhu}}</view>
+                      <view class='hiretime'>
+                        <view class='hiretimeT'>雇佣周期:</view>
+                        <view class='hiretimeC'>{{item.ext.begintime}}~{{item.ext.endtime}}</view>
+                      </view>
+                    </view>
+                  </view>
+                </navigator>
+              </block>
+              <block wx:else>
+                <view class='dialogCover'>{{item.content}}</view>
+              </block>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+    <view class='dialogSendCantainer' wx:if="{{canDialog}}">
+      <view class='dialogSendTop'>
+        <view class='dialogCommon' bindtap='commonNotice'>常用语</view>
+        <input class='sendContent' placeholder='文字输入' bindconfirm="bindConfirm" bindinput='bindinput' confirm-type='send' cursor-spacing="16" value='{{msgContent}}'></input>
+        <view class='MoreSend' bindtap='ckMore'></view>
+        <button class='sendBtn' form-type='submit' bindtap='sendChat'>发送</button>
+      </view>
+      <view class='moreCantainer {{isShowMore?"showH":""}}'>
+        <view class='moreItem' bindtap='chooseCamera'>
+          <image src='https://bm.jiangcdn.com/banma/msg/camera.png' mode='aspectFit'></image>
+          <text>拍摄照片</text>
+        </view>
+        <view class='moreItem' bindtap='chooseAlbum'>
+          <image src='https://bm.jiangcdn.com/banma/msg/picture.png' mode='aspectFit'></image>
+          <text>相册</text>
+        </view>
+        <view class='moreItem' bindtap='wannaResume'>
+          <image src='https://bm.jiangcdn.com/banma/msg/hire.png' mode='aspectFit'></image>
+          <text>求简历</text>
+        </view>
+      </view>
+      <view class='greetCantainer {{isCommom?"greetH":""}}'>
+        <view wx:for='{{greetList}}' wx:for-index='idx' data-index='{{idx}}' form-type='submit' wx:key bindtap='greetList'>{{item.notice}}</view>
+      </view>
+    </view>
+  </view>
+</form>

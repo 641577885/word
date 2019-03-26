@@ -1,0 +1,78 @@
+/* pages/worker/search/company.wxss */
+page{height:100%; letter-spacing: 3rpx;background-color: #fff;}
+.inline_block{display: inline-block;}
+/*内填充  */.padding_top40{padding-top:40rpx;}
+.padding510{padding:5rpx 10rpx 5rpx 10rpx}
+.padding_top15{padding-top:15rpx;}
+.padding_top20{padding-top:20rpx;}
+.padding_top25{padding-top:25rpx;}
+.padding_top35{padding-top:35rpx;}
+.padding_top50{padding-top:50rpx;}
+.padding_bottom15{padding-bottom:15rpx;}
+.padding_bottom20{padding-bottom:20rpx;}
+.padding_bottom25{padding-bottom:25rpx;}
+.padding_bottom35{padding-bottom:35rpx;}
+.padding_bottom40{padding-bottom:40rpx;}
+.padding_leftright20{padding-left: 20rpx;padding-right:20rpx;}
+/*宽  */.width90{width: 90%}.width80{width: 80%}.width75{width: 75%}.width55{width: 55%}
+/*高  */.height30{height: 30rpx;}.height50{height: 50rpx;}.height170{height: 170rpx}
+/*外填充  */.auto{margin-left: auto;margin-right: auto;}
+.margin_top10{margin-top: 10rpx;}
+.margin_top-10{margin-top: -10rpx;}
+.margin_top12{margin-top: 12rpx;}
+.margin_top15{margin-top: 15rpx;}
+.margin_top25{margin-top: 25rpx;}
+.margin_top30{margin-top: 30rpx;}
+.margin_left10{margin-left: 10rpx;}
+.margin_left15{margin-left: 15rpx;}
+.margin_left-18{margin-left: -18rpx;}
+.margin_right20{margin-right: 20rpx;}
+.margin_right25{margin-right: 25rpx;}
+.margin_bottom20{margin-bottom: 20rpx;}
+/*字体大小  */.font_size28{font-size: 28rpx;}
+.font_size26{font-size: 26rpx;}
+.font_size30{font-size: 30rpx;}
+.font_size32{font-size: 32rpx;}
+.font_size34{font-size: 34rpx;}
+.font_size36{font-size: 36rpx;}
+.font_size42{font-size: 42rpx;}
+.font_size50{font-size: 50rpx;}
+/* 字体颜色 *//*橙*/.colorfe5a01{color: #fe5a01}
+.colorbababa{color: #bababa;}
+.color5d5d5d{color: #5d5d5d}
+.colorfe013d{color: #fe013d}
+.colorfff{color: #fff}
+.colorfea9a9a9{color:#fea9a9}
+/*字体加粗  */.font_weight600{font-weight: 600}
+/*弹性布局  */.display_flex{display: flex;}
+.space_between{justify-content: space-between}
+/*图片大小  */.gongsi{width:140rpx;height: 140rpx;}
+.xin{width: 55rpx;height: 50rpx;}
+.circle60{width: 60rpx;height: 60rpx;}
+.xinxi{width: 365rpx;height:367rpx;background: #999;}
+.jiluyuan{width: 50rpx;height: 50rpx; background: #999;}
+.circle145{width:145rpx;height: 145rpx; border-radius: 30rpx;background: #fdc200;}
+.shangxi{width: 25rpx;height: 16rpx;}
+/*边角磨圆  */.border_radius20{border-radius: 20rpx;}.border_radius5{border-radius: 5rpx;}
+.border_radius30{border-radius: 30rpx;}
+/*添加边框  */.border_bottom{border-bottom:solid #eeeeee 1rpx }
+.border_top{border-top:solid #eeeeee 1rpx }
+.border_bottomfede01{border-bottom:solid #fede01 5rpx }
+.border_right{border-right: solid #a9a9a9 1rpx;}
+.border5{border:solid #fff 5rpx }
+.bordereeeeee{border: solid #eeeeee 1rpx;}
+/*浮动  */.float_right{float: right}.float_left{float: left}
+/*背景颜色  */.backgroundfafafa{background: #fafafa}
+.background_black{background: black}
+/*导航css  */.tab-nav view.on{  border-bottom: solid black 2rpx; color:black;} 
+.tab-nav{width: 90%;}
+.tab-nav view{padding-bottom: 20rpx; width: 20%;display: inline-block;line-height: 60rpx;color: #7d6c00;  font-size: 30rpx;text-align: center;}
+/*纵向拉伸属性  */.huadong1{width:90%; white-space: nowrap;}
+.xiala3{height:100%;overflow-x: hidden;box-sizing:border-box;}
+.box{background:#ffffff;height: 100%;}
+.textbox{width: 90%;height:80rpx;overflow: hidden;text-overflow: ellipsis;display:-webkit-box;  -webkit-line-clamp:2;-webkit-box-orient: vertical;}
+.huore{display: inline-block; width:35rpx; height:35rpx; background-color: #fdc100}
+/*多余的部分隐藏  */.overflow_hidden{overflow: hidden}
+.transform180{transform:rotate(180deg);transition-duration: 0.3s;}
+.transform0{transform:rotate(0deg);transition-duration: 0.3s;}
+.hidden{display: none}

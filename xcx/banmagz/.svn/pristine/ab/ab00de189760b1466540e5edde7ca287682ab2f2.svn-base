@@ -1,0 +1,123 @@
+// pages/pay/replacepay.js
+const bm = require('../utils/common.js');
+var app = getApp();
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    ordersn:'',
+    user:{},
+    order:{},
+    accInfo:{},
+    showComfirm:false,
+    allprice:0,
+    maxcount:Number,
+    showRed:false
+  },
+  getCkorderInfo:function(id){
+    var that=this;
+    bm.requsetData('/c/order/ckorder', 'get', {id:id},function(res){
+      if(!res.data.errcode){
+        res.data.order.begintime = bm.formatDate(res.data.order.begintime);
+        res.data.order.endtime = bm.formatDate(res.data.order.endtime);
+        var maxcount = (res.data.order.allprice * 0.05).toFixed(2);
+        if (maxcount >= res.data.accInfo.usera) {
+          maxcount = res.data.accInfo.usera
+        }
+        that.setData({
+          user: res.data.user,
+          order: res.data.order,
+          accInfo: res.data.accInfo,
+          allprice: Number(res.data.order.allprice) + Number(res.data.order.service_price),
+          maxcount: maxcount
+        })
+      }else{
+        wx.showToast({
+          title: res.data.errmsg,
+          icon:'none'
+        })
+      }
+    },true)
+  },
+  getPayOrder:function(){
+    var that=this;
+    bm.requsetData('/c/order/info', 'get', { ordersn: this.data.ordersn},function(res){
+      if (!res.data.errcode) {
+        res.data.order.begintime = bm.formatDate(res.data.order.begintime);
+        res.data.order.endtime = bm.formatDate(res.data.order.endtime);
+        that.setData({
+          user: res.data.user,
+          order: res.data.order,
+          allprice: Number(res.data.order.allprice) + Number(res.data.order.service_price) - Number(res.data.order.integral_price)
+        })
+      } else {
+        wx.showToast({
+          title: res.data.errmsg,
+          icon: 'none'
+        })
+      }
+    },true)
+  },
+  checkboxChange: function (e) {
+    var that = this;
+    if (e.detail.value.length != 0) {
+      that.setData({ showRed: true })
+      that.setData({ allprice: Number(that.data.allprice) - Number(that.data.maxcount)})
+    } else {
+      that.setData({ showRed: false })
+      that.setData({ allprice: Number(that.data.allprice) + Number(that.data.maxcount) })
+    }
+  },
+  setOrder: function () {
+    var integral, that = this;
+    if (that.data.showRed) {
+      integral = that.data.maxcount;
+    } else {
+      integral = 0;
+    }
+    if(!that.data.order.is_dz){
+      var query = { rtype: 1, uid: that.data.order.uid, allprice: that.data.allprice, begintime: that.data.order.begintime, month: that.data.order.month, beizhu: that.data.order.beizhu, integral: integral }
+    }else{
+      var query = { rtype: 2, uid: that.data.order.uid, allprice: that.data.allprice, begintime: that.data.order.begintime, endtime: that.data.order.endtime, beizhu: that.data.order.beizhu, integral: integral }
+    }
+    bm.requsetData('/b/worker/rz', 'post', query, function (res) {
+      if (!res.data.errcode) {
+        wx.showToast({
+          title: res.data.errmsg,
+          icon:'success',
+          duration: 2000,
+          success: function () {
+            that.setData({ ordersn: res.data.ordersn})
+            that.goPay();
+          }
+        })
+      } else {
+        wx.showToast({
+          title: res.data.errmsg,
+          icon: 'none'
+        })
+      }
+    })
+  },
+  goPay:function(){
+    wx.redirectTo({
+      url: '/pages/pay/pay?ordersn='+this.data.ordersn,
+    })
+  },
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    app.authCallback = auth => {
+      if (options.type =='comfirm'){
+        this.getCkorderInfo(options.id);
+        this.setData({showComfirm:true})
+      } else {
+        this.setData({ ordersn: options.ordersn })
+        this.getPayOrder();
+      }
+    }
+  }
+})

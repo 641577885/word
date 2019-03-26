@@ -1,0 +1,119 @@
+{
+	"description": "项目配置文件。",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.0.8",
+	"appid": "wxc334d30284ddd9c6",
+	"projectname": "%E7%8F%AD%E9%A9%AC%E9%9B%87%E4%B8%BB",
+	"isGameTourist": false,
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": -1,
+			"list": [
+				{
+					"id": 0,
+					"name": "邀请成员",
+					"pathName": "business/my/invitation",
+					"query": "token=MDAwMDAwMDAwMMmLoNiFt7myh7qbY7CGm2a0jGiofYxpsLKnp7CDc3Si",
+					"scene": "1011"
+				},
+				{
+					"id": 1,
+					"name": "认证",
+					"pathName": "business/auth/busAuth",
+					"query": ""
+				},
+				{
+					"id": 2,
+					"name": "分享1",
+					"pathName": "pages/share/share",
+					"query": "id=79",
+					"scene": "1011"
+				},
+				{
+					"id": 3,
+					"name": "分享2",
+					"pathName": "pages/share/share02",
+					"query": "id=41",
+					"scene": "1011"
+				},
+				{
+					"id": 4,
+					"name": "分享3",
+					"pathName": "pages/share/share03",
+					"query": "uid=10037",
+					"scene": "1001"
+				},
+				{
+					"id": 5,
+					"name": "重新绑定手机",
+					"pathName": "setting/modifyPhone",
+					"query": "uid=10037",
+					"scene": "1001"
+				},
+				{
+					"id": -1,
+					"name": "薪资",
+					"pathName": "business/publishJob/jobType2",
+					"query": "uid=10037",
+					"scene": "1001"
+				},
+				{
+					"id": -1,
+					"name": "地址",
+					"pathName": "business/auth/complishinfo",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "公司地址",
+					"pathName": "business/my/companyinfo",
+					"query": "infotype=5"
+				},
+				{
+					"id": -1,
+					"name": "薪资修改",
+					"pathName": "business/publishJob/jobType2",
+					"query": "infotype=5"
+				},
+				{
+					"id": 10,
+					"name": "职位",
+					"pathName": "pages/details/zwDetails",
+					"query": "access_token=MDAwMDAwMDAwMISla699qHdofp1tzJKNeNh-qIaTjrKpaoHbc99_tnKYhI2NnX2omWyJhZfdiZCM2orOnJKFj7Ftjs6A0X-2lJSFfY2hibuLaomFn5d9jYSe&id=94"
+				},
+				{
+					"id": -1,
+					"name": "邀请加入工作组",
+					"pathName": "pages/share/sharework",
+					"query": ""
+				}
+			]
+		}
+	}
+}

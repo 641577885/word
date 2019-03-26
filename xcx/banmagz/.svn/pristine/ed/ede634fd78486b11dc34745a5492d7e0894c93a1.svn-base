@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "工作详情",
+  "usingComponents": {
+    "indexback": "/component/indexback02"
+  }
+}

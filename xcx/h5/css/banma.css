@@ -1,0 +1,227 @@
+body{
+	background: #f9f9f9;
+	font-family: "微软雅黑";
+}
+.header{
+	width: 90%;
+	text-align: center;
+	padding-top: 0.6rem;
+	margin: 1.2rem auto;
+}
+.header_title{
+	width: 100%;
+	height: 0.7rem;
+	font-size: 0.5rem;
+	font-weight: bold;
+	line-height: 0.7rem;
+}
+.header_info{
+	font-size: 0.24rem;
+	margin-top: 0.22rem;
+	/*font-weight: bold;*/
+}
+.header_info p{
+	line-height: 0.36rem;
+}
+.header_btn{
+	display: block;
+	width: 3.4rem;
+	height: 0.64rem;
+	background: #fede01;
+	border-radius: 0.03rem;
+	margin: 0.48rem auto;
+	text-align: center;
+	line-height: 0.64rem;
+	font-size: 0.22rem;
+	font-weight: bold;
+}
+.tab{
+	width: 100%;
+}
+.tab_menu{
+	width: 6.76rem;
+	height: 0.74rem;
+	margin: 0 auto;
+}
+.tab_menu li{
+	width: 50%;
+	height: 0.74rem;
+	float: left;
+	background: #f9f9f9;
+	border: 0.01rem solid #e0e0e0;
+	box-sizing: border-box;
+	font-size: 0.24rem;
+	text-align: center;
+	line-height: 0.74rem;
+	color: #222222;
+}
+.on{
+	background: #fff !important;
+	border-bottom: 0 !important;
+}
+.tab_box_main{
+	width:100%;
+	height:auto;
+	display:none;
+}
+.tab_box_main:first-Child{
+	display:block;
+} 
+.bus{
+	padding-top: 0.7rem;
+	padding-bottom: 0.7rem;
+	background: #fff;
+}
+.work{
+	padding-top: 0.7rem;
+	padding-bottom: 0.7rem;
+	background: #fff;
+}
+.bus_main_01{
+	width: 100%;
+	padding-bottom: 0.46rem;
+}
+.bus_main_01_bg{
+	width: 3.39rem;
+	height: 2.87rem;
+	margin: 0 auto;
+	background: url(../img/bus_main_01.png) no-repeat;
+	background-size: 100% 100%;
+}
+.bus_main_01_title{
+	font-size: 0.4rem;
+	font-weight: bold;
+	line-height: 0.6rem;
+	margin-top: 0.6rem;
+	padding-left: 0.38rem;
+}
+.bus_main_01_text{
+	width: 6.76rem;
+	font-size: 0.28rem;
+	line-height: 0.4rem;
+	margin: 0.22rem auto;
+	text-indent: 2em;
+}
+.bus_main_01_text_02{
+	width: 6.76rem;
+	font-size: 0.28rem;
+	line-height: 0.4rem;
+	margin: 0.22rem auto;
+}
+.main_title{
+	width: 6.76rem;
+	height: 0.76rem;
+	/*border-bottom: 0.01rem solid #eeeeee;*/
+	border-top: 0.01rem solid #eeeeee;
+	margin: 0 auto;
+	font-size: 0.24rem;
+	color: #eaa700;
+	line-height: 0.76rem;
+	font-weight: bold;
+	position: relative;
+}
+/*.bus_main_02{
+	padding-bottom: 0.45rem;
+}*/
+.main_title span{
+	width: 0.2rem;
+	height: 0.11rem;
+	background: url(../img/jt.png) no-repeat;
+	background-size: 100% 100%;
+	position: absolute;
+	top: 0.33rem;
+	right: 0.21rem;
+}
+.bus_main_02_bg{
+	width: 1.95rem;
+	height: 2.87rem;
+	background: url(../img/bus_main_02.png) no-repeat;
+	background-size: 100% 100%;
+	margin: 0.7rem auto 0;
+}
+.bus_main_03_bg{
+	width: 1.85rem;
+	height: 2.87rem;
+	background: url(../img/bus_main_03.png) no-repeat;
+	background-size: 100% 100%;
+	margin: 0.7rem auto 0;
+}
+.bus_main_04_bg{
+	width: 3.37rem;
+	height: 2.9rem;
+	background: url(../img/bus_main_04.png) no-repeat;
+	background-size: 100% 100%;
+	margin: 0.7rem auto 0;
+}
+.bus_main_05_bg{
+	width: 2.97rem;
+	height: 2.28rem;
+	background: url(../img/bus_main_05.png) no-repeat;
+	background-size: 100% 100%;
+	margin: 0.7rem auto 0;
+}
+.bus_main_06_bg{
+	width: 4rem;
+	height: 3.03rem;
+	background: url(../img/bus_main_06.png) no-repeat;
+	background-size: 100% 100%;
+	margin: 0.7rem auto 0;
+}
+.text_yellow{
+	color: #eaa700;
+	font-weight: bold;
+}
+
+.bus_main_01_text p{
+	margin-bottom: 0.2rem;
+}
+.main_content li{
+	list-style-type:disc;
+	margin-bottom: 0.2rem;
+}
+.vip{
+	width: 6.76rem;
+	height: 2.56rem;
+	border: 0.01rem solid #dbdbdb;
+	border-top: 0.1rem solid #fea600;
+	background: #f9f9f9;
+	box-sizing: border-box;
+	margin: 0.5rem auto 0.1rem;
+	position: relative;
+}
+.vip_title{
+	width: 100%;
+	height: 0.42rem;
+	font-size: 0.36rem;
+	line-height: 0.42rem;
+	text-align: center;
+	position: absolute;
+	top: 0.5rem;
+	font-weight: bold;
+}
+.vip_price{
+	width: 100%;
+	height: 0.34rem;
+	font-size: 0.24rem;
+	text-align: center;
+	position: absolute;
+	line-height: 0.24rem;
+	top: 1.08rem;
+	color: #666;
+}
+.vip a{
+	display: block;
+	width: 2.46rem;
+	height: 0.59rem;
+	background: #fff;
+	border: 0.02rem solid #e0e0e0;
+	border-radius: 0.02rem;
+	position: absolute;
+	left: 50%;
+	margin-left: -1.23rem;
+	bottom: 0.36rem;
+	font-size: 0.24rem;
+	font-weight: bold;
+	text-align: center;
+	line-height: 0.59rem;
+}

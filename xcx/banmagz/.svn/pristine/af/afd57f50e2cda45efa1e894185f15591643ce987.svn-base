@@ -1,0 +1,69 @@
+<dialog dialog-hidden="{{isShowDialog}}"></dialog>
+<view class='tapbar'>
+  <view class='pickerItem'>产品经理<image mode='aspectFill' src='/images/xia.png'></image></view>
+  <icon type="search" color='black' size="18" />
+</view>
+<view class='screenCantainer'>
+  <view class='select'>
+    <text>类型</text>
+    <image src='/images/jt.png' class='select_icon'></image>
+  </view>
+  <view class='fgx'></view>
+  <view class='select'>
+    <text>要求</text>
+    <image src='/images/jt.png' class='select_icon'></image>
+  </view>
+  <view class='fgx'></view>
+  <view class='select'>
+    <text>筛选</text>
+    <image src='/images/jt.png' class='select_icon'></image>
+  </view>
+</view>
+<scroll-view scroll-y class='list'>
+  <view class='list_main'>
+    <view class='list_top'>
+      <view class='list_top_left'>
+        <view class='avatar'><image src='/images/worker/circle_03.jpg' mode='widthFix'></image></view>
+        <view class='info'>
+          <view class='name'>陈佳立</view>
+          <view class='position'>魔方集团－技术总监／CTO</view>
+          <view class='edu'>10年以上－大专</view>
+        </view>
+      </view>
+      <view class='list_top_right'>
+        <view class='price'>￥5000</view>
+        <view class='price_yq'>最低要求</view>
+      </view>
+    </view>
+    <view class='content'>10年以上互联网开发，经历过千百万级大型互联网项目。有异动互联网项目，跨境电商...</view>
+    <view class='list_bottom'>
+      <image src='/images/ydl.jpg'></image>
+      <text>30</text>
+      <image src='/images/taolun.jpg'></image>
+      <text>20</text>
+    </view>
+  </view>
+  
+</scroll-view>
+<view class='tabbar'>
+  <view class='tabbar_content'>
+    <image src='/images/worker/resume_02.png' class='tabbar_icon'></image>
+    <view>创客</view>
+  </view>
+  <view class='tabbar_content'>
+    <image src='/images/worker/job_01.png' class='tabbar_icon'></image>
+    <view>职位</view>
+  </view>
+  <view class='tabbar_content'>
+    <image src='/images/worker/add.png' class='tabbar_icon'></image>
+    <view>发布</view>
+  </view>
+  <view class='tabbar_content'>
+    <image src='/images/worker/message_01.png' class='tabbar_icon'></image>
+    <view>消息</view>
+  </view>
+  <view class='tabbar_content'>
+    <image src='/images/worker/my_01.png' class='tabbar_icon'></image>
+    <view>我的</view>
+  </view>
+</view>

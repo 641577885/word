@@ -1,0 +1,34 @@
+/* pages/business/position/jobDemand.wxss */
+page{background: #fafafa;font-size: 30rpx;}
+.swiper_tab{width: 100%;height: 100rpx;display: flex;justify-content: space-around;background: #fff;position: fixed;top: 0;}
+.swiper_tab_item{width: 50%;height: 99rpx;text-align: center;line-height: 99rpx;z-index:999;color: #353535;position: relative}
+swiper{width: 100%;height: 100%;margin-top: 30rpx;position: fixed;top: 100rpx;}
+
+.xhx{width: 80rpx;height: 2rpx;background: #000;position: absolute;bottom: 0;left: 50%;margin-left: -40rpx}
+.list{width: 100%;background: #fff;}
+.list_main{width: 690rpx;margin-left: 30rpx;padding-right: 30rpx;border-bottom: 1rpx solid #eeeeee;height: 164rpx;padding-top: 34rpx;}
+scroll-view{height: 100%;}
+
+.dlist{width: 720rpx;padding-left: 30rpx;background: #fff;margin-bottom: 50rpx;}
+.dlist_main{width: 690rpx;height: 164rpx;border-bottom: 1rpx solid #eeeeee;padding-right: 30rpx;}
+.dcontent_01{width: 100%;height: 100rpx;display: flex;justify-content: space-between;align-items: center;}
+.dtitle{font-size: 34rpx;color: #000;display: flex;align-items: center}
+.dopen{display: flex;align-items: center;height: 30rpx;}
+.dopen text{font-size: 26rpx;line-height: 30rpx;}
+.dopen_color_01{color: #fe5a01}
+.dopen_color_02{color: #a4a4a4}
+.djt_02{width: 20rpx;height: 30rpx;margin-left: 30rpx;}
+.dcontent_02{display: flex;align-items: center;}
+.dicon_img{width: 30rpx;height: 30rpx;}
+.dnum{font-size: 26rpx;color: #808191;margin-left: 12rpx;}
+.dicon_01{width: 30rpx;height: 30rpx;}
+.dicon_02{margin-left: 30rpx;width: 30rpx;height: 30rpx;}
+.dicon_03{margin-left: 30rpx;width: 30rpx;height: 30rpx;}
+.online_style{width: 134rpx;height: 42rpx;border-radius: 3rpx;font-size: 26rpx;line-height: 42rpx;text-align: center;background: linear-gradient(to right,#fede01,#fdc100);margin-left: 14rpx;}
+.ts{width: 100%;height: 100rpx;font-size: 30rpx;color: #ccc;line-height: 100rpx;text-align: center}
+
+.explainCantainer{ position: absolute; top: 88rpx; bottom: 0; left: 0; right: 0}
+.bg{width: 340rpx;height: 480rpx;margin: 50rpx auto 0;}
+.bg image{width: 340rpx;height: 480rpx;}
+.explain{width: 100%;font-size: 48rpx;color: #000;line-height: 60rpx;text-align: center;margin-top: 75rpx;font-weight: bold;}
+.btn{width: 666rpx;height: 96rpx;line-height: 96rpx;background: #000000;color: #ffffff;margin-top: 84rpx;}

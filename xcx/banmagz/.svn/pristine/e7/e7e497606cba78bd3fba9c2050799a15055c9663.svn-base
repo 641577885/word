@@ -1,0 +1,10 @@
+<!--help/help.wxml-->
+<view class='help'>
+  <view class='main' wx:for='{{list}}' wx:key>
+    <view class='title'>{{item.title}}</view>
+    <text class='content'>{{item.content}}</text>
+  </view>
+</view>
+<view class='kf_btn'>
+  <button open-type="contact">联系客服</button>
+</view>

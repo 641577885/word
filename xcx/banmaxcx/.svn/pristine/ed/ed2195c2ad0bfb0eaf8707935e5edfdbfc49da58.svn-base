@@ -1,0 +1,82 @@
+<view class='posDetailContanier'>
+  <view class='posDetailMain'>
+    <view class='posDetailList'>
+      <view class='listTop'>
+        <view class='listTopimg'>
+          <image src='{{userInfo.avatar}}' mode='aspectFill'></image>
+        </view>
+        <view class='between'>
+          <view class='content'>
+            <view class='listBottomname'>{{proInfostatus_name}}</view>
+            <view class='listBottomtime showpd'>{{proInfo.begintime}}~{{proInfo.endtime}}</view>
+          </view>
+          <view class='listTopprice'>￥{{proInfo.allprice}}</view>
+        </view>
+      </view>
+      <view class='listToptxt'>{{proInfo.beizhu}}</view>
+    </view>
+    <view class='posDetailper'>
+      <view class='posboth'>
+        <view class='posperson'>协作者</view>
+        <view class='photoimg padtop'>
+          <view wx:for='{{memberInfo}}' class='showleft' wx:key>
+            <image class='circle' mode="widthFix" src="{{item.avatar}}" mode='aspectFill'></image>
+          </view>
+        </view>
+      </view>
+      <view class='posadd  padtop'>
+        <button open-type="share" bindtap='addimg' class='btn'>
+          <image class='add' mode="aspectFill" src="/images/worker/add_03.jpg"></image>
+        </button>
+      </view>
+    </view>
+    <view class='workStatusCantainer' wx:if="{{proInfo.state == 'complaining' || proInfo.state == 'firing'}}">
+      <view class='workStatusTitle'>
+          <view class='workStatusTxt'>工作状态：<text>{{proInfo.state_name}}</text></view>
+      </view>
+      <view class='workStatusNote'>
+        <view class="workbody">{{proInfo.ycData.content}}</view>
+        <view class='workImgCantainer' wx:if='{{proInfo.ycData.filesrc.length > 0}}'>
+          <view class='workImgItem' wx:for='{{proInfo.ycData.filesrc}}'><image src='{{item}}' mode='widthFix'></image></view>
+        </view>
+      </view>
+    </view>
+    <view class='workContent' wx:if='{{workRecord.length > 0}}'>
+      <view class='posDetailwork'>
+        <view class='poswork'>工作汇报</view>
+      </view>
+      <block wx:for='{{workRecord}}' wx:key>
+        <view class='poscontent'>{{item.content}}</view>
+        <view class='workImgCantainer' wx:if='{{item.filelist.length > 0}}'>
+          <view class='workImgItem' wx:for='{{item.filelist}}' wx:for-item='fl'><image src='{{fl}}' mode='aspectFill'></image></view>
+        </view>
+        <view class='posshare'>
+          <view class='sharatime'>{{item.ctime}}</view>
+        </view>
+      </block>
+    </view>
+    <view class='addbtn' wx:if='{{proInfo.state == "normal"}}'>
+      <navigator url='addRecord?pid={{pid}}' hover-class='none'>
+        <image mode="widthFix" class='addbtnimg' src="/images/worker/addbtn_03.png"></image>
+      </navigator>
+    </view>
+    <view class='posbottoms' wx:if='{{proInfo.state == "noconfirm"}}'>
+      <view class='posconfirm'>
+        <button class='evaluate' bindtap="refuseOrder">拒绝</button>
+        <button class='hireonce' bindtap="acceptOrder">同意</button>
+      </view>
+    </view>
+    <view class='posbottoms' wx:if='{{proInfo.state == "complaining"}}'>
+      <view class='posconfirm'>
+        <navigator url='addExplain?pid={{pid}}' hover-class='none'>
+          <button class='hireonce'>上传解释</button>
+        </navigator>
+      </view>
+    </view>
+    <view class='posbottoms' wx:if='{{proInfo.state == "firing"}}'>
+      <view class='posconfirm'>
+        <button class='hireonce' bindtap="acceptFire">同意</button>
+      </view>
+    </view>
+  </view>
+</view>

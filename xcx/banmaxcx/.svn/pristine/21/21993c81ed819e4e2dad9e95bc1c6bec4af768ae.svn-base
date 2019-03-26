@@ -1,0 +1,14 @@
+<view class="checkErrorContainer">
+   <view class="checkErrorMain">
+        <view class='errorLogo'>
+             <view class="group">
+                  <icon type="warn" size="90" />
+              </view>
+             <view class='binderror'>sorry！绑定失败</view>
+              <view class='differ'>卡号与持卡人姓名不符</view>
+        </view>
+         <view class='rnameBottom'>
+           <button bindtap="nextbtn" class='nextbtn'>下一步</button>
+        </view> 
+   </view>
+</view>

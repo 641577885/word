@@ -1,0 +1,20 @@
+.positiontype3Container{width: 100%;height: 100%;}
+.positiontype3Main{width: 667rpx;margin: 0 auto}
+.positiontype3MainTop{padding:49rpx 0 0 0;}
+.positiontype3MainTopC{display: flex}
+.positiontype3Title{font-size:36rpx;color: #000000;font-weight:bold;line-height: 95rpx;width: 602rpx}
+.positiontype3MainTopC .cancel{line-height: 95rpx;font-size: 30rpx;color: #0060ff;float: right;}
+.positiontype3look{font-size: 24rpx;color: #666666;padding-bottom: 84rpx;border-bottom: 1rpx solid #f2f2f2}
+.positiontype3Map{width: 100%;height: 438rpx}
+.section{width: 100%;border-bottom: 1rpx solid #e9eefb;font-size: 30rpx;color: #8e9091;display: flex}
+.section text{line-height: 109rpx}
+.section textarea{width:100%;height:492rpx !important;display:block;position:relative;resize: none;font-size: 24rpx;padding: 0 35rpx;padding-top:33rpx;}
+.noborder{border: none;}
+.section .wages{width: 100%;height: 109rpx;padding-left: 33rpx;color: #8e9091;font-size: 30rpx}
+.camara{display:flex;
+margin-left:34rpx;margin-right:20rpx;
+}
+.camaratext{font-size: 24rpx;color: #8e9091;line-height: 42rpx;padding-left: 18rpx}
+.more{font-size: 24rpx;color: #0060ff;line-height: 127rpx;margin-left:34rpx;width: 150rpx;height: 127rpx}
+.positiontype3MainBottom{position: fixed;bottom: 34rpx;} 
+.comfirmnext{height: 96rpx;width: 667rpx;background: #000000;color: white;font-size: 29rpx;border-radius: 5rpx;line-height: 96rpx;} 

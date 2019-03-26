@@ -1,0 +1,62 @@
+const bm = require('../../utils/common.js')
+var app = getApp()
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+     username:'',
+     company:''
+  },
+
+//取值
+  inputrname:function(e){
+    this.setData({
+      username: e.detail.value
+    })     
+  },
+  intputcompany:function(e){
+    this.setData({
+      company: e.detail.value
+    })
+  },
+  
+  
+  //点击确认判断
+  comfirmlog:function(){
+    var that = this;
+    if(that.data.username==""){
+      wx.showToast({
+        title: '请输入姓名',
+        icon: 'none'
+      })
+      return;
+    }
+    if(that.data.company==""){
+      wx.showToast({
+        title: '请输入公司名称',
+        icon: 'none'
+      })
+      return;
+    }
+    //请求发送
+    bm.requsetData("/b/seller/info/perfect/", "post", { name: that.data.username, company: that.data.company},function(data){
+      if(!data.errcode){
+          wx.redirectTo({
+            url: '/business/publishJob/publishType',
+          })
+      }else{
+        wx.showToast({
+          title: data.errmsg,
+          icon: 'none'
+        })
+      }
+    })
+  },
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+  }
+})

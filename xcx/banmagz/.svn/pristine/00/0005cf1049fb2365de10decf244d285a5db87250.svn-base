@@ -1,0 +1,40 @@
+<view class='addWorkContainer'>
+  <view class='addWorkMain'>
+    <view class='multextarea'>
+      <textarea class='multxt' placeholder='{{textareaTip}}' bindinput='fillContent' bindblur='fillContent' value='{{content}}' maxlength='100'></textarea>
+      <view class='word'>{{num}}/100字</view>
+    </view>
+    <view class='uploading'>
+      <view class='upload showpad'>
+        <view class='uploadtxt'>图片上传</view>
+        <!-- <view class='wechaticon'>
+          <view class='wechat'>
+            <image class='wechatic' mode="" src="../../../images/worker/wechat_03.jpg"></image>
+            <image class='smallpro' mode="" src="../../../images/worker/smallpro_03.jpg"></image> 
+            </view>
+        </view> -->
+      </view>
+      <view class='uploadCon'>
+        <view class='uploadimg' wx:for='{{srcList}}'><image class='img' mode="heightFix" src="{{item}}"></image></view>
+        <view class='uploadadd' bindtap='uploadImg'><image class='addimg' mode="heightFix" src="../../../images/worker/addimg_03_03.jpg"></image></view>
+      </view>
+    </view>
+    <view class='payCantainer' wx:if='{{type == "addfire"}}'>
+      <text class='payTip'>支付工资</text>
+      <text class='payMoney'>￥4500.00</text>
+    </view>
+    <view class='addtip' wx:if='{{type == "addfire"}}'>本次共为您工作5天，按工作时间计算应支付4500元</view>
+    <!-- <view class='uploading'>
+        <view class='upload'>
+        <view class='uploadtxt'>附件上传</view>
+      </view>
+      <view class='uploadCon'>
+          <view class='uploadimg'><image class='img' mode="" src="../../../images/worker/uploadfile_03.jpg"></image></view> 
+        <view class='uploadadd' bindtap='uploadFile'><image class='addimg' mode="" src="../../../images/worker/addimg_03_03.jpg"></image></view>
+      </view>
+    </view> -->
+    <view class='addWorkBottom'>
+      <button class='submit' plain="{{plain}}" bindtap="comfirmnext">提交 </button>
+    </view>
+  </view>
+</view>

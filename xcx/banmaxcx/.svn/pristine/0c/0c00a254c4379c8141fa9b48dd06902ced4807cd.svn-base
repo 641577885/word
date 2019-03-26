@@ -1,0 +1,72 @@
+/* pages/worker/my/manage.wxss */
+/*宽高  */
+page{height:100%;background:#f4f4f4;}
+.manageContainer{width:100%;background:#fff;}
+.wh100{height: 100rpx;width: 100rpx;}
+.wh2030{height: 30rpx;width: 20rpx;}
+.wh30{height: 30rpx;width: 30rpx;}
+.wh40{height: 40rpx;width: 40rpx;}
+/*块级内联  */.inline_block{display: inline-block;}
+/*内填充  */.padding_top30{padding-top:30rpx;}
+.padding_bottom30{padding-bottom:30rpx;}
+.padding_left15{padding-left:15rpx;}
+.padding_right15{padding-right: 15rpx;}
+.padding_bottom10{padding-bottom: 10rpx;}
+.padding_bottom20{padding-bottom: 20rpx;}
+.padding_top20{padding-top: 20rpx;}
+.padding_top10{padding-top: 10rpx;}
+.padding_top15{padding-top: 15rpx;}
+.padding_bottom15{padding-bottom: 15rpx;}
+.padding_left80{padding-left:80rpx;}
+.padding_right80{padding-right: 80rpx;}
+/*字体大小  */.font_size35{font-size: 35rpx;}
+.font_size22{font-size: 22rpx;}
+.font_size30{font-size: 30rpx;}
+.font_size25{font-size: 25rpx;}
+/*背景色  *//*主题黄  */.backgroundfede01{background: #fede01;}
+/*间隔灰  */.backgrounde5e5e5{background: #e5e5e5;}
+/*黑色  */.backgroundblack{background: black;}
+/*边框圆润  */.border_radius8{border-radius:8rpx;}
+/*字体颜色  *//*灰色  */.color666{color: #666;}
+.color999{color: #999;}
+/*白色  */.colorfff{color: #fff;}
+/*黄色  */.colorffa200{color: #ffa200;}
+/*字体间距  */.letter_spacing2{letter-spacing:2rpx;}
+/*字体居中  */.text_align_center{text-align: center;}
+/*边宽  */.width90{width: 90%;}
+.width95{width: 95%;}
+.width100{width: 100%;}
+.width55{width: 55%;}
+/*外边距  */.auto{margin-left: auto;margin-right: auto;}
+.margin_left25{margin-left: 25rpx;}
+.margin_left10{margin-left: 10rpx;}
+.margin_right10{margin-right: 10rpx;}
+.margin_right50{margin-right: 30rpx;}
+.margin_top5{margin-top:5rpx;}
+.margin_top10{margin-top: 10rpx;}
+.margin_top110{margin-bottom:110rpx;}
+/*边线  */.border_bottome5e5e5{border-bottom: solid #e5e5e5 1rpx;}
+.border_righte5e5e5{border-right: solid #e5e5e5 1rpx;}
+.border_left5e5e5{border-left: solid #e5e5e5 1rpx;}
+/*软布局  */.display_flex{display: flex;}
+.center{justify-content: center;border: none}
+.right{justify-content: right;}
+.space_between{justify-content: space-between;}
+.align_items_center{align-items:center;}
+/*浮动  */.float_left{float: left;}.float_right{float: right;}
+/*自定义高  */.overflow_x{overflow-x: hidden;}
+/*定位  *//*固定定位  */.position_fixed{  position: fixed;}
+/*位置  */.bottom{bottom: 0;}
+/*  */
+.width100{width: 100%;background:#fff;margin-top:20rpx;}
+.online_price{font-size: 30rpx;padding: 20rpx 0;display: flex;align-items: center;justify-content: space-between}
+.online_price_right{display: flex;align-items: center}
+.position{position: relative}
+.zg_content{position: absolute;right: 0;top: 128rpx;display: inline-block;text-align: right;z-index: 9}
+.zg_content_02{position: absolute;right: 0;top: 222rpx;display: inline-block;text-align: right;z-index: 9}
+.zg_content text{padding:20rpx 30rpx;border-radius: 60rpx;background: #000;color: #fff;font-size: 30rpx;}
+.zg_content_02 text{padding:20rpx 30rpx;border-radius: 60rpx;background: #000;color: #fff;font-size: 30rpx;}
+.zg_icon{position: absolute;bottom: -40rpx;right: 0;width: 40rpx;height: 40rpx;}
+.zg_jt{width: 60rpx;height: 43rpx;position: absolute;top: -60rpx;right: 60rpx;}
+.switch{z-index: 0}
+

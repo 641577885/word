@@ -1,0 +1,101 @@
+<!--pages/business/my/companyinfo.wxml-->
+<block wx:if='{{infotype == 1}}'>
+<form bindsubmit='submit_company'>
+  <view class='main'>
+    <view class='input'>
+      <view class='input_title'>公司全称</view>
+      <view class='input_content'>
+        <input type='text' name='company_qc' focus='true' value='{{name}}'></input>
+      </view>
+    </view>
+    <view class='input'>
+      <view class='input_title'>公司简称（6位以内）</view>
+      <view class='input_content'>
+        <input type='text' name='company_jc' value='{{short_name}}' maxlength='6'></input>
+      </view>
+    </view>
+    <view class='input'>
+      <view class='input_title'>公司行业</view>
+      <view class='input_content' bindtap='selecthy'>
+        <input type='text' name='company_hy' value='{{select_list[0].indusName}} {{select_list[1].indusName}} {{select_list[2].indusName}}'></input>
+        <input type='text' name='hyid' value='{{industry}}' hidden='true'></input>
+      </view>
+    </view>
+  </view>
+  <view class='btn'>
+    <button form-type='submit' >提交</button>
+  </view>
+</form>
+</block>
+<block wx:if='{{infotype == 2}}'>
+<form bindsubmit='submit_rz'>
+  <view class='main'>
+    <view class='input_02'>
+      <view class='input_title'>融资阶段</view>
+      <view class='input_bd'>
+        <picker mode='selector' range='{{rztype}}' value='{{rztypeIndex}}' bindchange='bindrz'name='rztype'>
+          <view class="picker">
+          {{rztype[rztypeIndex]}}
+          </view>
+        </picker>
+        <view class='input_bg'>
+          <image src='../../../images/position/jt_gray.png'></image>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='btn'>
+    <button form-type='submit'>提交</button>
+  </view>
+</form>
+</block>
+<block wx:if='{{infotype == 3}}'>
+<form bindsubmit='submit_gm'>
+<view class='main'>
+  <view class='input_02'>
+    <view class='input_title'>人员规模</view>
+    <view class='input_bd'>
+      <picker mode='selector' range='{{pertype}}' value='{{pertypeIndex}}' bindchange='bindper'name='bindper'>
+        <view class="picker">
+        {{pertype[pertypeIndex]}}
+        </view>
+      </picker>
+      <view class='input_bg'>
+        <image src='../../../images/position/jt_gray.png'></image>
+      </view>
+    </view>
+  </view>
+</view>
+<view class='btn'>
+  <button form-type='submit'>提交</button>
+</view>
+</form>
+</block>
+<block wx:if='{{infotype == 4}}'>
+<form bindsubmit='submit_website'>
+  <view class='t_title'>公司官网</view>
+  <view class='main_textarea'>
+      <textarea name='website' focus='true' value='{{website}}'></textarea>
+  </view>
+  <view class='btn'>
+    <button  form-type='submit'>提交</button>
+  </view>
+  </form>
+</block>
+<block wx:if='{{infotype == 5}}'>
+<form bindsubmit='submit_address'>
+  <view class='t_title'>公司地址</view>
+  <view class="section">
+      <input placeholder="请输入公司地址"  class='company' value='{{address}}' bindinput='searchAddress' name='address'/>
+      <view class='searchList' wx:if='{{showList}}'>
+        <view wx:for='{{searchList}}' wx:key wx:for-index="idx" data-index='{{idx}}' bindtap='checkAddress'>
+          <text class='adresTitle'>{{item.title}}</text>
+          <text class='cityTxt'>{{item.province}}-{{item.city}}</text>
+        </view>
+      </view>
+    </view>
+  <view class='btn'>
+    <button  form-type='submit'>提交</button>
+  </view>
+    </form>
+</block>

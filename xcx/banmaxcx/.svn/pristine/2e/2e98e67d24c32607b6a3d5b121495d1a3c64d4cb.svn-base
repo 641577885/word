@@ -1,0 +1,25 @@
+/* pages/worker/resume/resumeAccessory.wxss */
+/*外边距  */.margin_top90{margin-top: 90rpx;}
+.margin_left30{margin-left: 30rpx;}.margin_top70{margin-top: 70rpx;}
+.margin_left25{margin-left: 25rpx;}.margin_top10{margin-top: 10rpx;}
+.margin_left50{margin-left: 50rpx;}.margin_right30{margin-right: 30rpx;}
+.margin_top60{margin-top: 60rpx;}.margin_top20{margin-top: 20rpx}
+.auto{margin-left: auto;margin-right: auto;}
+/*软布局  */.display_flex{display: flex;}
+.center{justify-content: center;}
+.whjianli{height:360rpx;width:300rpx ;}
+/*字体居中  */.text_align_center{text-align: center;}
+.width95{width: 95%;}.width40{width: 40%;}
+/*字体大小  */.font_size35{font-size: 35rpx;}
+.color999{color: #999;}
+/*隐藏  */.display_none{display: none}
+/*块级内联  */.inline_block{display: inline-block;}
+.border_radius50{border-radius:50rpx;}.border_5e5e5{border: solid #e5e5e5 1rpx;}
+/*白色  */.backgroundbtffffff{background: #ffffff;}
+/*黄色渐变色  */.backgroundbt{background: linear-gradient(to right,#fedd01 , #fdc100);}
+.padding15{padding: 15rpx}
+/*边宽  */.width90{width: 90%;}.wh45{height: 45rpx;width: 45rpx;}.wh30{height: 30rpx;width: 30rpx;}
+/*浮动  */.float_left{float: left;}.letter_spacing5{letter-spacing:5rpx;}
+.yl_main{width: 100%;height: 100%;position: fixed;top: 0;left: 0;background: rgba(0,0,0,0.5)}
+.yl{width: 80%;height: 80%;position: absolute;top: 10%;left:50%;display: flex;align-items: center;margin-left: -40%}
+.yl image{width: 100%}

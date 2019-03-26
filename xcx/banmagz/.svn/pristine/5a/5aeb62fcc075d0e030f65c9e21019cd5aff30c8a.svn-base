@@ -1,0 +1,30 @@
+// pages/resume/pjResume.js
+var bm = require('../../utils/common.js');
+var app=getApp()
+Page({
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    uid:null,
+    isShowDialog: true,
+    pjList:[]
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    var that = this;
+    that.setData({
+      uid: options.uid
+    })
+    bm.requsetData('/b/worker/mark/list', 'get', { uid: that.data.uid }, function (res) {
+      if (!res.data.errcode){
+        that.setData({
+          pjList:res.data.list
+        })
+      }
+    })
+  },
+})

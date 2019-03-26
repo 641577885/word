@@ -1,0 +1,11 @@
+<dialog dialog-hidden="{{isShowDialog}}"></dialog>
+<view class='loginCantianer'>
+  <view class='identityTitle'>您当前的身份是创客</view>
+  <view class='identityTip'>您可以拥有一份小程序个人简历</view>
+  <view class='identityTip'>更有海量职位和需求等你应聘</view>
+  <view class='identityImage'><image src='/images/member/ckIcon.png' mode='widthFix'></image></view>
+  <view class='goMinProject'>
+    <navigator target="miniProgram" open-type="navigate" app-id="wxc334d30284ddd9c6" path="" extra-data="" version="trial" hover-class='none'>我是老板我要发需求</navigator>
+  </view>
+  <button class='btnBlack sureBtn' hover-class='none' bindtap='checkRole'>确定，下一步</button>
+</view>

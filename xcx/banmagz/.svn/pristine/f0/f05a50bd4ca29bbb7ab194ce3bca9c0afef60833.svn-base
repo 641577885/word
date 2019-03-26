@@ -1,0 +1,51 @@
+<!--wallet/mocDetail.wxml-->
+<view class="mocContainer">
+  <view class='tab'>
+      <view class='tab-nav'>
+          <view class='{{active==0?"on":""}}' data-current="0" bindtap='tab'>全部</view>
+          <view class='{{active==1?"on":""}}' data-current="1" bindtap='tab'>已获取</view>
+          <view class='{{active==2?"on":""}}' data-current="2" bindtap='tab'>已使用</view>
+      </view>
+      <swiper class='tab-box' current="{{active}}" bindchange="eventchange">
+        <swiper-item>
+          <view class='asdasd'>
+            <scroll-view class='box' scroll-y bindscrolltoupper="evupper" bindscrolltolower="evlower">
+              <view class='mocList' wx:for='{{lists}}' wx:for-item='vo'>
+                <view class='mocBoth'>
+                    <view class='mocName'>{{vo.name}}</view>
+                    <view class='mocNum'>{{vo.count}}</view>
+                </view>
+                <view class='mocTime'>2018-03-22  22:54:54</view>
+              </view>
+            </scroll-view>
+          </view>
+        </swiper-item>
+        <swiper-item>
+        <view class='asdasd'>
+            <scroll-view class='box' scroll-y bindscrolltoupper="evupper" bindscrolltolower="evlower">
+           <view class='mocList' wx:for='{{molist}}' wx:for-item='vo'>
+             <view class='mocBoth'>
+                <view class='mocName'>{{vo.name}}</view>
+                <view class='mocNum'>{{vo.moc}}</view>
+             </view>
+             <view class='mocTime'>{{vo.time}}</view>
+          </view>
+             </scroll-view>
+          </view>
+        </swiper-item>
+        <swiper-item>
+        <view class='asdasd'>
+            <scroll-view class='box' scroll-y bindscrolltoupper="evupper" bindscrolltolower="evlower">
+          <view class='mocList' wx:for='{{molist}}' wx:for-item='vo'>
+             <view class='mocBoth'>
+                <view class='mocName'>{{vo.name}}</view>
+                <view class='mocNum'>{{vo.moc}}</view>
+             </view>
+             <view class='mocTime'>{{vo.time}}</view>
+          </view>
+             </scroll-view>
+          </view>
+        </swiper-item>
+    </swiper>
+  </view>
+</view>  

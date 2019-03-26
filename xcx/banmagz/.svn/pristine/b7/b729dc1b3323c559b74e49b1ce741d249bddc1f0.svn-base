@@ -1,0 +1,4 @@
+<!--component/indexback.wxml-->
+<navigator class='indexback' target="miniProgram" open-type="navigate" app-id="wxd1e27439a32965eb" path="" extra-data="" version="release" hover-class='none'>
+  <image src='https://bm.jiangcdn.com/indexback/icon/indexback_icon.png'></image>
+</navigator>

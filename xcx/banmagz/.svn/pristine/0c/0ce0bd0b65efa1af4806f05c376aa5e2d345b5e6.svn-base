@@ -1,0 +1,74 @@
+<!--pages/business/my/mycompany.wxml-->
+<view class='content_01'>
+  <view class='company_logo' bindtap='choose_logo'><image src='{{logo}}' mode='widthFix'></image></view>
+  <view class='company_auth' bindtap='renzhenClick'>
+    <view class='company_auth_type' wx:if='{{auth==0}}'><image src='/images/business/my_auth_icon.jpg'></image><text>未认证</text></view>
+    <view class='company_auth_type' wx:if='{{auth==1}}'><image src='/images/business/auth_icon_01.png'></image><text>已认证</text></view>
+  </view>
+  <view class='company_name'>{{company_name_02}}　<text>{{company_type}}</text></view>
+  <view class='company_name_02'>{{company_name}}</view>
+</view>
+<view class='content_02'>
+  <view class='content_02_main'>
+    <view class='content_02_title'>
+      <view class='content_02_title_main'>公司成员</view>
+      <view class='content_02_title_num'>{{company_num}}人</view>
+    </view>
+    <scroll-view scroll-x='true' class='content_02_member'>
+      <!-- <view class='member_list' open-type="share">+</view> -->
+      <button open-type='{{is_auth}}' class='member_list' bindtap='{{auth_bind}}'><image src='/images/company_add.png'></image></button>
+      <view class='member_list' wx:for='{{member_list}}'wx:key='member_list'><image src='{{item.avatar}}'></image></view>
+    </scroll-view>
+  </view>
+</view>
+<view class='b_content'>
+  <navigator class='b_input' hover-class="none" url='/business/my/companyinfo?infotype=1&id={{company_id}}'>
+    <text class='b_input_title_01'>公司信息</text>
+    <view class='b_input_right'>
+      <!-- <text class='b_input_title_02'></text> -->
+      <text  hidden='{{ws_01 == 0?"false":"true"}}' class='font_size'>{{company_name}}</text>
+      <text class='{{ws_01 == 0?"":"display"}} tishi'>未认证</text>
+      <image src='../../../images/position/jt_gray.png' class='b_input_icon'></image>
+    </view>
+  </navigator>
+  <view class='b_input' bindtap='bindrz'>
+    <text class='b_input_title_01'>融资阶段</text>
+    <view class='b_input_right'>
+      <!-- <text class='b_input_title_02'>{{ws_03 == 0?"未完善":"完善"}}</text> -->
+      <text hidden='{{ws_03 == 0?"false":"true"}}' class='font_size'>{{finance_stage_name}}</text>
+      <text class='{{ws_03 == 0?"":"display"}} tishi'>请填写</text>
+      <image src='../../../images/position/jt_gray.png' class='b_input_icon'></image>
+    </view>
+  </view>
+  <view class='b_input_02'bindtap='bindgw'>
+    <text class='b_input_title_01'>公司官网</text>
+    <view class='b_input_right'>
+      <!-- <text class='b_input_title_02'>{{ws_04 == 0?"未完善":"完善"}}</text> -->
+      <text hidden='{{ws_04 == 0?"false":"true"}}'  class='font_size'>{{website}}</text>
+      <text class='{{ws_04 == 0?"":"display"}} tishi'>请填写</text>
+      <image src='../../../images/position/jt_gray.png' class='b_input_icon'></image>
+    </view>
+  </view>
+</view>
+<view class='b_content '>
+  <view class='b_input' bindtap='bindadd'>
+    <text class='b_input_title_01'>公司地址</text>
+    <view class='b_input_right'>
+      <!-- <text class='b_input_title_02'>{{ws_05 == 0?"未完善":"完善"}}</text> -->
+      <text hidden='{{ws_05 == 0?"false":"true"}}'  class='font_size font_sizes'>{{address_s}}</text>
+      <text class='{{ws_05 == 0?"":"display"}} tishi'>请填写</text>
+      <image src='../../../images/position/jt_gray.png' class='b_input_icon'></image>
+    </view>
+  </view>
+  <view class='b_input_02' bindtap='bindjj'>
+    <text class='b_input_title_01'>公司简介</text>
+    <view class='b_input_right'>
+      
+    </view>
+  </view>
+  <view class='b_textarea {{padding}}'>
+    <text class='font_size'>{{short_intro}}</text>
+  </view>
+</view>
+<button class='yl_company' bindtap='yl_company'>预览</button>
+<!-- <button class='replace_company'>更换公司</button> -->

@@ -1,0 +1,4 @@
+<!--setting/sayInput.wxml-->
+<view class='textnum'>{{numPrint}}/20</view>
+<input placeholder='{{placeholder}}' value='{{content}}' bindinput='fillTxt' maxlength='20'></input>
+<button class='fillBtn' plain bindtap='{{checkFill}}'>确定</button>

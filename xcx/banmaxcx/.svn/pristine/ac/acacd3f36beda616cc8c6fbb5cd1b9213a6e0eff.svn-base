@@ -1,0 +1,15 @@
+<!--pages/worker/my/slcg.wxml-->
+<text class='title_01'>{{nickname}}，您在好友的帮助下</text>
+<text class='title_02'>个人简历已成功加入区块链！全国第 {{num}} 位</text>
+<text class='title_02'>简历地址编号：{{code}}</text> 
+<view class='avatar_list'>
+  <view class='avatar clearfix'>
+  <image src=''></image>
+  <image src=''></image>
+  <image src=''></image>
+  </view>
+</view>  
+<view class='bottom'> 
+<button>查看我的区块链简历</button>
+<text>班马佳薪基于腾讯云区块链服务TBaaS</text>
+</view>

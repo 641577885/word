@@ -1,0 +1,46 @@
+<view class='fillContanier'>
+  <view class='fillTop showbottom'>
+    <view class='fillTopCon'>
+        <view class='fillText'>1/3填写需求信息</view>
+       <view class='warn'>请根据提示生成你的需求单</view>
+       <navigator class='cancelBtn' open-type='reLaunch' hover-class='none' url='/pages/business/demand'>取消</navigator>
+    </view>
+  </view>
+  <view class='fillTop'>
+     <view class='fillList'>
+       <view class=' instruct'>您想要做的是什么</view>
+       <view class="section">
+          <input type='text' placeholder-class='placeholder' placeholder="例如：我想要做小程序" bindinput='inputtext' bindblur='checkTitle' maxlength='20' value='{{title}}' />
+        </view>
+      </view>
+      <navigator url='/pages/picker/jobPicker'>
+        <view class='fillList'>
+            <view class=' instruct'>想要找什么类型的创客</view>
+            <view class="section">
+              <view>{{jobData.jobName}}</view>
+              <image class='img'  mode="" src="../../../images/business/select_03.png"></image>
+            </view>
+        </view>
+      </navigator>
+       <picker bindchange='bindPickerperiod' value='{{period}}' range='{{periodarr}}'>
+          <view class='fillList'>
+          <view class=' instruct'>项目周期多久</view>
+          <view class="section">
+              <view>{{periodarr[period]}}</view>
+              <image class='img'  mode="" src="../../../images/business/select_03.png"></image>
+            </view>
+        </view>
+    </picker>
+      <view class='fillList'>
+       <view class=' instruct'>愿意出多少钱</view>
+       <view class="section">
+          <input placeholder-class='placeholder' type='digit' bindinput='checkPrice'  placeholder="0" />
+          <text class='unit'>元</text>
+        </view>
+     </view>
+  </view>
+  <view class='Bottom'>
+       <view bindtap="notsure" class='notsure'>我不确定要做的需求</view>
+       <button bindtap="next" class='next'>下一步</button>
+    </view>
+</view>

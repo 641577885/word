@@ -1,0 +1,18 @@
+/* pages/picker/indusPicker.wxss */
+.indusCantianer{ padding: 0 30rpx; box-sizing: border-box;padding-bottom: 200rpx;}
+.indusPosition{ width: 710rpx; border-bottom: 1rpx solid #eee;position: fixed;left: 0;top: 0;background: #fff;overflow: hidden}
+.indusTitle{ font-size: 26rpx;}
+.indusTitle_02{font-size: 26rpx;padding: 20rpx;}
+.indusPositionTxt{ font-size: 32rpx; margin-top: 20rpx;}
+.indusPositionTxt_02{font-size: 32rpx; margin-top: 20rpx;padding: 0 20rpx;}
+.indusItemCantainer{ padding: 20rpx 0;}
+.indusItemList{ margin-top: 20rpx;}
+.indusItem{ display: inline-block; padding: 0 30rpx; height: 60rpx; font-size: 30rpx; line-height: 60rpx;  text-align: center; border: 1rpx solid #eee; border-radius: 23rpx; vertical-align: top; margin: 0 20rpx 20rpx 0;}
+.btn_content{width: 100%;background: #fff;position: fixed;left: 0;bottom: 0;padding: 30rpx 0;}
+.btn{width:690rpx;height:76rpx;border-radius:10rpx;background:linear-gradient(to right, #fede01 , #fdc100);line-height:76rpx;font-size:30rpx;}
+.color{position: relative;background:linear-gradient(to right, #fede01 , #fdc100);border: 0 none}
+.delstyle{position: absolute;top: -15rpx;right:-15rpx;width: 30rpx;height: 30rpx;border-radius: 50%;background: red;color: #fff;text-align: center;line-height: 30rpx;font-weight: bold;font-size: 20rpx;}
+.clickstyle{background: #ccc}
+
+.zmBar{ position: fixed; top: 50rpx; bottom: 50rpx; right: 5rpx; display: flex; align-items: center; flex-direction: column; justify-content: space-between; width: 20rpx;}
+.zmBar text{ display: block; font-size:24rpx; color: #fede01; }

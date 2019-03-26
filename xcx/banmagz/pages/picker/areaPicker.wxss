@@ -1,0 +1,11 @@
+/* pages/picker/areaPicker.wxss */
+page{background: #f4f4f4;font-size: 30rpx;}
+.t_title{line-height: 100rpx;padding: 0 30rpx}
+.section{ position: relative; width: 100%;font-size: 30rpx;color: #8e9091;background: #fff}
+.section .company{width: 690rpx;height: 80rpx;padding: 0 30rpx;}
+.searchList{ position: absolute; width: 100%; padding: 20rpx 30rpx; box-sizing: border-box; box-shadow: 0 5rpx 18rpx #eee; border-radius: 5rpx; z-index: 11; background: #fff; border:1rpx solid #eee;}
+.searchList view{ display: flex; align-items: center; justify-content: space-between; padding: 8rpx 0;}
+.adresTitle{ font-size: 28rpx; color: #666;}
+.cityTxt{ font-size: 22rpx; color: #aaa;}
+.btnCantainer{ margin: 50rpx auto;}
+.btnCantainer button{ width: 90%; height: 76rpx; color: #333; background: linear-gradient(to right, #fede01 , #fdc100);line-height: 76rpx;}

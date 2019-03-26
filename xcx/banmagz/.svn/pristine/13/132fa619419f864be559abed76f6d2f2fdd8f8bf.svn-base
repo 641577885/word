@@ -1,0 +1,8 @@
+/* pages/login/login.wxss */
+.loginCantainer{ text-align: center; margin-top: 35% }
+.logo{ width: 489rpx;}
+.loginBtnCantainer{ position: absolute; bottom: 0; left: 0; width: 100%; padding: 0 20rpx; box-sizing: border-box}
+.loginBtnCantainer button{ margin-bottom: 30rpx;}
+.wechatBtn{ width: 90%;}
+.cellBtn{ width: 90%; border: 0 none;}
+.platDescript{ display: block; font-size: 28rpx; color: #8e9091; margin-top: 25rpx; text-align: center}

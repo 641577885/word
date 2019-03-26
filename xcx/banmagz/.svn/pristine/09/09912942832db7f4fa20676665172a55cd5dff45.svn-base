@@ -1,0 +1,38 @@
+// pages/business/position/linkup.js
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    list:[{
+      avatar:'',
+      name:'陈佳立',
+      position:'魔方集团－技术总监／CTO',
+      edu:'10年以上－大专',
+      price:5000,
+      content:'10年以上互联网开发，经历过千百万级大型互联网项目。有异动互联网项目，跨境电商...',
+      num_01:20,
+      num_02:20
+    },
+    {
+      avatar: '',
+      name: '陈佳立2',
+      position: '魔方集团－技术总监／CTO',
+      edu: '10年以上－大专',
+      price: 4000,
+      content: '10年以上互联网开发，经历过千百万级大型互联网项目。有异动互联网项目，跨境电商...',
+      num_01: 24,
+      num_02: 21
+    }
+    ],
+    
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+  
+  },
+})

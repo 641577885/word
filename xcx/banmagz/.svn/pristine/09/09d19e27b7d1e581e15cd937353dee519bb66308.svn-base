@@ -1,0 +1,81 @@
+// pages/business/position/details.js
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    position_title:'区块链技术合伙人1',
+    open:"待开放1",
+    salary:'25K—30K',
+    add:'hangzhou',
+    experience:'4年+',
+    age:21,
+    online:1,
+    open_btn:'openPos',
+    open_btn_content:'开放职位',
+    experience_list:[
+      {
+        list_title:'产品总监1',
+        list_time:'12/09~13/11',
+        list_content:'杭州开三电子商务有限公司杭州开三电子商务有限公司杭州开三电子商务有限公司杭州开三电子商务有限公司杭州开三电子商务有限公司杭州开三电子商务有限公司杭州开三电子商务有限公司杭州开三电子商务有限公司杭州开三电子商务有限公司杭州开三电子商务有限公司杭州开三电子商务有限',
+        list_company:'杭州墨匠信息技术有限公司1'
+      },
+      {
+        list_title: '产品总监2',
+        list_time: '12/09~13/12',
+        list_content: '杭州开三电子商务有限公司杭州开三电子商务有限公司杭州开三电子商务有限公司杭州开三电子商务有限公司杭州开三电子商务有限公司杭州开三222',
+        list_company: '杭州墨匠信息技术有限公司2'
+      },
+    ],
+    skill: ['产品总监', '在线旅游','在线旅游'],
+    company_name:'力石科技2',
+    company_ss:[
+      {
+        ss: '已上市1',
+        scale: '100～499人1',
+        company_type:'旅游1'
+      }
+    ],
+    company_logo:''
+  },
+  openPos:function(){
+    var _that = this;
+    wx.showModal({
+      title: '提示',
+      content: '是否开放职位？',
+      success:function(res){
+        if (res.confirm){
+          _that.setData({
+            open: '已开放',
+            open_btn: 'closePos',
+            open_btn_content: '关闭职位'
+          })
+        }
+      }
+    })
+    
+  },
+  closePos: function () {
+    var _that=this;
+    wx.showModal({
+      title: '提示',
+      content: '是否关闭职位？',
+      success: function (res) {
+        if (res.confirm){
+          _that.setData({
+            open: '待开放1',
+            open_btn: 'openPos',
+            open_btn_content: '开放职位'
+          })
+        }
+      }
+    })
+  },
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+  
+  },
+})

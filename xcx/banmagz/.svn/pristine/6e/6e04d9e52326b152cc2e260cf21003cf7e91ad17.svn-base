@@ -1,0 +1,40 @@
+/* pages/resume/gyResume.wxss */
+.resumeDetail{ position: relative; padding: 50rpx 46rpx 50rpx 38rpx; background: #fff;}
+.resumethumb{ display: inline-block; background: #000; width: 145rpx; height: 145rpx; border-radius: 10rpx; overflow: hidden}
+.resumethumb image{ width: 100%; height:100%;}
+.reasumeInfo{ display: inline-block; margin-left: 30rpx; vertical-align:top;}
+.resumeInfoName{ font-size: 36rpx; color: #000; vertical-align: middle}
+.resumeInfoJob{ display: inline-block; padding: 0 12px; border-radius: 5rpx; height: 40rpx; line-height: 40rpx; font-size: 22rpx; color: #482606; background: #fffaec; vertical-align: middle; margin-left: 10rpx;}
+.resumeInfoAbilty{ height: 45rpx; margin-top: 8rpx;}
+.resumeInfoAbilty view{ display: inline-block; width: 125rpx; height: 22rpx; line-height: 22rpx; font-size: 24rpx; color: #000; border-right: 1rpx solid #b2b2b2; margin-right: 25rpx; vertical-align: middle;}
+.resumeInfoAbilty view:last-child{ border: 0 none}
+.resumeInfoAbilty view text{ font-weight: bold;}
+.resumeInfoAbilty view text.red{ color:#ff3232; }
+.resumeInfoAbilty view text.green{ color:#08b278; }
+.resumeTip{ font-size: 24rpx; height: 45rpx; line-height: 45rpx; color: #ff5240; margin-top: 8rpx}
+.resumeTip::before,.basicTip::before{ content: ""; display: inline-block; width: 26rpx; height: 26rpx; background: url(//bm.jiangcdn.com/banma/resumeIcon.png) no-repeat; background-size: 35rpx; vertical-align: middle; margin-top: -4rpx; margin-right: 15rpx;}
+.resumeReport{ position: absolute; right: 46rpx; top: 67rpx; width: 24rpx; height: 22rpx; background: url(//bm.jiangcdn.com/banma/resumeIcon.png) 0 -25rpx no-repeat; background-size: 35rpx;}
+.scoreInfo{ width: 750rpx; border-top: 20rpx solid #fafafa; padding-bottom: 100rpx;}
+.hireAbility{ display: flex; justify-content: flex-start; align-items: center; margin-top: 30rpx;}
+.hireAbility view{ width:125rpx; height:22rpx; font-size: 24rpx; line-height: 22rpx; color: #000; border-right: 1rpx solid #b2b2b2; margin-right: 20rpx;}
+.scoreItemCantainer{ padding-left:30rpx; box-sizing: border-box;}
+.hireAbility view text.red{ color: #ff3232}
+.hireAbility view text.green{ color: #08b278}
+.scoreItem{ border-bottom: 1rpx solid #eee; padding:30rpx 30rpx 30rpx 0;}
+.scoreName{ font-size: 34rpx; color: #000;}
+.scoreNote{ font-size: 36rpx; color: #333333; margin-top: 30rpx;}
+.floatBtnCantainer{ position: fixed; bottom: 0; left: 0; display: flex; width: 100%; height: 96rpx; padding: 10rpx; background: #fff; align-items: center; box-sizing: border-box}
+.floatContact,.noLineContact{  width:452rpx; height: 76rpx; line-height: 76rpx; font-size: 30rpx; color: #000; text-align: center;background: linear-gradient(to right,#fede01,#fdc100);  border-top-left-radius: 10rpx; border-bottom-left-radius: 10rpx;}
+.floatHire{ width: 278rpx; height: 76rpx; line-height: 76rpx; font-size: 30rpx; color: #fff; text-align: center;background: linear-gradient(to right,#ff6440,#ff3232); border-top-right-radius: 10rpx; border-bottom-right-radius: 10rpx;}
+.floatCircleCantainer{ position: fixed; bottom: 100rpx; right: 43rpx; width: 110rpx; z-index: 5}
+.floatCircle { position: relative; background: linear-gradient(to bottom,#fede01,#fdc200); border-radius: 50%; box-shadow: 0rpx 16rpx 54rpx 0rpx rgba(254, 222, 1, 0.77); width: 110rpx; height: 110rpx; margin-bottom: 45rpx;}
+.floatCircle::before{ position: absolute; top: 50%; left: 50%; margin-left: -25rpx; margin-top: -26rpx; content: ""; display: block; width: 55rpx; height: 52rpx;}
+.collectIcon::before{ background: url(//bm.jiangcdn.com/banma/viewIcon_01.png) no-repeat; background-size: 100%;}
+.shareIcon::before{ background: url(//bm.jiangcdn.com/banma/viewIcon_02.png) no-repeat; background-size: 100%;}
+.noLineContact { width: 100%}
+
+.tagItem{ display: inline-block; border: 1rpx solid #eee; border-radius: 10rpx; padding: 0 10rpx; height: 40rpx; line-height: 40rpx; margin-right: 10rpx; vertical-align: middle; font-size: 26rpx;}
+.noLineContact { width: 100%} 
+.nullimg image{width: 300rpx;height: 400rpx;}
+.nullimg{display: flex;justify-content: center;align-items: center;margin-bottom: 60rpx}.texts{font-size: 35rpx}
+.nulltext{text-align: center;color: #666;font-size: 30rpx; margin-top: 100rpx;}

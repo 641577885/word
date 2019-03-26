@@ -1,0 +1,8 @@
+/* pages/login/dialog.wxss */
+.loginCover{ position: absolute; top: 0; left: 0; bottom:0;right: 0; display: flex; justify-content: space-around; align-items: center; background: rgba(0,0,0,0.5); box-sizing: border-box; z-index: 11;} 
+.loginDialog{ position: absolute; left: 50%; top: 50%; margin-left: -304rpx; margin-top: -265rpx;width: 608rpx;height: 380rpx;background:#fff; background-size: 100% 100%; z-index: 12; box-sizing: border-box; border-radius: 10rpx;}
+.loginTitle{ display: block; width: 100%; text-align: center; font-size: 36rpx; color: #000; margin-top: 70rpx; margin-bottom: 55rpx}
+.loginDialog button{  width: 400rpx; height: 88rpx; line-height: 88rpx; font-size: 30rpx;}
+.green{ background: #09bb07 !important; color: #fff;} 
+.phone_login{width: 100%;height: 70rpx;line-height: 70rpx;text-align: center;font-size: 30rpx;color: #999999;margin-top: 16rpx;}
+.login_icon{ display: inline-block; width: 42rpx;height: 34rpx;margin-right: 12rpx; vertical-align: middle}

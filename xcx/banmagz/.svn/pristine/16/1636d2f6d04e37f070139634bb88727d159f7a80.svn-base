@@ -1,0 +1,344 @@
+//app.js
+var webim = require('utils/webim.js');
+var webimhandler = require('utils/webim_handler.js');
+var tls = require('utils/tls.js');
+var bm = require('utils/common.js');
+const App = require('utils/ald-stat.js').App;
+
+var selToID, loginInfo, selSessHeadUrl;
+App({
+  onLaunch: function() {
+    this.getUserInfo()
+  },
+  getUserInfo: function() {
+    var that = this;
+    //调用登录接口
+    wx.login({
+      success: function(res) {
+        if (res.code) {
+          bm.sessionRequset('/c/login/onlogin', {
+            code: res.code,
+            role: 2
+          }, function (data) {
+            if (!data.errcode) {
+              wx.setStorageSync('PHPSESSID', data.session_id) //如果本地没有就说明第一次请求 把返回的session id 存入本地 
+              that.globalData.token = data.token
+              that.globalData.auth = data.auth;
+              that.globalData.userinfo = data.userinfo;
+              that.globalData.certified = data.certified;
+              that.globalData.lxtel = data.userinfo.lxtel;
+              that.globalData.weiAccount = data.userinfo.wx;
+              that.globalData.uid = data.userinfo.id;
+              that.globalData.selfHeadUrl = data.userinfo.avatar;
+              //由于这里是网络请求，可能会在 Page.onLoad 之后才返回
+              // 所以此处加入 callback 以防止这种情况
+              if (that.authCallback) {
+                that.authCallback(res.auth);
+              }
+              if (data.token != "") {
+                that.globalData.loginInfo.identifier = that.globalData.uid;
+                that.globalData.loginInfo.identifierNick = data.userinfo.name;
+                tls.init({
+                  sdkappid: that.globalData.loginInfo.sdkAppID,
+                  identifier: that.globalData.loginInfo.identifier
+                })
+                that.login(function() {
+                  that.initIM();
+                });
+              }
+            } else {
+              console.log(data.errmsg)
+            }
+          })
+        }
+      },
+      fail: function(res) {
+        console.log(res)
+      }
+    })
+  },
+  login: function(cb) {
+    var that = this;
+    tls.login({
+      success: function(data) {
+        that.globalData.loginInfo.identifier = data.Identifier;
+        that.globalData.loginInfo.userSig = data.UserSig
+        cb();
+      }
+    });
+  },
+  initUnreadMsgCount: function() {
+    var sess, num = 0;
+    var sessMap = webim.MsgStore.sessMap();
+    for (var i in sessMap) {
+      sess = sessMap[i];
+      num += sess.unread();
+    }
+    if (num > 0) {
+      wx.showTabBarRedDot({
+        index: 3
+      })
+    } else {
+      wx.hideTabBarRedDot({
+        index: 3,
+      })
+    }
+  },
+  onMsgNotify: function(newMsgList) {
+    var that = this;
+    var currentPages = getCurrentPages(),
+      _this = currentPages[currentPages.length - 1],
+      pagePath = _this.__route__,
+      newMsg, selSess, array = [];
+    var sessMap = webim.MsgStore.sessMap();
+    if (pagePath == 'message/dialog') {
+      for (var j in newMsgList) { //遍历新消息
+        newMsg = newMsgList[j];
+        selSess = newMsg.getSession();
+        if (newMsg.fromAccount == _this.data.selToID) {
+          _this.addMsg(_this.showMsg(newMsg))
+        }
+      }
+      webim.setAutoRead(selSess, true, true);
+    }
+    if (pagePath == 'pages/message/message') {
+      for (var j in newMsgList) { //遍历新消息
+        newMsg = newMsgList[j];
+        var selToID = newMsg.getSession().id();
+        for (var i in _this.data.message_list) {
+          array.push(_this.data.message_list[i].skipId);
+        }
+        if (array.indexOf(selToID) != -1) {
+          _this.getRecentContactList()
+        } else {
+          _this.addSess(newMsg);
+        };
+      }
+
+    }
+    webim.syncMsgs(this.initUnreadMsgCount);
+    that.getAllFriend();
+  },
+  //设置昵称
+  setwebIMNick: function(nick) {
+    var that = this;
+    var profile_item = [{
+      "Tag": "Tag_Profile_IM_Nick",
+      "Value": nick
+    }, ];
+    var options = {
+      'ProfileItem': profile_item
+    };
+    webim.setProfilePortrait(
+      options,
+      function (resp) {
+        console.log("昵称设置成功")
+      },
+      function (err) { console.log(err)}
+    )
+  },
+  //设置头像
+  setwebIMAvatar: function (avatar) {
+    var that = this;
+    var profile_item = [{
+      "Tag": "Tag_Profile_IM_Image",
+      "Value": avatar
+    },];
+    var options = {
+      'ProfileItem': profile_item
+    };
+
+    webim.setProfilePortrait(
+      options,
+      function (resp) {
+        console.log("头像设置成功")
+      },
+      function (err) { console.log(err) }
+    )
+  },
+  //获取好友列表
+  getAllFriend: function (cbOK) {
+    var that=this;
+    var options = {
+      'From_Account': that.globalData.loginInfo.identifier,
+      'TimeStamp': 0,
+      'StartIndex': 0,
+      'GetCount': 99,
+      'LastStandardSequence': 0,
+      "TagList": [
+        "Tag_Profile_IM_Nick",
+        "Tag_Profile_IM_Image"
+      ]
+    };
+    webim.getAllFriend(
+      options,
+      function(resp) {
+        if (resp.FriendNum > 0) {
+          var friends = resp.InfoItem;
+          var count = friends.length;
+          for (var i = 0; i < count; i++) {
+            var friend = friends[i];
+            var friend_account = friend.Info_Account;
+            var friend_name, friend_image;
+            for (var j in friend.SnsProfileItem) {
+              switch (friend.SnsProfileItem[j].Tag) {
+                case 'Tag_Profile_IM_Nick':
+                  friend_name = friend.SnsProfileItem[j].Value;
+                  break;
+                case 'Tag_Profile_IM_Image':
+                  friend_image = friend.SnsProfileItem[j].Value;
+                  break;
+              }
+            }
+            var key = friend_account;
+            wx.setStorageSync('local'+key, {
+              'name': friend_name,
+              'image': friend_image
+            })
+          }
+        }
+      },
+      function(err) {
+        //console.log(err.ErrorInfo);
+      }
+    );
+  },
+  getAvatar: function(To_Account, ck) {
+    var options = {
+      "To_Account": [To_Account],
+      "TagList": [
+        "Tag_Profile_IM_Image"
+      ]
+    }
+    webim.getProfilePortrait(
+      options,
+      function(resp) {
+        var data = [];
+        if (resp.UserProfileItem && resp.UserProfileItem.length > 0) {
+          for (var i in resp.UserProfileItem) {
+            var to_account = resp.UserProfileItem[i].To_Account;
+            var nick = null,
+              gender = null,
+              allowType = null,
+              imageUrl = null;
+            for (var j in resp.UserProfileItem[i].ProfileItem) {
+              ck(resp.UserProfileItem[i].ProfileItem[j].Value)
+            }
+          }
+        }
+      },
+      function(err) {
+        console.warn(err.ErrorInfo);
+      }
+    )
+  },
+  getNick: function(To_Account, ck) {
+    var options = {
+      "To_Account": [To_Account],
+      "TagList": [
+        "Tag_Profile_IM_Nick"
+      ]
+    }
+    webim.getProfilePortrait(
+      options,
+      function(resp) {
+        var data = [];
+        if (resp.UserProfileItem && resp.UserProfileItem.length > 0) {
+          for (var i in resp.UserProfileItem) {
+            var to_account = resp.UserProfileItem[i].To_Account;
+            for (var j in resp.UserProfileItem[i].ProfileItem) {
+              ck(resp.UserProfileItem[i].ProfileItem[j].Value)
+            }
+          }
+        }
+      },
+      function(err) {
+        console.warn(err.ErrorInfo);
+      }
+    )
+  },
+  //添加formId
+  addformId:function(id){
+    console.log(id)
+    bm.requsetData("/c/action/set_formid", "post", { formid: id },function(res){
+      if(!res.data.errcode){
+        console.log("添加成功")
+      }else{
+        console.log(res.data.errmsg)
+      }
+    })
+  },
+  initIM: function() {
+    var that = this;
+    //监听（多终端同步）群系统消息方法，方法都定义在demo_group_notice.js文件中
+    var onGroupSystemNotifys = {
+      "255": webimhandler.onCustomGroupNotify //用户自定义通知(默认全员接收)
+    };
+    //监听连接状态回调变化事件
+    var onConnNotify = function(resp) {
+      switch (resp.ErrorCode) {
+        case webim.CONNECTION_STATUS.ON:
+          //webim.Log.warn('连接状态正常...');
+          break;
+        case webim.CONNECTION_STATUS.OFF:
+          webim.Log.warn('连接已断开，无法收到新消息，请检查下你的网络是否正常');
+          break;
+        default:
+          webim.Log.error('未知连接状态,status=' + resp.ErrorCode);
+          break;
+      }
+    };
+    //监听事件
+    var listeners = {
+      "onBigGroupMsgNotify": webimhandler.onBigGroupMsgNotify, //监听新消息(大群)事件，必填
+      "onMsgNotify": that.onMsgNotify, //监听新消息(私聊(包括普通消息和全员推送消息)，普通群(非直播聊天室)消息)事件，必填
+      "onGroupSystemNotifys": webimhandler.onGroupSystemNotifys, //监听（多终端同步）群系统消息事件，必填
+    };
+    //其他对象，选填
+    var options = {
+      'isAccessFormalEnv': true, //是否访问正式环境，默认访问正式，选填
+      'isLogOn': false //是否开启控制台打印日志,默认开启，选填
+    };
+    webim.login(that.globalData.loginInfo, listeners, options,
+      function(resp) {
+        webim.syncMsgs(that.initUnreadMsgCount);
+        that.setwebIMNick(that.globalData.loginInfo.identifierNick);
+        that.setwebIMAvatar(that.globalData.selfHeadUrl);
+        that.getAllFriend();
+        var currentPages = getCurrentPages(),
+          _this = currentPages[currentPages.length - 1],
+          pagePath = _this.__route__;
+        if (pagePath == 'pages/message/message') {
+          _this.getRecentContactList()
+        }
+      },
+      function(err) {
+        console.error(err.ErrorInfo);
+      }
+    )
+  },
+
+  globalData: {
+   // host: 'https://www.itszebra.com',
+    host: 'http://www.ksbanma.com',
+    uid: Number,
+    role: 2,
+    lxtel: '',
+    weiAccount: '',
+    selfHeadUrl: 'https://bm.jiangcdn.com/banma/avatar.jpg',
+    friendHeadUrl: 'https://bm.jiangcdn.com/banma/avatar.jpg',
+    token: null,
+    auth: null,
+    userinfo: {},
+    certified:0,
+    loginInfo: {
+      'sdkAppID': 1400090364, //用户所属应用id,必填
+      'appIDAt3rd': 1400090364, //用户所属应用id，必填
+      'accountType': 26564, //用户所属应用帐号类型，必填
+      'identifier': null, //当前用户ID,必须是否字符串类型，选填
+      'identifierNick': null, //当前用户昵称，选填
+      'userSig': null, //当前用户身份凭证，必须是字符串类型，选填
+    },
+    infoMap:[]
+  },
+})

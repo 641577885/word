@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {},
+        "enablePullDownRefresh": true,
+        "onReachBottomDistance": 50,
+        "backgroundColor": "#fede01",
+  "navigationBarTitleText": "创客列表"
+}

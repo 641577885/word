@@ -1,0 +1,151 @@
+<dialog dialog-hidden="{{isShowDialog}}"></dialog>
+<form report-submit='true' bindsubmit='getFormId'>
+  <view class='posDetailContanier'>
+    <view class='posDetailMain'>
+      <view class='posDetailList showtop'>
+        <view class='listTop'>
+          <view class='listTopimg'>
+            <image src='{{userInfo.avatar}}' mode='aspectFill'></image>
+          </view>
+          <view class='between'>
+            <view class='content'>
+              <view class='listBottomname'>{{userInfo.name}}</view>
+              <view class='listBottomtime showpd'>{{proInfo.begintime}}~{{proInfo.endtime}}</view>
+              <view class='listBottomtime showpd'>
+                <text class='pay_style' wx:if="{{proInfo.state}}">已支付</text> 
+                <text class='yc_style' wx:if="{{proInfo.online}}">可远程</text>
+                <text class='sw_style' wx:if="{{proInfo.sanwu}}">支持三无</text>
+                <text class='zc_style' wx:if="{{proInfo.resident}}">可驻场</text> 
+              </view>
+            </view>
+            <view class='listTopprice'>￥{{proInfo.allprice}}</view>
+          </view>
+        </view>
+        <view class='listToptxt'>{{proInfo.beizhu}}</view>
+      </view>
+      <view class='posDetailper'>
+        <view class='posboth'>
+          <view class='posperson'>协作者</view>
+          <view class='photoimg padtop'>
+            <view wx:for='{{memberInfo}}' class='showleft' wx:key>
+              <image class='circle' mode="aspectFill" src="{{item.avatar}}"></image>
+            </view>
+          </view>
+        </view>
+        <view class='posadd  padtop' wx:if='{{errshare==1}}'>
+          <button open-type="share" class='btn' hover-class='none'>
+            <image class='add' mode="" src="/images/worker/add_03.jpg"></image>
+          </button>
+        </view>
+      </view>
+      <!--工作状态-->
+      <view class='workStatusCantainer' wx:if="{{proInfo.state == 'complaining' || proInfo.state == 'firing'}}">
+        <view class='workStatusTitle'>
+          <view class='workStatusTxt'>工作状态：<text>{{proInfo.state_name}}</text></view>
+          <view class='workStatusTxt' wx:if="{{proInfo.state == 'firing'}}">支付工资：<text>{{proInfo.ycData.wages}}元</text></view>
+        </view>
+        <view class='workStatusNote'>
+          <view class="workbody">{{proInfo.ycData.content}}</view>
+          <view class='workImgCantainer' wx:if='{{proInfo.ycData.filesrc.length > 0}}'>
+            <view class='workImgItem' wx:for='{{proInfo.ycData.filesrc}}' wx:key>
+              <image src='{{item}}' mode='aspectFill'data-list='{{proInfo.ycData.filesrc}}' data-src="{{item}}"bindtap='imgYu'></image>
+            </view>
+          </view>
+        </view>
+        <block wx:if="{{ proInfo.ycData.explain_data.length!=0}}">
+          <view class='explainCantainer'>
+            <view class='explaintxt'>创客解释：</view>
+            <view class='explaintxt'>{{proInfo.ycData.explain_data.content}}</view>
+            <view class='workImgCantainer' wx:if='{{proInfo.ycData.explain_data.filesrc.length > 0}}'>
+              <view class='workImgItem' wx:for='{{proInfo.ycData.explain_data.filesrc}}' wx:key><image src='{{item}}' mode='aspectFill' data-list='{{proInfo.ycData.explain_data.filesrc}}' data-src="{{item}}"bindtap='imgYu'></image></view>
+            </view>
+          </view>
+        </block>
+        <view class='complain' wx:if='{{proInfo.state == "firing"}}'>解雇申请成功，请等待创客同意。创客有72小时与雇主联系并协商解决方案，超时不操作将默认同意。 <navigator class='gohelp' url='/help/problem' hover-class='none'>如何处理解雇</navigator></view>
+        <view class='complain' wx:if='{{proInfo.state == "complaining"}}'>投诉成功，创客可以在48小时内主动与你联系协商解决方案，超时未解决平台会介入仲裁，创客可能会被处罚。点击去雇主版对应的帮助中心内容。<navigator class='gohelp' url='/help/problem' hover-class='none'>如何处理投诉</navigator></view>
+      </view>
+      <!--投诉记录-->
+      <view class='recordCantainer'>
+        <view class='posDetailwork'>
+          <view class='poswork'>投诉记录</view>
+        </view>
+      </view>
+      <!--解雇记录-->
+      <view class='workContent' wx:if='{{workRecord.length!=0}}'>
+        <view class='posDetailwork'>
+          <view class='poswork'>工作汇报</view>
+        </view>
+        <block wx:for='{{workRecord}}' wx:key>
+          <view class='poscontent'>{{item.content}}</view>
+          <view class='workImgCantainer' wx:if='{{item.filelist.length > 0}}' wx:key>
+            <view class='workImgItem' wx:for='{{item.filelist}}' wx:for-item='fl'>
+              <image src='{{fl}}' mode='aspectFill'bindtap='imgYu' data-list='{{item.filelist}}' data-src="{{fl}}"></image>
+            </view>
+          </view>
+          <view class='posshare'>
+            <view class='sharatime'>{{item.ctime}}</view>
+          </view>
+        </block>
+      </view>
+      <view class='workDaily' wx:else>
+        <view  class='noWorkText'>
+          <view class='top-noWorkText'>该工作当前没有日报</view>
+        </view>
+        <image src='/images/empty/noworkday.png' class='noWorkImg' mode='aspectFill'></image>
+      </view>
+      <block wx:if="{{showOpStatus}}">
+        <block wx:if='{{proInfo.state == "noconfirm"}}'>
+          <view class='manageCantainer'>
+            <button class='btnBlack' form-type='submit' bindtap="cancelgy">取消雇佣</button>
+          </view>
+        </block>
+        <block wx:if='{{proInfo.state == "daiwj"}}'>
+          <view class='manageCantainer'>
+            <button class='hireonce' form-type='submit' bindtap='payPrice'>确认发工资</button>
+          </view>
+        </block>
+        <block wx:if='{{proInfo.state == "end"}}'>
+          <view class='posbottoms'>
+            <view class='posconfirm'>
+              <button class='evaluates' wx:if="{{proInfo.ycData.is_evaluate==0}}" form-type='submit' bindtap="setevaluate">评价</button>
+              <button class='hireonce' form-type='submit' bindtap="sendhire">再次雇佣</button>
+            </view>
+          </view>
+        </block>
+        <block wx:if='{{proInfo.state == "normal"}}'>
+          <view class='manageCantainer'>
+            <button class='btnBlack' form-type='submit' bindtap='showMoreManange'>更多管理</button>
+          </view>
+        </block>
+        <block wx:if='{{proInfo.state == "nopay"}}'>
+          <view class='manageCantainer'>
+            <button class='btnBlack' form-type='submit' bindtap='goPay'>查看订单</button>
+          </view>
+        </block>
+        <block wx:if='{{proInfo.state == "complaining"}}'>
+          <view class='manageCantainer'>
+            <view class='tsTip'>客服将在48小时后介入，介入后将不能取消投诉</view>
+            <button class='btnBlack' form-type='submit' bindtap='cancelTs'>取消投诉</button>
+          </view>
+        </block>
+        <block wx:if='{{proInfo.state == "firing"}}'>
+          <view class='manageCantainer'>
+            <button class='btnBlack' form-type='submit' bindtap='cancelFire'>取消解雇</button>
+          </view>
+        </block>
+      </block>
+    </view>
+  </view>
+  <action-sheet hidden="{{actionSheetHidden}}" bindchange="showMoreManange">
+    <action-sheet-item class='action_item' bindtap='fire'>
+      <button class='sharebutton' form-type='submit'>解雇</button>
+    </action-sheet-item>
+    <action-sheet-item class='action_item' bindtap='complain'>
+      <button class='sharebutton' form-type='submit'>投诉</button>
+    </action-sheet-item>
+    <action-sheet-item class='action_item' bindtap='rehire'>
+      <button class='sharebutton' form-type='submit'>续签</button>
+    </action-sheet-item>
+    <action-sheet-cancel class="cancel">取消</action-sheet-cancel>
+  </action-sheet>
+</form>

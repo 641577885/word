@@ -1,0 +1,7 @@
+/* pages/setting/hideCompany.wxss */
+.companyItemCantainer{ padding-left: 30rpx; height: 87rpx;}
+.companyItem { padding-right: 48rpx; display: flex; align-items: center; justify-content: space-between; border-bottom: 1rpx solid #eee;height: 87rpx;}
+.companyItem text{ display: block; width: 615rpx; line-height: 40rpx; font-size: 30rpx;}
+.deleteIcon{ display: block; width: 36rpx; height: 36rpx; background: url(//bm.jiangcdn.com/banma/delete.png) no-repeat; background-size: 100%;}
+
+.Background { width: 580rpx; height: 76rpx; line-height: 76rpx; font-size: 30rpx; color: #000; background:#fdc200 linear-gradient(to right,#fedd01,#fdc200); background-size: 100%; border: 0 none; border-radius: 5rpx;margin: 60rpx auto;text-align: center}

@@ -1,0 +1,72 @@
+<!--pages/bank/bank.wxml-->
+<form bindsubmit="formSubmit">
+<view class='bank_card'>
+  <!-- <view class='main'>
+    <view class='main_left'>
+      <view class='icon'>
+        <image src='/images/worklist/name_logo_03.gif' class='icon_01'></image>
+      </view>
+      <view class='title'>真实姓名</view>
+    </view>
+    <view class='main_right'>
+      <input type='text' name='name' value='{{name}}'></input>
+    </view>
+  </view> -->
+   <view class='main'>
+    <view class='main_left'>
+      <view class='icon'>
+        <image src='/images/worklist/card_03.gif' class='icon_02'></image>
+      </view>
+      <view class='title'>开户银行</view>
+    </view>
+   <view class='main_right'>
+      <picker bindchange="bindbankChange" value="{{bankindex}}" range="{{bankarr}}">
+        <view class="picker">
+          {{bankarr[bankindex]}}
+        </view>
+      </picker>
+    </view>
+  </view>
+  <view class='main'>
+    <view class='main_left'>
+      <view class='icon'>
+        <image src='/images/worklist/card_03.gif' class='icon_02'></image>
+      </view>
+      <view class='title'>银行卡号</view>
+    </view>
+    <view class='main_right'>
+      <input type='number' name='bankcard' value='{{bankcard}}'></input>
+    </view>
+  </view>
+  <!-- <view class='main'>
+    <view class='main_left'>
+      <view class='icon'>
+        <image src='/images/worklist/phone_03.gif' class='icon_03'></image>
+      </view>
+      <view class='title' >身份证号</view>
+    </view>
+    <view class='main_right'>
+      <input type='idcard' name='idcard' value='{{idcard}}'></input>
+    </view>
+  </view> -->
+  <view class='main'>
+    <view class='main_left'>
+      <view class='icon'>
+        <image src='/images/worklist/icon_01.png' class='icon_04'></image>
+      </view>
+      <view class='title'>开户行所在地</view>
+    </view>
+    <view class='main_right'>
+      <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+        <view class="picker">
+          {{address}}
+        </view>
+      </picker>
+    </view>
+  </view>
+  
+</view>
+<view class='btn'>
+  <button formType="submit">下一步</button>
+</view>
+</form>

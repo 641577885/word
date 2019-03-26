@@ -1,0 +1,13 @@
+<!--message/bmDialog.wxml-->
+<scroll-view class='content' scroll-y>
+  <view class='list'>
+    <navigator class='msg_content' wx:for='{{list}}' wx:key='xmlist' hover-class='none' url='/message/xmguide?url={{url}}'>
+      <view class='title'>{{item.title}}</view>
+      <view class='img'>
+        <image src='{{item.img_head}}' mode='widthFix'></image>
+      </view>
+      <view class='main'>{{item.simple_cont}}</view>
+    </navigator>
+  </view>
+</scroll-view>
+<view class='msgempty' wx:if='{{empty}}'>当前无消息</view>

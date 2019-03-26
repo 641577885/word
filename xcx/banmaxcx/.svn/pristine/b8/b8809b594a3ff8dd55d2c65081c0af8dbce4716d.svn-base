@@ -1,0 +1,254 @@
+// pages/openvip/openvip.js
+var app = getApp();
+var util = require('../../utils/util.js'); 
+const bm = require('../../utils/common.js')
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    uid:null,
+    //已经开通天数
+    opennum:'',
+    //会员选择
+    vip_type:1,
+    //当前时间
+    date:null,
+    year:null,
+    month:null,
+    day:null,
+    //会员起始时间
+    startime:null,
+    //会员结束时间
+    endtime:null,
+    //总金额
+    allprice:0,
+    //vip卡样式
+    vipcard_style:'vipcard_style_01',
+    vip_icon:'openvip_icon',
+    font_style:'#a08661',
+    //红包抵扣选项
+    hb:0,
+    //红包数
+    usera:0,
+    //年价格
+    year_price:0,
+    //月价格
+    month_price:0,
+    //折扣
+    zhe:0,
+    //未打折总金额
+    nozhe:0,
+    //红包抵扣比例
+    pro:0,
+    yprice:0,
+    ordersn:0,
+  },
+  //红包
+  hbclick:function(){
+    var that = this
+    var hb = that.data.hb
+    var usera = that.data.usera
+    var allprice = that.data.allprice
+    var pro = that.data.pro
+    if (usera==0){
+      return false;
+    }
+    //最大抵扣数
+    var price_pro = allprice * pro
+    if (usera >= price_pro){
+      var last_price = 0
+    }else{
+      var last_price = allprice - usera
+    }
+    if(hb == 0){
+      that.setData({
+        hb:1,
+        allprice: last_price
+      })
+    }else{
+      that.setData({
+        hb: 0,
+        allprice: that.data.yprice,
+      })
+    }
+  },
+
+  getVipInfo:function(){
+    var that = this;
+    var overDate, opennum;
+    bm.requsetData('/w/vip/openpage', 'get', '', function (res) {
+      var _res = res.data;
+      if (_res.userInfo.ismember == 0){
+        overDate = bm.formatToday();
+        opennum = '未开通会员';
+      } else {
+        overDate = bm.formatDate(_res.userInfo.motime);
+        opennum = '会员到期时间：' + overDate;
+      }
+      var Ymydate = bm.GetNextMonthDay(overDate, 12)
+      var Mmydate = bm.GetNextMonthDay(overDate, 1)
+      var zhe = _res.priceArr.year / (_res.priceArr.month * 12);
+      if (_res.order.ordersn) {
+        var order = _res.order.ordersn
+      }else{
+        var order=0
+      }
+      that.setData({
+        usera:_res.accInfo.usera,
+        uid:_res.userInfo.uid,
+        year_price: _res.priceArr.year,
+        month_price: _res.priceArr.month,
+        zhe: (zhe * 10).toFixed(2),
+        nozhe: _res.priceArr.month*12,
+        pro: _res.jf_deduction_ratio.vip/100,
+        allprice: _res.priceArr.year,
+        yprice: _res.priceArr.year,
+        viptime: overDate,
+        opennum: opennum,
+        ordersn: order,
+        Ymydate: Ymydate,
+        Mmydate: Mmydate
+      })
+      that.countTime()
+    })
+  },
+
+  countTime:function(){
+    var that =this;
+    if (that.data.vip_type == 1) {
+      that.setData({ endtime: that.data.Ymydate })
+    } 
+    if (this.data.vip_type == 3) {
+      that.setData({ endtime: that.data.Mmydate })
+    }
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    var that = this;
+    
+    if (app.globalData.auth) {
+      that.getVipInfo();
+    }else{
+      app.authCallback = auth => {
+        that.getVipInfo();
+      }
+    }
+  },
+  //会员选择
+  bindradio:function(e){
+    var that = this
+    var curr = e.currentTarget.dataset.id
+    var year = parseInt(that.data.year)
+    var month = parseInt(that.data.month)
+    var day = parseInt(that.data.day)
+    var timestamp = that.data.date//当前时间戳
+    var myDate = new Date(that.data.date)
+    that.setData({
+      vip_type:curr
+    })
+    if(curr == 1){
+      var bnyear = year + 1
+      var bntime = bnyear + '-' + month + '-' + day
+      var bntimec = Date.parse(bntime) - 86400
+      var bndate = new Date(bntimec)
+      that.setData({
+        endtime: bndate.getFullYear() + '/' + (bndate.getMonth() + 1) + '/' + bndate.getDate(),
+        allprice: that.data.year_price,
+        vipcard_style: 'vipcard_style_01',
+        vip_icon: 'openvip_icon',
+        font_style: '#a08661',
+        hb:0,
+        yprice: that.data.year_price,
+      })
+    }else if(curr == 3){ 
+      var bntime = year + '-' + (month+1) + '-' + day
+      var bntimec = Date.parse(bntime) - 86400
+      var bndate = new Date(bntimec)
+      that.setData({
+        endtime: bndate.getFullYear() + '/' + (bndate.getMonth() + 1) + '/' + bndate.getDate(),
+        allprice: that.data.month_price,
+        vipcard_style: 'vipcard_style_02',
+        vip_icon: 'openvip_icon_02',
+        font_style: '#838997',
+        hb:0,
+        yprice: that.data.month_price,
+      })
+    }
+
+    that.countTime(that.data.viptime)
+  },
+  //提交
+  submit:function(){
+    var that = this
+    var vip_type = that.data.vip_type
+    var hb = that.data.hb
+    if (vip_type == 1){
+      var month = 12
+      var dk = that.data.yprice - that.data.allprice
+    } else if (vip_type == 3){
+      var month = 1
+      var dk = that.data.yprice - that.data.allprice
+    }
+    if(hb == 0){
+      var integral = 0 
+    }else{
+      var integral = dk
+    }
+    bm.requsetData('/w/vip/open', 'post', { month: month, integral: integral }, function (data) {
+      if (data.data.direct_return == 1){
+        wx.showToast({
+          title: data.data.errmsg,
+        })
+        setTimeout(function(){
+          wx.navigateBack({
+            delta: 1,
+          })
+        },1500)
+      }else{
+        if (data.data.errcode == 0){
+          that.setData({
+            ordersn: data.data.ordersn
+          })
+          wx.navigateTo({
+            url: '/pages/pay/pay?ordersn=' + that.data.ordersn+'&type=vip'
+          })  
+        }else{
+        wx.showModal({
+          title: '提示',
+          content: data.data.errmsg,
+          showCancel: true,
+          confirmText:'确认支付',
+          cancelText:'重新生成',
+          success: function(res) {
+            if(res.confirm){
+              wx.navigateTo({
+                url: '/pages/pay/pay?ordersn=' + that.data.ordersn + '&type=vip'
+              }) 
+            }
+            if(res.cancel){
+              bm.requsetData('/w/vip/cancel_order', 'post', { ordersn: that.data.ordersn }, function (tvip) {
+                if (tvip.data.errcode == 0){
+                  that.submit()
+                }else{
+                  wx.showToast({
+                    title: tvip.data.errmsg,
+                    icon:'none'
+                  })
+                }
+                
+              })
+            }
+          },
+          fail: function(res) {},
+          complete: function(res) {},
+        })
+        }
+      }
+    })
+  }
+})

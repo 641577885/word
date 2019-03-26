@@ -1,0 +1,54 @@
+/* pages/openvip/openvip.wxss */
+.top{width: 100%;height: 370rpx;background: #434652;position: relative;}
+.vipcard{width: 575rpx;height: 264rpx; border-radius: 15rpx;position: absolute;left: 50%;margin-left: -287rpx;top: 56rpx;z-index: 1;color: #fff}
+.title{font-size: 37rpx;font-weight: bold;line-height: 56rpx;position: absolute;left: 42rpx;top: 31rpx;}
+.opennum{font-size: 24rpx;line-height: 30rpx;position: absolute;left: 42rpx;top: 93rpx;color: #fff;opacity: 0.5}
+.vipicon{height: 35rpx;display: flex;align-items: center;position: absolute;top: 31rpx;right: 41rpx;}
+.vipicon image{width: 28rpx;height: 35rpx;}
+.vipicon text{font-size: 30rpx;line-height: 35rpx;margin-left: 11rpx}
+.content{width: 100%;position: relative;}
+.content_01{border-radius: 34rpx;background: #fff;box-shadow: 0rpx 46rpx 54rpx 0px rgba(0, 0, 0, 0.1);width: 660rpx;height: 254rpx;z-index: 2;position: absolute;left: 50%;margin-left: -330rpx;top: -85rpx;}
+.content_01_main{width: 602rpx;display: flex;justify-content: space-around;align-items: center;position: absolute;left: 50%;margin-left: -301rpx;top: 35rpx;}
+.radio_main{width: 200rpx;height: 185rpx;}
+.radio_border{border-left: 1rpx solid #eeeeee;border-right: 1rpx solid #eeeeee}
+.vip_price{width: 100%;height: 58rpx;text-align: center;line-height: 58rpx;}
+.price_text_01{font-size: 38rpx;font-weight: bold}
+.price_text_02{font-size: 26rpx;font-weight: bold}
+.vip_type{width: 100%;text-align: center;line-height: 36rpx;font-size: 26rpx;}
+.radio_icon{width: 100%;margin-top: 30rpx;}
+.icon{width: 40rpx;height: 40rpx;border-radius: 50%;border: 3rpx solid #dcdcdc;margin: 0 auto;position: relative;}
+.icon icon{position: absolute;top: -3rpx;left: -3rpx;}
+
+.content_02{box-shadow: 0rpx 46rpx 54rpx 0rpx rgba(0, 0, 0, 0.1);width: 660rpx;height: 220rpx;border-left: 8rpx solid #e82639;position: absolute;left: 50%;margin-left: -330rpx;top: 200rpx;z-index: 3;background: #fff}
+.vip_time{height: 46rpx;font-size: 30rpx;line-height: 46rpx;position: absolute;left: 20rpx;top: 24rpx;}
+.allprice{height: 46rpx;display: flex;font-size: 30rpx;line-height: 46rpx;position: absolute;left: 20rpx;top: 148rpx;align-items: center;}
+.zhe_price{height: 46rpx;line-height: 46rpx;background: #e82639;padding: 0 15rpx;color: #fff;border-radius: 3rpx;font-size: 24rpx;margin-left: 20rpx;}
+
+.bottom{width: 100%;text-align: center;position: fixed;bottom: 0;left: 0;}
+.vipExplain{font-size: 24rpx;color: #7f7f7f;line-height: 34rpx;text-decoration: underline}
+.bottom button{width: 666rpx;height: 96rpx;background: #000;border-radius: 5rpx;line-height: 96rpx;color: #fff;font-size: 29rpx;margin-bottom: 36rpx;margin-top: 32rpx;}
+.vipcard_style_01{
+  background-image: -moz-linear-gradient( -135deg, rgb(234,215,172) 0%, rgb(192,159,105) 100%);
+  background-image: -webkit-linear-gradient( -135deg, rgb(234,215,172) 0%, rgb(192,159,105) 100%);
+  background-image: -ms-linear-gradient( -135deg, rgb(234,215,172) 0%, rgb(192,159,105) 100%);
+}
+.vipcard_style_02{
+  background-image: -moz-linear-gradient( -145deg, rgb(214,216,223) 0%, rgb(155,160,174) 100%);
+  background-image: -webkit-linear-gradient( -145deg, rgb(214,216,223) 0%, rgb(155,160,174) 100%);
+  background-image: -ms-linear-gradient( -145deg, rgb(214,216,223) 0%, rgb(155,160,174) 100%);
+}
+.hb{height:46rpx;
+display:flex;
+font-size:30rpx;
+line-height:46rpx;
+position:absolute;
+right:20rpx;
+top:86rpx;
+align-items:center;
+position: absolute;
+top: 86rpx;
+left: 20rpx;
+}
+.hb_border{width: 30rpx;height: 30rpx;border:2rpx solid #dcdcdc;border-radius: 50%;position: relative}
+.hb_border icon{position: absolute;top: -1rpx;left: -1rpx;}
+.hb_text{margin-left: 18rpx;}

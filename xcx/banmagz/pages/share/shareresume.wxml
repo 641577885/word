@@ -1,0 +1,2 @@
+<!--pages/share/shareresume.wxml-->
+<web-view src='{{url}}'></web-view>

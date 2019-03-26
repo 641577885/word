@@ -1,0 +1,60 @@
+// guide/activity.js
+const Page = require('../utils/ald-stat.js').Page;
+const bm=require('../utils/common.js')
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    id:0,
+    url:"",
+    isShowDialog: true,
+    k:"",  //参数字段
+    v:"",   //字段v
+    describe:"",
+    title:""
+  },
+
+  getUrl:function(){
+    var that=this;
+    bm.requsetData("/c/guide/get_actconf","get",{id:this.data.id,k:this.data.k,v:this.data.v},function(res){
+      if(!res.data.errcode){
+        that.setData({ url: res.data.info.url, describe: res.data.info.describe, title: res.data.info.title});
+        wx.setNavigationBarTitle({
+          title: res.data.info.title,
+        })
+      }
+    })
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    this.setData({ id: options.id })
+    if(options.k){
+      this.setData({ k: options.k})
+    }
+    if(options.v){
+      this.setData({ v: options.v })
+    }
+    this.getUrl();
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+    return {
+      title: this.data.describe,
+      path: '/guide/activity?id='+this.data.id,
+      success: function (res) {
+        // 转发成功
+      },
+      fail: function (res) {
+        // 转发失败
+      }
+    }
+  }
+})

@@ -1,0 +1,39 @@
+/* pages/worker/job_wanted/job_wanted.wxss */
+page{ background: #f4f4f4;}
+.top_title{width: 690rpx;padding: 0 30rpx;height: 78rpx;font-size: 24rpx;color: #000;line-height: 78rpx;background: #f6f0c3}
+
+.b_content{width: 716rpx;background: #fff;padding-left: 34rpx;}
+.b_input{width: 686rpx;height:87rpx;border-bottom: 1rpx solid #e5e5e5;display: flex;justify-content: space-between;align-items: center;padding-right: 30rpx;}
+.b_input_02{width: 686rpx;height:87rpx;display: flex;justify-content: space-between;align-items: center;padding-right: 30rpx;}
+.b_input_right{display: flex;align-items: center}
+.b_input_title_01{font-size: 30rpx;color: #000}
+.b_input_title_02{font-size: 30rpx;color: #888888;height: 87rpx;width: 350rpx;line-height: 87rpx;text-align: right}
+.b_input_title_02 picker{height: 87rpx;width:350rpx;}
+.picker{height: 87rpx;width: 350rpx;overflow: hidden;}
+.b_input_icon{width: 16rpx;height: 25rpx;margin-left: 30rpx;}
+.b_input_icon_02{font-size: 30rpx;color: #72777e}
+.bottom{width: 100%;position: fixed;bottom: 0;left: 0;}
+.bottom_title{font-size: 24rpx;color: #72777e;line-height: 44rpx;text-align: center}
+.bottom_btn button{width: 690rpx;height: 95rpx;background: #000;line-height: 95rpx;font-size: 30rpx;color: #fff;margin: 30rpx auto 45rpx}
+.title{padding: 0 30rpx;font-size: 30rpx;height: 78rpx;line-height: 78rpx;margin-top: 30rpx;}
+.title_02{padding: 0 30rpx;font-size: 30rpx;height: 78rpx;line-height: 78rpx;margin-top: 30rpx;}
+.input_number{width: 300rpx;height: 87rpx;line-height: 87rpx;font-size: 30rpx;color: #72777e;padding: 0 20rpx;}
+/* 新版求职意向--零点--20180813 */
+.width100{width: 100%;background: #fff}
+.auto{margin-left: auto;margin-right: auto;}
+.border_bottome5e5e5{border-bottom: solid #e5e5e5 1rpx;}
+.padding_top20{padding-top: 20rpx;}
+.padding_bottom20{padding-bottom: 20rpx;}
+.font_size30{font-size: 30rpx;}
+.display_flex{display: flex;}
+.center{justify-content: center;border: none}
+.wh30{height: 30rpx;width: 30rpx;}
+.margin_top5{margin-top:5rpx;}
+.margin_left10{margin-left: 10rpx;}
+.colorffa200{color: #ffa200;}
+.font_size22{font-size: 22rpx;}
+.color999{color: #999;}
+.margin_top10{margin-top: 10rpx;}
+.positionadd{padding-top: 20rpx; padding-bottom: 20rpx; font-size: 30rpx; border-bottom: solid #e5e5e5 1rpx;}
+/* .positionadd:last-child{border:none;padding-top: 20rpx; padding-bottom: 20rpx; font-size: 30rpx;}
+.dream_btn{margin-top: 30rpx;} */

@@ -1,0 +1,182 @@
+<view class='msgCantainer'>
+  <view class='opcantainer'>
+    <!-- <view bindtap='excellMsg'>交换手机</view>
+    <view bindtap='exwechatMsg'>交换微信</view> -->
+    <view bindtap='excontactMsg'>交换联系方式</view>
+    <view bindtap=''>{{role==1?'投递简历':'求简历'}}</view>
+  </view>
+  <view class='msgProItem'>
+    <view class='msgProTop'>
+      <view class='msgProDetail'>APP开发一套，要求5月底前做APP开发一套，要底前做完...</view>
+      <view class='msgProPrice'>￥5000</view>
+    </view>
+    <view class='msgProStatusItem'>
+      <text class='msgProStatus abnormal'>未付款</text>
+      <text class='msgProTime'>2018/09/12 ~ 2018/09/30</text>
+    </view>
+  </view>
+  <!-- <view class='msgJobItem'>
+    <view class='msgJobRequireItem'>
+      <view class='msgJobName'>魔方集团</view>
+      <text class='msgJobName'>技术总监／CTO</text>
+    </view>
+    <view class='msgJobPriceItem'>
+      <view class='msgJobPrice'>￥5000元/月</view>
+      <text class='msgJobTip'>最低要求</text>
+    </view>
+  </view> -->
+  <scroll-view class='DialogCantainer' scroll-y style='height:700rpx;' scroll-top="{{scrollTop}}">
+    <view wx:for='{{msgs}}' wx:key>
+      <!--请求交换微信-->
+      <view class='dialogItem {{item.isSelfSend?"selfItem":"isSelfSend"}}'>
+        <view class='dialogThumb'>
+          <image src='{{selfHeadUrl}}' wx:if='{{item.isSelfSend}}' mode='aspectFill'></image>
+          <image src='{{friendHeadUrl}}' wx:else mode='aspectFill'></image>
+        </view>
+        <block wx:if="{{item.content=='[:excontact]'}}">
+          <block wx:if='{{item.isSelfSend}}'>
+            <view class='dialogCover'>
+              <view class='dialogWechat'>您发起了交换联系方式，请耐心等待</view>
+            </view>
+          </block>
+          <block wx:else>
+            <view class='dialogCover'>
+              <view class='dialogWechat'>请求跟您交换联系方式</view>
+              <view class='dialogWechatBtn'>
+                <button class='refuse' data-status='2' data-ext='{{item.ext}}' data-type="contact" bindtap='requsetReply'>拒绝</button>
+                <button class='agree' data-status='1' data-ext='{{item.ext}}' data-type="contact" bindtap='requsetReply'>同意</button>
+              </view>
+            </view>
+          </block>
+        </block>
+        <block wx:elif="{{item.content=='[:exwechat]'}}">
+          <block wx:if='{{item.isSelfSend}}'>
+            <view class='dialogCover'>
+              <view class='dialogWechat'>您发起了交换微信请求，请耐心等待</view>
+            </view>
+          </block>
+          <block wx:else>
+            <view class='dialogCover'>
+              <view class='dialogWechat'>请求跟您交换微信</view>
+              <view class='dialogWechatBtn'>
+                <button class='refuse' data-status='2' data-ext='{{item.ext}}' data-type="weichat" bindtap='requsetReply'>拒绝</button>
+                <button class='agree' data-status='1' data-ext='{{item.ext}}' data-type="weichat" bindtap='requsetReply'>同意</button>
+              </view>
+            </view>
+          </block>
+        </block>
+        <block wx:elif="{{item.content=='[:excell]'}}">
+          <block wx:if='{{item.isSelfSend}}'>
+            <view class='dialogCover'>
+              <view class='dialogWechat'>您发起了交换手机号码请求，请耐心等待</view>
+            </view>
+          </block>
+          <block wx:else>
+            <view class='dialogCover'>
+              <view class='dialogWechat'>请求跟您交换手机号码</view>
+              <view class='dialogWechatBtn'>
+                <button class='refuse' data-status='2' data-ext='{{item.ext}}' data-type="cell" bindtap='requsetReply'>拒绝</button>
+                <button class='agree'  data-status='1' data-ext='{{item.ext}}' data-type="cell" bindtap='requsetReply'>同意</button>
+              </view>
+            </view>
+          </block>
+        </block>
+        <block wx:elif="{{item.content=='[:wechat]'}}">
+          <view class='dialogCover'>
+            <view class='dialogInfoCopy'>
+              <view class='infoDetail wechat'>15867100233</view> 
+              <view class='copyBtn' wx:if='{{!item.isSelfSend}}'>复制</view>
+            </view>
+          </view>
+        </block>
+        <block wx:elif="{{item.content=='[:cell]'}}">
+          <view class='dialogCover'>
+            <view class='dialogInfoCopy'>
+              <view class='infoDetail cell'>15867100233</view> 
+              <view class='copyBtn' wx:if='{{!item.isSelfSend}}'>添加</view>
+            </view>
+          </view>
+        </block>
+        <block wx:elif="{{item.content=='[:contact]'}}">
+          <view class='dialogCover'>
+            <view class='dialogInfoCopy'>
+              <view class='infoDetail cell'>{{item.ext}}</view> 
+              <view class='copyBtn' wx:if='{{!item.isSelfSend}}'>添加</view>
+            </view>
+            <view class='dialogInfoCopy' wx:if="{{item.ext2}}">
+              <view class='infoDetail wechat'>{{item.ext2}}</view> 
+              <view class='copyBtn' wx:if='{{!item.isSelfSend}}'>复制</view>
+            </view>
+          </view>
+        </block>
+        <block wx:elif="{{item.content=='[:resume]'}}">
+          <block wx:if='{{item.isSelfSend}}'>
+            <view class='dialogCover'>
+              <view class='dialogWechat'>您发起了索要简历请求，请耐心等待</view>
+            </view>
+          </block>
+          <block wx:else>
+            <view class='dialogCover'>
+              <view class='dialogWechat' wx:if='{{role==2}}'>我想要你投递一份简历到我邮箱，是否同意</view>
+              <view class='dialogWechat' wx:if='{{role==1}}'>我想要投递一份简历到您的邮箱，是否同意</view>
+              <view class='dialogWechatBtn'>
+                <button class='refuse' data-status='2' data-ext='{{item.ext}}' data-type="cell" bindtap='requsetReply'>拒绝</button>
+                <button class='agree'  data-status='1' data-ext='{{item.ext}}' data-type="cell" bindtap='requsetReply'>同意</button>
+              </view>
+            </view>
+          </block>
+        </block>
+        <block wx:elif="{{item.content=='[:order]'}}">
+          <view class='dialogCover'>
+            <view class='dialogWechat'>订单信息</view>
+          </view>
+        </block>
+        <block wx:elif="{{item.content=='[:IMAGES]'}}">
+          <view class='dialogImage'><image src='{{item.ext}}' mode='widthFix'></image></view>
+        </block>
+        <block wx:else>
+          <view class='dialogCover'>{{item.content}}</view>
+        </block>
+      </view>
+    </view>
+    <!--文件消息-->
+    <!-- <view class='dialogItem selfItem'>
+      <view class='dialogThumb'></view>
+      <view class='dialogCover'>
+        <view class='dialogFile'><image src='/images/msg/file.png' mode='widthFix'></image></view>
+        <view class='dialogFileInfo'>
+          <text class='dialogFileName'>凯西个人作品.zip</text>
+          <view class='dialogFileDetail'>
+            <text class='dialogFileSize'>256M</text>
+            <text class='dialogFileTerm'>保存7天</text>
+          </view>
+        </view>
+      </view>
+    </view> -->
+  </scroll-view>
+  <view class='dialogSendCantainer' wx:if="{{canDialog}}">
+    <view class='dialogSendTop'>
+      <view class='dialogCommon' bindtap='sendChat'>常用语</view>
+      <input class='sendContent' placeholder='文字输入' bindconfirm="bindConfirm" bindinput='bindinput' confirm-type='send' cursor-spacing="16" value='{{msgContent}}'></input>
+      <view class='MoreSend' bindtap='ckMore'></view>
+    </view>
+    <view class='moreCantainer {{isShowMore?"showH":""}}'>
+      <view class='moreItem' bindtap='chooseCamera'>
+        <image src='/images/msg/camera.png' mode='aspectFit'></image>
+        <text>拍摄照片</text>
+      </view>
+      <view class='moreItem' bindtap='chooseAlbum'>
+        <image src='/images/msg/picture.png' mode='aspectFit'></image>
+        <text>相册</text>
+      </view>
+      <view class='moreItem'>
+        <image src='/images/msg/record.png' mode='aspectFit'></image>
+        <text>语音</text>
+      </view>
+      <navigator url='/order/setpay?uid={{selToID}}' class='moreItem' bindtap='sendHireMsg'>
+        <image src='/images/msg/hire.png' mode='aspectFit'></image>
+        <text>{{role==2?'发起雇佣':'生成订单'}}</text>
+      </navigator>
+    </view>
+  </view>
+</view>

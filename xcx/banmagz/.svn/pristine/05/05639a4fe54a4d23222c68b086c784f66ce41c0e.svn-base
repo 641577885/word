@@ -1,0 +1,54 @@
+<form report-submit='true' bindsubmit='getFormId'>
+  <view class='positiontype2Container'>
+    <view class='positiontype2Main'>
+      <view class='positiontype2MainTop'>
+        <view class='positiontype2MainTopC'>
+          <view class='positiontype2Title'>2/3选择职位薪资</view>
+          <navigator class='cancelBtn' open-type='reLaunch' hover-class='none' url='/pages/business/demand'>取消</navigator>
+        </view>
+        <view class='positiontype2look'>给职位选择一个相应的薪资</view>
+      </view>
+      <view class='positionTime' wx:if="{{work_way==1}}">
+        <view class='positiononline'>
+          <button class='online {{item.id==unit?"active":""}}' wx:for='{{unitLists}}' data-index="{{item.id}}" wx:key bindtap='chooseUnit' form-type='submit'>{{item.name}}</button>
+        </view>
+        <view class="wagesInput" bindtap='checkPrice'>
+          <view>{{lowsalary}}{{unit==1?"K":""}}</view>
+          <text>——</text>
+          <view>{{highsalary}}{{unit==1?"K":""}}</view>
+        </view>
+      </view>
+      <view class='positionWages' wx:if="{{work_way==2}}">
+        <view class='positiononline02'>
+          <button class='online02 {{item.id==negotiate?"active":"noactive"}}' wx:for='{{negotiateLists}}' data-index="{{item.id}}" wx:key bindtap='choosePrice' form-type='submit'>{{item.name}}</button>
+        </view>
+        <view class="wagesInput" bindtap='checkPrice' wx:if="{{!negotiate}}">
+          <view>{{lowsalary}}{{unit==1?"K":""}}</view>
+          <text>——</text>
+          <view>{{highsalary}}{{unit==1?"K":""}}</view>
+        </view>
+      </view>
+      <view class='positiontype2MainBottom'>
+        <button class='comfirmnext' plain="{{plain}}" bindtap="nextStep" form-type='submit'>下一步 </button>
+      </view>
+    </view>
+  </view>
+  <view class='CoverView' wx:if="{{showBox}}" bindtap="cancelBox"></view>
+   <view class='CoverViewItem' wx:if="{{showBox}}">
+    <view class='cancelView'>
+      <text class='cancel' bindtap="cancelBox">取消</text>
+      <text class='priceTxt' wx:if='{{unit==1}}'>薪资（月薪，单位千元）</text>
+      <text class='priceTxt' wx:if='{{unit==2}}'>薪资（日薪，单位百元）</text>
+      <text class='priceTxt' wx:if='{{unit==3}}'>薪资（时薪，单位元）</text>
+      <text class='click' bindtap="cancelBox">选择</text>
+    </view>
+    <picker-view indicator-style="height: 40px;" style="width: 100%; height: 200px;" value="{{value}}" bindchange="bindChange">
+      <picker-view-column>
+        <view wx:for="{{lowList}}" style="line-height: 40px;">{{item}}</view>
+      </picker-view-column>
+      <picker-view-column>
+        <view wx:for="{{highList}}" style="line-height: 40px;">{{item}}</view>
+      </picker-view-column>
+    </picker-view>
+  </view>
+</form>

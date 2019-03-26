@@ -1,0 +1,11 @@
+/* pages/worker/my/slcg.wxss */
+.clearfix:after {content: ".";display: block;height: 0;clear: both;visibility: hidden;}
+text{display: block;}
+.title_01{font-size: 56rpx;font-weight: bold;margin-top: 150rpx;line-height: 90rpx;text-align: center;}
+.title_02{line-height: 48rpx;font-size: 28rpx;color: #8e9091;text-align: center;}
+.avatar_list{position: relative;text-align: center;}
+.avatar{width: 320rpx;position: absolute;top: 50rpx;left: 50%;margin-left: -160rpx;}
+.avatar image{display: inline-block;width: 112rpx;height: 112rpx;border-radius: 50%;border: 4rpx solid #fff;background: #fede01;float: left;margin-left: -15rpx;box-shadow: 0px 7px 16px 0px rgba(13, 16, 42, 0.3); }
+.bottom{width: 100%;position: fixed;left: 0;bottom: 0;}
+.bottom button{width: 665rpx;height: 96rpx;background: #000;color: #fff;font-size: 29rpx;line-height: 96rpx;}
+.bottom text{display: block;width: 100%;font-size: 24rpx;color: #72777e;text-align: center;line-height: 110rpx;}

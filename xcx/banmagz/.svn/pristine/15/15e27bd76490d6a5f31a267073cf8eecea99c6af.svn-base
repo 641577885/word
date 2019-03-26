@@ -1,0 +1,88 @@
+const bm = require('../../utils/common.js')
+var app = getApp()
+var token = app.globalData.token
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    unitLists: [{ id:1,name:'月'}, { id:2,name:'天'}, { id:3,name:'小时'}],
+    unit: 1,
+    lowsalary: '', //最低价格
+    highsalary: '', ///最高价格
+    negotiateLists: [{ id: 0, name: '输入薪资' }, { id: 1, name: '薪资面议' }],
+    negotiate:0,
+
+  },
+  //选择单位
+  chooseUnit:function(e){
+    var _unit=e.target.dataset.index;
+    this.setData({
+      unit: _unit
+    })
+  },
+  choosePrice:function(e){
+    var _negotiate = e.target.dataset.index;
+    this.setData({
+      negotiate: _negotiate
+    })
+  },
+  //输入价格
+  fillPrice:function(e){
+    var that=this;
+    var price_type = e.target.dataset.type;
+    if (price_type=='low'){
+      that.setData({ lowsalary: e.detail.value})
+    }
+    if (price_type == 'high') {
+      that.setData({ highsalary: e.detail.value })
+    }
+  },
+  nextStep:function(){
+    var that=this;
+    if (!that.data.unit){
+      wx.showToast({
+        title: '请选择雇佣周期',
+        icon: 'none'
+      })
+      return false;
+    }
+    if (!that.data.negotiate){
+      if (!that.data.lowsalary || that.data.lowsalary == '') {
+        wx.showToast({
+          title: '请输入最低薪资要求',
+          icon: 'none'
+        })
+        return false;
+      }
+      if (!that.data.highsalary || that.data.highsalary == '') {
+        wx.showToast({
+          title: '请输入最高薪资要求',
+          icon: 'none'
+        })
+        return false;
+      }
+      if (that.data.lowsalary >= that.data.highsalary) {
+        wx.showToast({
+          title: '薪资区间输入有误',
+          icon: 'none'
+        })
+        return false;
+      }
+    }
+    app.jobUnit = that.data.unit;
+    app.joblowsalary = that.data.lowsalary;
+    app.jobhighsalary = that.data.highsalary;
+    app.jobnegotiate = that.data.negotiate;
+    wx.navigateTo({
+      url: 'jobType4',
+    })
+  },
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    this.setData({ work_way: app.jobWorkWay})
+  }
+})

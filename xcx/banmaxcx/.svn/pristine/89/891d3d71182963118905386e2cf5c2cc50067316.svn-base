@@ -1,0 +1,26 @@
+<view class='addWorkContainer'>
+  <view class='addWorkMain'>
+    <view class='multextarea'>
+      <textarea class='multxt' placeholder-class='place-hoder' placeholder='请输入解释内容' bindinput='textinput' maxlength='100'>
+        <view class='word'>{{num}}/100字</view>
+      </textarea>
+    </view>
+
+    <view class='uploading'>
+      <view class='upload showpad'>
+        <view class='uploadtxt'>图片上传</view>
+      </view>
+      <view class='uploadCon'>
+        <view class='uploadimg' wx:for='{{src}}'>
+          <image class='img' mode="" src="{{src[index]}}"></image>
+        </view>
+        <view class='uploadadd' bindtap='uploadadd'>
+          <image class='addimg' mode="" src="/images/worker/addimg_03_03.jpg"></image>
+        </view>
+      </view>
+    </view>
+    <view class='addWorkBottom'>
+      <button class='submit' plain="{{plain}}" bindtap="comfirmnext">提交 </button>
+    </view>
+  </view>
+</view>

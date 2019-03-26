@@ -1,0 +1,100 @@
+*{ margin:0px; padding:0px; border:0px none; outline:none;}
+input{ outline:none;}
+li{ list-style:none;}
+img{ border:0 none; vertical-align:top;}
+em,i,b{ font-style:normal;}
+a{ text-decoration:none; cursor: pointer; color: #000;}
+.clearf{*zoom:1;}
+.clearf:after{ content:"."; clear:both; display:block; height:0; visibility:hidden;}
+#cnzz_stat_icon_1274002644{
+	display: none;
+}
+.top{
+	width: 100%;
+	height: 1.2rem;
+	background: #fff;
+    box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.15);
+    position: fixed;
+    top: 0;
+    z-index: 999;
+}
+.logo{
+	width: 0.62rem;
+	height: 0.62rem;
+	background: url(../img/logo.png) no-repeat;
+	background-size: 100% 100%;
+	position: absolute;
+	top: 0.3rem;
+	left: 0.31rem;
+}
+.title{
+	width: 1.55rem;
+	height: 0.62rem;
+	background: url(../img/title.png) no-repeat;
+	background-size: 100% 100%;
+	position: absolute;
+	top: 0.3rem;
+	left: 1.15rem;
+}
+.top_nav_btn{
+	width: 0.7rem;
+	height: 0.62rem;
+	background: url(../img/top_nav_btn.png) no-repeat;
+	background-size: 100% 100%;
+	position: absolute;
+	top: 0.3rem;
+	right: 0.16rem;
+}
+.top_nav{
+	width: 100%;
+	background: #fff;
+	position: absolute;
+	top: 1.2rem;
+	right: 0;
+	font-size: 0.35rem;
+	padding-bottom:  0.8rem;
+	font-weight: bold;
+	border-top: 0.01rem solid #eee;
+	border-bottom: 0.01rem solid #eee;
+	box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.15);
+}
+.top_nav a{
+	display: block;
+	width: 80%;
+	padding: 0.5rem 0;
+	text-align: center;
+	border-bottom: 0.01rem solid #eee;
+	color: #999;
+	margin: 0 auto;
+}
+
+.foot{
+	width: 100%;
+	height: 3.6rem;
+	background: #ffd200;
+	position: relative;
+}
+.foot_logo{
+	width:3.86rem;
+	height: 0.93rem;
+	background: url(../img/bus_bottom_logo.png) no-repeat;
+	background-size: 100% 100%;
+	position: absolute;
+	top: 0.7rem;
+	left: 50%;
+	margin-left: -1.93rem;
+}
+.foot a{
+	display: block;
+	width: 2.88rem;
+	height: 0.62rem;
+	border: 0.02rem solid #000;
+	border-radius: 0.05rem;
+	text-align: center;
+	line-height: 0.62rem;
+	font-size: 0.24rem;
+	position: absolute;
+	bottom: 0.7rem;
+	left: 50%;
+	margin-left: -1.44rem;
+}

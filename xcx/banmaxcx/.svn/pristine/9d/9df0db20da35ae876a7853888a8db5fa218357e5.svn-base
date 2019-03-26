@@ -1,0 +1,15 @@
+<!--setting/modifyPhone.wxml-->
+<form bindsubmit="{{bind}}">
+<text class='title'>请输入新手机号码</text>
+ <view class='form01_input'>
+    <view class='qh'>中国（+86）</view>
+      <input type='text' value='' name='newlxtel'></input>
+  </view>
+<button formType="submit"  class='form_btn'><text wx:if='{{codeshow}}'>发送验证码</text><text wx:else>{{time}}s后重新发送</text></button>
+</form>
+<form bindsubmit="vcode">
+<!-- <text>请输入验证码</text> -->
+<input type='text' value='' name='vcode' placeholder='请输入验证码' class='form02_input' maxlength='6'></input>
+<button formType="submit" class='form_btn'>提交</button>
+</form>
+

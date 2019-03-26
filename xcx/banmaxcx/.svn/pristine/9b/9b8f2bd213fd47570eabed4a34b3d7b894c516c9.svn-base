@@ -1,0 +1,9 @@
+<!--pages/worker/resume/Email.wxml-->
+<view class='width90 auto margin_top60 '>
+   <input class='font_size35 color999 border_bottome5e5e5 padding_bottom20' placeholder='输入邮箱地址'></input>
+  <view class='font_size33 padding_top20'>班马佳薪将把你的简历附件发送到指定邮箱</view>
+</view>
+ 
+ <navigator hover-class="none"  url='/worker/resume/resumeAccessory'>
+<button class='backgroundbt width90 border_radius50 margin_top60 letter_spacing5' bindtap="getData" bindtap='upload'>发送</button> 
+</navigator>

@@ -1,0 +1,18 @@
+<!--pages/picker/jobPicker.wxml-->
+<scroll-view scroll-y='{{isScroll}}' class='one_list'>
+  <view wx:for='{{joblist}}' wx:for-item="one" wx:key='one' name='joblist'>
+    <view class='list_style {{index == id?"color":""}}' bindtap='one_click' data-text='{{one}}'  data-id="{{index}}">{{one.name}}</view>
+  </view>
+</scroll-view>
+<view class='list_zg' bindtap='zg_click' wx:if='{{list_show}}'></view>
+<scroll-view scroll-y='true' class='two_list' wx:if='{{list_show}}'>
+  <view wx:for='{{twolist}}' wx:for-item="two" wx:key='two'>
+    <view class='list_style_02 {{index == id02?"color":""}}' bindtap='two_click' data-text='{{two}}'  data-id="{{index}}">{{two.name}}</view>
+  </view>
+</scroll-view>
+<scroll-view scroll-y='true' class='three_list' wx:if='{{list_show}}'>
+  <view wx:for='{{threelist}}' wx:for-item="three"wx:key='three'>
+    <view class='list_style_02' bindtap='submit'  data-code = '{{three.id}}'data-name = '{{three.name}}'>{{three.name}}</view>
+  </view>
+</scroll-view>
+

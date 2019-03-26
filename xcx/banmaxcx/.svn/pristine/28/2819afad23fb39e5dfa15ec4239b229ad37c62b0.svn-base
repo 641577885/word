@@ -1,0 +1,53 @@
+<!--wallet/task.wxml-->
+<form report-submit='true' bindsubmit='getFormId'>
+  <!-- <view wx:for='{{lists}}' wx:for-item='vo'> -->
+  <view class="moneyMain">
+    <view class="moneyMainCon">
+      <view class="moneyTitle">日常任务</view>
+      <view class="memberall">
+        <view class="member" wx:for='{{lists}}' wx:for-item='vo' wx:for-index='idx' wx:key='{{lists}}'>
+          <view class="gold gold{{idx}}"></view>
+          <view class='bmmember'>{{vo.name}}</view>
+          <button wx:if='{{vo.count>0}}' class="getmoc {{vo.count>0?'light':''}}" hover-class='none' data-key='{{vo.id}}' data-index='{{idx}}' bindtap="getmoney">领取{{vo.bonus}}元红包</button>
+                <view class='showModel' hidden='{{hidden}}' wx:if='{{vo.count>0}}' hover-class='none' data-key='{{vo.id}}' data-index='{{idx}}'>
+           <!-- <view class='iconImage dount donut-front'>
+                <view class='moneytext'>{{vo.bonus}}</view>
+                  <text class='yuan'>元</text>
+            </view>
+            <view class='iconDeg dount'></view> -->
+             <view class='iconDeg donut-front' bindtap='getmon' hidden='{{showget}}'></view>  
+                  <view class='iconImage dount donut-back' hidden='{{showmon}}'>
+                  <view class='showback'> 
+                      <view class='moneytext'>{{vo.bonus}}</view>
+                        <text class='yuan'>元</text>
+                    </view>
+                </view> 
+               
+              </view>
+          <button wx:else class="getmoc {{vo.count>0?'light':''}}" hover-class='none' form-type='submit' data-key='{{vo.id}}' data-index='{{idx}}'>领取{{vo.bonus}}元红包</button>
+          <view class='upnum'>{{vo.cycle_time}}{{vo.cycle}}上限{{vo.cycle_num}}次</view>
+        </view>
+       
+      </view>
+      
+    </view>
+    <!-- <view class="moneyMainCon showtop"> -->
+    <!-- <view class="moneyTitle">奖励任务</view> -->
+    <!-- <view class="memberall">
+      <view class="member">
+        <view class="gold"></view>
+        <view class='bmmember'>开通区块链简历</view>
+        <!-- <view class="getmoc" tyviewe="10">领取10红包</view> -->
+    <!-- <button class="getmoc" data-id='10' disabled="{{disabled5}}"  bindtap='getmoney' form-type='submit' data-current='5'>领取10红包</button>
+      </view>
+      <view class="member">
+        <view class="gold"></view>
+        <view class='bmmember'>完善个人简历</view>
+        <!-- <view class="getmoc" tyviewe="5">领取5红包</view> -->
+    <!-- <button class="getmoc" data-id='5' disabled="{{disabled6}}"  bindtap='getmoney' form-type='submit' data-current='6'>领取5红包</button>
+      </view> -->
+    <!-- </view> -->
+    <!-- </view> -->
+  </view>
+  <!-- <view class="bottomText">班马佳薪基于腾讯云区块链服务TBaaS</view> -->
+</form>

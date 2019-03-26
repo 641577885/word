@@ -1,0 +1,5 @@
+/* pages/setting/secretSetting.wxss */
+.listItem,.listItem1{ position: relative; height: 87rpx; padding-left: 35rpx;}
+.listTxt{ display: block; border-bottom: 1rpx solid #e5e5e5; font-size: 30rpx; line-height: 87rpx;}
+.listItem::after{ position: absolute; right: 30rpx; top: 32rpx; content: ""; width: 16rpx; height: 25rpx; background:url(//bm.jiangcdn.com/banma/jt_gray.png) no-repeat; background-size: 100%;}
+.resumeSwitch{ position: absolute; right: 0; top:12rpx;}

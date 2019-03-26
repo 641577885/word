@@ -1,0 +1,38 @@
+<view class='evalContanier'>
+   <view class='evalMain'>
+      <view class='evalText'>请对员工本次雇佣给予评价</view>
+      <view class='evaluate'>
+        <view class='evalAbility'>
+           <view class='evalTxt'>能力</view>
+            <view class='darkStarBox' wx:for='{{starlist}}'>
+              <view class='darkStar {{ability>index?"lightStar":""}}' bindtap='change' data-current="{{index+1}}"></view>
+            </view>
+        </view>
+        <view class='evalAbility'>
+           <view class='evalTxt'>服务</view>
+            <view class='darkStarBox' wx:for='{{starlist}}'>
+              <view class='darkStar {{service>index?"lightStar":""}}' bindtap='changesever' data-current="{{index+1}}"></view>
+            </view>
+        </view>
+        <view class='evalAbility'>
+            <view class='evalTxt'>响应</view>
+            <view class='darkStarBox' wx:for='{{starlist}}'>
+              <view class='darkStar {{response>index?"lightStar":""}}' bindtap='changerespond' data-current="{{index+1}}"></view>
+            </view>
+        </view>
+      </view>
+      <view class='evalResult'>
+        <view class='evalLine'>
+        <view class='evalCon'  wx:for='{{item}}' wx:for-item='vo'>
+           <view class='resultTxt showpad {{vo.checked?"light":""}}' bindtap='evlalute' data-current="{{vo.id}}">{{vo.name}}</view>
+           </view>
+        </view>
+      </view>
+      <view class='evalTextarea'>
+         <textarea class='textarea' placeholder='其他想说的' placeholder-class='placehoder' value='{{content}}' bindinput='inputtext' bindblur='inputtext'></textarea>
+      </view>
+   </view>
+   <view class='evalBottom'>
+     <button bindtap="confirm" class='comfirm'>确认评价</button>
+   </view>
+</view>

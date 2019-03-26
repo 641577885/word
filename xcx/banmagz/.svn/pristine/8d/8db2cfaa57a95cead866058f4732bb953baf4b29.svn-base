@@ -1,0 +1,63 @@
+// business/demand/demand02.js
+var app = getApp()
+const bm = require('../../utils/common.js')
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    title:'',
+    id:0,
+    fw_list:[],
+    pick_id:null,
+    skill_name:''
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    var that = this
+    var id = app.Demandid
+    var next_data = app.Demanddata
+    var name = app.Demandonename
+    that.setData({
+      fw_list: next_data,
+      title:name
+    })
+  },
+  selct_click: function (event) {
+    var that = this
+    var id = event.currentTarget.id
+    var fw_list = that.data.fw_list
+    console.log(fw_list)
+    that.setData({
+      pick_id: id,
+      skill_name: fw_list[id].name
+    })
+  },
+  submit: function () {
+    var that = this
+    var skills = that.data.pick_id
+    console.log(skills)
+    var skill_name = that.data.skill_name
+    if (skills == null){
+      wx.showToast({
+        title: '请选择需要什么服务',
+        icon:'none'
+      })
+      return false;
+    }
+    app.Demandskillname = skill_name
+    app.Demandskill = skills
+    wx.navigateTo({
+      url: '/business/demand/demand03',
+    })
+  },
+  edit:function(){
+    wx.navigateBack({
+      delta: 1,
+    })
+  }
+})

@@ -1,0 +1,10 @@
+/* pages/member/chooseRole.wxss */
+.chooseRoleTitle{ display: block; font-size: 56rpx; margin-top: 92rpx; text-align: center}
+.chooseRoleDescript{ display: block; font-size: 28rpx; color: #8e9091; margin-top: 25rpx; text-align: center}
+.chooseRoleItem{ position: relative; width: 558rpx; height: 240rpx; background: #fff; border-radius: 14rpx; box-shadow: 0rpx 10rpx 90rpx 0rpx rgba(13,16,42,0.26); margin: 120rpx auto 60rpx;}
+.worker image{ position: absolute; bottom:0; left: -20rpx; width: 232rpx; height: 312rpx; }
+.boss image{ position: absolute; bottom:0; left: -36rpx; width: 263rpx; height: 336rpx; }
+.chooseRoleDetail{ position: absolute; left: 268rpx; top: 70rpx;}
+.chooseRoleDetail text{ display: block;}
+.chooseRoleIdent{ font-size: 36rpx; font-weight: bold;}
+.chooseroleInfo{ font-size: 24rpx; color: #666;}

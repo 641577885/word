@@ -1,0 +1,62 @@
+<!--pages/worker/my/workinfo.wxml-->
+<!--pages/business/my/personInfo.wxml-->
+<form bindsubmit='{{fastResumeshow?"gonext":"submitinfo"}}'>
+<fastResume fastResume_rate='{{fastResume_rate}}'rest='{{rest}}'fastResume_text='{{fastResume_text}}' wx:if='{{fastResumeshow}}'></fastResume>
+<view class='b_main'>
+  <view class='b_input_avatar' bindtap='upavatar'>
+    <text class='b_input_title_01'>头像</text>
+    <view class='b_input_right_avatar'>
+      <image src='{{avatar}}' mode='aspectFill'></image>
+    </view>
+  </view>
+  <navigator class='b_input' hover-class='none' url='/pages/fill/inputFill?placeholder=请输入&num=10&dataName=name&content={{name}}'>
+    <text class='b_input_title_01'>姓名</text>
+    <view class='b_input_right'>
+      <input type='text' id='b_input_up' value='{{name}}' cursor='0' name='name'disabled="true"></input>
+      <image src='/images/position/jt_gray.png' class='b_input_icon'></image>
+    </view>
+  </navigator>
+  <view class='b_input'>
+    <text class='b_input_title_01'>性别</text>
+    <view class='b_input_right'>
+      <picker bindchange="bindsexChange" value="{{sexindex}}" range="{{sex}}" name='sex'>
+        <view class="picker b_input_up">
+          {{sex[sexindex]}}
+        </view>
+      </picker>
+      <image src='/images/position/jt_gray.png' class='b_input_icon'></image>
+    </view>
+  </view>
+  <view class='b_input'>
+    <text class='b_input_title_01'>参加工作时间</text>
+    <view class='b_input_right'>
+      <picker mode='date' bindchange="binddateChange" value="{{date}}" fields='month' name='date' start='1950-01' end='2099-12'>
+        <view class="picker b_input_up">
+          {{date}}
+        </view>
+      </picker>
+      <image src='/images/position/jt_gray.png' class='b_input_icon'></image>
+    </view>
+  </view>
+  <navigator class='b_input'hover-class='none' url='/pages/fill/inputFill?placeholder=请输入&num=20&dataName=wx_code&content={{wx_code}}'>
+    <text class='b_input_title_01'>微信号</text>
+    <view class='b_input_right'>
+      <input type='text' id='b_input_up' value='{{wx_code}}' name='wx_code'></input>
+      <image src='/images/position/jt_gray.png' class='b_input_icon'></image>
+    </view>
+  </navigator>
+  <view class='b_input_02'>
+    <text class='b_input_title_01'>出生年月</text>
+    <view class='b_input_right'>
+       <picker mode='date' bindchange="bindbirthChange" value="{{birth}}" fields='month' name='birth'start='1950-01'end='{{nowdate}}'>
+        <view class="picker b_input_up">
+          {{birth}}
+        </view>
+      </picker>
+      <image src='/images/position/jt_gray.png' class='b_input_icon'></image>
+    </view>
+  </view>
+</view>
+  <button class='btn' form-type='submit' wx:if='{{fastResumeshow}}'>下一步</button>
+  <button class='btn' form-type='submit' wx:else>保存</button>
+</form>

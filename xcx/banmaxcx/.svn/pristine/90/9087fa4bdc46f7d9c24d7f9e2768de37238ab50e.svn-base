@@ -1,0 +1,9 @@
+/* pages/setting/coSearch.wxss */
+page{ background: #f4f4f4; }
+.searchCantainer{ position: relative; width: 650rpx; margin: 16rpx auto 0;}
+.searchCantainer input{ position: relative; width: 650rpx; height: 56rpx; padding: 0 55rpx; font-size: 26rpx; color: #b2b2b2; background: #fff; border: 1rpx solid #e8e8e8; border-radius: 28rpx; box-sizing: border-box; }
+.searchCantainer input::before{ position: absolute; top: 12rpx; left: 20rpx; display: block; width: 28rpx; height: 28rpx; content: ""; background: url(//bm.jiangcdn.com/banma/ss.png) no-repeat; background-size: 100%;}
+.inplaceholder{ color: #b2b2b2;}
+.companyList{ position: absolute; top: 56rpx; left: 25rpx; width: 600rpx; height: auto; background: #fff;}
+.companyListItem{ height: 86rpx; padding: 0 30rpx; line-height: 86rpx; font-size: 30rpx; color: #b6b6b6; border: 1rpx solid #e8e8e8; border-top: 0 none; }
+.companyListItem text{ color: #ffa200;}

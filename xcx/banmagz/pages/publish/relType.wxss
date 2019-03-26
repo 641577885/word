@@ -1,0 +1,44 @@
+/* pages/publish/relType.wxss */
+page{background: #f5f5f5;height: 100%}
+.relType_top{width: 690rpx;height: 87rpx;background: #fede01;padding: 0 30rpx;display: flex;align-items: center;justify-content: space-between;}
+.center image{width: 25rpx;height: 32rpx;}
+.message image{width: 30rpx;height: 30rpx;}
+.top_btn{font-size: 30rpx;height: 83rpx;line-height: 83rpx;}
+.on{font-weight: bold;border-bottom: 4rpx solid #000}
+.tab-box{width: 100%;height: 100%}
+/* 发布需求 */
+
+.demand_01_title{width: 654rpx;height: 98rpx;background: #fff;margin: 20rpx auto 0;line-height: 98rpx;font-size: 28rpx;color: #999999;padding: 0 30rpx;box-shadow: 0px 2px 15px 0px rgba(0, 0, 0, 0.15);border-radius: 3rpx;}
+.demand_01_content{width:714rpx;background: #fff;margin: 20rpx auto 0;line-height: 98rpx;box-shadow: 0px 2px 15px 0px rgba(0, 0, 0, 0.15);border-radius: 3rpx;padding: 20rpx 0;}
+.demand_01_icon{width: 34rpx;height: 34rpx;border: 2rpx solid #c9c9c9;border-radius: 50%;position: relative}
+.demand_01_icon image{width: 38rpx;height: 38rpx;position: absolute;top: -1rpx;left:-1rpx}
+.demand_01_list{width: 654rpx;height: 97rpx;border-bottom: 1rpx solid #e5e5e5;margin-left: 30rpx;padding-right: 30rpx;display: flex;align-items: center;border-radius: 3rpx;}
+/* .demand_01_list_icon{width: 32rpx;height: 32rpx;border: 2rpx solid #c9c9c9;border-radius: 50%;position: relative;}
+.demand_01_list_icon image{width: 36rpx;height: 36rpx;position: absolute;top: -2rpx;left: -2rpx} */
+.demand_01_list_text{font-size: 28rpx;margin-left: 24rpx;}
+.demand_02_title{width: 654rpx;height: 98rpx;background: #fff;margin: 20rpx auto 0;line-height: 98rpx;font-size: 28rpx;color: #333333;padding: 0 30rpx;box-shadow: 0px 2px 15px 0px rgba(0, 0, 0, 0.15);border-radius: 3rpx;display: flex;align-items: center;justify-content: space-between}
+.demand_02_title_right{color: #0060ff;font-size: 28rpx;line-height: 98rpx;}
+.demand_01_content_02{width:714rpx;background: #fff;margin: 20rpx auto 0;line-height: 98rpx;box-shadow: 0px 2px 15px 0px rgba(0, 0, 0, 0.15);border-radius: 3rpx;padding: 20rpx 0;overflow: hidden}
+.demand_01_fw{height: 56rpx;border: 1rpx solid #bdbebe;border-radius: 5rpx;float: left;margin: 0 15rpx 20rpx;font-size: 25rpx;line-height: 56rpx;padding: 0 20rpx;}
+/* 需求第三页 */
+.demand_03_main{width: 690rpx;background: #fff;padding: 0 30rpx;}
+.demand_03_content_01{width: 100%;height: 87rpx;border-bottom:1rpx solid #e5e5e5;display: flex;justify-content: space-between;align-items: center;}
+.demand_03_content_title{font-size: 30rpx;color: #000;display: block;height: 87rpx;line-height: 87rpx;border-bottom: 6rpx solid rgb(254, 222, 0);}
+.demand_03_content_01_input{width: 690rpx;height: 87rpx;font-size: 30rpx;line-height: 87rpx;}
+.demand_03_main_02{width: 690rpx;background: #fff;padding: 0 30rpx 30rpx;margin-top: 30rpx;}
+.demand_03_main_02_textarea{width: 628rpx;height: 230rpx;border: 1rpx solid #dae2f8;background: #f4f4f4;border-radius: 10rpx;margin-top: 30rpx;padding: 30rpx;font-size: 30rpx;color: #8e9091;position: relative}
+.demand_03_num{font-size: 30rpx;color: #8e9091;position: absolute;right: 30rpx;bottom: 30rpx;}
+.demand_03_mb_list{width: 100%;height: 58rpx;margin-top: 20rpx;display: flex;}
+.demand_03_mb_style{width: 138rpx;height: 56rpx;line-height: 56rpx;font-size: 25rpx;text-align: center;border-radius: 5rpx;margin-right:30rpx; }
+.on{background: #fede01;border: 1rpx solid #fede01;}
+.off{border: 1rpx solid #bdbebe;}
+.demand_03_main_03{width: 690rpx;background: #fff;padding: 0 30rpx;margin-top: 30rpx;}
+.demand_03_main_03_input{width: 100%;height: 87rpx;border-bottom: 1rpx solid #e5e5e5;display: flex;justify-content: space-between;align-items: center}
+.demand_03_main_03_input_02{width: 100%;height: 87rpx;display: flex;justify-content: space-between;align-items: center}
+.demand_03_input_title{font-size: 34rpx;}
+.demand_03_input_main{display: flex;align-items: center;}
+.demand_03_input_main input{text-align: right;font-size: 30rpx;margin-right: 10rpx;}
+.demand_03_input_main text{font-size: 30rpx;}
+.btnBlack{width:690rpx;height: 96rpx;margin-top: 20rpx}
+.demand_03_picker{font-size: 30rpx;width: 500rpx;text-align: right}
+.click_on{background: #fede01}

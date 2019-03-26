@@ -1,0 +1,96 @@
+<view class='positionmoveContainer'>
+    <view class='search'>
+      <view class='section'>
+        <!-- <view cla></view> -->
+        <!-- <view class='serchbtn' bindtap="toSearch"> -->
+                   <image style="width: 28rpx; height:24rpx;;" class='serchbtn' bindtap="toSearch" mode="{{item.mode}}" src="../../../images/worklist/ss.png"></image>
+
+        <!-- </view> -->
+        <input  bindinput="bindKeyInput" class='searchpos' placeholder="职位太多，搜一下" bindconfirm=""toSearch/>
+      </view>
+    </view>
+     <view class="nav_choose">
+        <view class="nav_son">
+             <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+                <view wx:if="{{indexH==0}}" class="picker">全部网站</view>
+                <view wx:else class="picker">{{array[indexH]}}</view>
+                  <image class='daosanjiao'  src='../../../images/worklist/sanjiao.jpg'></image> 
+            </picker>
+        </view>
+        <view class="nav_son">
+             <picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
+                <view class="picker  border">
+                    <view wx:if="{{indexS==0}}" class="picker">工作城市</view>
+                    <view wx:else class="picker">{{indexS[0]}},{{indexS[1]}},{{indexS[2]}}</view>
+                      <image class='daosanjiao'  src='../../../images/worklist/sanjiao.jpg'></image> 
+                </view>
+            </picker>
+        </view>
+        <view class="nav_son">
+            <picker mode="date" bindchange="bindDateChange" start="2015-09-01" end="2017-09-01" range-key="name">
+                <view class="picker">
+                    <view wx:if="{{indexX==0}}" class="picker">发布时间</view>
+                    <view wx:else class="picker">{{indexX}}</view>
+                      <image class='daosanjiao'  src='../../../images/worklist/sanjiao.jpg'></image> 
+                </view>
+            </picker>
+        </view>
+    </view>    
+    <view class='positionmoveMain'>
+        <view class='company'>
+          <view class='companytext'>杭州墨匠信息技术有限公司</view>
+          <view class='chagecompany'>
+            <navigator url="" hover-class="navigator-hover">更换公司></navigator>
+          </view>
+        </view>
+        <view class='includeList'>
+    <scroll-view class='box' scroll-y bindscrolltoupper="evupper" bindscrolltolower="evlower">
+        <view class='positionList'  wx:for='{{item}}' wx:key="unique">
+          <view class='workcontent'>
+             <view class='contentleft'>{{item.name}}</view>
+             <view class='contentcenter'>拉勾网</view>
+              <view class='contentright'>
+                 <!-- <navigator url="" hover-class="navigator-hover">搬家></navigator> -->
+                 <view bindtap='movehome'>搬家></view> 
+              </view>
+          </view>
+          <view class='workstatu'>
+             <view class='sitiation borderright'>{{item.city}} </view>
+             <view class='sitiation borderright'>{{item.price}}</view>
+             <view class='sitiation borderright'>{{item.level}}</view>
+             <view class='sitiation'>{{item.year}}</view>
+          </view>
+          <view class='worktime'>发布时间：{{item.worktime}}</view>
+
+        </view>
+          </scroll-view>
+          </view>
+    </view>
+    <view class='showdark {{isshow?"show":"hide"}}'>
+    
+      <!-- <view class="wrap">  
+        <view class="top">  
+          <canvas class="cir" style="width:236px; height:200px;" canvas-id="canvasArc">  
+          </canvas>  
+        
+          <view class="percent">50%</view>  
+          <view class='takedata'>正在提取简历数据</view>
+    
+        </view>  
+      </view>   -->
+      <view class="container">
+          <view class='progress_box'>
+              <canvas class="progress_bg"   canvas-id="canvasProgressbg">  </canvas>
+              <canvas class="progress_canvas"   canvas-id="canvasProgress">  </canvas>
+              <view class="progress_text">
+                  <text class='progress_info'> {{progress_txt}}</text>
+              </view> 
+          </view>
+          <view class='takedata'>正在提取简历数据</view>
+      </view>
+    </view>
+     <view class='positionMoveBottom'>
+          <button class='comfirmlog' plain="{{plain}}" bindtap="primary">没有找到？快捷发布职位 </button>
+      </view>
+    
+</view>

@@ -1,0 +1,80 @@
+<!--pages/demandList/index.wxml-->
+<view class='tapbar'>
+  <picker>
+    <view class='pickerItem'>产品经理
+      <image mode='aspectFill' src='/images/worklist/xia.png'></image>
+    </view>
+  </picker>
+  <view class='screenSeach' bindtap='checkBox'>
+    <image mode='aspectFill' src='/images/worklist/screen.png'></image>
+  </view>
+</view>
+<view class='screenCantainer'>
+  <view>
+    <text>全职</text>
+    <image mode='aspectFill' src='/images/worklist/sanjiao.jpg'></image>
+  </view>
+  <view>
+    <text>公司</text>
+    <image mode='aspectFill' src='/images/worklist/sanjiao.jpg'></image>
+  </view>
+</view>
+<view class='viewCantainer'>
+  <scroll-view scroll-y style='height:100%'>
+    <navigator url='' hover-class='none'>
+      <view class='viewItemCantainer'>
+        <view class='viewItem'>
+          <view class='viewTitle'>
+            <view class='titleTxt'>构建一个电商平台</view>
+            <view class='priceTxt'>￥5000</view>
+          </view>
+          <view class='viewTag'>
+            <view class='tagCantainer'>
+              <view class='tagItem'>ssss</view>
+            </view>
+            <view class='timeTxt'>04月02日</view>
+          </view>
+          <view class='contentTxt'>构建一个电商平台，构建一个电商平台，构建一个电商平台，构建一个电商平台，构建一个电商平台……</view>
+          <view class='sellerCantainer'>
+            <view class='sellerInfo'>
+              <image mode='aspectFill' src=''></image>
+              <text>王新－CTO</text>
+            </view>
+            <view class='companyItem'>海康威视集团－已上市</view>
+          </view>
+        </view>
+      </view>
+    </navigator>
+  </scroll-view>
+  <block wx:if="{{false}}">
+    <view class='empty_icon' style='top:380rpx'>
+      <image src='/images/empty/empty_bg.png'></image>
+    </view>
+    <view class='empty_text' style='top:860rpx'>
+      <view class='empty_text_01'>{{empty_text_01}}</view>
+      <view class='empty_text_02'>{{empty_text_02}}</view>
+    </view>
+  </block>
+</view>
+<view class='silderCantainer {{showBox?"action":""}}'>
+  <view class='cancelView' bindtap='checkBox'></view>
+  <view class='firstView'>
+    <view class='{{item.id==demandId?"action":""}}' wx:for="{{demandList}}" wx:key id="{{item.id}}" bindtap="checkdemand">{{item.name}}</view>
+  </view>
+  <view class='secondView'>
+    <scroll-view scroll-y style='height:100%'>
+      <view class='secviewItem' wx:for="{{demandList[demandId].son}}" wx:key data-id='{{item.id}}' catchtap="checkItem">
+        <view class='viewicon '>
+          <icon type='success' size='22' wx:if='{{item.checked}}'></icon>
+        </view>
+        <view class='secviewTxt'>{{item.name}}</view>
+      </view>
+    </scroll-view>
+  </view>
+  <form report-submit='true' bindsubmit='getFormId'>
+    <view class='silderButton'>
+      <button class='reset' hover-class='none' form-type='submit' bindtap="resetCheck">重置</button>
+      <button class='submit' hover-class='none' form-type='submit'>确定</button>
+    </view>
+  </form>
+</view>

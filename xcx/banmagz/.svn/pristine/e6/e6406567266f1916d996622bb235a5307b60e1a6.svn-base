@@ -1,0 +1,23 @@
+page{ background: #f5f5f5;}
+.onlineContanier{width: 100%;height: 100%}
+.onlineMain{width: 687rpx;margin: 0 auto}
+.box{height: 100%} 
+.showtop{margin-top: 30rpx}
+.onlineList{width: 100%}
+.listTopimg{width: 138rpx;height: 138rpx;border-radius: 2rpx;border: 1rpx solid #dfdfdf;margin-right: 26rpx; overflow: hidden}
+.listTopimg image{ width: 100%; height: 100%}
+.listTop{padding: 34rpx 0 38rpx 0;display: flex}
+.listToptxt{font-size: 34rpx;width:372rpx;padding-right: 26rpx;}
+.listBottom{display: flex;justify-content: space-between;padding-bottom:18px;border-bottom:1rpx solid #eeeeee;}
+.listTopprice{font-size: 36rpx;color: #fe5a01;padding-right: 0}
+.listBottomstatu,.listBottomtime{font-size: 26rpx;color: #a9a9a9}
+.red{color: red}
+
+.emptyCantainer{ position: absolute; top: 0; bottom: 0; width: 100%; padding-top: 130rpx;}
+.emptyImg{ width: 612rpx; height: 578rpx; margin: 0 auto}
+.emptyImg image{ width: 612rpx; height: 578rpx;}
+.emptyInfo{ text-align: center}
+.emptyTxt1{ font-size: 42rpx; color: #333333;}
+.emptyTxt2{ font-size: 24rpx; color: #999999; margin-top: 10rpx;}
+.emptyBtnCantainer{ position: absolute; bottom: 0; left: 0; right:0; padding: 30rpx;}
+.emptyBtnCantainer button{ width: 100%; background: #000; color: #fff;}

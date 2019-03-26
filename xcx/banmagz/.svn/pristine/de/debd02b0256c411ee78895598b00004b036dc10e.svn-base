@@ -1,0 +1,1 @@
+<web-view src='http://www.ksbanma.com/html/applyticket/apply.html' bindmessage="msgHandler"></web-view>

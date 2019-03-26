@@ -1,0 +1,8 @@
+<!--pages/setting/coSearch.wxml-->
+<view class='searchCantainer'>
+  <input type='text' placeholder='请输入公司名称' placeholder-class="inplaceholder" bindinput='searchCompany'></input>
+  <view class='ts' wx:if='{{ts_show}}'>该公司暂未使用班马佳薪，请放心使用</view>
+  <view class='companyList' wx:if="{{showList}}">
+    <view class='companyListItem' wx:for="{{list}}" wx:key="key" data-id="{{item.id}}" bindtap='ckCompany'>{{item.name}}</view>
+  </view>
+</view>

@@ -1,0 +1,104 @@
+/* pages/business/list/resume.wxss */
+.resumeCantainer{ position: absolute; top: 0; left: 0; width: 100%; height: 100% }
+.swiperCantainer{ width: 100%; height: 100%;}
+.swiperCantainer swiper-item{ overflow-y:  scroll}
+.resumeVipTop{ width: 100%; height: 100%; background: url(//bm.jiangcdn.com/banma/business/resumeBg.png) no-repeat; background-size: cover; overflow: hidden}  
+.resumeVipthumbCantainer{ position: relative; width: 200rpx; height: 200rpx; margin: 40% auto 0;}
+.resumeVipthumb{ width:100%; height: 100%; border: 1rpx solid #fff; border-radius: 50%; overflow: hidden}
+.resumeVipthumb image{ width: 100%;}
+.man::after{ position: absolute; top: 10rpx; right: 10rpx; display: block; width: 38rpx; height: 38rpx;content: ""; background: url(//bm.jiangcdn.com/banma/sexIcon.png) no-repeat; background-size: 100%; }
+.woman::after{ position: absolute; top: 10rpx; right: 10rpx; display: block; width: 38rpx; height: 38rpx;content: ""; background: url(//bm.jiangcdn.com/banma/sexIcon.png) no-repeat 0 -38rpx; background-size: 100%; }
+.resumeName{ display: block; font-size: 36rpx; color: #fff; text-align: center; margin-top: 35rpx;}
+.resumeJob{ display: block; font-size: 22rpx; color: #fff; opacity: 0.5; text-align: center; margin-top: 10rpx;}
+.resumeIcon{ display: block; width: 28rpx; height: 26rpx; background: url(//bm.jiangcdn.com/banma/levelIcon.png) no-repeat; background-size: 100%; margin: 25rpx auto 0;}
+.resumeAbilty{ display: flex; width: 440rpx; justify-content: space-around;align-items: center; margin: 35rpx auto 0;}
+.resumeAbilty view{ flex: 1; height: 22rpx; line-height: 22rpx; font-size: 24rpx; color: #fff; text-align: center; border-right: 1rpx solid rgba(255,255,255,0.3);}
+.resumeAbilty view:last-child{ border-right: 0 none;}
+.resumeSelfDesc{ width: 450rpx; line-height: 30rpx; font-size: 22rpx; color: rgba(255,255,255,.5); text-align: center; margin: 30rpx auto 0;}
+.viewCantainer{ display: flex; align-items: center; justify-content: space-around; padding: 0 45rpx; margin-top: 50rpx;}
+.viewCantainer view{ width: 55rpx; height: auto; }
+.viewCantainer view::before{ content: ""; display: block; width: 55rpx; height: 52rpx;  background-size: 100%;}
+.viewIcon1::before{background: url(//bm.jiangcdn.com/banma/viewIcon_01.png) no-repeat;}
+.viewIcon2::before{background: url(//bm.jiangcdn.com/banma/viewIcon_02.png) no-repeat;}
+.viewIcon3::before{background: url(//bm.jiangcdn.com/banma/viewIcon_03.png) no-repeat;}
+.viewIcon4::before{background: url(//bm.jiangcdn.com/banma/viewIcon_04.png) no-repeat;}
+.viewCantainer view text{ display: block; text-align: center; font-size: 22rpx; color: #fff}
+.resumeTopBottom{ position: absolute; bottom: 0; left: 0; right: 0; display: flex; justify-content: space-between; align-items: center;}
+.resumeVipBtn{ width: 295rpx; height: 98rpx; line-height: 98rpx; text-align: center;}
+.resumeVipBtn text{ font-size: 30rpx; color: #fff;}
+.playvideo{ position: absolute; bottom: 0; left: 50%; margin-left: -121rpx; width: 242rpx; height: 139rpx; background: url(//bm.jiangcdn.com/banma/playIcon.png) no-repeat; background-size: 100%;}
+.resumeBody{ position: relative; height: 100%; }
+.resumeDetail{ position: relative; padding: 50rpx 46rpx 50rpx 38rpx; background: #fff;}
+.resumethumb{ display: inline-block; background: #000; width: 145rpx; height: 145rpx; border-radius: 10rpx; overflow: hidden}
+.resumethumb image{ width: 100%;}
+.reasumeInfo{ display: inline-block; margin-left: 30rpx; vertical-align:top;}
+.resumeInfoName{ font-size: 36rpx; color: #000; vertical-align: middle}
+.resumeInfoJob{ display: inline-block; padding: 0 12px; border-radius: 5rpx; height: 40rpx; line-height: 40rpx; font-size: 22rpx; color: #482606; background: #fffaec; vertical-align: middle; margin-left: 10rpx;}
+.resumeInfoAbilty{ height: 45rpx; margin-top: 8rpx;}
+.resumeInfoAbilty view{ display: inline-block; width: 125rpx; height: 22rpx; line-height: 22rpx; font-size: 24rpx; color: #000; border-right: 1rpx solid #b2b2b2; margin-right: 25rpx; vertical-align: middle;}
+.resumeInfoAbilty view:last-child{ border: 0 none}
+.resumeInfoAbilty view text{ font-weight: bold;}
+.resumeInfoAbilty view text.red{ color:#ff3232; }
+.resumeInfoAbilty view text.green{ color:#08b278; }
+.resumeTip{ font-size: 24rpx; height: 45rpx; line-height: 45rpx; color: #ff5240; margin-top: 8rpx;}
+.basicTip{ border-top: 100rpx solid #fafafa;}
+.resumeTip::before,.basicTip::before{ content: ""; display: inline-block; width: 26rpx; height: 26rpx; background: url(//bm.jiangcdn.com/banma/resumeIcon.png) no-repeat; background-size: 35rpx; vertical-align: middle; margin-top: -4rpx; margin-right: 15rpx;}
+.resumeReport{ position: absolute; right: 46rpx; top: 67rpx; width: 24rpx; height: 22rpx; background: url(//bm.jiangcdn.com/banma/resumeIcon.png) 0 -25rpx no-repeat; background-size: 35rpx;}
+.resumeItem{ padding: 20rpx 0 0 30rpx; background: #fff; border-top: 29rpx solid #fafafa;}
+.resumeTitle{ position: relative; height: 68rpx; line-height: 68rpx; font-size: 26rpx; color: #333; border-bottom: 1rpx solid #eeeeee}
+.resumeTitle::after{ content: ""; position: absolute; bottom: 0; left: 0; width: 103rpx; height: 3rpx; background: #fede01}
+.resumeBasic{ height: 66rpx; line-height: 66rpx;}
+.resumeBasic text{ font-size: 26rpx; color: #333; margin-right: 25rpx;}
+.resumeBasic text::before{ content: ""; display: inline-block; width: 28rpx; height: 24rpx; background-size: 100%; vertical-align: middle; margin-right: 10rpx; margin-top: -3rpx;}
+.eduIcon::before{ background: url(//bm.jiangcdn.com/banma/basicInfo_01.png) no-repeat;}
+.expIcon::before{ background: url(//bm.jiangcdn.com/banma/basicInfo_02.png) no-repeat;}
+.ageIcon::before{ background: url(//bm.jiangcdn.com/banma/basicInfo_03.png) no-repeat;}
+.expItem,.projectItem,.JobItem{ padding: 30rpx 40rpx 30rpx 0; border-bottom: 1rpx solid #eeeeee; }
+.JobItem{ border: 0 none}
+.jobindus{ font-size: 26rpx; color: #999; line-height: 50rpx;}
+.jobindus text{ margin-right: 10rpx;}
+.expItemTop,.projectItemTop,.projectItemTop2{ display: flex; align-items: center; justify-content: space-between;}
+.expItemJob,.projectName{ font-size: 34rpx;font-weight: bold }
+.projectItemTop2 view{ font-size: 26rpx; color: #999; line-height: 50rpx;}
+.expItemTime{ font-size: 26rpx; color: #999;}
+.expItemDescript,.projectDescript{ font-size: 26rpx; line-height: 38rpx; color: #333; margin-top: 28rpx;}
+.expItemCompany{ font-size: 26rpx; color: #8b8b8b; margin-top: 20rpx;}
+.projectJob{ font-size: 26rpx; color: #000}
+.projectCompany{ font-size: 26rpx; color: #666666; margin-top: 20rpx;}
+.resumeBottomTip{ height: 76rpx; line-height: 76rpx; background: #fafafa; font-size: 22rpx; color: #999999; text-align: center;}
+.floatBtnCantainer{ position: fixed; bottom: 0; left: 0; display: flex; width: 100%; height: 96rpx; padding: 10rpx; background: #fff; align-items: center; box-sizing: border-box}
+.floatContact,.noLineContact{  width:452rpx; height: 76rpx; line-height: 76rpx; font-size: 30rpx; color: #000; text-align: center;background: linear-gradient(to right,#fede01,#fdc100);  border-top-left-radius: 10rpx; border-bottom-left-radius: 10rpx;}
+.floatHire{ width: 278rpx; height: 76rpx; line-height: 76rpx; font-size: 30rpx; color: #fff; text-align: center;background: linear-gradient(to right,#ff6440,#ff3232); border-top-right-radius: 10rpx; border-bottom-right-radius: 10rpx;}
+.floatCircleCantainer{ position: fixed; bottom: 10rpx; right: 43rpx; width: 110rpx; z-index: 5}
+.floatCircle { position: relative; background: linear-gradient(to bottom,#fede01,#fdc200); border-radius: 50%; box-shadow: 0rpx 16rpx 54rpx 0rpx rgba(254, 222, 1, 0.77); width: 110rpx; height: 110rpx; margin-bottom: 45rpx;}
+.floatCircle::before{ position: absolute; top: 50%; left: 50%; margin-left: -25rpx; margin-top: -26rpx; content: ""; display: block; width: 55rpx; height: 52rpx;}
+.collectIcon::before{ background: url(//bm.jiangcdn.com/banma/viewIcon_01.png) no-repeat; background-size: 100%;}
+.shareIcon::before{ background: url(//bm.jiangcdn.com/banma/viewIcon_02.png) no-repeat; background-size: 100%;}
+.resumeBasicTop{ position: relative; width: 100%; height: auto; background: #000; padding: 130rpx 0 160rpx 0;}
+.resumeBasicTop .resumeVipthumbCantainer{ margin: 0 auto;}
+.resumeBasicStatus { display: flex; justify-content: space-around; padding:45rpx 45rpx 0 19rpx; border-radius: 34rpx; background: url(//bm.jiangcdn.com/banma/basicBg.png) no-repeat; background-size: 100%; position: absolute; left: 50%; bottom: -150rpx; width: 724rpx; height: 271rpx; margin-left: -348rpx; box-sizing: border-box; z-index: 1;}
+.resumeBasicStatus view{ width: 330rpx; height: 76rpx;}
+.resumeBasicStatus view:first-child{ border-right: 1rpx solid #eee;}
+.resumeBasicStatus view text{ display: block; text-align: center; line-height: 38rpx;}
+.resumeBasicStatus view text:first-child{ font-size: 38rpx; color: #333; font-weight: bold}
+.resumeBasicStatus view text:last-child{ font-size: 26rpx; color: #333;}
+.basicTip{ height: 88rpx; line-height: 88rpx; background: #fff; font-size: 24rpx; color: #ff5240; text-align: center}
+.shareResume{ padding: 0; background: none; margin: 0; line-height: 40rpx;}
+.noLineContact{ width: 100%;}
+.videoCover{ position: absolute; top: 0; bottom: 0; left: 0; right: 0; display: flex; align-items: center; width: 100%; height: 100%; background: #000; z-index: 11;}
+#myVideo{ width: 100%;}
+
+.sharebutton::after{
+  border:none;
+  }
+action-sheet{background: #fff}
+.action_item{height: 140rpx;width: 690rpx;margin: 0 auto;border-bottom: 1rpx solid #ccc;padding: 0;}
+.action_item_02{height: 140rpx;width: 690rpx;margin: 0 auto;padding: 0}
+.sharebutton{background: #fff;height: 100%;line-height: 140rpx;display: flex;align-items: center;}
+.sharebutton image{width: 86rpx;height: 86rpx;}
+.sharebutton text{margin-left: 42rpx;font-size: 36rpx;}
+canvas{width: 100%;height:100%;background: #000;z-index: 6}
+
+.btn{width: 100%;height:80rpx;background: #fff;position: fixed;bottom: 0;left: 0;text-align: center;line-height: 80rpx;font-size: 30rpx;}
+.btn_open{background: linear-gradient(to right, #fede01 , #fdc100);}
+.btn_close{background: #ccc}

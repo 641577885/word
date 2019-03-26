@@ -1,0 +1,155 @@
+// pages/worker/details/job.js
+const bm = require('../../utils/common.js')
+var webim = require('../../utils/webim.js');
+const app = getApp();
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    id:Number,
+    demand:{},
+    company:{},
+    seller: {},
+    company_add: '',
+    rec:[
+      {
+        rec_name:'产品经理',
+        rec_price:'10k－20k',
+        rec_info:'杭州 ｜ 西兴 ｜ 3-5年 ｜大专',
+        rec_company:'杭州白财金融信息服务有限公司 A轮',
+        rec_pos:'王新－CTO',
+        rec_time:'04月02日',
+        rec_online:true
+      },
+    ]
+  },
+  golocation: function () {
+    var _that = this
+    var add = _that.data.company_add
+    wx.request({
+      url: 'http://apis.map.qq.com/ws/geocoder/v1/?address=' + add + '&key=7WUBZ-6XNCG-RD7QM-I6DB4-U7UGS-WUFGB',
+      success: function (data) {
+        wx.openLocation({
+          latitude: data.data.result.location.lat,
+          longitude: data.data.result.location.lng,
+          name: add,
+          scale: 28
+        })
+      }
+    })
+
+  },
+  link2Dialog: function () {
+    var that = this;
+    wx.setStorageSync('relationship', { id: that.data.id, profession: that.data.demand.profession, type: 2 })
+    var add_friend_item = [
+      {
+        'To_Account': that.data.seller.id,  //用户Id
+        "AddSource": "AddSource_Type_Unknow",
+        "AddWording": "" //加好友附言，可为空
+      }
+    ];
+    var options = {
+      'From_Account': app.globalData.loginInfo.identifier,
+      'AddFriendItem': add_friend_item
+    };
+    webim.applyAddFriend(
+      options,
+      function (resp) {
+        wx.navigateTo({
+          url: '/message/dialog?skipid=' + that.data.seller.id,
+        })
+      },
+      function (err) {
+        if (err.ErrorInfo.indexOf('SNS_FRD_ADD_FRD_EXIST')) {
+          app.getAllFriend();
+          that.sendChatInfo();
+          wx.navigateTo({
+            url: '/message/dialog?skipid=' + that.data.seller.id,
+          })
+        } else {
+          console.warn(err);
+        }
+      }
+    );
+  },
+  sendChatInfo: function () {
+    var that = this;
+    bm.requsetData("/c/action/sendChatInfo", "post", { to_uid: that.data.seller.id, obj_id: that.data.id, type: "demand" }, function (res) {
+      if (!res.data.errcode) {
+
+      } else {
+        wx.showToast({
+          title: res.data.errmsg,
+          icon: "none"
+        })
+      }
+    })
+  },
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    var that = this
+    that.setData({ id: options.id })
+    if (app.globalData.auth) {
+      that.getdata()
+    } else {
+      app.authCallback = auth => {
+        if (auth == 0) {
+          that.setData({
+            isShowDialog: false
+          })
+        }
+      }
+      that.getdata()
+    }
+  },
+  getdata:function(){
+    var that = this
+    bm.requsetData('/c/demand/get', 'get', { id:that.data.id }, function (res) {
+      if (!res.data.errcode) {
+        if (res.data.company.address.length == 0) {
+          var add = '暂未填写地址'
+        } else {
+          var add = res.data.company.address
+        }
+        that.setData({
+          demand: res.data.demand,
+          seller: res.data.seller,
+          company: res.data.company,
+          company_add: add
+        })
+        wx.setNavigationBarTitle({
+          title: res.data.demand.profession_name,
+        })
+      } else {
+        wx.showToast({
+          title: res.data.errmsg,
+          icon: 'none',
+          success: function () {
+            setTimeout(function () {
+              wx.navigateBack()
+            }, 1000)
+          }
+        })
+      }
+    })
+  },
+  onShareAppMessage: function (ops) {
+    return {
+      title: '',
+      path: 'pages/details/xqDetails?id=' + this.data.id,
+      success: function (res) {
+        // 转发成功
+        console.log("转发成功:" + JSON.stringify(res));
+      },
+      fail: function (res) {
+        // 转发失败
+        console.log("转发失败:" + JSON.stringify(res));
+      }
+    }
+  }
+})

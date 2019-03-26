@@ -1,0 +1,17 @@
+<!--business/my/invitation.wxml-->
+<dialog dialog-hidden="{{isShowDialog}}"></dialog>
+<view class='main'>
+  <image src='../../images/shaer_02_top.png' class='header_top'></image>
+  <image src='../../images/share03_bg.png' class='header_bg'></image>
+  <view class='avatar'>
+    <image src='{{user_avatar}}' class='avatar_main'></image>
+    <image src='../../images/{{user_sex == 1?"nan":"nv"}}.png' class='sex'></image>
+  </view>
+  <view class='title'>凌志宇</view>
+  <view class='title_02'>杭州墨匠信息技术有限公司</view>
+  <view class='title_03'>邀请你加入“首页设计。。。。。。。”</view>
+  <view class='title_04'>班马佳薪工作组</view>
+  
+  <button class='btn' bindtap='join'>确认加入</button>
+</view>
+

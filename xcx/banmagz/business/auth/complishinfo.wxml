@@ -1,0 +1,24 @@
+<view class='complishinfoContainer'>
+   <view class='complishinfoMain'>
+      <view class='complishinfoMainTop'>
+          <view class='complishinfoTitle'>完善您的信息</view>
+          <view class='complishinfolook'>当前已有133567名创客在找工作，免费查看简历</view>
+          <view class="section">
+            <input placeholder="请输入您的姓名"  class='username' bindinput='inputrname'/>
+          </view>
+          <view class="section">
+            <input placeholder="请输入公司名称"  class='company' bindinput='intputcompany'/>
+          </view>
+          <view class="section">
+            <input placeholder="请输入公司地址"  class='company' value='{{addressInput}}' bindinput='searchAddress'/>
+            <view class='searchList' wx:if='{{showList}}'>
+              <view wx:for='{{searchList}}' wx:key wx:for-index="idx" data-index='{{idx}}' bindtap='checkAddress'>
+                <text class='adresTitle'>{{item.title}}</text>
+                <text class='cityTxt'>{{item.province}}-{{item.city}}</text>
+              </view>
+            </view>
+          </view>
+      </view>
+   </view>
+</view>
+<button class='comfirmlog' plain="{{plain}}" bindtap="comfirmlog">确认登陆 </button>

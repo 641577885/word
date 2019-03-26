@@ -1,0 +1,53 @@
+<!--auth/authinfo.wxml-->
+<form bindsubmit="formSubmit">
+<view class='top'>
+  <view class='top_top'>
+    <view class='cir yellow'></view>
+    <view class='line gray'></view>
+    <view class='cir gray'></view>
+    <view class='line gray'></view>
+    <view class='cir gray'></view>
+  </view>
+  <view class='top_bottom'>
+    <text>身份信息</text>
+    <text>活体验证</text>
+    <text>完成认证</text>
+  </view>
+</view>
+<view class='jg'></view>
+<view class='main'>
+  <view class='main_content'>
+    <view class='main_info'>
+      <text>真实姓名</text>
+      <input class='main_input_01' type='text' name='name' maxlength='10'></input>
+    </view>
+    <view class='main_info'>
+      <text>性别</text>
+      <view class='main_input_02'>
+        <view class='icon' data-sexid='1' bindtap='bindsex'>
+          <icon type='success' size='23' wx:if='{{sexid==1}}'data-sexid='1' catchtap='bindsex'></icon>
+        </view>
+        <text>男</text>
+        <view class='icon' data-sexid='2' bindtap='bindsex'>
+          <icon type='success' size='23' wx:if='{{sexid==2}}'data-sexid='2' catchtap='bindsex'></icon>
+        </view>
+        <text>女</text>
+      </view>
+    </view>
+    <view class='main_info'>
+      <text>身份证号</text>
+      <input class='main_input_01' type='idcard' name='idcard'></input>
+    </view>
+  </view>
+  <view class='auth_ts_01'><text space='emsp'>  请填写真实姓名和准确的身份证号码，提现仅支持与你身份一致的银行卡。</text></view>
+  <view class='auth_ts_01 auth_ts_02'>人脸核身流程：</view>
+  <view class='auth_ts_01'>1.授权使用摄像头；</view>
+  <view class='auth_ts_01'>2.点击开始识别按钮；</view>
+  <view class='auth_ts_01'>3.开始后在5秒内按照要求大声朗读4位阿拉伯数字；</view>
+  <view class='auth_ts_01'>4.点击结束识别按钮；</view>
+  <view class='auth_ts_01'>5.识别成功。</view>
+</view>
+<view  class='btn'>
+  <button formType="submit">确认提交</button>
+</view>
+</form>

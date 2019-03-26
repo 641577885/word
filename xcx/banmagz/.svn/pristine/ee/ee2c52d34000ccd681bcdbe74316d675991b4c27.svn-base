@@ -1,0 +1,44 @@
+<!--business/my/previewCompany.wxml-->
+<view class='top'>
+  <view class='top_main'>
+    <view class='top_main_left'>
+      <view class='company_name'>{{comp_info.name}}</view>
+      <view class='company_info'>{{comp_info.finance_stage_name}}{{comp_info.industry_str}}{{comp_info.staff_size_name}}</view>
+    </view>
+    <view class='top_main_right'>
+      <view class='company_avatar'>
+        <image mode='widthFix' src='{{comp_info.logo}}'></image>
+      </view>
+    </view>
+  </view>
+</view>
+<view class='content'>
+  <view class='content_main'>
+    <view class='content_title'>
+      <text>公司简介</text>
+    </view>
+    <view class='content_content'>
+      {{comp_info.short_intro}}
+    </view>
+  </view>
+</view>
+<view class='content'>
+  <view class='content_main'>
+    <view class='content_title'>
+      <text>公司地址</text>
+    </view>
+    <view class='content_content'>
+      {{comp_info.address}}
+    </view>
+  </view>
+</view>
+<view class='content'>
+  <view class='content_main'>
+    <view class='content_title'>
+      <text>公司官网</text>
+    </view>
+    <view class='content_content'>
+      {{comp_info.website}}
+    </view>
+  </view>
+</view>

@@ -1,0 +1,18 @@
+<!--pages/worker/resume/uploading.wxml-->
+<view class='width90 auto margin_top60'>
+   <view class='font_size45'>选择一种方式上传简历</view>
+   <text class='font_size30 color999 margin_top20'>手机上传附件格式应为图片格式，大小不超过5M</text>
+</view>
+
+<view class='width90 auto margin_top60'>
+   <!-- <navigator hover-class="none" url='/worker/resume/computerRedact'>
+       <view class='font_size35 display_flex padding_top40 padding_bottom40 display_flex box_shadow border_radius8'>
+       <image class='diannao margin_left50' src='/images/worklist/diannao.jpg'></image>
+       <text class='margin_left50 '>电脑上传</text>
+       </view>
+   </navigator> -->
+    <view class='margin_top30 font_size35 display_flex padding_top40 padding_bottom40 box_shadow border_radius8' bindtap='uploadFile'>
+      <image class='shouji margin_left50' src='/images/worklist/shouji.jpg'></image>
+      <text class='margin_left50 margin_top5' bindtap="getData" >手机上传</text>
+    </view>
+</view>

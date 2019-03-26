@@ -1,0 +1,407 @@
+// pages/demandList/index.js
+var bm = require("../../utils/common.js")
+var app = getApp();
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    empty_text_01: '',
+    empty_text_02: '暂时没有找到相关职位信息。',
+    hiddenxyy: true,
+    hiddentext: false, //没有更多了
+    hiddenswcr: true, //选项卡切换开关
+    showCantainer:false,//////
+    current: 0, //在线坐班样式切换判断
+    showBox: false, //显示盒子
+    pullup: true, //上拉下拉样式开关
+    arrayidx: 0, //头部筛选
+    sortidx: 0, //最新筛选
+    priceidx: 0, //金额筛选
+    skillidx: 0, //技能筛选
+    swiperIndex: 0, //选项卡
+    judge: true, //切换判断
+    hiddenzz: true, //在线坐班切换
+    index: 0,
+    sortlist: [ //推荐
+      {
+        id: 'ctime-desc',
+        data: "推荐"
+      },
+      {
+        id: 'recommend',
+        data: "最新"
+      }
+    ],
+    priceList: [ //金额
+      {
+        id: 0,
+        data: "不限",
+        low: '',
+        high: ''
+      },
+      {
+        id: 1,
+        data: "1K以下",
+        low: '',
+        high: '999'
+      },
+      {
+        id: 2,
+        data: "1K-5K",
+        low: '1000',
+        high: '4999'
+      },
+      {
+        id: 3,
+        data: "5K-10K",
+        low: '5000',
+        high: '9999'
+      },
+      {
+        id: 4,
+        data: "10K-20K",
+        low: '10000',
+        high: '19999'
+      },
+      {
+        id: 5,
+        data: "20K-50K",
+        low: '20000',
+        high: '49999'
+      },
+      {
+        id: 6,
+        data: "50K以上",
+        low: '50000',
+        high: ''
+      }
+    ],
+    skillList: [], //技能筛选
+    hiddentext: false, //底部加载
+    ispro: false, //是否在请求中
+    page: 1, //页数，开始是1从第一页开始请求
+    limit: 6, //请求的个数，可自定义设置
+    listdata: [], //接口实际数据
+    snext: true, //是否有下一页
+    array: [], //头部筛选项
+    list: [], //列表
+    work_way: 1, //状态
+    jineng: 0, //技能
+    tuijia: 'ctime-desc', //推荐
+    salarymax: 0, ////最大金额
+    salarymin: 0, ///最小/金额
+    profession: ''
+  },
+  // 头部产品经理单项选项
+  bindPickerChange: function(e) {
+    var that = this;
+    var aid = that.data.array[e.detail.value].profession;
+    that.setData({
+      showCantainer: false,
+      list: [],
+      profession: aid,
+      arrayidx: e.detail.value,
+    })
+    that.position();
+    that.setData({
+      judge: false
+    })
+    that.getDataUrl2(aid);
+  },
+  // 切换职位选项
+  tab: function(event) {
+    var that = this;
+    that.setData({
+      showCantainer: false,
+      list: []
+    })
+    if (that.data.current !== event.target.dataset.current) {
+      that.setData({
+        current: event.target.dataset.current
+      })
+      if (event.target.dataset.current == 0) {
+        that.setData({
+          judge: true,
+          work_way: 1,
+          hiddenzz: true,
+          page: 1
+        })
+        console.log(1)
+      } else {
+        that.setData({
+          judge: true,
+          work_way: 2,
+          hiddenzz: false,
+          page: 1
+        })
+      }
+    }
+    that.setData({
+      hiddentext: false
+    }) //显示下拉结束加载
+    that.position();
+  },
+  // 切换列表——》选项卡
+  switcher: function() {
+    var that=this;
+    that.setData({
+      pullup: true,
+    })
+    that.setData({
+      hiddenswcr: (!this.data.hiddenswcr),
+      hiddentext: false
+    })
+    if (that.data.hiddenswcr == false) {
+      console.log(that.data.list.length)
+      if (that.data.list.length == 1) {
+        that.setData({
+          hiddenxyy: false
+        })
+       
+      }
+    }
+  },
+  //选项卡滑动页
+  swiperChange(e) {
+    this.setData({
+      swiperIndex: e.detail.current
+    })
+    console.log(e.detail.current)
+    if (e.detail.current + 1 == this.data.list.length) {
+      this.setData({
+        hiddenxyy: false
+      })
+    } else {
+      this.setData({
+        hiddenxyy: true
+      })
+    }
+  },
+  //推荐
+  tuijianBut: function(event) {
+    var that = this,
+      itemId = event.detail.value,
+      itemval = that.data.sortlist[itemId].id;
+    that.setData({
+      tuijia: itemval,
+      sortidx: itemId,
+      hiddentext: false
+    })
+    that.position();
+  },
+  //技能
+  jinengButo: function(event) {
+    var that = this,
+      itemId = event.detail.value;
+    that.setData({
+      jineng: itemId,
+      skillidx: itemId,
+      hiddentext: false
+    })
+    that.position();
+  },
+  // 金额
+  jineBut: function(event) {
+    var that = this,
+      itemId = event.detail.value;
+    that.setData({
+      priceidx: itemId,
+      salarymin: that.data.priceList[itemId].low,
+      salarymax: that.data.priceList[itemId].high,
+      hiddentext: false
+    })
+    that.position();
+  },
+  // 在线列表的数据获取
+  position: function() {
+    var that = this;
+    var DataView = {
+      work_way: that.data.work_way, //类型
+      profession: that.data.profession, //职位
+      sort: that.data.tuijia, //推荐
+      skills: that.dataamend(that.data.jineng), //技能
+      highsalary: that.data.salarymax / 1000, //薪水 最大 
+      lowsalary: that.data.salarymin / 1000, //薪水 最小 
+      page: that.data.page, //当前页码 
+      limit: that.data.limit //一页多少条数据
+    }
+    that.getDataUrl(DataView);
+  },
+  //卡片模式点击请求函数
+  getnext: function() {
+    var that = this,
+      list = that.data.listdata;
+    if (that.pullBottom(list)) {
+      that.setData({
+        showCantainer: false,
+        list: [],
+        page: that.data.page + 1,
+        judge: true
+      })
+      that.position();
+    }else{
+      that.setData({
+        hiddentext: false, //显示下拉结束加载
+      })
+    }
+  },
+  //技能判断函数
+  dataamend: function(wd) {
+    var list = [];
+    if (wd == 0) {
+      return list = [];
+    } else {
+      list.push(this.data.skillList[wd]);
+      return list;
+    }
+  },
+  // 发送请求1 ajax请求数据  依据实际请求进行修改
+  getDataUrl: function(getdata) {
+    var that = this,
+      url = "/w/position/lists";
+    bm.requsetData(url, 'get', getdata, function(data) {
+      console.log(data.data)
+      if (that.dataDispose(data.data) !== 0) {
+        that.setData({
+          listdata: that.dataDispose(data.data)
+        })
+        that.setData({
+          array: data.data.choose_list
+        });
+        that.getDataUrl2(data.data.choose_list[0].profession);
+        that.timestampToTime(that.data.listdata.list);
+        // 判断当前是拉的，还是切换的  judge==true 切  false 拉
+        if (that.data.judge) {
+          console.log("覆盖触发")
+          that.setData({
+            list: that.data.listdata.list
+          });
+        } else {
+          console.log("添加触发")
+          var a = that.data.list;
+          for (var i in that.data.listdata.list) {
+            a.push(that.data.listdata.list[i])
+          }
+          that.setData({
+            list: a
+          });
+        }
+      }
+      // 卡片状态时的开关
+      if (that.data.hiddenswcr == false) {
+        if (that.data.list.length !== 1) {
+          that.setData({
+            hiddenxyy: true
+          })
+        } else {
+          that.setData({
+            hiddenxyy: false
+          })
+        }
+      }
+      that.setData({ showCantainer: true });
+    })
+  },
+  // 发送请求1 ajax请求数据  请求技能
+  getDataUrl2: function(id) {
+    var that = this;
+    id = JSON.stringify(id);
+    var b = '00';
+    id = id.substr(0, id.length - 2).concat(b);
+    var url = '/c/config/skill?id=' + id,
+      list;
+    bm.requsetData(url, 'post', list, function(data) {
+      var jndata = that.data.skillList;
+      jndata = ["不限"];;
+      for (var i in data.data) {
+        jndata.push(data.data[i])
+      }
+      that.setData({
+        skillList: jndata
+      })
+    })
+
+  },
+  //获取到的数据判断
+  dataDispose: function(data) {
+    if (data.errcode !== 0) {
+      this.hiddensBata(data.errcode)
+      return data = 0;
+    } else {
+      return data;
+    }
+  },
+  //将时间戳转化为时间
+  timestampToTime: function(list) {
+    for (var i in list) {
+      list[i].ctime = bm.formatDate(list[i].ctime);
+    }
+  },
+  //上拉请求时判断有没有下一页的判断
+  pullBottom: function(list) {
+    var that = this
+    if (!that.data.ispro) { //没有在请求中，开始加载数据
+      wx.showToast({
+        mask: true,
+        title: '加载中...',
+        icon: 'loading',
+        duration: 500
+      })
+      if (list.pages.allpage > list.pages.page) { //有下一页数据
+        that.setData({
+          hiddentext: false, //显示下拉结束加载
+          ispro: false //标记在请求中
+        })
+        return true;
+      } else {
+        that.setData({
+          hiddentext: true, //显示下拉结束加载
+          ispro: false //标记在请求中
+        })
+        return false;
+      }
+    }
+  },
+  //生命周期函数--监听页面加载
+  onLoad: function(options) {
+    this.position();
+  },
+  //下拉监听
+  onPullDownRefresh: function() {
+    console.log("已刷新")
+    this.setData({
+      pullup: false
+    })
+    wx.stopPullDownRefresh();
+    this.setData({
+      pullup: true,
+      judge: true,
+      ispro: false,
+      page:1,
+      hiddentext:false
+    })
+    this.position()
+  },
+  //上监听
+  onReachBottom() {
+    console.log('我被触发了')
+    var that = this,
+      list = that.data.listdata;
+    if (that.pullBottom(list)) {
+      that.setData({
+        page: that.data.page + 1,
+        judge: false
+      })
+      that.position();
+    }
+  },
+  onShow: function () {
+    var isRefresh = wx.getStorageSync("isRefresh");
+    if (isRefresh) {
+      wx.removeStorageSync("isRefresh");
+      this.onLoad();
+    }
+  },
+})

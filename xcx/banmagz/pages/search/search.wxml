@@ -1,0 +1,27 @@
+<!--pages/business/search/search.wxml-->
+<form report-submit='true' bindsubmit='getFormId'>
+  <view class='search'>
+    <form>
+      <view class='search_content'>
+        <icon type='search' size='12' color='#b2b2b2' class='search_icon_02'></icon>
+        <input type='text' maxlength='20' wx:if='{{lists.length==0}}' confirm-type='search' class='search_input_02' bindconfirm='searchbtn' placeholder='请输入'></input>
+        <input type='text' maxlength='20' confirm-type='search' class='search_input_02' bindconfirm='searchbtn' value='{{lists}}' wx:else></input>
+        <view class='delete {{lists.length==0?"opacity":""}}' bindtap='deleteData'>×</view>
+      </view>
+    </form>
+  </view>
+  <view class='main'>
+    <view class='main_content'>
+      <view class='main_title'>历史搜索</view>
+      <view class='main_list' wx:if='{{history.length>0}}'>
+        <button class='main_list_info' plain wx:for='{{history}}' hover-class='none' id='{{item}}' bindtap='getDatalist' form-type='submit' wx:key>{{item}}</button>
+      </view>
+    </view>
+    <!-- <view class='main_content_02'>
+     <view class='main_title'>猜你要搜</view>
+     <view class='main_list'>
+       <view class='main_list_info' wx:for='{{guess}}' wx:key='guess'>{{item}}</view> 
+     </view>
+    </view>   -->
+  </view>
+</form>

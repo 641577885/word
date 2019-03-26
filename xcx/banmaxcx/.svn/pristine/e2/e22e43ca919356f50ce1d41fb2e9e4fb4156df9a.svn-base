@@ -1,0 +1,70 @@
+// pages/worker/resume/Email.js
+const bm = require('../../utils/common.js')
+var app = getApp()
+var token = app.globalData.token
+const aliUploader = require("../../utils/oss/uploadAliyun.js");
+Page({
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    user_info: {},
+    exp_list: [],
+    pro_exp: [],
+    edu_exp: [],
+    homepage: ''
+  },
+  //上传个人视频
+  choosevideo: function() {
+    var that = this
+    wx.chooseVideo({
+      success: function(res) {
+        wx.showLoading({
+          title: '视频上传中',
+        })
+        let tempFilePaths = res.tempFilePath;
+        let date = new Date();
+        let dir = 'myvideo/' + app.globalData.uid;
+        aliUploader(tempFilePaths, dir, date.getTime(),
+          function() {
+            var myvideo = '//bm.jiangcdn.com/' + dir + '/' + date.getTime() + '.' + tempFilePaths.split(".").pop()
+            bm.requsetData('/w/resume/video', 'post', {
+              mvurl: myvideo
+            }, function(data) {
+              if (data.data.errcode == 0) {
+                wx.hideLoading()
+                wx.showToast({
+                  title: data.data.errmsg,
+                })
+              } else {
+                wx.showToast({
+                  title: data.data.errmsg,
+                  icon: 'none'
+                })
+              }
+            })
+          },
+          function(res) {
+            wx.showToast({
+              title: '视频上传失败',
+              icon: 'none'
+            })
+
+          });
+        var myvideo = that.data.myvideo
+      }
+    })
+
+  },
+  onShow: function(options) {
+    var that = this;
+    bm.requsetData("/w/resume/index", "get", '', function(res) {
+      that.setData({
+        user_info: res.data.user_info,
+        exp_list: res.data.exp_list,
+        pro_exp: res.data.pro_exp,
+        edu_exp: res.data.edu_exp
+      })
+    })
+  }
+})

@@ -1,0 +1,34 @@
+<view class="rnameContainer">
+   <view class='rnameMain'>
+        <view class='rnameList'>
+           <view class='rnameLogo'>
+             <image style="width: 29rpx; height: 30rpx;" mode="" src="../../../images/worklist/name_logo_03.gif"></image>
+           </view>
+            <view class='rnameName'>姓名</view>
+            <view class="section">
+              <input placeholder="刘琪"  auto-focus class='inputname' bindinput='inputname'/>
+            </view>
+        </view>
+        <view class='rnameList'>
+           <view class='rnameLogo'>
+             <image style="width: 39rpx; height: 30rpx;" mc="../../../images/worklist/card_03.gif"></image>
+           </view>
+            <view class='rnameName'>到账银行</view>
+            <view class="section">
+              <input placeholder="1223215122222222229"  auto-focus class='inputname' bindinput='inputcard' />
+            </view>
+        </view>
+        <view class='rnameList'>
+           <view class='rnameLogo'>
+             <image style="width: 29rpx; height: 43rpx;" mode="" src="../../../images/worklist/phone_03.gif"></image>
+           </view>
+            <view class='rnameName'>预留手机号</view>
+            <view class="section">
+              <input placeholder="18888888888" auto-focus class='inputname' bindinput='inputphone'/>
+            </view>
+        </view>
+        <view class='rnameBottom'>
+           <button bindtap="nextbtn" class='nextbtn'>下一步</button>
+        </view>
+   </view>
+</view>

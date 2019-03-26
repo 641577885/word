@@ -1,0 +1,48 @@
+/* pages/business/position/demand.wxss */
+page{background: #fafafa;}
+.top{width: 100%;height: 88rpx;border-bottom: 1rpx solid #dadada;display: flex;justify-content: space-between;align-items: center;}
+.type{width: 375rpx;}
+.fg{width: 1rpx;height: 32rpx;background: #cccccc;}
+.state{width: 374rpx;}
+.jt{width: 30rpx;height: 20rpx;margin-left: 20rpx;}
+.type_picker{text-align: center}
+.type_view{font-size: 30rpx;color: #353535}
+.state_picker{text-align: center}
+.state_view{font-size: 30rpx;color: #353535}
+.list{ position: absolute; left: 0; right: 0;   bottom:0; background: #fff; box-sizing: border-box}
+.list_main{height: 164rpx;border-bottom: 1rpx solid #eeeeee;padding:0 30rpx;}
+.content_01{width: 100%;height: 100rpx;display: flex;justify-content: space-between;align-items: center;}
+.title{ display: flex; align-content: center;}
+.title .titleName{ display: inline-block; max-width:400rpx;  font-size: 34rpx; line-height: 42rpx; color: #000; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.title .titleTag{ display: inline-block; width: 134rpx; height: 42rpx; text-align: center; line-height: 42rpx;background: #fdc200 linear-gradient(to right,#fedd01,#fdc200); border-radius: 4rpx; font-size: 26rpx;color: #000; margin-left: 10rpx;}
+.open{display: flex;align-items: center;height: 30rpx;}
+.open text{font-size: 26rpx;line-height: 30rpx;}
+.open_color_01{color: #fe5a01}
+.open_color_02{color: #a4a4a4}
+.jt_02{width: 20rpx;height: 30rpx;margin-left: 30rpx;}
+.content_02{display: flex;align-items: center;}
+.icon_img{width: 30rpx;height: 30rpx;}
+.num{font-size: 26rpx;color: #808191;margin-left: 12rpx;}
+.icon_02{margin-left: 30rpx}
+.icon_03{margin-left: 30rpx}
+
+.explainCantainer{ position: absolute; top: 88rpx; bottom: 0; left: 0; right: 0}
+.bg{width: 340rpx;height: 480rpx;margin: 50rpx auto 0;}
+.bg image{width: 340rpx;height: 480rpx;}
+.explain{width: 100%;font-size: 48rpx;color: #000;line-height: 60rpx;text-align: center;margin-top: 75rpx;font-weight: bold;}
+.btn{width: 666rpx;height: 96rpx;line-height: 96rpx;background: #000000;color: #ffffff;margin-top: 84rpx;}
+
+.noauth{font-size: 28rpx;color: #888888;width: 690rpx;height: 96rpx;background: #fafafa;line-height: 97rpx;padding:0 30rpx}
+.noauthnav{display: inline-block;color: #0060ff;text-decoration: underline}
+.empty_icon{ top: 240rpx;}
+
+.emptyCantainer{ position: absolute; top: 0; bottom: 0; width: 100%; padding-top: 100rpx;}
+.emptyImg{ width: 612rpx; height: 578rpx; margin: 0 auto}
+.emptyImg image{ width: 612rpx; height: 578rpx;}
+.emptyInfo{ text-align: center}
+.emptyTxt1{ font-size: 42rpx; color: #333333;}
+.emptyTxt2{ font-size: 24rpx; color: #999999; margin-top: 10rpx;}
+.emptyBtnCantainer{ position: absolute; bottom: 0; left: 0; right:0; padding: 30rpx;}
+.emptyBtnCantainer button{ width: 100%; background: #000; color: #fff;}
+.onlineListAdc{width: 100%; height: 200rpx; border-bottom: 1rpx solid #eeeeee}
+.onlineListAdc image{ width: 100%; height: 100%}

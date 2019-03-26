@@ -1,0 +1,125 @@
+// pages/worker/message/message.js
+var webim = require('../../utils/webim.js');
+var webimhandler = require('../../utils/webim_handler.js');
+var app = getApp();
+var selType = webim.SESSION_TYPE.C2C;
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    message_list: []
+  },
+  //我的最近联系人
+  getRecentContactList:function () {
+    var that = this;
+    var options = {
+      'Count': 90  //最近的会话数
+    };
+    webim.getRecentContactList(
+      options,
+      function (resp) {
+        var data = [];
+        var tempSess, tempSessMap = {};//临时会话变量
+        var sessMap = webim.MsgStore.sessMap();
+        if (resp.SessionItem && resp.SessionItem.length > 0) {
+          for (var i in resp.SessionItem){
+            var item = resp.SessionItem[i];
+            var type = item.Type;//接口返回的会话类型
+            var sessType, typeZh, sessionId, unread, sessionNick = '', sessionImage = '', senderId = '', senderNick = '';
+            if (type == webim.RECENT_CONTACT_TYPE.C2C) {//私聊
+              typeZh = '私聊';
+              sessType = webim.SESSION_TYPE.C2C;//设置会话类型
+              sessionId = item.To_Account;//会话id，私聊时为好友ID或者系统账号（值为@TIM#SYSTEM，业务可以自己决定是否需要展示），注意：从To_Account获取,
+              if (sessionId == '@TIM#SYSTEM') {//先过滤系统消息，，
+                webim.Log.warn('过滤好友系统消息,sessionId=' + sessionId);
+                continue;
+              }
+              if (item.C2cNick) {//从infoMap获取c2c昵称
+                sessionNick = item.C2cNick;//会话昵称，私聊时为好友昵称，接口暂不支持返回，需要业务自己获取（前提是用户设置过自己的昵称，通过拉取好友资料接口（支持批量拉取）得到）
+              } else {//没有找到或者没有设置过
+                sessionNick = sessionId;//会话昵称，如果昵称为空，默认将其设成会话id
+              }
+              if (item.C2cImage) {//从infoMap获取c2c头像
+                sessionImage = item.C2cImage;//会话头像，私聊时为好友头像，接口暂不支持返回，需要业务自己获取（前提是用户设置过自己的昵称，通过拉取好友资料接口（支持批量拉取）得到）
+              } else {//没有找到或者没有设置过
+                sessionImage = app.globalData.friendHeadUrl;//会话头像，如果为空，默认将其设置demo自带的头像
+              }
+            }
+            tempSess = tempSessMap[sessType + "_" + sessionId];
+            var sess = sessMap['C2C' + sessionId];
+            if (sess){
+              unread = sess.unread();
+            }else{
+              unread=0;
+            }
+            if (!tempSess) {//先判断是否存在（用于去重），不存在增加一个
+              tempSessMap[sessType + "_" + sessionId] = true;
+              data.push({
+                skipId: sessionId, 
+                avatar: sessionImage, 
+                nickname: sessionNick, 
+                info: item.MsgShow.split("-")[0],
+                unread: unread
+              });
+            }
+          }
+          that.setData({
+            message_list: data
+          })
+        }
+      },
+      function (err) {
+        wx.showToast({
+          title: err.ErrorInfo,
+          icon:"none"
+        });
+      }
+    );
+  },
+
+  addSess: function (newMsg){
+    var selToID = newMsg.getSession().id();
+    var selName = newMsg.getSession().name();
+    var content = newMsg.elems[0].content.text;
+    var imageUrl;
+    var sessMap = webim.MsgStore.sessMap();
+    var sess = sessMap['C2C' + selToID];
+    if (sess) {
+      var unread = sess.unread();
+    } else {
+      var unread = 0;
+    }
+    var options={
+      "To_Account": [selToID],
+      "TagList":
+      [
+        "Tag_Profile_IM_Image"
+      ]
+    }
+
+    imageUrl = app.globalData.friendHeadUrl;
+    this.data.message_list.unshift({
+      skipId: selToID,
+      avatar: imageUrl,
+      nickname: selName,
+      info: content,
+      unread: unread
+    })
+    this.setData({
+      message_list: this.data.message_list
+    })
+  },
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onShow: function () {
+    app.login(function () {
+      app.initIM();
+    });
+    //获取历史记录
+    this.getRecentContactList();
+    webim.syncMsgs(app.initUnreadMsgCount);
+  }
+})

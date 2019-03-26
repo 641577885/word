@@ -1,0 +1,8 @@
+<view class='loginCantainer'>
+  <image class='logo' src='../../images/logo.png' mode='widthFix'></image>
+  <view class='platDescript'>班马佳薪基于腾讯云区块链服务TBaaS</view>
+  <view class='loginBtnCantainer'>
+    <button class='btnBlack wechatBtn' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">微信账号快速登录</button>
+    <button class='cellBtn' plain bindtap='linktoPhone'>手机号登录</button>
+  </view>
+</view>

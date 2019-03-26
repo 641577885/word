@@ -1,0 +1,22 @@
+// pages/business/auth/busAuth.js
+var app = getApp()
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+  
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    var tk = app.globalData.token
+    var url = 'http://www.ksbanma.com/html/auth/busAuth.html?tk=' + tk
+    this.setData({ url: url })
+  },
+
+  
+})

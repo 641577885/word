@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "寻找职位" ,
+    "enablePullDownRefresh": true,
+    "onReachBottomDistance": 50,
+    "backgroundColor": "#fede01"
+}
+ 

@@ -1,0 +1,20 @@
+/* wallet/mocDetail.wxss */
+page{height: 100%}
+.mocContainer{height:100%;width: 100%;justify-content:space-between;box-sizing:border-box;}
+.tab-box{height:100%;}
+.tab{height: 100%} 
+.tab-nav{height: 80rpx;line-height: 80rpx;border-bottom: 1rpx solid #e5e5e5;position:absolute;z-index:999;width:100%;}
+.tab-nav view{float: left;height: 80rpx;line-height: 80rpx;background: #fff;width: 33.33%;font-size: 36rpx;text-align: center;color:#a9a9a9;}
+.tab-nav view.on{border-bottom: 1rpx solid #f4d721;color: #000000;}
+.mocList{width:680rpx;margin: 0 auto;border-bottom: 1rpx solid #e5e5e5}
+.mocBoth{display: flex;justify-content:space-between;font-size: 30rpx;padding-top: 40rpx}
+.mocName{color: #000000;}
+.mocNum{color: #000000}
+.mocTime{color: #a9a9a9;padding-bottom: 14rpx;line-height:72rpx;font-size:30rpx;}
+.asdasd{height: 90%;overflow-x: hidden;box-sizing:border-box;}
+.box{background:#ffffff;height: 100%;}
+swiper-item{top: 80rpx}
+.text_align{text-align: center;font-size: 28rpx;color: #a9a9a9;padding:10rpx; } 
+.display_none{display: none}
+.count{text-align: center;line-height: 600rpx}
+.display_none{display: none}

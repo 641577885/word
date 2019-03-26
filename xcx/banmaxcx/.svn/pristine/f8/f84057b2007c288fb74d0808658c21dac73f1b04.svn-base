@@ -1,0 +1,52 @@
+<!--wallet/aboutMoc.wxml-->
+<view class='mocContanier'>
+  <view class='mocMain mainbg'>
+    <view class='mocTitle showtxt'>红包是什么？</view>
+    <view class='content'>
+      <view class='contentext'>
+        区块链时代，班马佳薪基于腾讯云区块链服务TBaaS和智能合约技术，针对互联网人力资源工作领域打造的全新在线工作交易平台。在这个区块链实现的在线工作平台上，红包作为Token，为平台上的智能合约和交易行为提供运作媒介。
+      </view>
+      <view class='mocMainCon'>
+        <view class='totalnum'>
+          <view class='moctotal'>红包总量</view>
+          <view class='billion'>10亿</view>
+        </view>
+        <view class='totalnum'>
+          <view class='moctotal'>限时空投总量</view>
+          <view class='billion'>1亿</view>
+          <view class='stop'>投完即止</view>
+        </view>
+        <view class='totalnum'>
+          <view class='moctotal'>昨日签到红包池</view>
+          <view class='billion'>100万</view>
+          <view class='stop'>每年减半</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='mocMain showbottom'>
+    <view class='mocDetail getmoc'>
+      <view class='mocTitle mocpos'>1、如何获取红包？</view>
+      <view class='content showright'>
+        <view class='text'>应纳税所得额 = 工资收入金额 － 各项社会保险费 － 起征点(3500元)</view>
+        <view class='text'>应纳税额 = 应纳税所得额 x 税率 － 速算扣除数</view>
+        <view class='text'>说明：如果计算的是外籍人士（包括港、澳、台），则个税起征点应设为4800元。</view>
+      </view>
+    </view>
+    <view class='mocDetail'>
+      <view class='mocTitle mocpos'>2、红包有什么用？</view>
+      <view class='content showright'>
+        <view class='text'>征缴个人所得税的计算方法，个人所得税费用扣除标准原来是2000，十一届全国人大常委会第二十一次会议27日再次审议个人所得税法修正案草案，草案维持一审时“工资、薪金所得减除费用标准从2000元提高至3500元”的规定，同时将个人所得税第1级税率由5%修改为3%。使用超额累进税率的计算方法如下：</view>
+        <view class='text'>缴税=全月应纳税所得额*税率－速算扣除数</view>
+        <view class='text'>全月应纳税所得额=(应发工资－四金)－3500</view>
+        <view class='text'>实发工资=应发工资－四金－缴税</view>
+
+      </view>
+    </view>
+    <view class='mocDetail'>
+      <view class='mocTitle mocpos'>3、关于区块链技术</view>
+      <view class='content showright'>个人所得税是对个人（自然人）取得的各项所得征收的一种所得税。个人所得税起征点是指国家为了完善税收体制，更好的进行税制改革，而制定的税收制度。2011年4月20日，十一届全国人大常委会第二十次会议召开，个人所得税免征额拟调至3500元。2011年6月中旬，调查显示，48%的网民要求修改个税起征点。2011年6月30号十一届全国人大常委会第二十一次会议通过了关于修改《个人所得税法》的决定，并于2011年9月1日起施行。</view>
+    </view>
+  </view>
+  <view class='bottom'>班马佳薪基于腾讯云区块链服务TBaaS</view>
+</view>

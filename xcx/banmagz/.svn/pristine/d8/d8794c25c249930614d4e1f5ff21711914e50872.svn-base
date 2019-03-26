@@ -1,0 +1,24 @@
+/* wallet/task.wxss */
+page{height: 100%;background: #f4f4f4}
+.moneyMain{width: 100%;background: #FFFFFF; }
+.moneyTitle{font-size: 30rpx;line-height: 83rpx;border-bottom: 1rpx solid #e5e5e5;padding-left:27rpx;}
+/*moneyMainCon*/
+.moneyMainCon{margin: 0 auto;border-bottom:10px solid #f4f4f4;}
+.memberall{display: flex;    flex-flow: row wrap;padding-bottom:40rpx;}
+.member{width: 33%;text-align: center;    font-size: 0;}
+.light{background: #FEDE01;border: none !important;color: #000000 !important;}
+.bmmember{font-size: 25rpx;}
+.getmoc{font-size: 24rpx;display:inline-block;width: 200rpx;height: 52rpx;    margin-top: 22rpx;color: #888888;border: 1rpx solid #cccccc;text-align: center;line-height: 52rpx;border-radius: 22rpx;}
+.light{background: #FEDE01;border: none !important;color: #000000 !important;}
+.gold{width: 68rpx;height: 59rpx;display: inline-block;    margin: 43rpx 0 36rpx 0;}
+.gold0{background: url(http://bm.jiangcdn.com/bmjx/task/moc_share_12.png) no-repeat;background-size: contain; }
+.gold1{background: url(http://bm.jiangcdn.com/bmjx/task/task_person_06.png) no-repeat;background-size: contain; }
+.gold2{background: url(http://bm.jiangcdn.com/bmjx/task/moc_fly_09.png) no-repeat;background-size: contain; }
+.gold3{background: url(http://bm.jiangcdn.com/bmjx/task/task_work_15.png) no-repeat;background-size: contain; }
+.gold4{background: url(http://bm.jiangcdn.com/bmjx/task/moc_share_12.png) no-repeat;background-size: contain; }
+.gold5{background: url(http://bm.jiangcdn.com/bmjx/task/moc_share_12.png) no-repeat;background-size: contain; }
+.gold6{background: url(http://bm.jiangcdn.com/bmjx/task/moc_share_12.png) no-repeat;background-size: contain; }
+.gold7{background: url(http://bm.jiangcdn.com/bmjx/task/moc_fly_09.png) no-repeat;background-size: contain;}
+.showtop{margin-top: 19rpx;}
+.upnum{font-size: 22rpx;color: #fe5a01;display: block;padding-top: 10rpx;white-space:nowrap}
+.bottomText{text-align: center;line-height: 109rpx;font-size: 30rpx;color: #888888;}

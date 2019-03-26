@@ -1,0 +1,141 @@
+{
+	"description": "项目配置文件。",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.0.8",
+	"appid": "wxd1e27439a32965eb",
+	"projectname": "banma",
+	"svr": "",
+	"client": "",
+	"qcloudRoot": "",
+	"miniprogramRoot": "",
+	"pluginRoot": "",
+	"scripts": {},
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"list": []
+		},
+		"miniprogram": {
+			"current": 14,
+			"list": [
+				{
+					"id": 0,
+					"name": "设置下单",
+					"pathName": "pages/order/setpay",
+					"query": "uid=1"
+				},
+				{
+					"id": 1,
+					"name": "订单详情",
+					"pathName": "pages/order/replacepay",
+					"query": "ordersn=2018061421216382"
+				},
+				{
+					"id": 2,
+					"name": "对话",
+					"pathName": "pages/message/dialog",
+					"query": "skipid=10011"
+				},
+				{
+					"id": 3,
+					"name": "付钱",
+					"pathName": "pages/pay/pay",
+					"query": "ordersn=2018061417465996"
+				},
+				{
+					"id": -1,
+					"name": "订单详情",
+					"pathName": "pages/onlineWork/posDetail",
+					"query": "ordersn=2018061421216382"
+				},
+				{
+					"id": 5,
+					"name": "简历",
+					"pathName": "pages/resume/resume",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "分享图01",
+					"pathName": "pages/share/share",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "分享图02",
+					"pathName": "pages/share/share02",
+					"query": ""
+				},
+				{
+					"id": 8,
+					"name": "分享图03",
+					"pathName": "pages/share/share03",
+					"query": "uid=10011"
+				},
+				{
+					"id": 9,
+					"name": "附近简历",
+					"pathName": "worker/resume/resumeAccessory",
+					"query": "imgurl=//bm.jiangcdn.com/resumeFile/resumeFile/10011/1530153669516.png"
+				},
+				{
+					"id": -1,
+					"name": "小马助手",
+					"pathName": "message/bmDialog",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "职位列表",
+					"pathName": "worker/search/search",
+					"query": ""
+				},
+				{
+					"id": 12,
+					"name": "新列表",
+					"pathName": "guide/done",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "评价列表",
+					"pathName": "resume/pjResume",
+					"query": ""
+				},
+				{
+					"id": 14,
+					"name": "1元首页",
+					"pathName": "pages/search/search",
+					"query": "skipid=10011"
+				},
+				{
+					"id": 15,
+					"name": "新列表121",
+					"pathName": "guide/done",
+					"query": ""
+				}
+			]
+		}
+	}
+}

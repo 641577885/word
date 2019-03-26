@@ -1,0 +1,96 @@
+/* wallet/invited.wxss */
+page{height: 100%;background: #f4f4f4}
+.missCantainer{ position: absolute; top: 0; left: 0; bottom: 150rpx; right:0; overflow-y: auto}
+.inviteTip{width: 100%;height: 88rpx;background: #f6f0c3;line-height: 88rpx;display: flex;font-size: 28rpx;position: absolute;left: 0;top: 0}
+.report{font-weight: bold;padding: 0 49rpx 0 35rpx}
+ /* .inviteBanner{margin-top:88rpx;}  */
+ .banner{margin-top: 88rpx}
+.inviteBanner image{width: 100%;height: 411rpx}
+.inMainTop{width: 100%;background: #ffffff}
+.inMainMain{width: 650rpx;margin: 0 auto}
+.mainBoth{display: flex;justify-content: space-between;padding: 48rpx 0 30rpx 0}
+.record{font-size: 36rpx;font-weight: bold}
+.situation{font-size: 30rpx;color: #333333}
+.inNav{width: 100%;height: 17rpx;border-radius: 6rpx;background: #f4f4f4}
+ /* .inNav slider{height: 17rpx;}  */
+ .numBoth{display: flex}
+ .numBoth text{width: 130rpx;font-size: 24rpx;padding: 14rpx 0 40rpx 22rpx}
+ .inMianCenter{margin-top: 30rpx;width: 100%}
+ .inCenterBoth{width: 650rpx;margin: 0 auto;background: #fff}
+ /* //mainCenter */
+.mocContainer{width:650rpx;margin:30rpx auto;height: 300rpx}
+.tab-nav{background:#fff;border-bottom:2rpx solid #f4f4f4;}
+.tab-nav view{height: 80rpx;line-height: 80rpx;font-size: 36rpx;font-weight: bold;margin-left:40rpx;}
+.tab-nav view.on{border-bottom: 7rpx solid #f4d721;color: #000000;}
+.asdasd{height:80%;overflow-x: hidden;box-sizing:border-box;position: relative}
+.box{background:#ffffff;height: 100%;}
+swiper-item{top: 80rpx}
+.discount{text-align: center;font-size: 26rpx;padding: 18rpx 0 12rpx 0}
+.inList{width: 570rpx;margin: 0 auto;display: flex;margin-bottom: 25rpx}
+.listLeft{overflow: hidden;padding-right: 19rpx}
+.listLeft image{width: 80rpx;height: 80rpx;border-radius: 50%}
+.listRight{font-size: 30rpx}
+.listname{color: #888888}
+.inBottom{width: 100%;height: 148rpx;position: fixed;bottom: 0;left: 0;border: 1rpx solid #cccccc;background: #fff}
+.inBottomMain{width: 570rpx;margin: 0 auto;display: flex;padding-top: 43rpx}
+.inBottomMain button{width: 273rpx;height: 74rpx;line-height: 74rpx;text-align: center;background: none;font-size: 29rpx}
+.active{background:linear-gradient(to right,#fede01,#fdc100) !important;} 
+.actived{border-bottom: 5rpx solid #fede01;display:initial;padding: 13rpx}
+.empty_icon{width: 100%;height: 150rpx;position: initial;left: 0;top: 0;margin-left: 0}
+.empty_icon image{width: 150rpx;height: 150rpx;margin: 0 auto;display: block;}
+/* .tab-box{height:400rpx} */
+/* .empty_icon {top: 0 !important} */
+.empty_text_01{font-size: 24rpx;text-align: center;line-height: 50px}
+.explainCantainer{background: #fff;padding-top:50rpx}
+.scroll_view_border{position: relative;width: 100%;height: 100rpx;overflow: hidden;display: flex;white-space: nowrap}
+.srcoll_view{position: absolute;top:0rpx;height: 100rpx;font-size: 30rpx;white-space: nowrap;line-height: 100rpx;color: #000;animation:myfirst 30s linear infinite;display: flex}
+@keyframes myfirst
+{
+  0% {margin-left:750rpx;}
+  100% {margin-left:-1500rpx;}
+}
+.gonggao {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+.scrolltxt{
+  padding:0 20rpx;
+}
+.marquee_box {
+  position:relative;
+  color:#333;
+  height:100rpx;
+  display:block;
+  overflow:hidden;
+} 
+.marquee_text {
+  white-space: nowrap;
+  position:absolute;
+  top:0;
+  font-size:14px;
+  /* height: 100rpx;
+  line-height:100rpx; */
+}
+/* lklk */
+.example {
+  display: block;
+  width: 100%;
+  height: 100rpx;
+}
+
+.marquee_box {
+  width: 100%;
+  position: relative;
+}
+
+.marquee_text {
+  white-space: nowrap;
+  position: absolute;
+  top: 0;
+}
+
+
+

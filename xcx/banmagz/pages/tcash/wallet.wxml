@@ -1,0 +1,2 @@
+<!--pages/worker/wallet/wallet.wxml-->
+<web-view src='{{url}}'></web-view>

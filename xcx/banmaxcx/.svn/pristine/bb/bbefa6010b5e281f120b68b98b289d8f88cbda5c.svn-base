@@ -1,0 +1,78 @@
+/* pages/openvip/openvip.wxss */
+.top{width: 100%;height: 370rpx;background: #434652;position: relative;}
+.vipcard{width: 575rpx;height: 264rpx; border-radius: 15rpx;position: absolute;left: 50%;margin-left: -287rpx;top: 56rpx;z-index: 1;color: #fff}
+.title{font-size: 37rpx;font-weight: bold;line-height: 56rpx;position: absolute;left: 42rpx;top: 31rpx;}
+.opennum{font-size: 24rpx;line-height: 30rpx;position: absolute;left: 42rpx;top: 93rpx;color: #fff;opacity: 0.5}
+.vipicon{height: 35rpx;display: flex;align-items: center;position: absolute;top: 31rpx;right: 41rpx;}
+.vipicon image{width: 28rpx;height: 35rpx;}
+.vipicon text{font-size: 30rpx;line-height: 35rpx;margin-left: 11rpx}
+.content{width: 100%;height: 800rpx;position: relative;}
+.content_01{border-radius: 8rpx;background: #fff;box-shadow: 0rpx 46rpx 54rpx 0px rgba(0, 0, 0, 0.1);width: 720rpx;height: 800rpx;z-index: 2;position: absolute;left: 50%;margin-left: -360rpx;top: -85rpx;}
+.content_01_main{width: 667rpx;display: flex;justify-content: space-around;align-items: center;margin: 35rpx auto 0;border-bottom: 1rpx solid #dddddd}
+.radio_main{width: 200rpx;height: 185rpx;margin-bottom: 20rpx;}
+.radio_border{border-right: 1rpx solid #dddddd}
+.radio_fg{width: 2rpx;height: 150rpx;background: #dddddd}
+.vip_price{width: 100%;height: 58rpx;text-align: center;line-height: 58rpx;position: relative}
+.price_text_01{font-size: 38rpx;font-weight: bold}
+.price_text_02{font-size: 26rpx;font-weight: bold}
+.vip_type{width: 100%;text-align: center;line-height: 36rpx;font-size: 26rpx;}
+.radio_icon{width: 100%;margin-top: 30rpx;}
+.icon{width: 40rpx;height: 40rpx;border-radius: 50%;border: 1rpx solid #dcdcdc;margin: 0 auto;position: relative; box-sizing: border-box;}
+.success_icon{position: absolute;top: 0rpx;left: 0rpx;width: 100%;height: 100%}
+
+.content_02{width: 667rpx;margin: 0 auto}
+.vip_time{height: 110rpx;font-size: 30rpx;line-height: 46rpx;margin-left: 20rpx;display: flex;justify-content: space-between;align-items: center;border-bottom: 1rpx solid #dddddd}
+.allprice{height: 110rpx;display: flex;font-size: 30rpx;line-height: 46rpx;margin-left: 20rpx;align-items: center;justify-content: space-between;border-bottom: 1rpx solid #dddddd}
+.zhe_price{height: 110rpx;line-height: 46rpx;background: #e82639;padding: 0 15rpx;color: #fff;border-radius: 3rpx;font-size: 24rpx;margin-left: 20rpx;}
+
+.bottom{width: 100%;text-align: center;position: fixed;bottom: 0;left: 0;padding: 10rpx 0;background: #fff;z-index: 99}
+.vipExplain{font-size: 24rpx;color: #7f7f7f;line-height: 34rpx;text-decoration: underline}
+.bottom button{width: 666rpx;height: 96rpx;background: linear-gradient(to right,#ff6440,#ff3232);border-radius: 5rpx;line-height: 96rpx;color: #fff;font-size: 29rpx;}
+.vipcard_style_01{
+  background-image: -moz-linear-gradient( -135deg, rgb(234,215,172) 0%, rgb(192,159,105) 100%);
+  background-image: -webkit-linear-gradient( -135deg, rgb(234,215,172) 0%, rgb(192,159,105) 100%);
+  background-image: -ms-linear-gradient( -135deg, rgb(234,215,172) 0%, rgb(192,159,105) 100%);
+}
+.vipcard_style_02{
+  background-image: -moz-linear-gradient( -145deg, rgb(214,216,223) 0%, rgb(155,160,174) 100%);
+  background-image: -webkit-linear-gradient( -145deg, rgb(214,216,223) 0%, rgb(155,160,174) 100%);
+  background-image: -ms-linear-gradient( -145deg, rgb(214,216,223) 0%, rgb(155,160,174) 100%);
+}
+.hb{height:110rpx;
+display:flex;
+font-size:30rpx;
+line-height:46rpx;
+margin-left: 20rpx;
+align-items:center;
+justify-content: space-between;
+border-bottom: 1rpx solid #dddddd
+}
+.hb_border{width: 30rpx;height: 30rpx;border:2rpx solid #dcdcdc;border-radius: 50%;position: relative;box-sizing: border-box}
+.hb_border icon{position: absolute;top: -1rpx;left: -1rpx;width: 100%;height: 100%}
+.hb_text{margin-left: 18rpx;}
+
+.yjprice{height: 110rpx;font-size: 30rpx;line-height: 46rpx;margin-left: 20rpx;display: flex;justify-content: space-between;align-items: center;border-bottom: 1rpx solid #dddddd}
+.yh_type{height: 110rpx;font-size: 30rpx;line-height: 46rpx;margin-left: 20rpx;display: flex;justify-content: space-between;align-items: center;border-bottom: 1rpx solid #dddddd}
+.yh_type_content{display: flex;align-items: center}
+.yh_select{display: flex;align-items: center}
+.yh_select text{margin-left: 14rpx;}
+.yh_icon{width: 40rpx;height: 40rpx;border: 1rpx solid #dcdcdc;border-radius: 50%;margin-left: 14rpx;position: relative;box-sizing: border-box}
+.yh_icon icon{width: 100%;height: 100%;position: absolute;top: -1rpx;left: -1rpx}
+.allprice_icon{height: 44rpx;font-size: 24rpx;color: #ce7b77;text-align: center;line-height: 44rpx;border: 1rpx solid #f5cfcc;background: #fff4f2;border-radius: 3rpx;padding: 0 16rpx;}
+.allprice_style{display: flex}
+.allprice_style text{margin-left: 15rpx}
+/* 
+修改20180723 */
+.limit_time{width: 50rpx;height: 25rpx;font-size: 22rpx;background: red;color: #fff;line-height: 25rpx;position: absolute;bottom: 10rpx;right: -35rpx;}
+.limit_allprice{font-size: 22rpx;color: #999;text-decoration: line-through;position: absolute;top: -30rpx;left: 0;width: 100%;text-align: center}
+.hqx{text-decoration: line-through}
+/*会员中心*/
+.vip_more{
+font-size:24rpx;
+line-height:30rpx;
+position:absolute;
+left:42rpx;
+top:165rpx;
+color:#fff;
+}
+button::after{border: none}

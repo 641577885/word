@@ -1,0 +1,7 @@
+{ 
+  "navigationBarTitleText": "创客",
+  "usingComponents": {
+    "dialog": "/login/dialog",
+    "indexback": "/component/indexback"
+  }
+}

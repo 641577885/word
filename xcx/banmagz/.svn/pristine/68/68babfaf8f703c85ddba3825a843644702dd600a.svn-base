@@ -1,0 +1,255 @@
+var app = getApp();
+var bm = require('../../utils/common.js')
+Page({
+  data: {
+    infotype:0,
+    id:null,
+    //公司简称
+    short_name:[],
+    //公司行业id
+    industry:'',
+    //公司网址
+    website:'',
+    //公司地址
+    address:'',
+    //融资阶段
+    rztype: ['全部', '未融资', '天使轮', 'A轮', 'B轮', 'C轮', 'D轮及以上', '已上市','不需要融资'],
+    rztypeIndex: -1,
+    //公司规模
+    pertype: ['全部', '0-20人', '20-99人', '100-499人', '500-999人', '1000-9999人','10000人以上'],
+    pertypeIndex: -1,
+
+    indusData:null,
+
+    select_list:null
+  },
+  bindrz: function (e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      rztypeIndex: e.detail.value
+    })
+  },
+  bindper: function (e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      pertypeIndex: e.detail.value
+    })
+  },
+  submit_company:function(e){
+    var jc = e.detail.value.company_jc
+    var hy = e.detail.value.hyid
+    console.log(hy)
+    var id = parseInt(this.data.id)
+    bm.requsetData('/b/company/update?scene=name', 'post', { short_name: jc, industry: hy,id:id}, function (data) {
+      if (data.data.errcode == 0){
+        wx.showToast({
+          title: data.data.errmsg,
+          icon:'success',
+          duration: 2000,
+          success: function () {
+            setTimeout(function () {
+              var pages = getCurrentPages(); // 当前页面  
+              var beforePage = pages[pages.length - 2]; // 前一个页面  
+              wx.navigateBack({
+                success: function () {
+                  beforePage.onLoad(); // 执行前一个页面的onLoad方法  
+                }
+              });  
+            }, 2000)
+          }
+        })
+      }else{
+        wx.showToast({
+          title: data.data.errmsg,
+          icon:'none'
+        })
+      }
+    })
+  },
+  submit_rz:function(e){
+    var rz = parseInt(e.detail.value.rztype)
+    var id = parseInt(this.data.id)
+    bm.requsetData('/b/company/update?scene=step', 'post', { finance_stage: rz, id: id }, function (data) {
+      if (data.data.errcode == 0) {
+        wx.showToast({
+          title: data.data.errmsg,
+          icon: 'success',
+          duration:2000,
+          success:function(){
+            setTimeout(function(){
+              var pages = getCurrentPages(); // 当前页面  
+              var beforePage = pages[pages.length - 2]; // 前一个页面  
+              wx.navigateBack({
+                success: function () {
+                  beforePage.onLoad(); // 执行前一个页面的onLoad方法  
+                }
+              });  
+            },2000)
+          }
+        })
+      } else {
+        wx.showToast({
+          title: data.data.errmsg,
+          icon: 'none'
+        })
+      }
+    })
+  },
+  submit_gm: function (e) {
+    var gm = parseInt(e.detail.value.bindper)
+    var id = parseInt(this.data.id)
+    bm.requsetData('/b/company/update?scene=size', 'post', { staff_size: gm, id: id }, function (data) {
+      if (data.data.errcode == 0) {
+        wx.showToast({
+          title: data.data.errmsg,
+          icon: 'success',
+          duration: 2000,
+          success: function () {
+            setTimeout(function () {
+              var pages = getCurrentPages(); // 当前页面  
+              var beforePage = pages[pages.length - 2]; // 前一个页面  
+              wx.navigateBack({
+                success: function () {
+                  beforePage.onLoad(); // 执行前一个页面的onLoad方法  
+                }
+              });  
+            }, 2000)
+          }
+        })
+      } else {
+        wx.showToast({
+          title: data.data.errmsg,
+          icon: 'none'
+        })
+      }
+    })
+  },
+  submit_website: function (e) {
+    var website = e.detail.value.website
+    var id = parseInt(this.data.id)
+    bm.requsetData('/b/company/update?scene=website', 'post', { website: website, id: id }, function (data) {
+      if (data.data.errcode == 0) {
+        wx.showToast({
+          title: data.data.errmsg,
+          icon: 'success',
+          duration: 2000,
+          success: function () {
+            setTimeout(function () {
+              var pages = getCurrentPages(); // 当前页面  
+              var beforePage = pages[pages.length - 2]; // 前一个页面  
+              wx.navigateBack({
+                success: function () {
+                  beforePage.onLoad(); // 执行前一个页面的onLoad方法  
+                }
+              });
+            }, 2000)
+          }
+        })
+      } else {
+        wx.showToast({
+          title: data.data.errmsg,
+          icon: 'none'
+        })
+      }
+    })
+  },
+  submit_address:function(e) {
+    var address = e.detail.value.address
+    var id = parseInt(this.data.id)
+    bm.requsetData('/b/company/update?scene=address', 'post', { address: address, id: id }, function (data) {
+      if (data.data.errcode == 0) {
+        wx.showToast({
+          title: data.data.errmsg,
+          icon: 'success',
+          duration: 2000,
+          success: function () {
+            setTimeout(function () {
+              var pages = getCurrentPages(); // 当前页面  
+              var beforePage = pages[pages.length - 2]; // 前一个页面  
+              wx.navigateBack({
+                success: function () {
+                  beforePage.onLoad(); // 执行前一个页面的onLoad方法  
+                }
+              });
+            }, 2000)
+          }
+        })
+      } else {
+        wx.showToast({
+          title: data.data.errmsg,
+          icon: 'none'
+        })
+      }
+    })
+  },
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    var that = this
+    var id = options.id
+    var infotype=options.infotype
+    
+    that.setData({
+      infotype: infotype,
+      id: id
+    })
+    bm.requsetData('/b/company/detail', 'get', { id: id }, function (data) {
+      console.log(data)
+      var induslist = data.data.comp_info.industry_name
+      var indeus_value=[]
+      var indeus_key=[]
+      var list = []
+      for (var i in induslist){
+        indeus_value.push(induslist[i])
+        indeus_key.push(i)
+        var arr = { id: i, indusName: data.data.comp_info.industry_name[i] }
+        list.push(arr)
+      }
+      that.setData({
+        //公司简称
+        short_name: data.data.comp_info.short_name,
+        //公司行业
+        indusData: indeus_value,
+        //公司规模
+        pertypeIndex:data.data.comp_info.staff_size,
+        //融资阶段
+        rztypeIndex:data.data.comp_info.finance_stage,
+        //公司网址
+        website: data.data.comp_info.website,
+        //公司地址
+        address: data.data.comp_info.address,
+        industry: indeus_key,
+        select_list: list
+      })
+    })
+  },
+  onShow:function(){
+    var that = this
+    var induslist = that.data.indusData
+    var indeus_value = []
+    var indeus_key = []
+    if (induslist != null){
+      var induslist02 = induslist.data
+      for (var i in induslist02) {
+        indeus_value.push(induslist02[i].indusName)
+        indeus_key.push(induslist02[i].id)
+      }
+      that.setData({
+        indusData: indeus_value,
+        industry: indeus_key
+      })
+    }
+  },
+  //行业选择
+  selecthy:function(e){
+    var that= this
+    var indata = that.data.select_list
+    
+    var hy = JSON.stringify(indata)
+    console.log(hy)
+    wx.navigateTo({
+      url: '/pages/picker/indusPicker?hy=' + hy,
+    })
+  }
+})

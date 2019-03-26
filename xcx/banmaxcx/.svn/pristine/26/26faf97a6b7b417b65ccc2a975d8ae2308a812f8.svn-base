@@ -1,0 +1,156 @@
+<!--pages/workerlist/lists.wxml-->
+<!--wx:if="{{showCantainer}}"  -->
+<view class='head {{pullup==true?"position_fixed":""}}'>
+  <!-- 头部选择导向 -->
+  <view class='second auto'>
+    <picker range='{{fwlist}}' value='{{fwindex}}' range-key="name" bindchange='checkfw'>
+      <view class='pickerItem'>结果{{skills.length>1?'搜索结果':fwlist[fwindex].name}}
+        <image mode='aspectFill' src='/images/worklist/xia.png'></image>
+      </view>
+    </picker>
+    <view class='screenSeach' bindtap='checkBox'>
+      <icon type="search" class='margin_top8 ' color='black' size="15" />
+    </view>
+  </view>
+  <!--左右导航  -->
+  <view class='tab-nav ' style='z-index: 3'>
+    <button class='{{current==0?"on":""}}' data-current="0" form-type='submit' bindtap='tab'>在线</button>
+    <button class='{{current==1?"on":""}}' data-current="1" form-type='submit' bindtap='tab'>坐班</button>
+  </view>
+  <view class='screenCantainer'>
+    <picker range='{{sortlist}}' value='{{sortidx}}' range-key='data' bindchange='checksoft'>
+      <text>{{sortlist[sortidx].data}}</text>
+      <image mode='aspectFill' src='/images/worklist/sanjiao.jpg'></image>
+    </picker>
+    <picker range='{{priceList}}' value='{{priceidx}}' range-key='data' bindchange='checkprice'>
+      <text>技能</text>
+      <image mode='aspectFill' src='/images/worklist/sanjiao.jpg'></image>
+    </picker>
+    <picker range='{{priceList}}' value='{{priceidx}}' range-key='data' bindchange='checkprice'>
+      <text>金额</text>
+      <image mode='aspectFill' src='/images/worklist/sanjiao.jpg'></image>
+    </picker>
+  </view>
+</view>
+<navigator url='' hover-class='none'></navigator>
+<view class='{{pullup==true?"viewCantainer":""}}'>
+  <block wx:if="{{list.length>0}}">
+    <view class='listContent'>
+      <view class='listContenttarget'>
+        <view class='listContenttext'>
+          <view>
+            <text>产品经理</text>
+            <view class='textLine'>在线</view>
+          </view>
+          <text class='color'>10k-12k</text>
+        </view>
+        <view class='particulars'>
+          <view>杭州</view>
+          <view>杭州</view>
+          <view>杭州</view>
+        </view>
+        <view class='particulars'>
+          <text>河南西瓜有限公司</text>
+          <text>已上市</text>
+        </view>
+        <view class='headPortrait'>
+          <view class='circle'></view>
+          <view class='headPortraittext'>
+            <text>西瓜-CEO</text>
+            <text>04月02</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class='listContent'>
+      <view class='listContenttarget'>
+        <view class='listContenttext'>
+          <view>
+            <text>产品经理</text>
+            <view class='textLine'>在线</view>
+          </view>
+          <text class='color'>10k-12k</text>
+        </view>
+        <view class='particulars'>
+          <view>杭州</view>
+          <view>杭州</view>
+          <view>杭州</view>
+        </view>
+        <view class='particulars'>
+          <text>河南西瓜有限公司</text>
+          <text>已上市</text>
+        </view>
+        <view class='headPortrait'>
+          <view class='circle'></view>
+          <view class='headPortraittext'>
+            <text>西瓜-CEO</text>
+            <text>04月02</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class='listContent'>
+      <view class='listContenttarget'>
+        <view class='listContenttext'>
+          <view>
+            <text>产品经理</text>
+            <view class='textLine'>在线</view>
+          </view>
+          <text class='color'>10k-12k</text>
+        </view>
+        <view class='particulars'>
+          <view>杭州</view>
+          <view>杭州</view>
+          <view>杭州</view>
+        </view>
+        <view class='particulars'>
+          <text>河南西瓜有限公司</text>
+          <text>已上市</text>
+        </view>
+        <view class='headPortrait'>
+          <view class='circle'></view>
+          <view class='headPortraittext'>
+            <text>西瓜-CEO</text>
+            <text>04月02</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class='listContent'>
+      <view class='listContenttarget'>
+        <view class='listContenttext'>
+          <view>
+            <text>产品经理</text>
+            <view class='textLine'>在线</view>
+          </view>
+          <text class='color'>10k-12k</text>
+        </view>
+        <view class='particulars'>
+          <view>杭州</view>
+          <view>杭州</view>
+          <view>杭州</view>
+        </view>
+        <view class='particulars'>
+          <text>河南西瓜有限公司</text>
+          <text>已上市</text>
+        </view>
+        <view class='headPortrait'>
+          <view class='circle'></view>
+          <view class='headPortraittext'>
+            <text>西瓜-CEO</text>
+            <text>04月02</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
+  <block wx:else>
+    <view class='empty_icon' style='top:380rpx'>
+      <image src='/images/empty/empty_bg.png'></image>
+    </view>
+    <view class='empty_text' style='top:860rpx'>
+      <view class='empty_text_01'>当前标签下没有需求发布</view>
+      <view class='empty_text_02'>请选择其他标签搜索</view>
+    </view>
+  </block>
+</view>

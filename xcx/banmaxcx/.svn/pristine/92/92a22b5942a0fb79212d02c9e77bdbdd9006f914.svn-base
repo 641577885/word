@@ -1,0 +1,110 @@
+// pages/worker/my/workinfo.js
+const app = getApp();
+const bm = require('../../utils/common.js')
+const aliUploader = require("../../utils/oss/uploadAliyun.js");
+const webim = require('../../utils/webim.js');
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    avatar: '',
+    name: '',
+    wx_code: '',
+    sex: ['男','女'],
+    sexindex:0,
+    date:'',
+    birth:''
+  },
+  bindsexChange: function (e) {
+    this.setData({
+      sexindex: e.detail.value
+    })
+  },
+  binddateChange: function (e) {
+    this.setData({
+      date: e.detail.value
+    })
+  },
+  bindbirthChange: function (e) {
+    this.setData({
+      birth: e.detail.value
+    })
+  },
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    var that = this
+    bm.requsetData('/w/user/person_info?scene=detail', 'post', '', function (data) {
+      console.log(data)
+     that.setData({
+       avatar: data.data.data.avatar,
+       name: data.data.data.name,
+       wx_code: data.data.data.wx,
+       sexindex: parseInt(data.data.data.sex) - 1,
+       date: data.data.data.start_work_date,
+       birth: data.data.data.birth_date
+     })
+    })
+  },
+  //上传头像
+  upavatar: function () {
+    var that = this
+    wx.chooseImage({
+      count: 1,
+      count: 1,
+      sizeType: ['original', 'compressed'],
+      sourceType: ['album', 'camera'],
+      success: function (res) {
+        let tempFilePaths = res.tempFilePaths[0];
+        let date = new Date();
+        let dir = 'avatar/' + app.globalData.uid;
+        aliUploader(tempFilePaths, dir, date.getTime(),
+          function () {
+            that.setData({
+              avatar: '//bm.jiangcdn.com/' + dir +  '/' + date.getTime() + '.' + tempFilePaths.split(".").pop(),
+            })
+          }, function (res) {
+            common.msg("图片添加失败")
+          });
+      },
+    })
+  },
+  
+  //提交
+  submitinfo: function (e) {
+    var that = this
+    var name = e.detail.value.name
+    var wx_code = e.detail.value.wx_code
+    var sex = parseInt(e.detail.value.sex) + 1
+    var avatar = that.data.avatar
+    var date = e.detail.value.date
+    var birth = e.detail.value.birth
+    var query = { avatar: avatar, name: name, sex: sex, start_work_time: date, wx: wx_code, birthday: birth}
+    bm.requsetData('/w/user/person_info?scene=edit', 'post', query, function (data) {
+      if (data.data.errcode == 0) {
+        wx.showToast({
+          title: '保存成功',
+          icon: 'sueecss',
+          duration: 2000,
+          success: function () {
+            app.setwebIMNick(name);
+            app.globalData.selfHeadUrl = avatar;
+            app.setwebIMAvatar(avatar);
+            setTimeout(function () {
+              wx.navigateBack()
+            }, 2000)
+          }
+        })
+      } else {
+        wx.showToast({
+          title: data.data.errmsg,
+          icon:'none'
+        })
+      }
+    })
+  },
+
+})

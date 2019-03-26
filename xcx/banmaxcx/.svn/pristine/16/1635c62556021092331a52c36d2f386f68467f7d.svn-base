@@ -1,0 +1,32 @@
+// pages/worker/resume/uploading.js
+const bm = require('../../utils/common.js')
+const aliUploader = require("../../utils/oss/uploadAliyun.js");
+const app=getApp();
+Page({
+  data: {
+
+  },
+  /**
+   * 页面的初始数据
+   */
+  uploadFile: function () {
+    var that = this;
+    wx.chooseImage({
+      count: 1, // 默认9
+      sizeType: ['original', 'compressed'],
+      sourceType: ['album', 'camera'],
+      success: function (res) {
+        let tempFilePaths = res.tempFilePaths[0];
+        let date = new Date();
+        var dir = 'resumeFile/' + app.globalData.uid;
+        aliUploader(tempFilePaths, dir, date.getTime(),
+          function () {
+            console.log('//bm.jiangcdn.com/resumeFile/' + dir + '/' + date.getTime() + '.' + tempFilePaths.split(".").pop());
+          }, function (res) {
+            common.msg("图片添加失败")
+          });
+      }
+    })
+  },
+  onLoad: function (options) {}
+})

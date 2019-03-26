@@ -1,0 +1,44 @@
+/* help/problem.wxss */
+page{background: #f9f9f9}
+/*header*/
+.header{width: 100%;height: 120rpx;background: #fff;box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.15);position: fixed;top: 0;left: 0}
+.header_main{width: 680rpx;height: 120rpx;margin: 0 auto;display: flex;align-items: center;justify-content: space-between}
+.logo{width: 239rpx;height: 62rpx;}
+.nav{width: 24rpx;height: 20rpx;}
+/*top*/
+.top{margin-top: 120rpx;padding-top: 54rpx;}
+.top_title{width: 100%;height: 80rpx;font-size: 50rpx;font-weight: bold;text-align: center;line-height: 80rpx;margin-bottom: 20rpx}
+.top_content{width: 600rpx;font-size: 24rpx;line-height: 36rpx;text-align: center;margin: 0 auto}
+.top_btn{width: 340rpx;height: 64rpx;margin: 46rpx auto 0;background: #fede01;border-radius: 2rpx;font-size: 22rpx;text-align: center;line-height: 64rpx;font-weight: bold}
+/*main*/
+.main{width: 100%;margin-top: 73rpx;}
+.main_top{width: 670rpx;margin: 0 auto;display: flex;}
+.main_top_btn{width: 335rpx;height: 73rpx;border: 1rpx solid #e0e0e0;box-sizing: border-box;text-align: center;font-size: 24rpx;line-height: 73rpx;border-bottom: 0 none}
+.main_top_bg{background: #fff}
+/*main_content*/
+.main_content{width: 100%;background: #fff;padding-top: 70rpx;padding-bottom: 80rpx;}
+.main_img{text-align: center}
+.bus_main_01{width: 339rpx;height: 287rpx;}
+.bus_main_02{width: 195rpx;height: 287rpx;margin-top: 70rpx;}
+.bus_main_03{width: 185rpx;height: 287rpx;margin-top: 70rpx;}
+.bus_main_04{width: 337rpx;height: 290rpx;margin-top: 70rpx;}
+.bus_main_05{width: 297rpx;height: 228rpx;margin-top: 70rpx;}
+.bus_main_06{width: 400rpx;height: 303rpx;margin-top: 70rpx;}
+.main_title{width: 670rpx;margin: 60rpx auto 0;font-size: 40rpx;font-weight: bold;line-height: 56rpx;}
+.main_text{width: 670rpx;margin: 26rpx auto 0;font-size: 28rpx;line-height: 40rpx;}
+.main_select{width: 670rpx;height: 77rpx;margin: 45rpx auto 0;display: flex;justify-content: space-between;align-items: center;border-top: 1rpx solid #eeeeee;border-bottom: 1rpx solid #eeeeee}
+.main_select text{font-size: 24rpx;font-weight: bold;color: #eaa700;font-weight: bold}
+.main_select image{width: 20rpx;height: 11rpx;}
+
+.select_content{width: 670rpx;margin: 50rpx auto 0;}
+.select_content text{font-size: 28rpx;line-height: 40rpx;}
+.color{color: #eaa700;font-weight: bold;}
+/*bottom*/
+.bottom{width: 100%;height: 289rpx;background:#fede01;text-align: center; padding-top: 69rpx}
+.bus_bottom_logo{width: 386rpx;height: 93rpx;}
+.bottom_btn{width: 288rpx;height: 62rpx;font-size: 22rpx;text-align: center;line-height: 62rpx;font-weight: bold;margin: 60rpx auto 0;border: 2rpx solid #000;border-radius:5rpx; }
+
+.openvip{width: 624rpx;height: 265rpx;margin: 70rpx auto 0;border: 1rpx solid #dbdbdb;border-top: 10rpx solid #fea600;background: #f9f9f9;padding-top: 44rpx}
+.openvip_title{width: 100%;height: 50rpx;line-height: 50rpx;text-align: center;font-size: 36rpx;font-weight: bold}
+.openvip_title_02{width: 100%;height: 50rpx;line-height: 50rpx;text-align: center;font-size: 24rpx;color: #666666;margin-top: 8rpx;}
+.openvip_btn{width: 246rpx;height: 59rpx;margin: 15rpx auto;border: 2rpx solid #e0e0e0;background: #fff;font-size: 24rpx;font-weight: bold;text-align: center;line-height: 59rpx;}

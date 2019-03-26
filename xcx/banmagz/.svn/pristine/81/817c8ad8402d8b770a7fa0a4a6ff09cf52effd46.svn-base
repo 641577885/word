@@ -1,0 +1,33 @@
+<view class='pubContanier'>
+<view class='pubMain'>
+  <view class='pubTop'>
+    <progress class='progress' percent="50" activeColor="#fede01" />
+    <view class='pubCon'>
+      <view class='showleft'>
+        <view class='pubText'>
+          <view class='circle'></view>
+          <view class='cirtext'>发布</view>
+        </view> 
+          <view class='pubText sheng'>
+          <view class='circle center'></view>
+          <view class='cirtext'>审核</view>
+        </view> 
+        </view>
+          <view class='pubText sheng'>
+          <view class='circle right'></view>
+          <view class='cirtext'>展示</view>
+        </view> 
+    </view>
+  </view>
+   <view class='pubCenter'>
+         <icon class='icon' type="success" size="100"/>
+         <view class='pubsuccess'>您的需求已经发布成功</view>
+         <view class='shenhe'>审核通过后将显示在班马佳薪，您可以先逛逛</view>
+   </view>
+     <view class='Bottom'>
+       <view class='time'>上班时间9:00～18:00   节假日休息</view>
+       <button bindtap="lookAround" class='next'>逛逛，斑马佳薪</button>
+    </view>
+</view>
+  
+</view>

@@ -1,0 +1,8 @@
+<!--pages/login/dialog.wxml-->
+<cover-view class='loginCover' hidden='{{dialogHidden}}' bindtap='hideDialog'></cover-view>
+<cover-view class='loginDialog' hidden='{{dialogHidden}}' hover-class='none'>
+  <cover-view class='loginTitle'>登录后一键召唤人才</cover-view>
+  <button class='green' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">微信帐号快速登录</button>
+  <cover-view class='phone_login' bindtap='goCell'>手机号登录</cover-view>
+</cover-view> 
+

@@ -1,0 +1,64 @@
+<!--pages/business/position/relProject.wxml-->
+<!-- <view class='go_pc'>
+  <view class='go_pc_content'>
+    <text class=''>在电脑上发布新职位</text>
+    <image src='../../../images/position/jt_black.png'></image>
+  </view>
+</view> -->
+<form report-submit='true' bindsubmit='getFormId'>
+  <view class='b_main'>
+    <view class='b_input_02'>
+      <text class='b_input_title_01'>公司信息</text>
+      <view class='b_input_right'>
+        <text class='b_input_title_02'>{{company_name}}</text>
+        <image src='/images/position/jt_gray.png' class='b_input_icon'></image>
+      </view>
+    </view>
+  </view>
+  <view class='noticeTip'>公司信息请前往我的公司修改</view>
+  <view class='b_content'>
+    <navigator class='b_input' hover-class="none" url='/pages/fill/inputFill?num=20&dataName=xqtitle&content={{xqtitle}}&placeholder=请输入需求名称'>
+      <text class='b_input_title_01'>需求名称</text>
+      <view class='b_input_right'>
+        <text class='b_input_title_02'>{{xqtitle}}</text>
+        <image src='/images/position/jt_gray.png' class='b_input_icon'></image>
+      </view>
+    </navigator>
+    <view class='b_input' bindtap='bindfw'>
+      <text class='b_input_title_01'>服务标签</text>
+      <view class='b_input_right'>
+        <text class='b_input_title_02'>{{fwData[0].fwName}}</text>
+        <image src='/images/position/jt_gray.png' class='b_input_icon'></image>
+      </view>
+    </view>
+    <picker bindchange='bindPickerperiod' value='{{period}}' range='{{periodarr}}'>
+      <view class='b_input'>
+        <text class='b_input_title_01'>需求周期</text>
+        <view class='b_input_right'>
+          <text class='b_input_title_02'>{{periodarr[period]}}</text>
+          <image src='/images/position/jt_gray.png' class='b_input_icon'></image>
+        </view>
+      </view>
+    </picker>
+    <navigator class='b_input' hover-class="none" url='/pages/fill/inputFill?num=20&dataName=price&content={{price}}&placeholder=请输入需求金额'>
+      <text class='b_input_title_01'>需求金额</text>
+      <view class='b_input_right'>
+        <text class='b_input_title_02'>{{price}}</text>
+        <image src='/images/position/jt_gray.png' class='b_input_icon'></image>
+      </view>
+    </navigator>
+  </view>
+  <view class='b_content'>
+    <navigator class='b_input_02' hover-class="none" url='/pages/fill/textareaFill?num=200&dataName=content&content={{content}}&placeholder=请输入需求详情'>
+      <text class='b_input_title_01'>需求描述</text>
+      <view class='b_input_right'>
+        <text class='b_input_title_02 b_input_title_03'>{{content}}</text>
+        <image src='/images/position/jt_gray.png' class='b_input_icon'></image>
+      </view>
+    </navigator>
+  </view>
+  <view class='btn'>
+    <text>发布职位表示你已同意遵守《班马佳薪职位信息发布规则》</text>
+    <button bindtap='saveDemand' form-type='submit'>保存</button>
+  </view>
+</form>

@@ -1,0 +1,80 @@
+<!--pages/business/position/demand.wxml-->
+<view class='top'>
+  <view class='type'>
+    <picker bindchange="bindTypeChange" value="{{typeindex}}" range="{{typearray}}" class='type_picker'>
+      <view class='type_view'>{{typearray[typeindex]}}
+        <image src='/images/jt.png' class='jt'></image>
+      </view>
+    </picker>
+  </view>
+  <view class='fg'></view>
+  <view class='state'>
+    <picker bindchange="bindStateChange" value="{{stateindex}}" range="{{statearray}}" range-key='{{"name"}}' class='state_picker'>
+      <view class='state_view' wx:if='{{stateindex > 0}}'>{{statearray[stateindex].name}}
+        <image src='/images/jt.png' class='jt'></image>
+      </view>
+      <view class='state_view' wx:else>状态
+        <image src='/images/jt.png' class='jt'></image>
+      </view>
+    </picker>
+  </view>
+</view>
+<view class='noauth' wx:if='{{is_auth}}'>资质未认证，坐班职位无法上线展示！
+  <navigator class='noauthnav' hover-class='none' url='/business/auth/auth'>立即认证 ></navigator>
+</view>
+<block wx:if="{{showBox}}">
+  <scroll-view class='list' bindscrolltolower='getMoreData' scroll-y style='top:{{auth_top}}rpx'>
+    <view wx:if='{{list.length>0}}'>
+      <view wx:for='{{list}}' wx:for-index="idx" wx:key>
+        <view class='list_main' data-id='{{item.id}}' bindtap='go2Detail'>
+          <view class='content_01'>
+            <view class='title'>
+              <text class='titleName' wx:if='{{typeindex==0}}'>{{item.title}}</text>
+              <text class='titleName' wx:else>{{item.title}}</text>
+              <text class='titleTag' wx:if='{{item.work_way==1}}'>支持远程</text>
+            </view>
+            <view class='open'>
+              <block wx:if="{{item.status == 1}}">
+                <text class='open_color_01'>审核中 ></text>
+              </block>
+              <block wx:elif="{{item.status == 2}}">
+                <text class='open_color_01'>已开放 ></text>
+              </block>
+              <block wx:else>
+                <text class='open_color_02'>已关闭 ></text>
+              </block>
+            </view>
+          </view>
+          <view class='content_02'>
+            <view class='icon_01'>
+              <image class='icon_img' src='/images/eye.jpg'></image>
+            </view>
+            <view class='num'>{{item.clicks}}</view>
+            <view class='icon_02'>
+              <image class='icon_img' src='/images/taolun.jpg'></image>
+            </view>
+            <view class='num'>{{item.chats}}</view>
+            <view class='icon_03'>
+              <image class='icon_img' src='/images/xjt.jpg'></image>
+            </view>
+            <view class='num'>{{item.shares}}</view>
+          </view>
+        </view>
+        <view class='onlineListAdc' wx:if="{{idx==0}}"><image src='https://bm.jiangcdn.com/banma/banner/step.png' mode='aspectFill'></image></view>
+      </view>
+    </view>
+    <view class='emptyCantainer' wx:else>
+      <view class='emptyImg'>
+        <image src='https://bm.jiangcdn.com/banma/empty/empty.png'></image>
+      </view>
+      <view class='emptyInfo'>
+        <view class='emptyTxt1'>您还没有发布相关的{{typeindex==0?"职位":"需求"}}</view>
+      </view>
+      <view class='emptyBtnCantainer'>
+        <form report-submit bindsubmit='link2List'>
+          <button form-type='submit'>立即找人</button>
+        </form>
+      </view>
+    </view>
+  </scroll-view>
+</block>

@@ -1,0 +1,20 @@
+<!--pages/picker/fwPicker.wxml-->
+   <view class='fwPosition' id='mjltest'>
+    <view class='fwTitle_02'>已选行业</view>
+    <view class='fwPositionTxt_02'>
+      <view class='color fwItem ' wx:for='{{select_list}}' bindtap='delclick' wx:key='select_list'wx:for-index="index" data-index="{{index}}">{{item.fwName}}<view class='delstyle'>×</view></view>
+    </view>
+  </view>
+<view class='fwCantianer'  style='margin-top:{{height}}rpx'>
+
+  <view class='fwItemCantainer' wx:for='{{fwList}}' wx:for-item='vo' wx:key>
+    <view class='fwTitle'>{{vo.name}}</view>
+    <view class='fwItemList'>
+      <view class='fwItem {{ct.checked?"clickstyle":""}}' wx:for='{{vo.son}}'  wx:for-item='ct' wx:key data-id='{{ct.id}}' data-fwname='{{ct.name}}'  bindtap='addclick'>{{ct.name}}</view>
+    </view>
+  </view>
+  <view class='btn_content'>
+  <button class='btn' bindtap='checkfw'>保存</button>
+  </view>
+</view>
+

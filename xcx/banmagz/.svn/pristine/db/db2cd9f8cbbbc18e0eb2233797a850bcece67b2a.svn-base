@@ -1,0 +1,110 @@
+.msgCantainer{position: absolute; top: 0; left: 0; bottom: 0; right: 0; background: #f5f5f5; overflow: hidden;}
+.msgItemCantainer{ position: absolute; top: 88rpx; bottom: 100rpx; left: 0; right:0; padding: 20rpx 0; }
+.opcantainer{ display: flex; align-items: center; justify-content: space-around; width: 100%; height: 88rpx;border: 0 none!important; border-bottom: 1rpx solid #dadada; background: #fff;}
+.topTop{ top: 310rpx;}
+.opcantainer button::after{ border: 0 none!important}
+.opcantainer button{ flex: 1; height: 100%; line-height: 88rpx; font-size: 30rpx; color: #353535; text-align: center; border-right: 1rpx solid #dadada; background: #fff; border-radius: 0 }
+.opcantainer button:last-child{ border: 0 none}
+.msgProItem{width: 690rpx; padding: 35rpx 30rpx; background: #fff; border-radius: 10rpx; margin: 20rpx auto; box-sizing: border-box; }
+.msgProTop{ display: flex;  justify-content: space-between}
+.msgProDetail{ display: flex; align-items: center; width: 450rpx; height: auto; font-size: 34rpx; color: #000; word-break: break-all; text-overflow: ellipsis; overflow: hidden}
+.msgProPrice,.msgJobPrice{ font-size: 36rpx; color: #fe5a01; text-align: right}
+.msgProStatusItem{ width: 100%; display: flex; justify-content: space-between; margin-top: 30rpx;}
+.msgProStatus{ font-size: 24rpx;}
+.msgProStatus.normal{ color:#bfbfbf;}
+.msgProStatus.abnormal{ color: #fe5a01;}
+.msgProTime{ font-size: 24rpx; color: #bfbfbf}
+.msgJobItem{ align-items: center;}
+.msgJobName{ font-size: 28rpx;}
+.msgJobTip{ font-size: 24rpx; color: #bfbfbf;}
+.msgJobPriceItem{ text-align: right;}
+.dialogItem{ padding: 0 30rpx; width: 100%; overflow: hidden; margin-bottom: 30rpx;  box-sizing: border-box; }
+.dialogThumb{ float: left; width: 100rpx; height: 100rpx; border-radius: 50%; vertical-align: top; margin: 0 20rpx 0 0; overflow: hidden;}
+.dialogThumb navigator{ width: 100%; height: 100%}
+.dialogThumb image{ width: 100%; height: 100%}
+.dialogCover { position: relative; float: left; max-width: 570rpx; height: auto; padding: 26rpx 35rpx; background: #fff; border-radius: 5rpx; font-size: 30rpx; color: #333; line-height: 37rpx; box-sizing: border-box; vertical-align: top; word-break: break-all;}
+.selfItem .dialogThumb{ float: right; margin:0 0 0 20rpx;}
+.selfItem .dialogCover{ float: right; border-top-right-radius: 0;}
+.fromItem .dialogCover{ border-top-left-radius: 0;}
+.fromItem .dialogCover::before{ position: absolute; left: -5rpx; top: 0; display: block; content: ""; width: 6rpx; height: 7rpx; background: url(https://bm.jiangcdn.com/banma/dialogLeft.png) no-repeat; background-size: 100%;}
+.selfItem .dialogCover::before{position: absolute; right: -5rpx; top: 0; display: block; content: ""; width: 6rpx; height: 7rpx; background: url(https://bm.jiangcdn.com/banma/dialogRight.png) no-repeat; background-size: 100%;}
+.dialogImage{ display: flex; float: left; height:auto; padding: 5rpx;  background:#fff; border-radius: 5rpx;}
+.selfItem .dialogImage{ float: right;}
+.dialogImage image{ max-width: 300rpx; }
+
+.dialogFile{ display: inline-block; width: 95rpx; height: 92rpx; vertical-align: top;}
+.dialogFile image{ width: 100%;}
+.dialogFileInfo{ display: inline-block; width: 230rpx; height: auto; margin-left: 18rpx;}
+.dialogFileName{ display: block; font-size: 30rpx; color: #333; white-space: nowrap; text-overflow: ellipsis;}
+.dialogFileDetail{ display: flex; width: 100%; justify-content: space-between; margin-top: 20rpx;}
+.dialogFileSize{ font-size: 24rpx; color: #666;}
+.dialogFileTerm{ font-size: 24rpx; color: #999; }
+
+.dialogWechat{ font-size: 30rpx; color: #333;}
+.dialogWechatBtn{ display: flex; width: 314rpx;justify-content: space-between; margin-top: 30rpx;}
+.dialogWechatBtn button{ width: 152rpx; height: 66rpx; font-size: 24rpx; color: #000; line-height: 66rpx; box-sizing: border-box;}
+.refuse{ background: none;}
+.agree{ background: #fede01;}
+
+.dialogSendCantainer{ position: absolute; bottom: 0; left: 0; right: 0; background: #fff;}
+.dialogSendTop{ position: relative; padding: 17rpx 16rpx; justify-content: space-between; overflow: hidden;}
+.dialogCommon{ float: left; width: 130rpx; height: 66rpx; text-align: center; line-height: 66rpx; background: #000000; font-size: 30rpx; color: #ffffff; border-radius: 5rpx; }
+.sendPlaceHolder{ height: 66rpx; line-height: 66rpx; font-size: 30rpx;}
+.sendContent{ float: left; display: block; width: 400rpx; font-size: 30rpx; height: 66rpx; color: #000; margin-left: 10rpx;}
+.MoreSend{ float: left;  width: 66rpx; height: 66rpx; background: url(//bm.jiangcdn.com/banma/addMore_Icon.png) no-repeat; background-size: 100%; margin-left: 10rpx;}
+.sendBtn{ float: left; width: 100rpx; height: 66rpx; text-align: center; line-height: 66rpx; background: #fede01; font-size: 30rpx; color: #000; border-radius: 5rpx; padding: 0 }
+
+.moreCantainer{ display: flex; justify-content: space-around; align-items: center; height: 0; overflow: hidden; transition: height 0.1s ease;}
+.showH{ height: 152rpx;}
+.moreItem{ width: 120rpx; text-align: center; padding: 20rpx 0;transition: height 0.1s ease; }
+.moreItem image{ width: 86rpx; height: 70rpx;}
+.moreItem text{ display: block; text-align: center; font-size: 24rpx; color: #666;}
+
+.greetCantainer{ width: 100%; height: 0; background: #f5f5f5; overflow-y: scroll; transition: height 0.1s ease;}
+.greetH{ height: 275rpx;}
+.greetCantainer view{ padding: 10rpx 30rpx; line-height: 40rpx; color: #333; font-size: 28rpx; border-bottom: 1rpx solid #eee;}
+.hidden{ display: none}
+
+.wantCantainer{ width: 500rpx;}
+.wnatTitle{ display: flex; align-items: center; justify-content: space-between; }
+.wantZw{ font-size: 34rpx; color: #000000}
+.wantPrice{ font-size: 36rpx; color: #fe5a01}
+.wantcontent{ color: #a9a9a9; font-size: 26rpx; margin-top: 20rpx;}
+.wanttag{color: #a9a9a9; font-size: 26rpx;}
+.wanttag text{ margin-right: 10rpx;}
+.wantbutton{ display: flex; align-items: center; justify-content: space-between; border-top: 1rpx solid #eeeeee; margin-top: 20rpx; padding: 20rpx 0;}
+.wantbutton button{ width: 45%; }
+.wantbutton button::after{ border: 0 none;}
+.wanna{ background: #fff000}
+.nowanna{ border-color: #eee !important}
+.wanttime{ font-size: 26rpx; margin-top: 10rpx;}
+
+.TipShow{ width: 70%; margin: 13rpx auto; text-align: center; padding: 10rpx 30rpx;  line-height: 38rpx;background: #c5c5c5; color: #fff; border-radius: 76rpx; font-size: 24rpx; }
+.TipShow navigator{ display: inline; color: #0060ff; text-decoration: underline;}
+.hidden{ display: none}
+
+.loadIcon{ width:100%; height: auto; text-align: center;}
+.loadIcon image{ width: 25rpx; height: 25rpx;}
+
+.noticeTime{ text-align: center; font-size:26rpx; color: #aaa; margin-bottom: 10rpx; }
+
+.hireCantainer{ width: 470rpx;}
+.hireTitle{ display: flex; align-items: center; font-size: 34rpx; color: #000000; line-height: 42rpx;}
+.ddIcon{padding: 0 18rpx; height: 42rpx; text-align: center; line-height: 42rpx; font-size: 26rpx; color: #fff; background: #ff4241; border-radius: 5rpx; margin-right: 10rpx;}
+.hirePrice{ display: flex; align-items: center; justify-content: space-between; margin-top: 25rpx;}
+.hireStatus{display: flex; align-items: center; justify-content: flex-start;  font-size: 26rpx; color: #000;}
+.hireStatus::before{  width: 10rpx; height: 10rpx; border-radius: 50%; content: ""; background: #ff4241; margin-right: 10rpx;}
+.hireContent{ font-size: 26rpx; color: #666666; line-height: 48rpx;}
+.hiretime{ padding-top: 20rpx; margin-top: 20rpx; border-top: 1rpx solid #eeeeee}
+.hiretimeT{ font-size: 26rpx; color: #999999}
+.hiretimeC{ font-size: 26rpx; color: #333333}
+
+.contactDialogCantainer{float: left; width:560rpx;}
+.contactDialog{width:560rpx; height: 162rpx; background: #fff; border-radius: 10rpx; margin-bottom: 20rpx;}
+.selfItem .contactDialogCantainer{ float: right; border-top-right-radius: 0;}
+.contactTxt{ display: flex; align-items: center; justify-content: space-between; border-bottom: 1rpx solid #eeeeee; height: 90rpx; padding: 0 20rpx;}
+.contactBody{ display: flex; align-items: center; justify-content: flex-start;}
+.contactBody image{ width: 46rpx; height: 46rpx;}
+.contactBody text{ margin-left: 20rpx; color: #000; font-size: 30rpx;}
+.copyBtn{ font-size: 30rpx; color: #0060ff;}
+.contactTip{ padding: 0 20rpx; font-size: 24rpx; color: #999999; line-height: 70rpx;}

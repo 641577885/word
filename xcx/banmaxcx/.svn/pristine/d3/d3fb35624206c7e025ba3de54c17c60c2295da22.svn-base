@@ -1,0 +1,94 @@
+<!--wallet/task.wxml-->
+	<view class="moneyContanier">
+			<view class="moneyTop">
+				<!-- <navigator  class="problem" url='aboutMoc'>?</navigator> -->
+				<view class="earea">红包余额</view>
+				<navigator class="showmoney" hover-class='none' url='mocDetail' >{{usera_rest}}</navigator>
+        <view class="moneyDetail noborder">
+					<navigator class="moneyhref" hover-class='none' url='task'>
+						 <!-- <view class='areadetail'>查看明细</view> -->
+             <text>赚现金红包</text>
+					</navigator>
+          <navigator class="moneyhref" hover-class='none' url='/pages/openvip/openvip?vip_type=3'>
+             <text>使用红包</text>
+					</navigator>
+				</view> 
+				
+			</view>
+			<!-- <view class="moneyBanner">
+				<view class='banner'>banner</view>
+			</view> -->
+		    <view class="moneyText">
+		    	<view class="moneyAll">
+		    		<view class="moneytxt">班马红包为现金抵价红包，用户通过完成指定任务或平台活动页面可以领取，红包领取后将进入用户的红包账户余额，现金抵价红包可支持班马佳薪消费的地方使用，抵扣比例1:1，抵扣红包不可提现。</view>
+			        <view class='period'>红包有效期：</view>
+			        <view class='periodtext'>现金红包每年12月31日24:00，自动清零。</view>
+		    	</view>
+		    </view>
+		</view>
+
+
+
+
+<!-- 任务大厅 -->
+<form report-submit='true' bindsubmit='getFormId'>
+  <!-- <view wx:for='{{lists}}' wx:for-item='vo'> -->
+  <view class="moneyMain">
+    <view class="moneyMainCon">
+      <view class="moneyTitle">日常任务</view>
+      <view class="memberall"> 
+        <view class="member" wx:for='{{lists}}' wx:for-item='vo' wx:for-index='idx' wx:key='{{lists}}' data-key='{{vo.id}}'>
+          <view wx:if='{{vo.id==6}}' bindtap='invite'>
+             <view class="gold gold{{idx}}"></view>
+             <view class='bmmember'>{{vo.name}}</view>
+          </view>
+          <button wx:elif='{{vo.id==1}}' open-type='share' class='sharebtn'>
+             <view class="gold gold{{idx}}"></view>
+             <view class='bmmember'>{{vo.name}}</view>
+         </button>
+           <view wx:else>
+              <view class="gold gold{{idx}}"></view>
+              <view class='bmmember'>{{vo.name}}</view>
+          </view>
+          <button wx:if='{{vo.count>0}}' class="getmoc {{vo.count>0?'light':''}}" hover-class='none' data-key='{{vo.id}}' data-index='{{idx}}' data-id='{{vo.bonus}}' bindtap="getmoney">领取{{vo.bonus}}元红包</button>
+          <button wx:else class="getmoc {{vo.count>0?'light':''}}" hover-class='none' form-type='submit' data-key='{{vo.id}}' data-index='{{idx}}' data-id='{{vo.bonus}}'>领取{{vo.bonus}}元红包</button>
+          <view class='upnum'>{{vo.cycle_time}}{{vo.cycle}}上限{{vo.cycle_num}}次</view>
+        </view>
+
+      </view>
+
+    </view>
+    <!-- <view class="moneyMainCon showtop"> -->
+    <!-- <view class="moneyTitle">奖励任务</view> -->
+    <!-- <view class="memberall">
+      <view class="member">
+        <view class="gold"></view>
+        <view class='bmmember'>开通区块链简历</view>
+        <!-- <view class="getmoc" tyviewe="10">领取10红包</view> -->
+    <!-- <button class="getmoc" data-id='10' disabled="{{disabled5}}"  bindtap='getmoney' form-type='submit' data-current='5'>领取10红包</button>
+      </view>
+      <view class="member">
+        <view class="gold"></view>
+        <view class='bmmember'>完善个人简历</view>
+        <!-- <view class="getmoc" tyviewe="5">领取5红包</view> -->
+    <!-- <button class="getmoc" data-id='5' disabled="{{disabled6}}"  bindtap='getmoney' form-type='submit' data-current='6'>领取5红包</button>
+      </view> -->
+    <!-- </view> -->
+    <!-- </view> -->
+  </view>
+  <!-- <view class="bottomText">班马佳薪基于腾讯云区块链服务TBaaS</view> -->
+    <view class='showModel' hidden='{{hidden}}'  data-key='{{id}}' data-index='{{idx}}'> 
+            <view class='iconDeg  donut-front' bindtap='getmon' hidden='{{showget}}'></view>
+            <view class='iconImage dount donut-back' hidden='{{showmon}}'>
+              <view class='showback'>
+                <view class='moneytext'>{{bon}}</view>
+                <text class='yuan'>元</text>
+              </view>
+            </view>
+          </view> 
+
+
+
+
+
+</form>

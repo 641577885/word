@@ -1,0 +1,117 @@
+// pages/pay/setpay.js
+const bm = require('../utils/common.js');
+var app = getApp();
+Page({
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    uid: '',
+    // tab切换 
+    periodArray: ['1个月', '2个月', '3个月', '4个月', '5个月', '6个月', '7个月', '8个月', '9个月', '10个月', '11个月', '12个月'],
+    periodindex: 0,
+    byprice: '',
+    month: 1,
+    showRed: false,
+    bymaxcount: 0, //最大抵扣
+    countMoney: Number, //红包值
+    byServiceFee: 0,
+    byAllPrice: 0,
+    pid:Number,
+    start_time: bm.formatToday()
+  },
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    this.setData({pid:options.pid});
+    this.getRenewInfo();
+  },
+  getRenewInfo:function(){
+    var that=this;
+    bm.requsetData("/b/project/renew/applypage","get",{pid:that.data.pid},function(res){
+      if(!res.data.errcode){
+        that.setData({ start_time: bm.formatDate(res.data.pro.begintime), countMoney: res.data.accInfo.usera})
+      }
+    })
+  },
+  /**textarea输入 */
+  bindTextAreaChange: function (e) {
+    this.setData({ textarea_num: e.detail.value.length, work_content: e.detail.value })
+  },
+  choosePeriod: function (e) {
+    this.setData({ month: e.detail.value + 1, periodindex: e.detail.value })
+  },
+
+  checkboxChange: function (e) {
+    var that = this;
+    if (e.detail.value.length != 0) {
+      that.setData({ showRed: true })
+    } else {
+      that.setData({ showRed: false })
+    }
+    that.countAllPrice();
+  },
+  //价格
+  fillPrice: function (e) {
+    var that = this;
+    var _type = e.target.dataset.type;
+    var _price = e.detail.value;
+    var maxcount = (_price * 0.05).toFixed(2);
+    if (maxcount >= Number(that.data.countMoney)) {
+      maxcount = that.data.countMoney
+    }
+    that.setData({ byprice: _price, bymaxcount: maxcount, byServiceFee: (_price * 0.05).toFixed(2) })
+    that.countAllPrice();
+  },
+  countAllPrice: function () {
+    var byAllPrice = Number(this.data.byprice) + Number(this.data.byServiceFee);
+    if (this.data.showRed) {
+      byAllPrice -= this.data.bymaxcount
+    }
+    this.setData({ byAllPrice: byAllPrice })
+  },
+  /**选项切换 */
+  bindqh: function (e) {
+    var that = this;
+    that.setData({ currentTab: e.detail.current });
+    that.countAllPrice();
+  },
+  setOrder: function () {
+    var integral, that = this;
+    if (!that.data.byprice) {
+      wx.showToast({
+        title: '请输入托管金额',
+        icon: 'none'
+      })
+      return false;
+    }
+    if (that.data.showRed) {
+      integral = that.data.bymaxcount;
+    } else {
+      integral = 0;
+    }
+    var query = { pid: that.data.pid, allprice: that.data.byprice, month: that.data.month, beizhu: that.data.work_content, integral: integral }
+    bm.requsetData('/b/project/renew/apply', 'post', query, function (res) {
+      if (!res.data.errcode) {
+        wx.showToast({
+          title: res.data.errmsg,
+          success: function () {
+            wx.navigateTo({
+              url: '/pages/pay/pay?ordersn=' + res.data.ordersn + '&type=hire',
+            })
+          }
+        })
+      } else {
+        wx.showToast({
+          title: res.data.errmsg,
+          icon: 'none'
+        })
+      }
+    })
+  },
+  getFormId: function (e) {
+    var formid = e.detail.formId;
+    app.addformId(formid)
+  }
+})

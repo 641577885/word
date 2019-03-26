@@ -1,0 +1,60 @@
+<!--pages/business/position/details.wxml-->
+<view class='position_top'>
+  <view class='position_title'>
+    <view class='title_content'>
+      <text class='title_content_01'>{{position_title}}</text>
+      <text class='title_content_02'>{{open}}</text>
+    </view>
+    <view class='salary'>{{salary}}</view>
+  </view>
+  <view class='position_info'>
+    <image src='../../../images/position/icon_01.png' class='info_icon'></image>
+    <text>{{add}}</text>
+    <image src='../../../images/position/icon_02.png' class='info_icon'></image>
+    <text>{{experience}}</text>
+    <image src='../../../images/position/icon_03.png' class='info_icon'></image>
+    <text>{{age}}岁</text>
+
+    <image src='../../../images/position/zc_online_icon.png' class='info_icon_02' wx:if='{{online > 0}}'></image>
+  </view>
+</view>
+<!-- 工作经历 -->
+<view class='work_experience'>
+  <view class='common_title'>
+    <view class='common_title_main'>工作经历</view>
+  </view>
+  <view class='experience_list' wx:for='{{experience_list}}' wx:key='experience_list'>
+    <view class='experience_list_main'>
+      <view class='list_title'>
+        <text class='list_title_01'>{{item.list_title}}</text>
+        <text class='list_title_02'>{{item.list_time}}</text>
+      </view>
+      <view class='list_content'>{{item.list_content}}</view>
+      <view class='list_company'>{{item.list_company}}</view>
+    </view>
+  </view>
+</view>
+ <!-- 技能要求 -->
+ <view class='skill'>
+  <view class='common_title'>
+    <view class='common_title_main'>技能要求</view>
+  </view>
+  <view class='skill_content'>
+    <view class='skill_htype' wx:for='{{skill}}' wx:key='skill'>{{item}}</view>
+  </view>
+ </view>
+ <!-- 公司名 -->
+<view class='company'>
+  <view class='company_info'>
+    <view class='company_name'>{{company_name}}</view>
+    <view class='company_ss' wx:for='{{company_ss}}' wx:key='company_ss'>{{item.ss}}－{{item.scale}}－{{item.company_type}}</view>
+  </view>
+  <view class='company_logo'>
+    <image src='../../../images/position/logo.jpg'></image>
+  </view>
+</view>
+ <!-- 按钮 -->
+ <view class='position_btn'>
+  <button class='btn_01' bindtap='{{open_btn}}'>{{open_btn_content}}</button>
+  <button class='btn_02'>编辑</button>
+ </view>

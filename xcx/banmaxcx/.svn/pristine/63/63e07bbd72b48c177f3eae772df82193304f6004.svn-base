@@ -1,0 +1,28 @@
+<!--wallet/money.wxml-->
+	<view class="moneyContanier">
+			<view class="moneyTop">
+				<!-- <navigator  class="problem" url='aboutMoc'>?</navigator> -->
+				<view class="earea">红包余额</view>
+				<navigator class="showmoney" hover-class='none' url='mocDetail' >{{mock}}</navigator>
+        <view class="moneyDetail noborder">
+					<navigator class="moneyhref" hover-class='none' url='task'>
+						 <!-- <view class='areadetail'>查看明细</view> -->
+             <text>赚现金红包</text>
+					</navigator>
+          <navigator class="moneyhref" hover-class='none' url='/pages/openvip/openvip?vip_type=3'>
+             <text>使用红包</text>
+					</navigator>
+				</view> 
+				
+			</view>
+			<!-- <view class="moneyBanner">
+				<view class='banner'>banner</view>
+			</view> -->
+		    <view class="moneyText">
+		    	<view class="moneyAll">
+		    		<view class="moneytxt">班马红包为现金抵价红包，用户通过完成指定任务或平台活动页面可以领取，红包领取后将进入用户的红包账户余额，现金抵价红包可支持班马佳薪消费的地方使用，抵扣比例1:1,抵扣红包不可提现。</view>
+			        <view class='period'>红包有效期：</view>
+			        <view class='periodtext'>现金红包每年12月31日24:00，自动清零。</view>
+		    	</view>
+		    </view>
+		</view>

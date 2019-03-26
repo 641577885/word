@@ -1,0 +1,158 @@
+const bm = require('../../utils/common.js')
+var app = getApp()
+var token = app.globalData.token
+
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    unitLists: [{ id:1,name:'月'}],
+    unit: 1,
+    lowList: [],
+    highList: [],
+    lowsalary: 1, //最低价格
+    highsalary: 2, ///最高价格
+    negotiateLists: [{ id: 0, name: '输入薪资' }, { id: 1, name: '薪资面议' }],
+    negotiate:0,
+    showBox:false,
+    value:[0,0]
+  },
+  //选择单位
+  chooseUnit:function(e){
+    var _unit=e.target.dataset.index;
+    if (_unit != this.data.unit){
+      this.setData({ unit: _unit, value: [0, 0] });
+      this.setLowList(true);
+    }
+  },
+  choosePrice:function(e){
+    var _negotiate = e.target.dataset.index;
+    this.setData({
+      negotiate: _negotiate
+    })
+  },
+
+  //薪资范围选择
+  setLowList: function (flag) {
+    var that = this;
+    var lowlist = [];
+    if (that.data.unit == 1) {
+      for (let i = 1; i < 50; i++) {
+        lowlist.push(i)
+      }
+    }
+    if (that.data.unit == 2) {
+      for (let i = 100; i < 2000; i = i + 100) {
+        lowlist.push(i)
+      }
+    }
+    if (that.data.unit == 3) {
+      for (let i = 20; i < 300; i = i + 10) {
+        lowlist.push(i)
+      }
+    }
+    that.setData({ lowList: lowlist })
+    if (flag) {
+      this.setData({ lowsalary: lowlist[0] })
+      that.setHighList(flag);
+    }else{
+      that.setHighList();
+    }
+  },
+
+  setHighList: function (flag){
+    var that=this;
+    var highlist=[];
+    if (that.data.unit==1){
+      for (let i = that.data.lowsalary+1; i <= 50; i++) {
+        highlist.push(i)
+      }
+    }
+    if (that.data.unit == 2) {
+      for (let i = that.data.lowsalary + 100; i <= 2000; i=i + 100) {
+        highlist.push(i)
+      }
+    }
+    if (that.data.unit == 3) {
+      for (let i = that.data.lowsalary + 10; i <= 300; i=i + 10) {
+        highlist.push(i)
+      }
+    }
+    that.setData({ highList: highlist })
+    if (flag){
+      this.setData({ highsalary: highlist[0] })
+    }
+  },
+
+  bindChange: function (e) {
+    var val = e.detail.value;
+    var lowsalary = this.data.lowList[val[0]];
+    if (lowsalary != this.data.lowsalary) {
+      this.setData({ value: [val[0],0]})
+      this.setData({ lowsalary: lowsalary })
+      this.setHighList();
+      var highsalary = this.data.highList[0];
+    }else{
+      var highsalary = this.data.highList[val[1]];
+      this.setData({ value: [val[0], val[1]] })
+    }
+    this.setData({ highsalary: highsalary})
+  },
+
+  checkPrice:function(){
+    this.setData({ showBox:true })
+  },
+  cancelBox:function(){
+    this.setData({ showBox: false })
+  },
+  nextStep:function(){
+    var that=this;
+    if (!that.data.unit){
+      wx.showToast({
+        title: '请选择雇佣周期',
+        icon: 'none'
+      })
+      return false;
+    }
+    if (!that.data.negotiate){
+      if (!that.data.lowsalary || that.data.lowsalary == '') {
+        wx.showToast({
+          title: '请输入最低薪资要求',
+          icon: 'none'
+        })
+        return false;
+      }
+      if (!that.data.highsalary || that.data.highsalary == '') {
+        wx.showToast({
+          title: '请输入最高薪资要求',
+          icon: 'none'
+        })
+        return false;
+      }
+      if (Number(that.data.lowsalary) >= Number(that.data.highsalary)) {
+        wx.showToast({
+          title: '薪资区间输入有误',
+          icon: 'none'
+        })
+        return false;
+      }
+    }
+    app.jobUnit = that.data.unit;
+    app.joblowsalary = that.data.lowsalary;
+    app.jobhighsalary = that.data.highsalary;
+    app.jobValue = that.data.value;
+    app.jobnegotiate = that.data.negotiate;
+    wx.navigateTo({
+      url: '/pages/details/jobEdit?type=1',
+    })
+  },
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    this.setData({ work_way: app.jobWorkWay})
+    this.setLowList();
+  }
+})

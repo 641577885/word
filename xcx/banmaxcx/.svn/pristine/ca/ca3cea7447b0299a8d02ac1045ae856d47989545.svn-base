@@ -1,0 +1,166 @@
+<!--pages/workerlist/lists.wxml-->
+<view class='head {{pullup==true?"position_fixed":""}}'>
+  <!-- 头部选择导向 -->
+  <view class='second auto'>
+    <picker range='{{array}}' value='{{arrayidx}}' range-key="profession_name" bindchange="bindPickerChange">
+      <view class='pickerItem'>{{array.length>0?array[arrayidx].profession_name:'搜索结果'}}
+        <image mode='aspectFill' src='/images/worklist/xia.png'></image>
+      </view>
+    </picker>
+    <view class='telicon' bindtap='checkBox'>
+      <!--切换图标  -->
+       <view bindtap="switcher">
+        <image src='/images/qiehuan.png' style='width:40rpx;height:40rpx '></image>
+      </view> 
+      <navigator hover-class="none" url="/pages/search/search?getValue=1">
+        <icon type="search" class='margin_top15' style='margin-left:20rpx;' color='black' size="15" />
+      </navigator>
+    </view>
+  </view>
+  <!--左右导航  -->
+  <view class='tab-nav ' style='z-index: 3'>
+    <button class='{{current==0?"on":""}}' data-current="0" bindtap='tab'>支持远程</button>
+    <button class='{{current==1?"on":""}}' data-current="1" bindtap='tab'>需要驻场</button>
+  </view>
+  <view class='screenCantainer'>
+    <picker range="{{sortlist}}" value="{{sortidx}}" range-key="data" bindchange="tuijianBut">
+      <text>{{sortlist[sortidx].data}}</text>
+      <image mode='aspectFill' src='/images/worklist/sanjiao.jpg'></image>
+    </picker>
+    <picker range='{{skillList}}' value='{{skillidx}}' bindchange='jinengButo'>
+      <view class='display_flex'>
+        <view class='ovhiden60'>{{skillidx==0?'技能':skillList[skillidx]}}</view>
+        <image mode='aspectFill' src='/images/worklist/sanjiao.jpg'></image>
+      </view>
+    </picker>
+    <picker range='{{priceList}}' value='{{priceidx}}' range-key='data' bindchange='jineBut'>
+      <text>{{priceidx==0?'金额':priceList[priceidx].data}}</text>
+      <image mode='aspectFill' src='/images/worklist/sanjiao.jpg'></image>
+    </picker>
+  </view>
+</view>
+<view class='{{pullup==true?"viewCantainer":""}}' wx:if="{{showCantainer}}">
+  <block wx:if="{{list.length>0}}">
+    <!--列表1  -->
+    <view class='{{hiddenswcr==false?"display_none":""}}'>
+      <!--在线  -->
+      <navigator url='/pages/details/zwDetails?id={{item.id}}' hover-class='none' wx:for="{{list}}" wx:key>
+        <view class='listContent  {{hiddenzz==false?"display_none":""}}'>
+          <view class='listContenttarget'>
+            <view class='listContenttext'>
+              <text>{{item.title}}</text>
+              <view>
+                <text class='wbys'>外包预算</text>
+                <text class='color {{item.negotiate==1?"display_none":""}}'>{{item.lowsalary==item.highsalary?item.lowsalary:item.lowsalary+'-'+item.highsalary}}元</text>
+                <text class='color {{item.negotiate==0?"display_none":""}}'>面议</text>
+              </view>
+            </view>
+            <view class='jinenxx {{item.skills_name==""?"display_none":""}}'>
+              <text wx:for="{{item.skills_name}}" wx:key="unique">{{item}}</text>
+            </view>
+            <view class='particularss'>
+              <text>{{item.content}}</text>
+            </view>
+            <view class='headPortrait'>
+              <image class='circle' src='{{item.seller.avatar}}'></image>
+              <view class='headPortraittext'>
+                <view class='sdaqwe'>
+                  <text class='{{item.seller.name==""?"display_none":""}}'>{{item.seller.name}}</text>
+                  <text class='{{item.seller.company_short_name==""?"display_none":""}}'>{{'-'+item.seller.company_short_name}}</text>
+                  <text class='{{item.seller.position==""?"display_none":""}}'>{{'-'+item.seller.position}}</text>
+                </view>
+                <text>{{item.ctime}}</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </navigator>
+      <!--坐班  -->
+      <navigator url='/pages/details/zwDetails?id={{item.id}}' hover-class='none' wx:for="{{list}}" wx:key>
+        <view class='listContent  {{hiddenzz==true?"display_none":""}}'>
+          <view class='listContenttarget'>
+            <view class='listContenttext'>
+              <text>{{item.title}}</text>
+              <view>
+                <text class='wbys'>外包预算</text>
+                <text class='color'>{{item.negotiate==1?"面议":item.lowsalary/1000+"k-"+item.highsalary/1000+"k"}}</text>
+              </view>
+            </view>
+            <view class='jinenxx'>
+              <text wx:for="{{item.skills_name}}" wx:key="unique">{{item}}</text>
+            </view>
+            <view class='particulars'>
+              <view>{{item.city_name==""?"不限":"item.city_name"}}</view>
+              <view>{{item.work_year_name}}</view>
+              <view>{{item.education_name==''?"不限":item.education_name}}</view>
+            </view>
+            <view class='headPortrait'>
+              <image class='circle' src='{{item.seller.avatar}}'></image>
+              <view class='headPortraittext'>
+                <view class='sdaqwe'>
+                  <text class='{{item.seller.name==""?"display_none":""}}'>{{item.seller.name}}</text>
+                  <text class='{{item.seller.company_short_name==""?"display_none":""}}'>{{'-'+item.seller.company_short_name}}</text>
+                  <text class='{{item.seller.position==""?"display_none":""}}'>{{'-'+item.seller.position}}</text>
+                </view>
+                <text>{{item.ctime}}</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </navigator>
+    </view>
+    <view class='text_align {{hiddentext==false?"display_none":""}}'>~~亲，已经到底了~~</view>
+    <view>
+      <!--列表2  -->
+      <view class='list {{hiddenswcr==true?"display_none":""}}'>
+        <swiper autoplay="{{false}}" previous-margin="{{'50rpx'}}" next-margin="{{'80rpx'}}" bindchange="swiperChange">
+          <block wx:for="{{list}}" wx:key="{{index}}">
+            <navigator url='/pages/details/zwDetails?id={{item.id}}' hover-class='none'>
+              <swiper-item bindtap='card_click'>
+                <view class="slide-image infobg {{swiperIndex == index? 'active' : ''}}">
+                  <view class='title'>{{item.title}}</view>
+                  <view class='entitle'>Web Designer</view>
+                  <view class='skillall {{item.skills_name==""?"display_none":""}}'>
+                    <view wx:for='{{item.skills_name}}' wx:key="unique">{{item}}</view>
+                  </view>
+                  <view class='contents'>
+                    <text>{{item.content}}</text>
+                  </view>
+                  <view class='price {{hiddenzz==false?"display_none":""}}'>{{item.lowsalary==item.highsalary?item.lowsalary:item.lowsalary+'-'+item.highsalary}}元</view>
+                  <view class='price {{hiddenzz==true?"display_none":""}}'>{{item.lowsalary/1000}}k-{{item.highsalary/1000}}k</view>
+                  <view class='price_text'>薪资</view>
+                  <view class='infobottom'>
+                    <view class='infoboth'>
+                      <image class='showimg' src='{{item.seller.avatar}}'></image>
+                      <view class='infomation'>
+                        <view class='name'>{{item.seller.name}}</view>
+                        <view class='telphon'>{{item.seller.company_name}}</view>
+                      </view>
+                    </view>
+                    <view class='messge'>
+                      <image src='/images/worker/message_02.png'></image>
+                    </view>
+                  </view>
+                </view>
+              </swiper-item>
+            </navigator>
+          </block>
+        </swiper>
+      </view>
+    </view>
+
+    <view class='asd {{hiddenxyy==true?"display_none":""}} ' bindtap='getnext'>
+      <image src='/images/change.png'></image>
+    </view>
+  </block>
+  <!--没有数据时显示  -->
+  <block wx:else>
+    <view class='empty_icon' style='top:380rpx'>
+      <image src='/images/empty/empty_bg.png'></image>
+    </view>
+    <view class='empty_text' style='top:860rpx'>
+      <view class='empty_text_01'>{{empty_text_01}}</view>
+      <view class='empty_text_02'>{{empty_text_02}}</view>
+    </view>
+  </block>
+</view>

@@ -1,0 +1,257 @@
+// pages/share/shareImg.js
+var app = getApp()
+const bm = require('../../utils/common.js')
+const ctx = wx.createCanvasContext('shareCanvas')
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    cwidth:null,
+    cheight: null,
+    uname:'',
+    typer: ['程序猿', '设计狮','运营狗'],
+    typerIndex:0,
+    lineHeight: 60,
+    xcx_code: '',
+    avatar:'',
+    count:'',
+    xcx_code: '',
+    threeheight:310,
+    url:'',
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    console.log(options)
+    var that=this
+    var role = app.globalData.role;
+    var uid = app.globalData.uid;
+    var token = app.globalData.token
+
+    bm.requsetData('/c/login/getShareData', 'get',{}, function (data) {
+ 
+      console.log(data)
+      if (!data.data.errcode) {
+        that.setData({
+          uname:data.data.name,
+          avatar: data.data.avatar,
+          count: data.data.count,
+          })
+        wx.downloadFile({
+          url: data.data.avatar,
+          success: function (res) {
+            that.setData({
+              avatar: res.tempFilePath
+            })
+          }
+        
+        })
+        wx.getSystemInfo({
+          success: function (res) {
+            console.log(res)
+            that.setData({
+              cwidth: res.screenWidth,
+              cheight: res.screenHeight
+            })
+          }
+        })
+    
+    
+        bm.requsetData('/c/action/get_qrcode?scene=resume&id=' + uid, 'post', '', function (rdd) {
+          wx.downloadFile({
+            url: rdd.data.url,
+            success: function (aaa) {
+              that.setData({
+                xcx_code: aaa.tempFilePath
+              })
+              that.createNewImg()
+            }
+          })
+        })
+
+        // that.createNewImg()
+      } else {
+        wx.showToast({
+          title: data.data.errmsg,
+          icon: 'none',
+          duration: 2000
+        })
+      }
+    })  
+  },
+  createNewImg:function(){
+    var that=this
+    ctx.drawImage('../../images/invitebg.png', 0, 0, that.data.cwidth, that.data.cheight)
+    // 姓名
+    that.canvastext('我是' + that.data.uname, that.data.cwidth / 2 - 40, that.data.cheight * 0.07, '#000', 13)
+    // 类型
+    // var typer = that.data.typer
+    // var listnum = thinkList.length
+    // var height = 60
+    // for (let item of thinkList) {
+    //   if (item !== 'a') {
+    //     that.canvastext(item, 15, that.data.twoheight + height, '#000', 13)
+    //     height += that.data.lineHeight;
+    //   }
+    // }
+
+    var height;
+   // 框
+    that.canvasrect(that.data.cwidth / 2 - 85, that.data.cheight*0.56, '#000')
+    that.canvasrect(that.data.cwidth / 2 - 25, that.data.cheight * 0.56, '#000')
+    that.canvasrect(that.data.cwidth / 2 + 35, that.data.cheight * 0.56, '#000')
+  //  类型
+    that.canvastype('程序猿', that.data.cwidth / 2 - 60, that.data.cheight * 0.57, '#feef01', 13)
+    that.canvastype('设计狮', that.data.cwidth / 2, that.data.cheight * 0.57, '#feef01', 13)
+    that.canvastype('运营狗', that.data.cwidth / 2 + 60, that.data.cheight * 0.57, '#feef01', 13)
+    
+    // height += that.data.lineHeight;
+    // 数字
+    that.canvanum(that.data.count, that.data.cwidth / 2, that.data.cheight * 0.42, '#000',60)
+    // that.canvanumre(that.data.cwidth / 2, 290, '#000')
+    // that.canvanumre1(that.data.cwidth / 2 + 2, 292, '#feef01')
+    // that.canvanum('2', that.data.cwidth / 2 + 20, 290, '#000', 13)
+    //头像
+    that.canvasavatar(that.data.avatar, that.data.cwidth * 0.115, that.data.cheight * 0.08, that.data.cwidth * 0.208, that.data.cheight * 0.116)
+    ctx.drawImage('../../images/cicles_03.png', that.data.cwidth * 0.092, that.data.cheight * 0.068, that.data.cwidth * 0.256, that.data.cheight * 0.14)
+    // 二维码
+
+    ctx.drawImage(that.data.xcx_code, that.data.cwidth * 0.65, that.data.cheight*0.80, 85, 85)
+    console.log()
+    ctx.draw()
+  },
+  // 姓名
+  canvastext: function (content, x, y, color, size) {
+    ctx.save()
+    ctx.setFillStyle(color)
+    ctx.setFontSize(size)
+    ctx.font = "bold 20px consolas"; 
+    ctx.setTextBaseline('top')
+    ctx.fillText(content, x, y,color)
+    ctx.restore()
+  },
+  // 类型
+  canvastype: function (content, x, y, color, size) {
+    ctx.setFontSize(size)
+    ctx.setTextBaseline('top')
+    ctx.setTextAlign('center')
+    ctx.setFillStyle(color)
+    ctx.fillText(content, x, y)
+    ctx.restore()
+  },
+  canvasrect: function ( x, y, color){
+    ctx.setFillStyle(color)
+    ctx.fillRect(x, y, 50, 30)
+  },
+  // 数字
+  canvanum: function (content, x, y, color, size) {
+    ctx.save()
+    ctx.setFontSize(size)
+    ctx.font = "bolder 40px consolas"; 
+    ctx.setTextBaseline('top')
+    ctx.setTextAlign('center')
+      ctx.setFillStyle(color)
+    ctx.fillText(content, x, y)
+   
+    ctx.restore()
+  },
+  canvanumre: function (x, y, color){
+    ctx.setFillStyle(color)
+   ctx.strokeRect(x, y, 30, 40)
+  },
+  canvanumre1: function (x, y, color) {
+    ctx.setFillStyle(color)
+    ctx.fillRect(x, y, 28, 38)
+  },
+   //圆形头像
+  canvasavatar: function (url, x, y, width, height) {
+    ctx.save()
+    ctx.beginPath()
+    ctx.arc(width / 2 + x, height / 2 + y, width / 2, 0, 2 * Math.PI)
+    ctx.fill('#000')
+    ctx.clip()
+    ctx.setStrokeStyle("red")
+    ctx.drawImage(url, x, y, width, height)
+    ctx.restore()
+  },
+  save: function () {
+    var that = this
+    // //触摸时间距离页面打开的毫秒数  
+    // var touchTime = that.data.touch_end - that.data.touch_start;
+    // if (touchTime > 1000) {
+    wx.showModal({
+      title: '提示',
+      content: '是否保存图片到手机？',
+      success: function (res) {
+        if (res.confirm) {
+          wx.canvasToTempFilePath({
+            canvasId: 'myCanvas',
+            success: function (data) {
+              wx.saveImageToPhotosAlbum({
+                filePath: data.tempFilePath,
+                success(ree) {
+                  wx.navigateBack({
+                    delta: 1,
+                  })
+                }
+              })
+            }
+          })
+        }
+      }
+    })
+
+  },
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+  
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+  
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+  
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+  
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+  
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+  
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+  
+  }
+})

@@ -1,0 +1,248 @@
+// pages/share/shareImg.js
+var app = getApp()
+const bm = require('../../utils/common.js')
+const ctx = wx.createCanvasContext('shareCanvas')
+const Page = require('../../utils/ald-stat.js').Page;
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    cwidth: null,
+    cheight: null,
+    lineHeight: 60,
+    xcx_code: '',
+    avatar: '',
+    xcx_code: '',
+    threeheight: 310,
+    url: '',
+    list:[]
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    console.log(options)
+    var that = this
+    var role = app.globalData.role;
+    var uid = app.globalData.uid;
+    var token = app.globalData.token
+
+    bm.requsetData('/b/seller/getShareInfo', 'get', {}, function (data) {
+
+      console.log(data)
+      if (!data.data.errcode) {
+        that.setData({
+      
+          list:data.data.list
+        })
+        console.log('data.data.list.avatar', data.data.list.avatar)
+        wx.getImageInfo({
+          // src: "https:" + data.data.avatar,//服务器返回的带参数的小程序码地址
+          src: data.data.list.avatar,
+          // src: "https://bm.jiangcdn.com/avatar/10117/undefined.jpg",
+          success: function (res) {
+            console.log(res)
+            //res.path是网络图片的本地地址
+            // var qrCodePath = res.path;           
+            that.setData({
+              avatar: res.path,
+            })
+            wx.getSystemInfo({
+              success: function (res) {
+                console.log(res)
+                that.setData({
+                  cwidth: res.screenWidth,
+                  cheight: res.screenHeight
+                })
+              }
+            })
+            bm.requsetData('/c/action/get_qrcode?scene=seller_inv&id=' + uid, 'post', '', function (rdd) {
+              console.log('rdd', rdd)
+              wx.getImageInfo({
+                src: rdd.data.url,
+                success: function (_res) {
+                  that.setData({
+                    xcx_code: _res.path
+                  })
+                  that.createNewImg()
+                }
+              })
+            })
+            // that.createNewImg()
+          },
+          fail: function (res) {
+            console.log('res', res)
+          }
+
+        })
+        bm.requsetData('/c/action/get_qrcode?scene=resume&id=' + uid, 'post', '', function (rdd) {
+          wx.downloadFile({
+            url: rdd.data.url,
+            success: function (aaa) {
+              that.setData({
+                xcx_code: aaa.tempFilePath
+              })
+              that.createNewImg()
+            }
+          })
+        })
+        // that.createNewImg()
+
+
+        bm.requsetData('/c/action/get_qrcode?scene=resume&id=' + uid, 'post', '', function (rdd) {
+          wx.downloadFile({
+            url: rdd.data.url,
+            success: function (aaa) {
+              that.setData({
+                xcx_code: aaa.tempFilePath
+              })
+              that.createNewImg()
+            }
+          })
+        })
+         that.createNewImg()
+
+      } else {
+        wx.showToast({
+          title: data.data.errmsg,
+          icon: 'none',
+          duration: 2000
+        })
+      }
+    })  
+   
+  },
+  createNewImg: function () {
+    var that = this
+    ctx.drawImage('../../images/share/gushare.png', 0, 0, that.data.cwidth, that.data.cheight)
+    ctx.drawImage('../../images/share/topbc_03.png', that.data.cwidth * 0.382, that.data.cheight * 0.04, that.data.cwidth * 0.612, that.data.cheight * 0.103)
+    //头像
+    that.canvasavatar(that.data.avatar, that.data.cwidth * 0.388, that.data.cheight * 0.045, that.data.cwidth * 0.17, that.data.cheight * 0.095)
+    // 姓名
+    that.canvastext('我是' + that.data.list.name, that.data.cwidth *0.593, that.data.cheight * 0.06, '#fff', 13)  
+    //描述
+    that.canvastexts('我在这里找互联网人才', that.data.cwidth * 0.593, that.data.cheight * 0.096, '#fff', 13)  
+    // 二维码
+    that.canvasacode(that.data.xcx_code, that.data.cwidth * 0.37, that.data.cheight * 0.697, that.data.cwidth * 0.264, that.data.cheight * 0.148)
+    console.log()
+    ctx.draw()
+  },
+  // 姓名
+  canvastext: function (content, x, y, color, size) {
+    ctx.save()
+    ctx.setFillStyle(color)
+    ctx.setFontSize(size)
+    ctx.font = "bold 16px consolas";
+    ctx.setTextBaseline('top')
+    ctx.fillText(content, x, y, color)
+    ctx.restore()
+  },
+  canvastexts: function (content, x, y, color, size) {
+    ctx.save()
+    ctx.setFillStyle(color)
+    ctx.setFontSize(size)
+    ctx.setTextBaseline('top')
+    ctx.fillText(content, x, y, color)
+    ctx.restore()
+  },
+  // 二维码
+  canvasacode: function (url, x, y, width, height) {
+    ctx.save()
+    ctx.beginPath()
+    ctx.arc(width / 2 + x, height / 2 + y, width / 2, 0, 2 * Math.PI)
+    ctx.fill('#000')
+    ctx.clip()
+    ctx.drawImage(url, x, y, width, height)
+    ctx.restore()
+  },
+  //圆形头像
+  canvasavatar: function (url, x, y, width, height) {
+    ctx.save()
+    ctx.beginPath()
+    ctx.arc(width / 2 + x, height / 2 + y, width / 2, 0, 2 * Math.PI)
+    ctx.fill('#000')
+    ctx.clip()
+    // ctx.setStrokeStyle("red")
+    ctx.drawImage(url, x, y, width, height)
+    ctx.restore()
+  },
+  save: function () {
+    var that = this
+    // //触摸时间距离页面打开的毫秒数  
+    // var touchTime = that.data.touch_end - that.data.touch_start;
+    // if (touchTime > 1000) {
+    wx.showModal({
+      title: '提示',
+      content: '是否保存图片到手机？',
+      success: function (res) {
+        if (res.confirm) {
+          wx.canvasToTempFilePath({
+            canvasId: 'myCanvas',
+            success: function (data) {
+              wx.saveImageToPhotosAlbum({
+                filePath: data.tempFilePath,
+                success(ree) {
+                  wx.navigateBack({
+                    delta: 1,
+                  })
+                }
+              })
+            }
+          })
+        }
+      }
+    })
+
+  },
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
+  }
+})

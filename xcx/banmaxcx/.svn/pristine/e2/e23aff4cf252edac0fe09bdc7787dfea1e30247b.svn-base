@@ -1,0 +1,5 @@
+{
+  "navigationBarTitleText": "雇主需求",
+  "enablePullDownRefresh": true,
+  "onReachBottomDistance": 10
+}

@@ -1,0 +1,100 @@
+// business/my/invitation.js
+var app = getApp();
+var bm = require('../../utils/common.js')
+const Page = require('../../utils/ald-stat.js').Page;
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    company_avatar:[],
+    company_name:'',
+    company_num:'',
+    user_avatar:'',
+    user_sex:'',
+    user_name:'',
+    token:null,
+    isShowDialog: true,
+    isreg: true,
+    at:null
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    var that = this
+    that.setData({
+      token: options.token
+    })
+    if (app.globalData.auth) {
+      console.log(1)
+      that.getdata();
+    } else {
+      console.log(12)
+      app.authCallback = auth => {
+        if (app.globalData.auth == 0) {
+          that.setData({
+            isShowDialog: false
+          })
+        }
+        that.getdata();
+      }
+    }
+    
+    
+  },
+  join:function(){
+    var session_id = wx.getStorageSync('PHPSESSID')
+    var that = this
+    var token = that.data.token
+    var host = app.globalData.host
+    var access_token = app.globalData.token
+    wx.request({
+      url: host+'/b/company/share_join',
+      data: { token: token, access_token: access_token},
+      header: { session_id: session_id},
+      success:function(data){
+        console.log(data)
+        if(data.data.errcode == 0){
+          wx.showToast({
+            title: data.data.errmsg,
+          })
+          setTimeout(function(){
+            wx.switchTab({
+              url: '/pages/business/mycentre',
+            })
+          },1500)
+        }else{
+          wx.showToast({
+            title: data.data.errmsg,
+            icon:'none'
+          })
+        }
+      }
+    })
+  },
+  getdata:function(){
+    var that = this
+    var token = that.data.token
+    bm.requsetData('/b/company/invite?token=' + token, 'get', '', function (data) {
+      if (data.data.errcode == 0) {
+        that.setData({
+          company_name: data.data.company.name,
+          company_avatar: data.data.company.avatar,
+          user_avatar: data.data.user.avatar,
+          user_sex: data.data.user.sex,
+          user_name: data.data.user.name,
+          token: token,
+          company_num: data.data.company.number,
+        })
+      } else {
+        wx.showToast({
+          title: data.data.errmsg,
+          icon: 'none'
+        })
+      }
+    })
+  }
+})

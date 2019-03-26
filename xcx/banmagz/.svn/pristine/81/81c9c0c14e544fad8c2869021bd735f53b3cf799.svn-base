@@ -1,0 +1,22 @@
+.evalContanier{width: 100%;height: 100%}
+.evalMain{width: 567rpx;margin: 0 auto}
+.evalText{font-size: 30rpx;color: #8e9091;text-align: center;line-height: 165rpx}
+ .evaluate{padding: 0 15rpx} 
+.evalAbility{display: flex;padding-bottom: 26rpx;align-items: center}
+.evalTxt{font-size: 30rpx;color: #666666;padding-right: 34rpx}
+.darkStarBox{display: flex}
+.darkStar{width: 60rpx;height: 57rpx;margin-left: 22rpx;background-image: url(//bm.jiangcdn.com/banma/darkstar.png);background-size: 100%;}
+.lightStar{width: 60rpx;height: 57rpx;margin-left: 22rpx;background-image: url(//bm.jiangcdn.com/banma/lightstar.png);background-size: 100%;}
+.evalResult{width: 100%;}
+.evalLine{display: flex;overflow: hidden;flex-flow:row wrap;}
+.evalCon{width:50%}
+.resultTxt{height: 58rpx;border: 1rpx solid #acaeae;color: #666666;background: #ffffff;margin-top: 36rpx;font-size: 25rpx;line-height: 58rpx;text-align: center}
+.showpad{margin-right: 21rpx;margin-left:21rpx;}
+.light{border: 1px solid #fe5a01;color: #fe5a01;}
+
+/* textarea */
+.evalTextarea{overflow:hidden; margin-top: 50rpx;}  
+.textarea{width: 566rpx;height: 176rpx;background: #f4f4f4;padding: 20rpx; font-size: 28rpx;}
+/* 底部 */
+.evalBottom{position: fixed;bottom: 30rpx;left: 47rpx}
+.comfirm{width: 666rpx;height: 95rpx;background: #000;color: #ffffff;font-size: 29rpx;line-height: 95rpx}

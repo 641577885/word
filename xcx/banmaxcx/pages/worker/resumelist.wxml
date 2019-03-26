@@ -1,0 +1,34 @@
+<!--pages/business/position/linkup.wxml-->
+<scroll-view class='scrolls' scroll-y  bindscrolltolower="bottom" >
+<view class='list'>
+  <view class='list_main' wx:for='{{list}}' wx:key='list' bindtap='resumeClick' data-id='{{item.sid}}'>
+    <view class='list_main_01'>
+      <view class='content_left'>
+        <view class='avatar'>
+          <image mode='aspectFill' src='{{item.avatar}}'></image>
+        </view>
+        <view class='info'>
+          <view class='name'>{{item.name}}</view>
+          <view class='position'>{{item.position}}</view>
+          <view class='position'>{{item.education_name}}</view>
+        </view>
+      </view>
+      <view class='content_right'>
+        <view class='price'>{{item.drop_time}}</view>
+      </view>
+    </view>
+    <view class='list_main_02'>
+    {{item.content}}
+    </view>
+  </view>
+</view>
+</scroll-view>
+<view class='explainCantainer' hidden='{{hiddens?false:true}}'>
+      <view class='explain'>
+      您还未发送过任何简历
+      </view>
+      <view class='bg'>
+        <image src='https://bm.jiangcdn.com/banma/empty/empty.png'></image>
+      </view>
+      <button class='btn' bindtap='sendDemand'>立即找人</button>
+    </view>

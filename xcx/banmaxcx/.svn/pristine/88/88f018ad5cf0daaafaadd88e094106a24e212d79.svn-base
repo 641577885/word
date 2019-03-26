@@ -1,0 +1,31 @@
+/* guide/done.wxss */
+.background {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+.entirety {
+  position: absolute;
+  top: 200rpx;
+  width: 100%;
+}
+.entirety_conts{
+  display: flex;
+  justify-content: center;
+}
+.conts {
+  width: 540rpx;
+  height: 610rpx;
+}
+.card_but_text{
+    margin-top: 40rpx;
+    color: #ffffff;
+    text-align: center;
+    font-size: 34rpx;
+    text-decoration: underline;
+}
+.button{
+      margin-top: 50rpx;
+      width: 453rpx;
+      height:82rpx;
+}

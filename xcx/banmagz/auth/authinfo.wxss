@@ -1,0 +1,23 @@
+/* auth/authinfo.wxss */
+.top{width: 100%;height: 111rpx;background: #fff;padding-top: 37rpx;}
+.top_top{width: 600rpx;height: 44rpx;margin: 0 auto;display: flex;justify-content: space-between;align-items: center}
+.cir{width: 30rpx;height: 30rpx;border-radius: 50%}
+.line{width: 255rpx;height: 8rpx}
+.yellow{background: #fede01}
+.gray{background: #e7e7e7}
+.top_bottom{width: 673rpx;height: 34rpx;margin: 7rpx auto 0;display: flex;justify-content: space-between;align-items: center;}
+.top_bottom text{font-size: 24rpx;}
+.jg{width: 100%;height: 30rpx;background: #f5f5f5}
+.main{width: 100%;background: #fff}
+.main_content{width: 665rpx;margin: 25rpx auto 0;}
+.main_info{width: 100%;height: 109rpx;border-bottom: 1rpx solid #dae2f8;display: flex;justify-content: space-between;align-items: center;}
+.main_info text{font-size: 30rpx;}
+.main_input_01{width: 450rpx;height: 109rpx;font-size: 30rpx;text-align: right}
+.main_input_02{width: 270rpx;height: 109rpx;font-size: 30rpx;display: flex;align-items: center;}
+.main_input_02 text{font-size: 30rpx;margin-left: 10rpx;z-index: 1}
+.icon{width: 46rpx;height: 46rpx;border: 1rpx solid #c9c9c9;box-sizing: border-box;border-radius: 50%;position: relative;margin-left: 30rpx;}
+.icon icon{display: block;width: 46rpx;height: 46rpx;position: absolute;top: -1rpx;left: -1rpx;z-index: 0}
+.btn{width:100%;height: 200rpx;position: fixed;left: 0;bottom: 0;display: flex;align-items: center}
+.btn button{width: 665rpx;background: #000;color: #fff;}
+.auth_ts_01{font-size: 26rpx;width: 665rpx;margin: 20rpx auto;}
+.auth_ts_02{font-weight: bold}

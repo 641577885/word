@@ -1,0 +1,36 @@
+/* wallet/task.wxss */
+page{height: 100%;background: #f4f4f4}
+.moneyMain{width: 100%;background: #FFFFFF; }
+.moneyTitle{font-size: 30rpx;line-height: 83rpx;border-bottom: 1rpx solid #e5e5e5;padding-left:27rpx;}
+/*moneyMainCon*/
+.moneyMainCon{margin: 0 auto;border-bottom:10px solid #f4f4f4;}
+.memberall{display: flex;    flex-flow: row wrap;padding-bottom:40rpx;}
+.member{width: 33%;text-align: center;    font-size: 0;}
+.light{background: #FEDE01;border: none !important;color: #000000 !important;}
+.bmmember{font-size: 25rpx;}
+.getmoc{font-size: 24rpx;display:inline-block;width: 200rpx;height: 52rpx;    margin-top: 22rpx;color: #888888;border: 1rpx solid #cccccc;text-align: center;line-height: 52rpx;border-radius: 22rpx;}
+.light{background: #FEDE01;border: none !important;color: #000000 !important;}
+.gold{width: 68rpx;height: 59rpx;display: inline-block;    margin: 43rpx 0 36rpx 0;}
+.gold0{background: url(http://bm.jiangcdn.com/bmjx/task/moc_share_12.png) no-repeat;background-size: contain; }
+.gold1{background: url(http://bm.jiangcdn.com/bmjx/task/task_person_06.png) no-repeat;background-size: contain; }
+.gold2{background: url(http://bm.jiangcdn.com/bmjx/task/moc_fly_09.png) no-repeat;background-size: contain; }
+.gold3{background: url(http://bm.jiangcdn.com/bmjx/task/task_work_15.png) no-repeat;background-size: contain; }
+.gold4{background: url(http://bm.jiangcdn.com/bmjx/task/moc_share_12.png) no-repeat;background-size: contain; }
+.gold5{background: url(http://bm.jiangcdn.com/bmjx/task/moc_share_12.png) no-repeat;background-size: contain; }
+.gold6{background: url(http://bm.jiangcdn.com/bmjx/task/moc_share_12.png) no-repeat;background-size: contain; }
+.gold7{background: url(http://bm.jiangcdn.com/bmjx/task/moc_fly_09.png) no-repeat;background-size: contain;}
+.showtop{margin-top: 19rpx;}
+.upnum{font-size: 22rpx;color: #fe5a01;display: block;padding-top: 10rpx;white-space:nowrap}
+.bottomText{text-align: center;line-height: 109rpx;font-size: 30rpx;color: #888888;}
+.showModel{ position: absolute;top: 0%;left: 0%;width: 100%;height: 100%;background-color: black;z-index: 1;background:rgba(0,0,0,0.7);filter:Alpha(opacity=60);}
+.iconImage{width: 369rpx;height: 369rpx;position: absolute;left: 50%;top: 50%;margin-left: -184rpx;margin-top: -184rpx;  background: url(http://bm.jiangcdn.com/bmjx/task/moc_icon_03.png) no-repeat;background-size: contain;   z-index: 2;}
+/* .moneytext{color: #ddb01f;font-size: 160rpx} */
+.moneytext,.yuan{font-size: 21rpx;font-family: "DINPro";
+color: rgb(221, 176, 31);font-weight: bold;text-transform: uppercase;line-height: 1.699;text-align: center;-moz-transform: matrix( 7.54885002584898,0,0,7.54885002584898,0,0);
+-webkit-transform: matrix( 7.54885002584898,0,0,7.54885002584898,0,0);
+-ms-transform: matrix( 7.54885002584898,0,0,7.54885002584898,0,0);position: absolute;
+ left:176rpx;top:167rpx;
+ text-shadow: 0 0.1rpx 0.1rpx #c1711a; 
+ z-index: 18;
+}
+.yuan{font-size:10rpx !important;}

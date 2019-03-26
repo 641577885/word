@@ -1,0 +1,40 @@
+<view class='positiontype2Container'>
+   <view class='positiontype2Main'>
+      <view class='positiontype2MainTop'>
+          <view class='positiontype2MainTopC'>
+          <view class='positiontype2Title'>2/3选择职位薪资</view>
+          <navigator class='cancelBtn' open-type='reLaunch' hover-class='none' url='/pages/business/demand'>取消</navigator>
+      </view>
+          <view class='positiontype2look'>给职位选择一个相应的薪资</view>
+      </view>
+      <view class='positionTime'  wx:if="{{work_way==1}}">
+        <view class='positiononline'>
+          <button class='online {{item.id==unit?"active":""}}' wx:for='{{unitLists}}' data-index="{{item.id}}" wx:key bindtap='chooseUnit'>{{item.name}}</button>
+          </view>   
+          <view class="wagesInput">
+            <input placeholder='最低薪资要求' type='number' data-type="low" bindinput='fillPrice' value='{{lowsalary}}'></input>
+            <text>-</text>
+            <input placeholder='最高薪资要求' type='number' data-type="high" bindinput='fillPrice' value='{{highsalary}}'></input>
+            <text>元</text>       
+          </view> 
+      </view>
+      <view class='positionWages' wx:if="{{work_way==2}}">
+        <view class='positiononline'>
+            <button class='online {{item.id==negotiate?"active":""}}' wx:for='{{negotiateLists}}' data-index="{{item.id}}" wx:key bindtap='choosePrice'>{{item.name}}</button>
+        </view>
+        <view class="wagesInput" wx:if="{{!negotiate}}">
+          <input placeholder='最低薪资要求' type='number' data-type="low" bindinput='fillPrice' value='{{lowsalary}}'></input>
+          <text>-</text>
+          <input placeholder='最高薪资要求' type='number' data-type="high" bindinput='fillPrice' value='{{highsalary}}'></input>
+          <text>元</text>       
+        </view> 
+      </view>
+      <!-- <view class="section">
+          <input placeholder="请输入在线职位薪资" auto-focus class='wages' bindinput='inputwages'/>
+          <text>元</text>
+      </view> -->
+      <view class='positiontype2MainBottom'>
+          <button class='comfirmnext' plain="{{plain}}" bindtap="nextStep">下一步 </button>
+      </view>
+   </view>
+</view>

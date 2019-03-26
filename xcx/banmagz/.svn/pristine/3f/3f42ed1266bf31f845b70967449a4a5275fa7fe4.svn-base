@@ -1,0 +1,29 @@
+<!--wallet/task.wxml-->
+<!-- <view wx:for='{{lists}}' wx:for-item='vo'> -->
+<view class="moneyMain" >
+  <view class="moneyMainCon">
+    <view class="moneyTitle">日常任务</view>
+    <view class="memberall">
+      <view class="member" wx:for='{{lists}}' wx:for-item='vo' wx:for-index='idx' wx:key='{{lists}}'>
+        <view class="gold gold{{idx}}"></view>
+        <view class='bmmember'>{{vo.name}}</view>
+        <button wx:if='{{vo.count>0}}'  class="getmoc {{vo.count>0?'light':''}}"  hover-class='none' data-key='{{vo.id}}' data-index='{{idx}}'  data-id='{{vo.bonus}}'  bindtap="getmoney">领取{{vo.bonus}}元红包</button>
+        <button wx:else  class="getmoc {{vo.count>0?'light':''}}"  hover-class='none' data-key='{{vo.id}}' data-index='{{idx}}'  data-id='{{vo.bonus}}' >领取{{vo.bonus}}元红包</button>
+        <view class='upnum'>{{vo.cycle_time}}{{vo.cycle}}上限{{vo.cycle_num}}次</view>
+      </view>
+    </view>
+  </view>
+ </view> 
+   <!-- <view class="bottomText">班马佳薪基于腾讯云区块链服务TBaaS</view> --> 
+     <view class='showModel' hidden='{{hidden}}'  data-key='{{id}}' data-index='{{idx}}'>
+            <view class='iconDeg donut-front' bindtap='getmon' hidden='{{showget}}'></view>
+            <view class='iconImage dount donut-back' hidden='{{showmon}}'>
+              <view class='showback'>
+                <view class='moneytext'>{{bon}}</view>
+                <text class='yuan'>元</text>
+              </view>
+            </view>
+
+          </view>  
+
+

@@ -1,0 +1,2 @@
+<!--pages/tcash/meichai.wxml-->
+<web-view src='{{url}}'></web-view>

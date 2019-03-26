@@ -1,0 +1,40 @@
+// pages/login/login.js
+const bm = require('../../utils/common.js')
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+  },
+  //获取手机号码权限
+  getPhoneNumber: function (e) {
+    if (e.detail.errMsg == 'getPhoneNumber:fail user deny') {
+      wx.showModal({
+        title: '提示',
+        showCancel: false,
+        content: '未授权',
+        success: function (res) { }
+      })
+    } else {
+      var session_id = wx.getStorageSync('PHPSESSID');//本地取存储的sessionID  
+      bm.sessionRequset('/c/login/get_phone', { encdata: e.detail.encryptedData, iv: e.detail.iv,role:2},function(data){
+        if (!data.errcode) {
+          wx.redirectTo({
+            url: '/member/chooseRole',
+          })
+        } else {
+          wx.showToast({
+            title: data.errmsg,
+            icon: 'none'
+          })
+        }
+      }, session_id)
+    }
+  },
+  linktoPhone:function(){
+    wx.navigateTo({
+      url: '/member/bindPhone',
+    })
+  },
+})

@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "dialog": "/login/dialog",
+    "indexback":"/component/indexback"
+  }
+}

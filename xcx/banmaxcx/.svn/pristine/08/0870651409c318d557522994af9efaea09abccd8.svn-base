@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "fastResume": "/pages/worker/fastResume"
+  },
+  "navigationBarTitleText": "添加曾经工作经历"
+}

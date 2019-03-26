@@ -1,0 +1,24 @@
+<!--business/demand/demand01.wxml-->
+<view class='top'>
+  <view class='top_main_01'>
+    <view class='top_text_01'>1/3填写需求信息</view>
+    <navigator class='top_text_02'open-type='reLaunch' hover-class='none' url='/pages/business/demand'>取消</navigator>
+  </view>
+  <view class='top_main_02'>请根据提示生成你的需求单</view>
+</view>
+<view class='content_title'>您想要做什么</view>
+<view class='content'>
+  <view class='content_list' wx:for='{{list}}' wx:key='list' id='{{index}}' data-name='{{item.name}}' bindtap='selct_click'>
+    <view class='list_left'>
+      <view class='list_icon'>
+        <icon type='success' size='23' wx:if='{{item.id==pick_id}}'></icon>
+      </view>
+      <view class='list_text'>{{item.name}}</view>
+    </view>
+    <view class='list_right'>
+      <icon type='success_no_circle' size='16' wx:if='{{item.id==pick_id}}'></icon>
+    </view>
+  </view>
+</view>
+
+<button class='btnBlack' bindtap='submit'>下一步</button>

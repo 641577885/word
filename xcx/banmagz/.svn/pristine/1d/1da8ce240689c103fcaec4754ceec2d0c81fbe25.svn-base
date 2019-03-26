@@ -1,0 +1,71 @@
+const bm = require('../../utils/common.js')
+var app = getApp();
+Page({
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    tagList: [],
+    ckList: [],
+  },
+  tagPicker: function (e) {
+    var that = this;
+    var tagName = e.target.dataset.value;
+    if (that.data.ckList.indexOf(tagName) != -1) {
+      var tagName = that.data.ckList.indexOf(tagName);
+      that.data.ckList.splice(tagName, 1)
+      that.setData({ ckList: that.data.ckList })
+    } else {
+      if (that.data.ckList.length < 3) {
+        that.data.ckList.push(tagName)
+        that.setData({ ckList: that.data.ckList })
+      } else {
+        wx.showToast({
+          title: '最多选择三个',
+          icon: 'none'
+        })
+      }
+    }
+    that.tagAction();
+  },
+  tagAction: function () {
+    var that = this;
+    for (var i = 0; i < that.data.tagList.length; i++) {
+      var newchecked = that.data.tagList[i].checked;
+      var name = that.data.tagList[i].name;
+      if (that.data.ckList.indexOf(name) != -1) {
+        that.data.tagList[i].checked = true;
+      } else {
+        that.data.tagList[i].checked = false;
+      }
+      that.setData({ tagList: that.data.tagList })
+    }
+  },
+  next: function () {
+    var that = this;
+    if (that.data.ckList.length==0) {
+      wx.showToast({
+        title: '请至少选择一个能力要求',
+        icon: 'none'
+      })
+      return false;
+    }
+    app.demandSkills = that.data.ckList;
+    wx.navigateTo({
+      url: 'need',
+    })
+  },
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    var that=this;
+    var array=[];
+    bm.requsetData('/c/config/skill', 'get', { id: app.demandTypeId }, function (res) {
+      for (var i in res.data){
+        array.push({ name: res.data[i], checked: false })
+      }
+      that.setData({ tagList: array })
+    }, true)
+  },
+})

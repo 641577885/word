@@ -1,0 +1,8 @@
+/* pages/login/login.wxss */
+.loginCantianer{ position: absolute; width: 100%; height: 100%; overflow: hidden;}
+.identityTitle{ font-size: 56rpx; color: #010101; text-align: center; margin: 120rpx 0 30rpx 0;}
+.identityTip{ font-size: 28rpx; color: #8e9091; text-align: center}
+.identityImage{ width: 294rpx; height: 359rpx; margin: 110rpx auto 0;}
+.identityImage image{ width: 100%;}
+.goMinProject{ position: absolute; bottom: 190rpx; width: 100%; text-align: center; font-size: 28rpx; color: #8e9091;}
+.sureBtn{ position: absolute; bottom: 40rpx; left: 5%; width: 90%;}

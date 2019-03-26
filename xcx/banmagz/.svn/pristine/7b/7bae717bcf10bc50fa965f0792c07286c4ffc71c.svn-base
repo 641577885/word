@@ -1,0 +1,24 @@
+/* business/my/invitation.wxss */
+page{background: #000}
+.main{width: 100%;position: relative}
+.header_top{width: 100%;height: 137rpx;position: absolute;top: 0;left: 0;z-index: 1}
+.header_bg{width: 100%;height: 878rpx;position: absolute;top: 0;left: 0;z-index: 0}
+.avatar{width: 200rpx;height: 200rpx;border: 2rpx solid #fff;border-radius: 50%;background: #fff;position: absolute;left: 50%;margin-left: -100rpx;top: 208rpx;}
+.avatar_main{width: 196rpx;height: 196rpx;border-radius: 50%;position: absolute;top: 2rpx;left: 2rpx}
+.sex{width: 38rpx;height: 38rpx;position: absolute;top: 10rpx;right: 10rpx;}
+.title{width: 100%;height: 54rpx;position: absolute;top: 437rpx;font-size: 36rpx;font-weight: bold;color: #fff;text-align: center;line-height: 54rpx;}
+.title_02{width: 100%;height: 34rpx;position: absolute;top: 504rpx;font-size: 24rpx;color: #959595;text-align: center;line-height: 34rpx;}
+.title_03{width: 100%;height: 54rpx;position: absolute;top: 555rpx;font-size: 36rpx;font-weight: bold;color: #fff;text-align: center;line-height: 54rpx;}
+.title_04{width: 100%;height: 34rpx;position: absolute;top: 640rpx;font-size: 28rpx;color: #959595;text-align: center;line-height: 34rpx;font-weight: bold}
+.member_list{width: 460rpx;position: absolute;top: 670rpx;left: 50%;margin-left: -230rpx;text-align: center;display: flex;justify-content: center;flex-wrap: wrap}
+.list_main{width: 100rpx;height: 100rpx;border: 4rpx solid #fff;background: #c8c8c8;border-radius: 50%;overflow: hidden;margin-left: -22rpx;display: inline-block;margin-bottom: 45rpx;}
+.list_avatar{width: 100rpx;height: 100rpx;}
+.btn{width: 730rpx;height: 76rpx;position: fixed;bottom: 11rpx;left: 50%;margin-left: -365rpx;background:linear-gradient(to right, #fede01 , #fdc100);line-height: 76rpx;font-size: 30rpx;}
+
+.loginCantianer{ position: absolute; width: 100%; height: 100%; overflow: hidden;}
+.identityTitle{ font-size: 56rpx; color: #010101; text-align: center; margin: 120rpx 0 30rpx 0;}
+.identityTip{ font-size: 28rpx; color: #8e9091; text-align: center}
+.identityImage{ width: 294rpx; height: 359rpx; margin: 110rpx auto 0;}
+.identityImage image{ width: 100%;}
+.goMinProject{ position: absolute; bottom: 190rpx; width: 100%; text-align: center; font-size: 28rpx; color: #8e9091;}
+.sureBtn{ position: absolute; bottom: 40rpx; left: 5%; width: 90%;}

@@ -1,0 +1,2 @@
+<!--pages/business/my/auth.wxml-->
+<web-view src="{{url}}"></web-view>

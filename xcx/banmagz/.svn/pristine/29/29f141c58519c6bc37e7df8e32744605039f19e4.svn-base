@@ -1,0 +1,76 @@
+var app = getApp();
+var bm = require('../../utils/common.js')
+const aliUploader = require("../../utils/oss/uploadAliyun.js");
+Page({
+  data: {
+    //公司id
+    company_id:null,
+    //公司全名
+    company_name:'',
+    //行业
+    company_type:'',
+    //公司短名
+    company_name_02:'',
+    //公司人数
+    company_num:null,
+    //成员列表
+    member_list:[],
+    //logo
+    logo:'',
+    //完善未完善显示
+    ws_01:null,
+    ws_02:null,
+    ws_03: null,
+    ws_04: null,
+    ws_05: null,
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    var that = this
+    bm.requsetData('/b/company/index','get','', function (data) {
+      console.log(data)
+      that.setData({
+        company_id: data.data.comp_info.id,
+        company_name: data.data.comp_info.name,
+        company_type: data.data.comp_info.industry_str,
+        logo: data.data.comp_info.logo,
+        company_name_02: data.data.comp_info.short_name,
+        member_list: data.data.staff,
+        company_num: data.data.staff.length,
+        ws_01: data.data.completion.name,
+        ws_02: data.data.completion.size,
+        ws_03: data.data.completion.step,
+        ws_04: data.data.completion.website,
+        ws_05: data.data.completion.address,
+      })
+    })
+  },
+  //更换logo
+  choose_logo:function(){
+    var that=this
+    wx.chooseImage({
+      count:1,
+      sizeType: ['original', 'compressed'],
+      sourceType: ['album', 'camera'],
+      success:function(res){
+        let tempFilePaths = res.tempFilePaths[0];
+        let date = new Date();
+        let dir = 'busLogo';
+        aliUploader(tempFilePaths, dir, date.getTime(),
+          function () {
+            that.setData({
+              logo: '//bm.jiangcdn.com/' + dir + '/' + app.globalData.uid + '/' + date.getTime() + '.' + tempFilePaths.split(".").pop()
+            })
+          }, function (res) {
+            common.msg("图片添加失败")
+          });
+        // that.setData({
+        //   logo: res.tempFilePaths[0]
+        // })
+      }
+    })
+  }
+})

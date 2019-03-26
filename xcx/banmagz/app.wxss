@@ -1,0 +1,17 @@
+/**app.wxss**/
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 200rpx 0;
+  box-sizing: border-box;
+} 
+.btnBlack{ background: #000000; color: #fff}
+/**empty列表为空显示页面**/
+.empty_icon{width: 417rpx;height: 452rpx;position: fixed;left: 50%;margin-left: -208rpx;top: 180rpx;}
+.empty_icon image{width: 417rpx;height: 452rpx}
+.empty_text{width: 100%;position: fixed;left: 0;top: 760rpx;text-align: center}
+.empty_text_01{font-size: 48rpx;line-height: 76rpx;}
+.empty_text_02{font-size: 30rpx;line-height: 54rpx;color: #999999}

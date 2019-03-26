@@ -1,0 +1,2 @@
+<!--pages/share/share03.wxml-->
+<canvas style="width:100%;height:{{contentHeight}}px;background:#fff" canvas-id="myCanvas" bindtouchstart="mytouchstart"bindtouchend="mytouchend"></canvas>

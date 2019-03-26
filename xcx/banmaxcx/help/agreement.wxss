@@ -1,0 +1,9 @@
+/* help/agreement.wxss */
+page{background: #f4f4f4}
+.content{width: 570rpx;background: #fff;padding: 40rpx;margin: 40rpx auto;border-radius: 10rpx;}
+.title{font-size: 36rpx;font-weight: bold;line-height: 46rpx;margin: 24rpx 0}
+.title_02{font-size: 30rpx;font-weight: bold;line-height: 46rpx;margin: 24rpx 0}
+.main{font-size: 24rpx;line-height: 40rpx;color: #888888;}
+.font{font-weight: bold;color: #000}
+.border{text-decoration: underline}
+.link{color: rgb(44, 148, 178);display: inline-block}

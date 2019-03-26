@@ -1,0 +1,163 @@
+var app = getApp();
+var bm = require('../../utils/common.js')
+const aliUploader = require("../../utils/oss/uploadAliyun.js");
+Page({
+  data: {
+    //公司id
+    company_id:null,
+    //公司全名
+    company_name:'',
+    //行业
+    company_type:'',
+    //公司短名
+    company_name_02:'',
+    //公司人数
+    company_num:null,
+    //成员列表
+    member_list:[],
+    //logo
+    logo:'',
+    //完善未完善显示
+    ws_01:null,
+    ws_02:null,
+    ws_03: null,
+    ws_04: null,
+    ws_05: null,
+    //分享的token
+    share_token:null,
+    is_auth:'',
+    auth_bind:'auth_bind'
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onShow: function (options) {
+    var that = this
+    bm.requsetData('/b/seller/auth_status', 'get', '', function (data) {
+      console.log(data)
+      if (data.data.data.company == 2) {
+        that.setData({
+          is_auth: 'share',
+          auth_bind:''
+        })
+      } else {
+        that.setData({
+          is_auth: '',
+          auth_bind:'auth_bind'
+        })
+        
+      }
+    })
+    bm.requsetData('/b/company/index','get','', function (data) {
+      console.log(data)
+      if (data.data.comp_info.logo.length == 0){
+        var logo = '../../images/default_logo.png'
+      }else{
+        var logo = data.data.comp_info.logo
+      }
+      var str = data.data.comp_info.industry_str
+      if (str.length > 10) {
+        var str_main = str.substring(0, 10) + ' ...'
+      } else {
+        var str_main = str
+      }
+      that.setData({
+        company_id: data.data.comp_info.id,
+        company_name: data.data.comp_info.name,
+        company_type: str_main,
+        logo: logo,
+        company_name_02: data.data.comp_info.short_name,
+        member_list: data.data.staff,
+        company_num: data.data.staff.length,
+        ws_01: data.data.completion.name,
+        ws_02: data.data.completion.size,
+        ws_03: data.data.completion.step,
+        ws_04: data.data.completion.website,
+        ws_05: data.data.completion.address,
+        share_token: data.data.share_token
+      })
+    })
+  },
+  //更换logo
+  choose_logo:function(){
+    var that=this
+    wx.chooseImage({
+      count:1,
+      sizeType: ['original', 'compressed'],
+      sourceType: ['album', 'camera'],
+      success:function(res){
+        let tempFilePaths = res.tempFilePaths[0];
+        let date = new Date();
+        let dir = 'busLogo/' + app.globalData.uid;
+        aliUploader(tempFilePaths, dir, date.getTime(),
+          function () {
+            var logo =  '//bm.jiangcdn.com/' + dir + '/' + date.getTime() + '.' + tempFilePaths.split(".").pop()
+            bm.requsetData('/b/company/update?scene=logo', 'post', { logo: logo, id: that.data.company_id}, function (data) {
+              if (data.data.errcode == 0){
+                that.setData({
+                  logo: logo
+                })
+                wx.showToast({
+                  title: data.data.errmsg,
+                })
+              }else{
+                wx.showToast({
+                  title: data.data.errmsg,
+                  icon:'none'
+                })
+              }
+            })
+          }, function (res) {
+            common.msg("图片添加失败")
+          });
+        // that.setData({
+        //   logo: res.tempFilePaths[0]
+        // })
+      }
+    })
+  },
+  onShareAppMessage:function(){
+    var that = this
+    var access_token = app.globalData.token
+    var token = that.data.share_token
+    return{
+      title:'邀请',
+      path: 'business/my/invitation?token=' + token,
+      success:function(res){
+        console.log(res)
+      }
+    }
+  },
+  auth_bind:function(){
+    wx.showToast({
+      title: '企业资质未认证,无法邀请！',
+      icon: 'none'
+    })
+  },
+  replace:function(){
+    wx.showModal({
+      confirmColor:'red',
+      title: '警告',
+      content: '更换公司将清空现公司所有信息！清空后信息无法恢复并将重新入驻！',
+      success:function(res){
+        if (res.confirm) {
+          wx.showModal({
+            confirmColor: 'red',
+            title: '请再次确认',
+            content: '是否确认更换公司？',
+            success:function(data){
+              if (data.confirm){
+
+              }else{
+                console.log('用户点击取消2')
+              }
+            }
+          })
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
+  }
+})

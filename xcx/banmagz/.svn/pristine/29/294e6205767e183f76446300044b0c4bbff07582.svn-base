@@ -1,0 +1,54 @@
+.positionmoveContainer{width: 100%;position: relativ;height: 100%;}
+.search{width: 100%;height: 88rpx;background:#fede01;overflow: hidden}
+.section{width: 720rpx;background: #fff;border-radius: 7rpx;display: flex;margin: 0 auto;margin-top: 16rpx;position: relative}
+.section image{padding-top: 13rpx;position:absolute;top:4rpx;left:220rpx;}
+.searchpos{font-size: 26rpx;color: #b2b2b2;text-align:center;width:100%;line-height:56rpx;height:56rpx;}
+.sectionchoose{width: 100%}
+.position_fixed{position: fixed;z-index: 9;}
+.daosanjiao{display: inline-block;width:35rpx;height:25rpx;position:absolute;right:15rpx;top:32rpx;}  
+.nav_choose{width: 100%; height: 80rpx;display: flex; flex-direction: row;}
+.nav_search_box{background: #fff;height: 60rpx;padding-top:20rpx;}
+.nav_search{border: 1rpx solid #ddd;background: #fafafa; display: flex;justify-content: space-between;height: 60rpx;border-radius:40rpx;background: #fff;width: 90%;margin: 0 auto;}
+.nav_son{ width: 33.3%; text-align: center; height: 32rpx; line-height: 32rpx;padding:28rpx 0;position:relative;}
+.picker{font-size: 30rpx;color: #353535}
+.border{border-left: 1rpx solid #cccccc;border-right: 1rpx solid #cccccc} 
+.positionmoveMain{width: 685rpx;padding: 0 38rpx 0 28rpx;margin-bottom: 90rpx}
+.company{display: flex;border-bottom: 1rpx solid #eeeeee}
+.companytext{height: 98rpx;line-height: 98rpx;font-size: 28rpx;color: #888888;}
+.chagecompany{font-size: 28rpx;color: #0060ff;line-height: 98rpx;padding-left: 15rpx}
+.positionList{width: 100%;border-bottom: 1rpx solid #eeeeee}
+.workcontent{padding: 39rpx 0}
+.contentleft{font-size: 34rpx;float: left}
+.contentcenter{width: 108rpx;height: 42rpx;background: linear-gradient(to right,#fedd01,#fdc200);border-radius: 3rpx;text-align: center;line-height: 42rpx;font-size: 26rpx;margin-left: 16rpx;float: left}
+.contentright{text-align: right;font-size: 26rpx;color: #333333;line-height: 42rpx}
+.workstatu{color: #a9a9a9;font-size: 26rpx;display: flex}
+.worktime{color: #bfbfbf;font-size: 24rpx;line-height: 88rpx}
+/* 底部 */
+.positionMoveBottom{position: fixed;bottom: 12rpx;left: 10rpx;z-index: 1} 
+.comfirmlog{height: 76rpx;width: 730rpx;background: linear-gradient(to right,#fede01,#fdc100);color: #000000;font-size: 30rpx;border-radius: 5rpx;line-height: 76rpx;} 
+.showdark{width: 100%;height: 100%;background:#000;position:absolute;left:0;top:0;z-index:999;opacity:0.6;}
+.show{display: show}
+.hide{display: none}
+.progress_box{position: relative;width:220px;height: 220px; display: flex; align-items: center;justify-content: center;
+/* background-color: #eee; */}
+.progress_bg{position: absolute;width:220px;height: 220px;}
+.progress_canvas{width:220px;height: 220px;}
+.progress_text{position: absolute;display: flex; align-items: center;justify-content: center}
+.progress_info{  padding-left: 16rpx;letter-spacing: 2rpx;color: #fff;font-size: 60rpx;background: -webkit-linear-gradient(top, #fff , #fdeb71); -webkit-background-clip: text; -webkit-text-fill-color: transparent;  
+}
+.takedata{font-size: 36rpx;color: #fff;}
+.container{justify-content:initial !important}  
+.borderright{border-right: 1rpx solid #a9a9a9;}
+.sitiation{padding: 0 10rpx}
+.box{
+  background:#ffffff;
+  height: 100%;
+}
+.includeList{
+  position: relative;
+  top: 0rpx;
+  height: 845rpx;
+  overflow-x: hidden;
+  box-sizing:border-box;
+
+}

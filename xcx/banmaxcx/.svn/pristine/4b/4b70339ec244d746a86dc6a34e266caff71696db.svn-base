@@ -1,0 +1,11 @@
+<!--guide/done.wxml-->
+<image class='background' src='{{bg_img}}'></image>
+<view class='entirety'>
+  <view class='entirety_conts'>
+    <image class='conts' src='{{conts_img}}'></image>
+  </view>
+  <view class='card_but_text' bindtap='understandbm'>了解班马加薪</view>
+  <view class='entirety_conts'>
+    <image class='button' src='{{but_img}}' bindtap='clickGet'></image>
+  </view>
+</view>

@@ -1,0 +1,21 @@
+// pages/worker/resume/Email.js
+// 请求公用方法文件
+const bm = require('../../utils/common.js')
+var app = getApp();
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+   
+  },
+  getData:function(){
+    var url='',
+      getdata='';
+    var thar = this;
+    bm.requsetData(url, 'get', { getdata }, function (data) {
+      console.log();
+    })
+  }
+})

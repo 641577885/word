@@ -1,0 +1,2 @@
+<!--pages/share/shareImg.wxml-->
+ <canvas canvas-id="myCanvas" style="width:{{cwidth}}px;height:{{cheight}}px" bindlongtap='save'></canvas> 

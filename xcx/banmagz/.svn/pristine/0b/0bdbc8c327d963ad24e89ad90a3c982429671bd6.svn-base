@@ -1,0 +1,49 @@
+// pages/business/my/index.js
+var bm=require('../../utils/common.js')
+var app = getApp();
+Page({
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    avatar:'',
+    name:'',
+    company_name:'',
+    position:'',
+    //收到的简历
+    resume_num:0,
+    //在线工作
+    work_num:0,
+    //moc
+    moc_num:0,
+    //联系的创客数
+    gt_num:555,
+    //我的公司是否完善
+    comp_perf:0,
+    //通过认证
+    auth:null,
+  },
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLooad: function (options) {
+    
+  },
+  onShow:function(){
+    var that = this
+    bm.requsetData('/b/seller/center', 'post', '', function (data) {
+      that.setData({
+        avatar: data.data.sell_info.avatar,
+        comp_perf: data.data.sell_info.comp_perf,
+        gt_num: data.data.sell_info.connect_num,
+        work_num: data.data.sell_info.work_num,
+        resume_num: data.data.sell_info.resume_num,
+        company_name: data.data.sell_info.company_short_name,
+        position: data.data.sell_info.position,
+        auth: data.data.sell_info.auth,
+        name: data.data.sell_info.name,
+        moc_num: data.data.sell_info.mock
+      })
+    })
+  }
+})

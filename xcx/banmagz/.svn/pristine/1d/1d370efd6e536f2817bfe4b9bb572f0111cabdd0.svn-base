@@ -1,0 +1,127 @@
+<dialog dialog-hidden="{{isShowDialog}}"></dialog>
+<form report-submit='true' bindsubmit='getFormId'>
+  <view class='posDetailContanier'>
+    <view class='posDetailMain'>
+      <view class='posDetailList showtop'>
+        <view class='listTop'>
+          <view class='listTopimg'>
+            <image src='{{userInfo.avatar}}' mode='aspectFill'></image>
+          </view>
+          <view class='between'>
+            <view class='content'>
+              <view class='listBottomname'>{{userInfo.name}}</view>
+              <view class='listBottomtime showpd'>{{proInfo.begintime}}~{{proInfo.endtime}}</view>
+            </view>
+            <view class='listTopprice'>￥{{proInfo.allprice}}</view>
+          </view>
+        </view>
+        <view class='listToptxt'>{{proInfo.beizhu}}</view>
+      </view>
+      <view class='posDetailper'>
+        <view class='posboth'>
+          <view class='posperson'>协作者</view>
+          <view class='photoimg padtop'>
+            <view wx:for='{{memberInfo}}' class='showleft' wx:key>
+              <image class='circle' mode="aspectFill" src="{{item.avatar}}"></image>
+            </view>
+          </view>
+        </view>
+        <view class='posadd  padtop' wx:if='{{errshare==1}}'>
+          <button open-type="share" class='btn' hover-class='none'>
+            <image class='add' mode="" src="/images/worker/add_03.jpg"></image>
+          </button>
+        </view>
+      </view>
+      <view class='workStatusCantainer' wx:if="{{proInfo.state == 'complaining' || proInfo.state == 'firing'}}">
+        <view class='workStatusTitle'>
+          <view class='workStatusTxt'>工作状态：<text>{{proInfo.state_name}}</text></view>
+          <view class='workStatusTxt' wx:if="{{proInfo.state == 'firing'}}">支付工资：<text>{{proInfo.ycData.wages}}元</text></view>
+        </view>
+        <view class='workStatusNote'>
+          <view class="workbody">{{proInfo.ycData.content}}</view>
+          <view class='workImgCantainer' wx:if='{{proInfo.ycData.filesrc.length > 0}}'>
+            <view class='workImgItem' wx:for='{{proInfo.ycData.filesrc}}'>
+              <image src='{{item}}' mode='aspectFill'></image>
+            </view>
+          </view>
+        </view>
+        <block wx:if="{{ proInfo.ycData.explain_data.length!=0}}">
+          <view class='explainCantainer'>
+            <view class='explaintxt'>创客解释：</view>
+            <view class='explaintxt'>{{proInfo.ycData.explain_data.content}}</view>
+            <view class='workImgCantainer' wx:if='{{proInfo.ycData.explain_data.filesrc.length > 0}}'>
+              <view class='workImgItem' wx:for='{{proInfo.ycData.explain_data.filesrc}}'><image src='{{item}}' mode='aspectFill'></image></view>
+            </view>
+          </view>
+        </block>
+      </view>
+      <view class='workContent' wx:if='{{workRecord.length!=0}}'>
+        <view class='posDetailwork'>
+          <view class='poswork'>工作汇报</view>
+        </view>
+        <block wx:for='{{workRecord}}' wx:key>
+          <view class='poscontent'>{{item.content}}</view>
+          <view class='workImgCantainer' wx:if='{{item.filelist.length > 0}}'>
+            <view class='workImgItem' wx:for='{{item.filelist}}' wx:for-item='fl'>
+              <image src='{{fl}}' mode='aspectFill'></image>
+            </view>
+          </view>
+          <view class='posshare'>
+            <view class='sharatime'>{{item.ctime}}</view>
+          </view>
+        </block>
+      </view>
+      <block wx:if='{{proInfo.state == "noconfirm"}}'>
+        <view class='manageCantainer'>
+          <button class='btnBlack' form-type='submit' bindtap="cancelgy">取消雇佣</button>
+        </view>
+      </block>
+      <block wx:if='{{proInfo.state == "daiwj"}}'>
+        <view class='manageCantainer'>
+          <button class='hireonce' form-type='submit' bindtap='payPrice'>确认发工资</button>
+        </view>
+      </block>
+      <block wx:if='{{proInfo.state == "end"}}'>
+        <view class='posbottoms'>
+          <view class='posconfirm'>
+            <button class='evaluate' form-type='submit' bindtap="setevaluate">评价</button>
+            <button class='hireonce' form-type='submit' bindtap="rehire">再次雇佣</button>
+          </view>
+        </view>
+      </block>
+      <block wx:if='{{proInfo.state == "normal"}}'>
+        <view class='manageCantainer'>
+          <!-- <button class='hireonce' form-type='submit' bindtap='payPrice'>确认发工资</button> -->
+          <button class='btnBlack' bindtap='showMoreManange' style='margin-top:10rpx;'>更多管理</button>
+        </view>
+      </block>
+      <block wx:if='{{proInfo.state == "nopay"}}'>
+        <view class='manageCantainer'>
+          <button class='btnBlack' form-type='submit' bindtap='goPay'>查看订单</button>
+        </view>
+      </block>
+      <block wx:if='{{proInfo.state == "complaining"}}'>
+        <view class='manageCantainer'>
+          <button class='btnBlack' form-type='submit' bindtap='cancelTs'>取消投诉</button>
+        </view>
+      </block>
+      <block wx:if='{{proInfo.state == "firing"}}'>
+        <view class='manageCantainer'>
+          <button class='btnBlack' form-type='submit' bindtap='cancelFire'>取消解雇</button>
+        </view>
+      </block>
+    </view>
+  </view>
+  <action-sheet hidden="{{actionSheetHidden}}" bindchange="showMoreManange">
+    <action-sheet-item class='action_item' bindtap='fire'>
+      <button class='sharebutton' form-type='submit'>解雇</button>
+    </action-sheet-item>
+    <action-sheet-item class='action_item' bindtap='complain'>
+      <button class='sharebutton' form-type='submit'>投诉</button>
+    </action-sheet-item>
+    <action-sheet-item class='action_item' bindtap='rehire'>
+      <button class='sharebutton' form-type='submit'>续签</button>
+    </action-sheet-item>
+    <action-sheet-cancel class="cancel">取消</action-sheet-cancel>
+  </action-sheet>
+</form>

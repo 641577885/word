@@ -1,0 +1,33 @@
+/* pages/business/position/demand.wxss */
+page{background: #fafafa;}
+.top{width: 100%;height: 88rpx;border-bottom: 1rpx solid #dadada;display: flex;justify-content: space-between;align-items: center;}
+.type{width: 375rpx;}
+.fg{width: 1rpx;height: 32rpx;background: #cccccc;}
+.state{width: 374rpx;}
+.jt{width: 30rpx;height: 20rpx;margin-left: 20rpx;}
+.type_picker{text-align: center}
+.type_view{font-size: 30rpx;color: #353535}
+.state_picker{text-align: center}
+.state_view{font-size: 30rpx;color: #353535}
+.list{ position: absolute; left: 0; right: 0; top:88rpx;  bottom:0;  padding-left: 30rpx;background: #fff; box-sizing: border-box}
+.list_main{height: 164rpx;border-bottom: 1rpx solid #eeeeee;padding-right: 30rpx;}
+.content_01{width: 100%;height: 100rpx;display: flex;justify-content: space-between;align-items: center;}
+.title{ display: flex; align-content: center;}
+.title .titleName{ display: inline-block; max-width:400rpx;  font-size: 34rpx; line-height: 42rpx; color: #000; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.title .titleTag{ display: inline-block; width: 134rpx; height: 42rpx; text-align: center; line-height: 42rpx;background: #fdc200 linear-gradient(to right,#fedd01,#fdc200); border-radius: 4rpx; font-size: 26rpx;color: #000; margin-left: 10rpx;}
+.open{display: flex;align-items: center;height: 30rpx;}
+.open text{font-size: 26rpx;line-height: 30rpx;}
+.open_color_01{color: #fe5a01}
+.open_color_02{color: #a4a4a4}
+.jt_02{width: 20rpx;height: 30rpx;margin-left: 30rpx;}
+.content_02{display: flex;align-items: center;}
+.icon_img{width: 30rpx;height: 30rpx;}
+.num{font-size: 26rpx;color: #808191;margin-left: 12rpx;}
+.icon_02{margin-left: 30rpx}
+.icon_03{margin-left: 30rpx}
+
+.explainCantainer{ position: absolute; top: 88rpx; bottom: 0; left: 0; right: 0}
+.bg{width: 340rpx;height: 480rpx;margin: 50rpx auto 0;}
+.bg image{width: 340rpx;height: 480rpx;}
+.explain{width: 100%;font-size: 48rpx;color: #000;line-height: 60rpx;text-align: center;margin-top: 75rpx;font-weight: bold;}
+.btn{width: 666rpx;height: 96rpx;line-height: 96rpx;background: #000000;color: #ffffff;margin-top: 84rpx;}

@@ -1,0 +1,3 @@
+<!--pages/tcash/banlance.wxml-->
+<web-view src='{{url}}'></web-view>
+

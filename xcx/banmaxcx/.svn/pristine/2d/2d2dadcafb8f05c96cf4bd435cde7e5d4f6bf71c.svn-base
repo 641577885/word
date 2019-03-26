@@ -1,0 +1,68 @@
+<!--pages/openvip/openvip.wxml-->
+<view class='top'>
+  <view class='vipcard {{vipcard_style}}'>
+    <view class='title'>班马加薪会员</view>
+    <view class='opennum'>已开通{{opennum}}天</view>
+    <view class='vipicon'>
+      <image src='../../../images/worker/{{vip_icon}}.png'></image>
+      <text style='color:{{font_style}}'>VIP</text>
+    </view>
+  </view>
+</view>
+<view class='content'>
+  <view class='content_01'>
+  <view class='content_01_main'>
+    <view class='radio_main' bindtap='bindradio' data-id='1'>
+      <view class='vip_price'>
+        <text class='price_text_01'>{{year_price}}</text>
+        <text class='price_text_02'>元/年</text>
+      </view>
+      <view class='vip_type'>年度会员</view>
+      <view class='radio_icon'>
+        <view class='icon'>
+          <icon type='success' size='23' wx:if='{{vip_type == 1?true:false}}'></icon>
+        </view>
+      </view>
+    </view>
+    <!-- <view class='radio_main radio_border' bindtap='bindradio' data-id='2'>
+      <view class='vip_price'>
+        <text class='price_text_01'>1950</text>
+        <text class='price_text_02'>元/月</text>
+      </view>
+      <view class='vip_type'>季度会员</view>
+      <view class='radio_icon'>
+        <view class='icon'>
+          <icon type='success' size='23'wx:if='{{vip_type == 2?true:false}}'></icon>
+        </view>
+      </view>
+    </view> -->
+    <view class='radio_main'  bindtap='bindradio' data-id='3'>
+      <view class='vip_price'>
+        <text class='price_text_01'>{{month_price}}</text>
+        <text class='price_text_02'>元/月</text>
+      </view>
+      <view class='vip_type'>月度会员</view>
+      <view class='radio_icon'>
+        <view class='icon'>
+          <icon type='success' size='23'wx:if='{{vip_type == 3?true:false}}'></icon>
+        </view>
+      </view>
+    </view>
+    </view>
+  </view>
+  <view class='content_02'>
+    <view class='vip_time'>会员时间：{{startime}}~{{endtime}}</view>
+    <view class='allprice'>
+      <text>总金额：{{allprice}}元</text>
+      <text class='zhe_price' wx:if='{{vip_type == 1?true:false}}'>{{nozhe}}元  {{zhe}}折</text>
+    </view>
+    <view class='hb' bindtap='hbclick'>
+      <view class='hb_border'><icon type='success' size='16' wx:if='{{hb == 1}}'></icon></view>
+      <view class='hb_text'>红包抵扣(红包总额{{usera}}元)</view>
+    </view>
+  </view>
+</view>
+<view class='bottom'>
+  <navigator url='/pages/openvip/vipExplain' class='vipExplain' hover-class='none'>了解会员详情</navigator>
+  <button bindtap='submit'>确认开通</button>
+</view>

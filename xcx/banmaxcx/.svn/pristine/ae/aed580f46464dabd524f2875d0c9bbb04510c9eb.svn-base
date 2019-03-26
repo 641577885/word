@@ -1,0 +1,43 @@
+<!--/worker/jobwanted/addpost.wxml-->
+    <!--列表3  -->
+  <view class='width90 auto  overflow_x'>
+  <navigator class='b_input' url='/pages/picker/jobPicker' hover-class='none'>
+      <view class='border_bottome5e5e5 padding_top20 padding_bottom20 font_size30 display_flex space_between'>
+           <view>期望职位</view>
+           <view class=' display_flex align_items_center  '>
+                 <text class='float_left margin_top5 letter_spacing2'>{{jobData.jobName}}</text>
+                 <image class=' wh2030 margin_top10 margin_left10' src='/images/right.png'></image>
+           </view>
+      </view>
+  </navigator>
+   <view class='b_input' url='/pages/picker/indusPicker' bindtap='selecthy'>
+      <view class='border_bottome5e5e5 padding_top20 padding_bottom20 font_size30 display_flex space_between'>
+           <view>期待行业</view>
+           <view class=' display_flex align_items_center '>
+                 <text class='float_left margin_top5 letter_spacing2'> 你已选中{{indusnum}}个</text>
+                 <image class=' wh2030 margin_top10 margin_left10' src='/images/right.png'></image>
+           </view>
+      </view>
+       </view>
+       <navigator class='b_input' url='/pages/picker/cityPicker' hover-class='none'>
+      <view class='border_bottome5e5e5 padding_top20 padding_bottom20 font_size30 display_flex space_between'>
+           <view>工作城市</view>
+           <view class=' display_flex align_items_center  '>
+                 <text class='float_left margin_top5 letter_spacing2'>{{cityData.cityName}}</text>
+                 <image class=' wh2030 margin_top10 margin_left10' src='/images/right.png'></image>
+           </view>
+      </view>
+       </navigator>
+       <navigator class='b_input' url='/pages/fill/inputFill?placeholder=请输入&num={{num}}&dataName=price&content={{price}}' hover-class='none'>
+      <view class='border_bottome5e5e5 padding_top20 padding_bottom20 font_size30 display_flex space_between'>
+           <view>薪资要求</view>
+           <view class=' display_flex align_items_center  '>
+                 <text class='float_left margin_top5 letter_spacing2'>{{price}}</text>
+                 <image class=' wh2030 margin_top10 margin_left10' src='/images/right.png'></image>
+           </view>
+      </view>
+ </navigator>
+          <button class='backgroundbt width90 border_radius50 margin_top60 letter_spacing5 showbottom' bindtap="点我触发" bindtap='finishJob'>完成</button> 
+  </view>
+
+

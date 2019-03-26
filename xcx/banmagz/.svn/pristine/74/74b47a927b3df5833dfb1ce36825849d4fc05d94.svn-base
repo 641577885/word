@@ -1,0 +1,36 @@
+/* pages/business/position/details.wxss */
+page{background: #fafafa;font-size: 26rpx;}
+.position_top{background: #fff;}
+.position_title{width: 670rpx;height: 165rpx;border-bottom: 1rpx solid #eeeeee;padding-top: 36rpx;margin: 0 auto;}
+.title_content{width: 100%;height: 90rpx;display: flex;justify-content: space-between;line-height: 90rpx;}
+.title_content_01{font-size: 48rpx;font-weight: bold;color: #353535;}
+.title_content_02{color: #ff4040;}
+.salary{height: 20rpx;line-height: 20rpx;margin-top: 17rpx;color: #353535;}
+.position_info{width: 690rpx;height: 110rpx;margin: 0 auto;line-height: 110rpx;display: flex;align-items: center;}
+.info_icon{width: 26rpx;height: 26rpx;margin-right: 6rpx;}
+.info_icon_02{width: 120rpx;height: 34rpx;}
+.position_info text{margin-right: 31rpx;}
+/*工作经历*/
+.work_experience{width: 100%;background: #fff;margin-top: 70rpx;}
+.common_title{width: 720rpx;height: 68rpx;margin-left: 30rpx;border-bottom: 1rpx solid #eeeeee;padding-top: 20rpx;z-index: 0;}
+.common_title_main{width: 110rpx;height: 66rpx;border-bottom: 3rpx solid #fede01;line-height: 66rpx;text-align: center;z-index: 1;}
+.experience_list{width: 100%;}
+.experience_list_main{width: 690rpx;margin: 0 auto;padding-top: 24rpx;padding-bottom: 27rpx;}
+.list_title{line-height: 60rpx;display: flex;justify-content: space-between;}
+.list_title_01{font-size: 34rpx;font-weight: bold;}
+.list_title_02{color: #999999;}
+.list_content{width: 100%;overflow: hidden;line-height: 36rpx;color: #333333;margin-top: 13rpx;}
+.list_company{width: 100%;height: 38rpx;line-height: 38rpx;color: #8b8b8b;margin-top: 22rpx;}
+.skill{width: 100%;background: #fff;margin-top: 20rpx;}
+.skill_content{width: 690rpx;margin: 0 auto;}
+.skill_htype{display: inline-block;width: auto;height: 60rpx;border: 1rpx solid #eaeaea;border-radius: 30rpx;line-height: 60rpx;padding: 0 23rpx;margin: 37rpx 30rpx 40rpx 0;font-size: 30rpx;color: #686868;}
+/* 公司 */
+.company{width: 100%;height: 156rpx;background: #fff;margin-top: 30rpx;margin-bottom: 127rpx;display: flex;justify-content: space-between;padding-top: 50rpx;}
+.company_info{width: 584rpx;margin-left: 30rpx;}
+.company_logo{width: 88rpx;height: 101rpx;margin-right: 47rpx;}
+.company_logo image{width: 88rpx;height: 101rpx;}
+.company_name{line-height: 56rpx;font-size: 36rpx;color: #353535;font-weight: bold;}
+.company_ss{line-height: 50rpx;color: #353535;}
+.position_btn{width: 730rpx;height: 76rpx;position: fixed;left: 50%;margin-left: -365rpx;bottom: 11rpx;display: flex;justify-content: space-between;}
+.btn_01{width: 470rpx;height: 76rpx;background: #000;color: #fff;font-size: 29rpx;line-height: 76rpx;}
+.btn_02{width: 250rpx;height: 76rpx;background: #fed901;font-size: 29rpx;line-height: 76rpx;}

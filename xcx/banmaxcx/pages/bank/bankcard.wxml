@@ -1,0 +1,24 @@
+<!--pages/bank/bankcard.wxml-->
+<view class='main'>
+  <view class='card_list' wx:for='{{cardlist}}' wx:key='cardlist' wx:if="{{cardlist_show == true}}">
+    <image src='/images/wallet/bankcard_bg.png'></image>
+    <view class='card_content'>
+      <view class='card_top'>
+        <view class='card_avatar'>
+          <image src=''></image>
+        </view>
+        <view class='bank_name'>
+          <view class='bank_name_01'>{{item.bank_name}}</view>
+          <view class='bank_name_02'>{{item.card_type}}</view>
+        </view>
+      </view>
+    </view>
+    <view class='card_bottom'>
+        <view class='card_code'>{{item.card_code}}</view>
+        <view class='card_code_wh'>{{item.card_code_wh}}</view>
+      </view>
+  </view>
+  <navigator class='card_btn' wx:if="{{cardlist_show == false}}" url='/pages/bank/bank'>
+    <button>+添加银行卡</button>
+  </navigator>
+</view>

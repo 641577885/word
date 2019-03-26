@@ -1,0 +1,44 @@
+var app=getApp()
+Page({
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    jobData: { jobId: '', jobIdTwo: '', jobName: '' },
+    workArray:['在线','坐班'],
+    index:null,
+    work_way:0
+  },
+  bindchange:function(e){
+    var value=e.detail.value;
+    this.setData({ index: value, work_way: parseInt(value)+1 })
+  },
+  nextStep:function(){
+    var that=this;
+    if (!that.data.work_way){
+      wx.showToast({
+        title: '请选择工作方式',
+        icon:'none'
+      })
+      return false;
+    }
+    if (!that.data.jobData.jobId){
+      wx.showToast({
+        title: '请选择岗位类型',
+        icon: 'none'
+      })
+      return false;
+    }
+    app.jobWorkWay = that.data.work_way;
+    app.jobProfession = that.data.jobData.jobId;
+    app.jobProfessionname = that.data.jobData.jobName;
+    
+    wx.navigateTo({
+      url: 'jobType2',
+    })
+  },
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {}
+})

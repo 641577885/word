@@ -1,0 +1,7 @@
+<!--help/problem.wxml-->
+<view class='header'>
+  <view class='header_main'>
+    <image src='//bm.jiangcdn.com/help/problem/bus_bottom_logo.png' class='logo'></image>
+    <image src='//bm.jiangcdn.com/help/problem/top_nav_btn.png' class='nav'></image>
+  </view>
+</view>

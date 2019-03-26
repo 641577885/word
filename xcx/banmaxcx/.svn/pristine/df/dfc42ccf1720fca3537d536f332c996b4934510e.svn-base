@@ -1,0 +1,316 @@
+<!--help/problem.wxml-->
+<view class='header'>
+  <view class='header_main'>
+    <image src='//bm.jiangcdn.com/help/problem/logo.png' class='logo'></image>
+    <!-- <image src='//bm.jiangcdn.com/help/problem/nav.png' class='nav'></image> -->
+  </view>
+</view>
+<view class='top' wx:if='{{currentTab==0}}'>
+  <view class='top_title'>班马佳薪是什么？</view>
+  <view class='top_content'>“班马佳薪”为企业和互联网人才搭建一个即时沟通、在线雇佣及工资结算的移动办公场景。</view>
+  <view class='top_content'>帮助企业高效的解决远程工作者的招聘管理以及薪资税务、劳动关系等问题，帮助远程工作者提高及稳定收入，为企业和远程工作者的高效安全合作提供保障。</view>
+  <view class='top_btn' bindtap='star_work'>开始工作</view>
+</view>
+<view class='top' wx:if='{{currentTab==1}}'>
+  <view class='top_title'>班马佳薪是什么？</view>
+  <view class='top_content'>“班马佳薪”是一款基于微信小程序的移动互联网加薪神器</view>
+  <view class='top_content'>让人才和公司实现在线接单及工作管理，帮助人才提高收入</view>
+  <view class='top_content'>协助企业解决人才及项目外包需求。</view>
+  <view class='top_btn' bindtap='star_work'>开始工作</view>
+</view>
+<scroll-view class='main' scroll-y scroll-top='500'>
+  <view class='main_top'>
+    <view class='main_top_btn {{currentTab==0?"main_top_bg":""}}' data-current="0" bindtap="clickTab">雇主</view>
+    <view class='main_top_btn {{currentTab==1?"main_top_bg":""}}' data-current="1" bindtap="clickTab">创客</view>
+  </view>
+  <!-- 雇主 -->
+  <view class='main_content' wx:if='{{currentTab==0}}'>
+    <view class='main_img'>
+      <image src='//bm.jiangcdn.com/help/problem/bus_main_01.png' class='bus_main_01'></image>
+    </view>
+    <view class='main_title'>找到优质的创客（在线工作者）</view>
+    <view class='main_text'>
+      <text space='emsp'>  “班马佳薪”上聚合了百万级的互联网专业人才，包括技术、产品、运营、设计、咨询等十一大行业，采用实名认证加会员制运营，保证人才的专业度的同时降低企业对人才的筛选成本。</text>
+    </view>
+    <view class='main_select' bindtap='selsect_clickTab' data-selectcurr='1'>
+      <text  data-selectcurr='1'>班马佳薪如何对人才进行认证？</text>
+      <image src='//bm.jiangcdn.com/help/problem/jt.png'></image>
+    </view>
+    <view class='select_content' wx:if='{{select_curr==1}}'>
+      <text space='emsp'>  基于微信实名认证体系，保证所有创客的真实性，只有符合标准的付费会员才会对企业展示；\n</text>
+      <text space='emsp'>  显示每个创客的工作分数和对过去项目的反馈评价；\n</text>
+      <text space='emsp'>  我们提供在线面试、沟通的场景工具，你可以选择跟合适的创客交换微信或电话，这些都是免费的；\n</text>
+      <text space='emsp'>  你有责任最终筛选符合你需求的创客，以确保他们的技能和经验满足你的项目的需要，你可以通过发布详细需求帮助你筛选人才。</text>
+    </view>
+    <view class='main_img'>
+      <image src='//bm.jiangcdn.com/help/problem/bus_main_02.png' class='bus_main_02'></image>
+    </view>
+    <view class='main_title'>如何雇佣创客（在线工作者）？</view>
+    <view class='main_text'>
+      <text space='emsp'>  基于对双方的信任和保障，雇主在选择好创客以及洽谈好项目或按月雇佣的薪水后，需要将100%的项目金额支付在班马佳薪上进行担保交易。</text>
+    </view>
+    <view class='main_select' bindtap='selsect_clickTab' data-selectcurr='2'>
+      <text data-selectcurr='2'>若雇佣后发现创客能力不符合要求，怎么办？</text>
+      <image src='//bm.jiangcdn.com/help/problem/jt.png'></image>
+    </view>
+    <view class='select_content' wx:if='{{select_curr==2}}'>
+      <text space='emsp'>  所有的项目都统一按照实际工作天数进行每日扣款，若企业发现创客工作能力或项目进度有问题，请及时发起解雇，已经工作天数对应的薪资会被扣除并结算给创客，剩余款项会退还至你的余额，可以用来雇佣他人。</text>
+    </view>
+    <view class='main_select' bindtap='selsect_clickTab' data-selectcurr='3'>
+      <text data-selectcurr='3'>若对薪资结算有异议怎么办？</text>
+      <image src='//bm.jiangcdn.com/help/problem/jt.png'></image>
+    </view>
+    <view class='select_content' wx:if='{{select_curr==3}}'>
+      <text space='emsp'>  若雇主或创客对结算金额有疑义，可以自行协商，协商不成可申请班马佳薪进行仲裁。</text>
+    </view>
+    <view class='main_select' bindtap='selsect_clickTab' data-selectcurr='4'>
+      <text data-selectcurr='4'>雇主充值的钱是否可以开发票，创客的个税问题如何解决？</text>
+      <image src='//bm.jiangcdn.com/help/problem/jt.png'></image>
+    </view>
+    <view class='select_content' wx:if='{{select_curr==4}}'>
+      <text space='emsp'>  企业将款项充值到“班马佳薪”后，实际由“班马佳薪”代发给创客工资的实际金额（不包含红包，且按真实完结到账金额计算）将由“班马佳薪”开具正规的增值税普通发票。\n</text>
+      <text space='emsp'>  “班马佳薪”会对远程工作者的个人所得税进行代扣代缴，实现企业雇佣及税务完全合规。</text>
+    </view>
+    <view class='main_img'>
+      <image src='//bm.jiangcdn.com/help/problem/bus_main_03.png' class='bus_main_03'></image>
+    </view>
+    <view class='main_title'>提高工作效率</view>
+    <view class='main_text'>
+      <text space='emsp'>  在线工作、移动办公作为不可阻挡的潮流趋势，具有国际视野的新时代企业都已采用一小时高速组建WorkOnline团队迅速开展工作，对同行进行降维打击。</text>
+    </view>
+    <view class='main_select' bindtap='selsect_clickTab' data-selectcurr='5'>
+      <text data-selectcurr='5'>雇主如何管理创客？</text>
+      <image src='//bm.jiangcdn.com/help/problem/jt.png'></image>
+    </view>
+    <view class='select_content' wx:if='{{select_curr==5}}'>
+      <text space='emsp'>  你可以要求创客每日通过班马佳薪产品给你汇报工作；\n</text>
+      <text space='emsp'>  日报将通过微信服务通知送达；\n</text>
+      <text space='emsp'>  日报是检验创客的工作量和工作成果的重要考核工具。</text>
+    </view>
+    <view class='main_img'>
+      <image src='//bm.jiangcdn.com/help/problem/bus_main_04.png' class='bus_main_04'></image>
+    </view>
+    <view class='main_title'>安全支付，税务合规</view>
+    <view class='main_text'>
+      <text space='emsp'>  当项目完全结算且满意后，你有5天时间可以确定是否发放薪水；\n</text>
+      <text space='emsp'>  当你点击发放薪水后，班马佳薪才会对该项目进行结算流程，创客才能拿到钱，当然如果5天你都没有不同意发放薪水，系统会对该项目进行自动结算。</text>
+    </view>
+    <view class='main_select' bindtap='selsect_clickTab' data-selectcurr='6'>
+      <text data-selectcurr='6'>如果雇主对项目的结算薪资有异议怎么办？</text>
+      <image src='//bm.jiangcdn.com/help/problem/jt.png'></image>
+    </view>
+    <view class='select_content' wx:if='{{select_curr==6}}'>
+      <text space='emsp'>  如果对项目有疑义，你可以选择在结算流程开始前于创客协商或申请班马佳薪进行仲裁，但千万不要让项目进入结算期；</text>
+    </view>
+    <view class='main_select' bindtap='selsect_clickTab' data-selectcurr='7'>
+      <text data-selectcurr='7'>雇主充值的钱是否可以开发票，创客的个税问题如何解决？</text>
+      <image src='//bm.jiangcdn.com/help/problem/jt.png'></image>
+    </view>
+    <view class='select_content' wx:if='{{select_curr==7}}'>
+      <text space='emsp'>  企业将款项充值到“班马佳薪”后，实际由“班马佳薪”代发给创客工资的实际金额（不包含红包，且按真实完结到账金额计算）将由“班马佳薪”开具正规的增值税普通发票。\n</text>
+      <text space='emsp'>  “班马佳薪”会对远程工作者的个人所得税进行代扣代缴，实现企业雇佣及税务完全合规。</text>
+    </view>
+    <view class='main_select' bindtap='selsect_clickTab' data-selectcurr='8'>
+      <text  data-selectcurr='8'>关于发票？</text>
+      <image src='//bm.jiangcdn.com/help/problem/jt.png'></image>
+    </view>
+    <view class='select_content' wx:if='{{select_curr==8}}'>
+      <text space='emsp'>  如您选择开具电子发票，最快可在5分钟内将电子发票推送至您的邮箱。\n</text>
+      <text space='emsp'>  如您选择开具纸质发票，最快将在5个工作日内为您安排发票打印并寄出，如您亟需发票，我们强烈建议您选择开具电子发票。\n</text>
+      <text space='emsp'>  根据相关政策规定，雇佣发票内容仅支持“*人力资源服务*服务费”。\n</text>
+      <text space='emsp'>  雇佣中的消费的各种形式的折扣券金额不支持开票。\n</text>
+      <text space='emsp'>  提交申请开具的资质发票，需要邮寄，需您自行支付快递费给快递公司，快递发票请您向快递公司索要，暂不支持港、澳、台地区邮寄。\n</text>
+      <text space='emsp'>  如你开具的增值税普通发票用于企业报销，根据国家税务相关政策要求请填写纳税人识别号；如您的单位是非企业性质或您需求开具个人名义抬头，您可以选择“个人/非企业单位”开票选项，则无需填写纳税人识别号。\n</text>
+      <text space='emsp'>  纸质发票申请提交后无法修改，如信息有误请在发票申请的当天自行取消重新提交，超过24小时后将不能修改，若由于您提交资料失误导致的损失将由您自行承担。\n</text>
+      <text space='emsp'>  因您个人原因产生的发票退票及重寄的往来费用，需由您本人自行承担。</text>
+    </view>
+    <view class='main_img'>
+      <image src='//bm.jiangcdn.com/help/problem/bus_main_05.png' class='bus_main_05'></image>
+    </view>
+    <view class='main_title'>技术服务费</view>
+    <view class='main_text'>
+      <text space='emsp'>  雇主通过班马佳薪联系人才、交换微信、电话等功能都是完全免费的；\n</text>
+      <text space='emsp'>  雇主在进行担保交易时，需要对每一笔交易金额额外<text class='color'>支付5%的技术服务费</text>，费用我们会用于开具正规发票、项目进度监管、人工服务等；\n</text>
+      <text space='emsp'>  雇主所支付的技术服务费，我们会开具<text class='color'>支付5%正规的增值税专用发票</text>。</text>
+    </view>
+  </view>
+  <!-- 创客 -->
+  <view class='main_content' wx:if='{{currentTab==1}}'>
+    <view class='main_img'>
+      <image src='//bm.jiangcdn.com/help/problem/bus_main_01.png' class='bus_main_01'></image>
+    </view>
+    <view class='main_title'>找到更有价值的工作</view>
+    <view class='main_text'>
+      <text space='emsp'>  在完善个人简历建设和能力说明后，可以查看符合你能力的项目；\n</text>
+      <text space='emsp'>  你可以对符合要求的项目进行简历投递，若企业觉得你的能力相匹配，他会通过班马佳薪联系你，你可以通过微信服务通知获取面试机会；\n</text>
+      <text space='emsp'>  你可以跟企业雇主申请交换微信及电话，这些都是免费的；</text>
+    </view>
+    <view class='main_select' bindtap='selsect_clickTab' data-selectcurr='9'>
+      <text data-selectcurr='9'>如何主动寻找雇主？</text>
+      <image src='//bm.jiangcdn.com/help/problem/jt.png'></image>
+    </view>
+    <view class='select_content' wx:if='{{select_curr==9}}'>
+      <text space='emsp'>  当然，你也可以通过成为会员主动于企业雇主进行对话，获取工作机会；\n</text>
+      <text space='emsp'>  只有会员才会被推送到对应企业的人才列表，你还可能获得企业的主动面试邀请，成为会员 。</text>
+    </view>
+    <view class='main_select' bindtap='selsect_clickTab' data-selectcurr='10'>
+      <text data-selectcurr='10'>如何通过微信等渠道获取雇佣？</text>
+      <image src='//bm.jiangcdn.com/help/problem/jt.png'></image>
+    </view>
+    <view class='select_content' wx:if='{{select_curr==10}}'>
+      <text space='emsp'>  每个注册用户都可以免费创建一个专属于自己的个性化工作数据简历。\n</text>
+      <text space='emsp'>  你可以主动在微信朋友圈、群、以及定向推送自己的简历邀请雇主通过班马佳薪雇佣你，减少互相不信任造成无法签约的困扰，这些雇佣都会帮你的个性化简历增加工作数据，工作数据越好，成交率越高 。</text>
+    </view>
+    <view class='main_img'>
+      <image src='//bm.jiangcdn.com/help/problem/bus_main_02.png' class='bus_main_02'></image>
+    </view>
+    <view class='main_title'>获得雇佣</view>
+    <view class='main_text'>
+      <text space='emsp'>  当你和企业洽谈好项目合作方式以及薪水后，企业会将100%的薪水全额托管到班马佳薪上进行担保交易,只要你按照约定的内容和时间进行工作交付，不用担心拿不到钱；</text>
+    </view>
+    <view class='main_select' bindtap='selsect_clickTab' data-selectcurr='11'>
+      <text data-selectcurr='11'>如何通过工作数据获取雇佣机会？</text>
+      <image src='//bm.jiangcdn.com/help/problem/jt.png'></image>
+    </view>
+    <view class='select_content' wx:if='{{select_curr==11}}'>
+      <text space='emsp'>  每一次雇佣都是一次表现自我和建立个人品牌的机会，企业评价和动态评分都会成为更多企业选择你的要素；\n</text>
+      <text space='emsp'>  接触优质企业和项目，与企业达成长期深度合作，大多数企业都是秉着长期合作的心态选择创客，维护好自己与企业的关系，能够获得长期稳定的收入，不用为业务发愁 。</text>
+    </view>
+    <view class='main_select' bindtap='selsect_clickTab' data-selectcurr='12'>
+      <text data-selectcurr='12'>怎样获取更多雇主曝光？</text>
+      <image src='//bm.jiangcdn.com/help/problem/jt.png'></image>
+    </view>
+    <view class='select_content' wx:if='{{select_curr==12}}'>
+      <text space='emsp'>  只有成为会员才会推荐给雇主展示，非会员只能通过主动投递简历获取曝光。会员的简历曝光量跟以下因素有关：会员特权、活跃度、新人保护、雇佣数据、工作数据。\n</text>
+    </view>
+    <view class='main_select' bindtap='selsect_clickTab' data-selectcurr='13'>
+      <text data-selectcurr='13'>什么是曝光加分？（会员特权）</text>
+      <image src='//bm.jiangcdn.com/help/problem/jt.png'></image>
+    </view>
+    <view class='select_content' wx:if='{{select_curr==13}}'>
+      <text space='emsp'>  是一种根据连续会员时长累积的<text class='color'>曝光加分奖励</text>,该奖励为会员每日增加1分，上限值为90分，该分数会较大程度上影响雇主推荐、个人简历排名、主动推送等曝光事件。若会员到期没有及时续费导致断约，该奖励分数会被系统清零，重新开通会员则需要重新累积。<text class='color'>推荐开通年费会员以防断约。</text>\n</text>
+      <text space='emsp'>  活跃度：个人信息更新及完善程度、会话沟通响应速度、积极使用产品跟雇主互动、每天登录时长\n</text>
+      <text space='emsp'>  新人保护：新会员的会获得一定时间的加权曝光；\n</text>
+      <text space='emsp'>  雇佣数据：正常完结、雇佣评价、雇佣次数、完结金额等；\n</text>
+      <text space='emsp'>  工作数据：日报汇报，投诉解雇等。\n</text>
+      <text space='emsp'>  当然你也可以主动分享个人简历获取更多站外曝光机会。\n</text>
+    </view>
+    <view class='main_img'>
+      <image src='//bm.jiangcdn.com/help/problem/bus_main_03.png' class='bus_main_03'></image>
+    </view>
+    <view class='main_title'>高效、自由且灵活的工作方式</view>
+    <view class='main_text'>
+      <text space='emsp'>  在线工作、移动办公作为不可阻挡的潮流趋势，远程工作者获得更多长期稳定的雇佣机会。\n</text>
+      <text space='emsp'>  摆脱时间和空间的束缚，在拥有足够专业度的基础上享受自由的人生。远程工作已然成为一种潮流，更受95后新时代移动办公人才的青睐；</text>
+    </view>
+    <view class='main_select' bindtap='selsect_clickTab' data-selectcurr='14'>
+      <text data-selectcurr='14'>什么是日报机制？如何保障个人权益？</text>
+      <image src='//bm.jiangcdn.com/help/problem/jt.png'></image>
+    </view>
+    <view class='select_content' wx:if='{{select_curr==14}}'>
+      <text space='emsp'>  实时分享反馈，文件、文字多种形式进行工作内容沟通，利用碎片时间，旅途、交通时间有效利用，发送和接收文件，在安全环境中提供数字资产；\n</text>
+      <text space='emsp'>  你需要每日通过班马佳薪向企业提交日报，对当天的工作内容以及实际情况进行汇报，这是企业对你建立信任的基础；\n</text>
+      <text space='emsp'>  日报机制也会保障你的权益，班马佳薪默认结算规则为按天计算，若日报不能有效证明你的工作，你可能无法得到全额的薪水。\n</text>
+    </view>
+    <view class='main_select' bindtap='selsect_clickTab' data-selectcurr='15'>
+      <text data-selectcurr='15'>为什么会被雇主解雇？</text>
+      <image src='//bm.jiangcdn.com/help/problem/jt.png'></image>
+    </view>
+    <view class='select_content' wx:if='{{select_curr==15}}'>
+      <text space='emsp'>  发生以下几种常见情况时，雇主可能会发起解雇并拒绝支付全额工资，请尽量避免：\n</text>
+      <text space='emsp'>  1.工作能力达不到雇主要求；\n</text>
+      <text space='emsp'>  2.约定的工作内容无法准时完成；\n</text>
+      <text space='emsp'>  3.约定的工作内容无法正确交付；\n</text>
+      <text space='emsp'>  4.没有主动联系雇主并汇报日报；\n</text>
+      <text space='emsp'>  5.日常跟雇主无沟通，埋头工作。\n</text>
+    </view>
+    <view class='main_select' bindtap='selsect_clickTab' data-selectcurr='16'>
+      <text data-selectcurr='16'>什么是三天无理由退款？</text>
+      <image src='//bm.jiangcdn.com/help/problem/jt.png'></image>
+    </view>
+     <view class='select_content' wx:if='{{select_curr==16}}'>
+      <text space='emsp'>  雇主在雇佣开始后的前三个自然日内，可以随时发起三天无理由解雇，此时雇主无需任何理由，即可退回所有款项。\n</text>
+      <text space='emsp'>  这是一种创客对自己能力非常自信的表现型功能，创客可以根据自身实际情况选择性是否支持开启。当然，班马佳薪会对开启该功能的创客进行优先推送。\n</text>
+    </view>
+    <view class='main_select' bindtap='selsect_clickTab' data-selectcurr='17'>
+      <text data-selectcurr='17'>被雇主解雇时应该做什么？</text>
+      <image src='//bm.jiangcdn.com/help/problem/jt.png'></image>
+    </view>
+     <view class='select_content' wx:if='{{select_curr==17}}'>
+      <text space='emsp'>  被解雇时不要慌张，先了解清楚解雇的原因尝试挽回，若实在没有办法则需要心平气和的跟雇主沟通解雇时支付的薪资问题，在双方达成一致后雇主会在系统上提交协商好的薪资并确认支付。若双方因为解雇理由导致薪资无法谈妥则需要点击申请仲裁，班马佳薪售后服务团队会介入工单系统进行售后服务。\n</text>
+    </view>
+    <view class='main_select' bindtap='selsect_clickTab' data-selectcurr='18'>
+      <text data-selectcurr='18'>被雇主投诉时应该做什么？</text>
+      <image src='//bm.jiangcdn.com/help/problem/jt.png'></image>
+    </view>
+     <view class='select_content' wx:if='{{select_curr==18}}'>
+      <text space='emsp'>  应第一时间与雇主沟通协调寻求解决方案，并通过项目投诉工单上传解释说明及解决方案。班马佳薪售后服务团队会介入工单系统进行售后服务，在必要的时候会根据规则进行裁定判罚。\n</text>
+    </view>
+    <view class='main_select' bindtap='selsect_clickTab' data-selectcurr='19'>
+      <text data-selectcurr='19'>项目被投诉/解雇完结后会有什么影响？</text>
+      <image src='//bm.jiangcdn.com/help/problem/jt.png'></image>
+    </view>
+     <view class='select_content' wx:if='{{select_curr==19}}'>
+      <text space='emsp'>  很遗憾，发生此类事件会对创客的个人排序、推荐等场景造成不同程度的影响，严重情况可能会被班马佳薪清退，请尽量杜绝此类事件。\n</text>
+    </view>
+    <view class='main_img'>
+      <image src='//bm.jiangcdn.com/help/problem/bus_main_04.png' class='bus_main_04'></image>
+    </view>
+    <view class='main_title'>支付有保障</view>
+    <view class='main_text'>
+      <text space='emsp'>  项目结束后企业有5天时间可以确定是否发放薪水，若企业能够主动点击发放，你可以在第一时间收到薪水，若企业不点击，你也可以在系统默认结算后得到薪水，当然这个时间可能比较长；\n</text>
+      <text space='emsp'>  若企业对你的工作有疑义，你可以和企业进行协商退款，若协商不成可提交班马佳薪进行仲裁；</text>
+    </view>
+    <view class='main_select' bindtap='selsect_clickTab' data-selectcurr='20'>
+      <text data-selectcurr='20'>如何提现？个人所得税如何缴纳？</text>
+      <image src='//bm.jiangcdn.com/help/problem/jt.png'></image>
+    </view>
+     <view class='select_content' wx:if='{{select_curr==20}}'>
+      <text space='emsp'>  收到薪水后，你可以直接提现至银行卡。“班马佳薪”会依照中国法律对创客的个人所得税进行代扣代缴。\n</text>
+    </view>
+    <view class='main_select' bindtap='selsect_clickTab' data-selectcurr='21'>
+      <text data-selectcurr='21'>工资多久能到账？</text>
+      <image src='//bm.jiangcdn.com/help/problem/jt.png'></image>
+    </view>
+     <view class='select_content' wx:if='{{select_curr==21}}'>
+      <text space='emsp'>  项目到期若雇主主动点击确认发放工资，将在次日0点直接到达班马佳薪账户可立即用于提现。\n</text>
+      <text space='emsp'>  项目到期若雇主未确认点击发放工资，项目会在结束后的第6天0点自动进入结算工资流程。由于非雇主主动确认发放，工资将依旧处于冻结状态，在自动结算7天之后才会解冻并可用于提现。\n</text>
+      <text space='emsp'>  以上结算时间皆为到达班马佳薪账户时间。\n</text>
+    </view>
+    <view class='main_select' bindtap='selsect_clickTab' data-selectcurr='22'>
+      <text data-selectcurr='22'>提现多久能到账？</text>
+      <image src='//bm.jiangcdn.com/help/problem/jt.png'></image>
+    </view>
+     <view class='select_content' wx:if='{{select_curr==22}}'>
+      <text space='emsp'>  正常提现将于发起提现后三个工作日内到账，法定节假日顺延。\n</text>
+    </view>
+    <view class='main_select' bindtap='selsect_clickTab' data-selectcurr='23'>
+      <text data-selectcurr='23'>个人所得税是怎么计算的？</text>
+      <image src='//bm.jiangcdn.com/help/problem/jt.png'></image>
+    </view>
+     <view class='select_content' wx:if='{{select_curr==23}}'>
+      <text space='emsp'>  个税计算方法请参考《中华人民共和国个人所得税法》。\n</text>
+    </view>
+    <view class='main_img'>
+      <image src='//bm.jiangcdn.com/help/problem/bus_main_06.png' class='bus_main_06'></image>
+    </view>
+    <view class='main_title'>技术服务费</view>
+    <view class='main_text'>
+      <text space='emsp'>  班马佳薪对创客收取的费用是基于项目的实际结算金额，创客获得企业的雇佣越多，赚的钱就越多。\n</text>
+      <text space='emsp'>  班马佳薪向创客收取的技术服务费率：\n</text>
+      <text space='emsp'>  20%，累积结算金额<text class='color'>小于5000元人民币</text>\n</text>
+      <text space='emsp'>  10%，累积结算金额在<text class='color'>5000-99999元人民币之间</text>\n</text>
+      <text space='emsp'>  5%，累积结算金额<text class='color'>大于等于10万元人民币</text>\n</text>
+      <text space='emsp'>  通过购买会员，可以直接<text class='color'>降低技术服务费率至10%</text>，成为会员 。\n</text>
+    </view>
+    <view class='openvip'>
+      <view class='openvip_title'>会员服务</view>
+      <view class='openvip_title_02'>399元/月</view>
+      <view class='openvip_btn' bindtap='open_vip'>升级服务</view>
+    </view>
+  </view>
+</scroll-view>
+<view class='bottom'>
+  <image src='//bm.jiangcdn.com/help/problem/bus_bottom_logo.png' class='bus_bottom_logo'></image>
+  <view class='bottom_btn' bindtap='star_work'>开始工作</view>
+</view>

@@ -1,0 +1,36 @@
+<!--pages/worker/message/message.wxml-->
+<!-- <view class='search'>
+  <view class='search_content'>
+    <icon type='search' size='12' color='#b2b2b2'></icon>
+    <text>搜索姓名{{numx}}</text>
+  </view>
+</view> -->
+<view class='message_list'>
+  <view class='message_item'>
+    <navigator url='/message/bmDialog' hover-class='none'>
+      <view class='message_main'>
+        <view class='message_avatar'><view class='unread'>0</view><image src='{{item.avatar}}' mode='widthFix'></image></view>
+        <view class='meaasge_content'>
+          <view class='meaasge_info'>
+            <text class='name'>小马助手</text>
+          </view>
+          <view class='message_sub'>小马助手消息</view>
+        </view>
+      </view>
+    </navigator>
+  </view>
+  <view class='message_item' wx:for='{{message_list}}' wx:key='message_list'>
+    <navigator url='/message/dialog?skipid={{item.skipId}}&avatar={{item.avatar}}' hover-class='none'>
+      <view class='message_main'>
+        <view class='message_avatar'><view class='unread' wx:if='{{item.unread>0}}'>{{item.unread}}</view><image src='{{item.avatar}}' mode='widthFix'></image></view>
+        <view class='meaasge_content'>
+          <view class='meaasge_info'>
+            <text class='name'>{{item.nickname}}</text>
+            <!-- <text class='company'>{{item.company}}</text> -->
+          </view>
+          <view class='message_sub'>{{item.info}}</view>
+        </view>
+      </view>
+    </navigator>
+  </view>
+</view>

@@ -1,0 +1,12 @@
+// pages/worker/wallet/problem.js
+var app = getApp();
+Page({
+  data: {
+    url: ''
+  },
+  onLoad: function (options) {
+    var host = app.globalData.host
+    var url = host + '/html/wallet/problem.html'
+    this.setData({ url: url })
+  },
+})

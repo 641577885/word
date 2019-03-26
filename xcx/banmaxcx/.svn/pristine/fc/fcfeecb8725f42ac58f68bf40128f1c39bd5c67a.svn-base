@@ -1,0 +1,106 @@
+/* pages/demandList/inform.wxss */
+page{height:100%;background: #f4f4f4}swiper {height: 83%;}
+.padding_top27{padding-top: 27rpx}.padding_bottom27{padding-bottom: 27rpx}
+.padding10{padding: 5rpx 20rpx 5rpx 20rpx;}.padding105{padding: 20rpx 5px 10rpx 5rpx;}
+.display_flex_center{display: flex; justify-content: center;}.display_flex_flex_end{display: flex;justify-content: flex-end}
+.display_flex_space_between{display: flex;justify-content: space-between;}
+.auto{margin-left: auto;margin-right: auto;}
+.margin_right15{margin-right:15rpx}
+ .margin_top20{margin-top: 20rpx;} 
+/* 黄色 */  .backgroundfede01{background: #fede01;}.backgroundfafafa{background: #fafafa;}
+/*logo图片  */.logo{width: 300rpx;height: 85rpx;}.content{width: 100%;padding-bottom: 20rpx;}
+.inline_block{display: inline-block;}
+.width90{width: 90%;}.width100{width: 100%}
+ .shangxi{width: 25rpx;height: 16rpx;}
+ .shanglist{width: 33rpx;height: 31rpx}  
+
+ swiper {
+width: 100%;
+height: 1060rpx;
+margin: 0 auto;
+}
+
+swiper-item {
+/* background: #fff; */
+padding-top: 90rpx;
+}
+.slide-image {
+width: 90%;
+ box-shadow: 0rpx 0rpx 2rpx #d6d6d6; 
+border-radius: 7px;
+padding: 2rpx;
+/* background: #fff; */
+background: url(http://img.jiangcdn.com/bmjx/info/infobg_03.png) no-repeat;
+background-size: contain;
+margin: 0 auto;
+/* border: 1px solid #d6d6d6; */
+opacity: 0.6;
+display: block;
+position: relative
+}
+
+.slide-image.active {
+transform: scale(1.1);
+transition: all 0.2s ease-in 0s;
+opacity: 1;
+/* top:20px; */
+z-index:999;
+}
+
+.slide-image.active .prompt-textwrap {
+display: block;
+}
+
+.slogan {
+color: #d4d2d3;
+font-size: 47rpx;
+position: absolute;
+bottom: -90rpx;
+left: 0;
+display: none;
+}
+
+.slide-image.active .slogan {
+display: block;
+}
+.showblock{top:20px;
+z-index:999;
+}
+.slide{width:580rpx;
+height:790px;
+background:#fff;
+}
+ /* .infobg{width: 580rpx;height: 224rpx;background: url(http://img.jiangcdn.com/bmjx/info/infobg_03.png);background-size: contain;}  */
+/* .inforMain{width: 500rpx;margin: 0 auto} */
+ /* .showBg{width: 172rpx;height:100%;background: url(http://img.jiangcdn.com/bmjx/info/header_03.png) no-repeat;margin: 0 auto;background-size: contain;}  */
+.shownum{display: flex;float: right;margin: 42rpx 42rpx 0 0;color: #666666;font-size: 26rpx}
+.icon{width: 20rpx;height: 23rpx;padding-right: 11rpx}
+.title{text-align: center;font-size: 48rpx;color: #686868;margin-top:130rpx;font-weight: bold}
+.entitle{text-align:center;
+font-size:16rpx;
+color:#cccccc;
+letter-spacing:4rpx;
+text-transform:uppercase;
+margin-top:7px;
+}
+.contitle{text-align: center;font-size: 20rpx;color: #666666;padding: 28rpx 0 40rpx 0}
+.contents{font-size: 24rpx;color: #9a9a9a;text-indent: 50rpx;padding: 0 40rpx}
+
+.skillall{display: flex;font-size: 20rpx;color: #666666;text-align: center; justify-content: center;padding: 45rpx 0 48rpx 0}
+.skillall view{margin-right: 39rpx}
+.price{text-align: center;font-size: 36rex;color: #fe5b03;padding-bottom: 44rpx}
+.infobottom{width: 100%;background: #333333;display: flex;border-bottom-left-radius: 7rpx;border-bottom-right-radius: 7rpx;
+justify-content:space-between;
+ }
+.showimg{width: 100rpx;height: 100rpx;background: #fff;border-radius: 50%;overflow: hidden;margin: 25rpx 34rpx 25rpx 30rpx}
+.showimg image{width: 100rpx;height: 100rpx;border-radius: 50%} 
+.infomation{font-size: 30rpx;color: #cccccc}
+.name{padding-top:39rpx}
+.telicon{display: flex}
+.telicon image{width:20rpx;
+height:20rpx;margin-top:10rpx;
+
+}
+.infoboth{display: flex;}
+.messge image{width: 52rpx;height: 50rpx;padding:19rpx 18rpx 0 0;
+}

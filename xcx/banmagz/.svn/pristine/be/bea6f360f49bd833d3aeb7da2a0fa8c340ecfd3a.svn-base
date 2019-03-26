@@ -1,0 +1,109 @@
+const bm = require('../utils/common.js')
+
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    src:[],
+    Path:'',
+    text:'',
+    textlenght:'0'
+  },
+  textinput:function(e){
+    this.setData({ text: e.detail.value })
+    this.setData({ textlenght: e.detail.value.length})
+  },
+  uploadadd:function(){
+    var _this = this
+    wx.chooseImage({
+      count: 9, 
+      sizeType: ['original', 'compressed'], 
+      sourceType: ['album', 'camera'], 
+      success: function (res) {
+        var tempFilePaths = res.tempFilePaths
+        wx.showToast({
+          title: '正在上传...',
+          icon: 'loading',
+          mask: true,
+          duration: 10000
+        })  
+        // console.log(tempFilePaths)
+          wx.uploadFile({
+            url: '', 
+            filePath: tempFilePaths[0],
+            name: 'file',
+            formData: {
+              'user': 'test'
+            },
+            success: function (res) {
+              var data = res.data
+              console.log(data)
+              wx.showToast({
+                title: '上传成功',
+                icon: 'none',
+              })  
+            }
+          })
+
+        _this.setData({
+          src: _this.data.src.concat(res.tempFilePaths)
+        })
+        // console.log(_this.data.src)
+      },
+    })
+  },
+  uploadfile:function(){
+    wx.chooseImage({
+      success: function (res) {
+        var tempFilePaths = res.tempFilePaths
+        wx.saveFile({
+          tempFilePath: tempFilePaths[0],
+          success: function (res) {
+            var savedFilePath = res.savedFilePath
+          }
+        })
+      }
+    })
+  },
+  
+  comfirmnext:function(){
+    var _this=this;
+    if(!_this.data.text){
+       wx.showToast({
+         title: '请输入投诉原因',
+         icon:'none'
+       })
+       return false;
+    }
+    if (_this.data.src.length==0){
+      wx.showToast({
+        title: '请上传图片',
+        icon:'none',
+      })
+      return false;
+    }
+    if(_this.data.Path.lenght==0){
+      wx.showToast({
+        title: '请上传附件',
+        icon: 'none'
+      })
+      return false;
+    }
+    bm.requsetData("", "post", { text: that.data.text, src: that.data.src, Path: that.data.Path, }, function (data) {
+      console.log(data)
+      if (data) {
+        wx.redirectTo({
+          url: '',
+        })
+      } else {
+        wx.showToast({
+          title: res.data.errmsg,
+          icon: 'none'
+        })
+      }
+    })
+     
+  },
+})

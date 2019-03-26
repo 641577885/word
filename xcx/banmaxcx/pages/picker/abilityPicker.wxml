@@ -1,0 +1,10 @@
+<!--pages/picker/abilityPicker.wxml-->
+<view class='Cantainer'>
+<scroll-view scroll-y style='height:100%'>
+  <view class='tagTip'>最多选择三个</view>
+  <view class='tagList'>
+    <view wx:for='{{tagList}}' wx:key wx:for-index="idx" class="{{item.checked?'action':''}}" bindtap='tagPicker' data-id="{{idx}}" data-value='{{item.name}}'>{{item.name}}</view>
+  </view>
+</scroll-view>
+</view>
+<view class='yeBtn' bindtap='checkTag'>确定</view>

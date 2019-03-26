@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "fastResume": "/pages/worker/fastResume"
+  },
+  "navigationBarTitleText": "请填写我的优势"
+  }

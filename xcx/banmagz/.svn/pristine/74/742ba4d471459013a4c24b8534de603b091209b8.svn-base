@@ -1,0 +1,86 @@
+<!--pages/pay/setpay.wxml-->
+<view class='workcontent'>
+  <textarea placeholder='工作内容' placeholder-style='placeholder_style' maxlength='100' bindinput='bindTextAreaChange' name='work_content'></textarea>
+  <view class='textarea_num'>{{textarea_num}}/100字</view>
+</view>
+<view class='swiper_tab'>
+  <view class="swiper_tab_item {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">按月(1个月)</view> 
+  <view class="swiper_tab_item {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">按项目</view> 
+</view>
+<swiper current="{{currentTab}}" class="swiper_box" duration="300" bindchange="bindqh"> 
+  <swiper-item> 
+    <view class='byCantainer'>
+      <picker bindchange='periodPicker' value='{{periodindex}}' range='{{periodArray}}' bindchange='choosePeriod'>
+        <view class='fillList'>
+            <view class=' instruct'>雇佣时长</view>
+            <view class="section">{{periodArray[periodindex]}}</view>
+        </view>
+      </picker>
+      <picker mode='date' value="{{start_time}}" start="{{minDate}}" bindchange='chooseStart'>
+        <view class='fillList'>
+          <view class=' instruct'>开始时间</view>
+          <view class="section">{{start_time}}</view>
+        </view>
+      </picker>
+      <view class='priceList'>
+        <view class=' instruct'>金额</view>
+        <input class='priceInput' type='number' value='{{byprice}}' data-type='by' placeholder='0' cursor-spacing="10" bindinput='fillPrice' />
+      </view>
+      <view class='serverList'>
+          <view class='instruct'>技术服务费</view>
+          <view class="section maright">+{{byServiceFee}}元</view>
+        </view>
+      <checkbox-group bindchange="checkboxChange" wx:if='{{!hideRed}}'>
+      <label class="checkbox">
+        <view>
+          <checkbox value="1" checked="{{showRed}}" />
+          <text>使用红包抵扣</text>
+        </view>
+        <text>-{{bymaxcount}}元</text>
+      </label>
+      </checkbox-group>
+      <view class='setpayBottom'>
+        <!-- <view class='setpayLine'>
+          <text>技术服务费</text>
+          <text>+{{byServiceFee}}元</text>
+        </view> -->
+        <view class='setpayLine'>
+          <text>总金额</text>
+          <text>{{byAllPrice}}元</text>
+        </view>
+      </view>
+    </view> 
+  </swiper-item> 
+  <swiper-item> 
+    <view class='byCantainer'>
+      <picker mode='date' value="{{dzStime}}" start="{{minDate}}" bindchange='chooseDzStart'>
+        <view class='fillList'>
+          <view class=' instruct'>开始时间</view>
+          <view class="section">{{dzStime}}</view>
+        </view>
+      </picker>
+      <picker mode='date' value="{{dzEtime}}" start="{{dzStime}}" bindchange='chooseDzEnd'>
+        <view class='fillList'>
+          <view class=' instruct'>结束时间</view>
+          <view class="section">{{dzEtime}}</view>
+        </view>
+      </picker>
+      <view class='priceList'>
+        <view class=' instruct'>金额</view>
+        <input class='priceInput' type='number' value='{{dzprice}}' data-type='dz' placeholder='0' cursor-spacing="10" bindinput='fillPrice' />
+      </view>
+      <view class='serverList'>
+        <view class=' instruct'>技术服务费</view>
+        <view class="section maright">+{{dzServiceFee}}元</view>
+      </view>
+      <view class='setpayBottom'>
+        <view class='setpayLine'>
+          <text>总金额</text>
+          <text>{{dzAllPrice}}元</text>
+        </view>
+      </view>
+    </view>
+  </swiper-item> 
+</swiper> 
+<button class='btn' bindtap='setOrder'>确认雇佣</button>
+                                                                                                                                                                                                                                                                                                                                                  

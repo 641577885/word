@@ -1,0 +1,75 @@
+// pages/worker/details/job.js
+const bm=require('../../utils/common.js')
+const app = getApp();
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    uid:Number,
+    role:0,
+    position:{},
+    company:{},
+    seller:{},
+    //经度
+    long: null,
+    // 纬度
+    lat: null,
+    place:'555555',
+    mapshow:false,
+    
+    company_add:'',
+
+    rec:[]
+  },
+  link2Dialog:function(){
+    wx.navigateTo({
+      url: '/message/dialog?skipid='+this.data.seller.id,
+    })
+  },
+  golocation:function(){
+    var _that = this
+    var add = _that.data.company_add
+    if(add.length >0){
+      wx.request({
+        url: 'http://apis.map.qq.com/ws/geocoder/v1/?address=' + add + '&key=XBNBZ-NDECV-4V4PQ-UFNJY-B6E5Q-FBBGB',
+        success: function (data) {
+          console.log(data)
+          wx.openLocation({
+            latitude: data.data.result.location.lat,
+            longitude: data.data.result.location.lng,
+            name: add,
+            scale: 28
+          })
+        }
+      })
+    }
+  },
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    var that = this;
+    bm.requsetData('/c/position/get','get',{id:options.id},function(res){
+      if(!res.data.errcode){
+        if (res.data.position.work_address.length == 0) {
+          var add = '暂未填写地址'
+        } else {
+          var add = res.data.position.work_address
+        }
+        that.setData({
+          position: res.data.position,
+          seller: res.data.seller,
+          company: res.data.company,
+          company_add: add
+        })
+      }else{
+        wx.showToast({
+          title: res.data.errmsg,
+          icon:'none'
+        })
+      }
+    })
+  }
+})

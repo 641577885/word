@@ -1,0 +1,92 @@
+<dialog dialog-hidden="{{isShowDialog}}"></dialog>
+<view class='tapbar'>
+  <view class='pickerItem'>产品经理<image mode='aspectFill' src='/images/xia.png'></image></view>
+  <view class='qh_search'>
+  <image src='/images/listCard_03.png' class='qh_list'></image>
+  <icon type="search" color='black' size="18" class='qh_icon' />
+  </view>
+  
+</view>
+<view class='tapbar_02'>
+  <view class='tapbar_02_main'>
+    <view class='tapbar_select tapbar_select_01'>在线</view>
+    <view class='tapbar_select tapbar_select_02'>驻场</view>
+  </view>
+</view>
+<view class='screenCantainer'>
+  <view class='select'>
+    <text>推荐</text>
+    <image src='/images/jt.png' class='select_icon'></image>
+  </view>
+  <view class='fgx'></view>
+  <view class='select'>
+    <text>技能</text>
+    <image src='/images/jt.png' class='select_icon'></image>
+  </view>
+  <view class='fgx'></view>
+  <view class='select'>
+    <text>金额</text>
+    <image src='/images/jt.png' class='select_icon'></image>
+  </view>
+</view>
+<scroll-view scroll-y class='list'>
+  <!-- <view class='list_main' wx:for='{{list}}' wx:key>
+    <view class='list_top'>
+      <view class='list_top_left'>
+        <view class='avatar'><image src='/images/worker/circle_03.jpg' mode='widthFix'></image></view>
+        <view class='info'>
+          <view class='name'>{{item.name}}</view>
+          <view class='position'>{{item.city_name}}</view>
+          <view class='edu'>{{item.work_year_name}}－{{item.education_name}}</view>
+        </view>
+      </view>
+      <view class='list_top_right'>
+        <view class='price'>￥{{item.lowsalary}}</view>
+        <view class='price_yq'>最低要求</view>
+      </view>
+    </view>
+    <view class='content'>{{item.content}}</view>
+    <view class='list_bottom'>
+      <image src='/images/ydl.jpg'></image>
+      <text>30</text>
+      <image src='/images/taolun.jpg'></image>
+      <text>20</text>
+    </view>
+  </view> -->
+  <view class='list_main' wx:for='{{list}}' wx:key>
+      <view class='list_top'>
+        <view class='position_name'>{{item.profession_name}}</view>
+        <view class='price'>
+          <view class='price_title'>外包预算</view>
+          <view class='money'>{{item.lowsalary}}元</view>
+        </view>
+      </view>
+      <view class='list_content'>{{item.content}}</view>
+      <view class='list_bottom'>
+        <view class='avatar'><image src='{{item.seller.avatar}}'></image></view>
+        <view class='list_info'>{{item.name}} {{item.seller.company_short_name}} {{item.seller.position}}</view>
+      </view>
+  </view>
+</scroll-view>
+<view class='tabbar'>
+  <view class='tabbar_content'>
+    <image src='/images/worker/job_02.png' class='tabbar_icon'></image>
+    <view>职位</view>
+  </view>
+  <view class='tabbar_content'>
+    <image src='/images/worker/resume_01.png' class='tabbar_icon'></image>
+    <view>需求</view>
+  </view>
+  <view class='tabbar_content'>
+    <image src='/images/worker/add.png' class='tabbar_icon'></image>
+    <view>发布</view>
+  </view>
+  <view class='tabbar_content'>
+    <image src='/images/worker/message_01.png' class='tabbar_icon'></image>
+    <view>消息</view>
+  </view>
+  <view class='tabbar_content'>
+    <image src='/images/worker/my_01.png' class='tabbar_icon'></image>
+    <view>我的</view>
+  </view>
+</view>

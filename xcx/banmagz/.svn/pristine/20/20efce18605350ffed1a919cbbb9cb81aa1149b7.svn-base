@@ -1,0 +1,50 @@
+<!--pages/business/my/personInfo.wxml-->
+<form bindsubmit='submitinfo'>
+<view class='b_main'>
+  <view class='b_input_avatar' bindtap='upavatar'>
+    <text class='b_input_title_01'>头像</text>
+    <view class='b_input_right_avatar'>
+      <image src='{{avatar}}' mode='aspectFill'></image>
+    </view>
+  </view>
+  <navigator class='b_input' hover-class='none' url='/pages/fill/inputFill?placeholder=请输入&num=10&dataName=name&content={{name}}'>
+    <text class='b_input_title_01'>姓名</text>
+    <view class='b_input_right'>
+      <input type='text' id='b_input_up' value='{{name}}' cursor='0' name='name' disabled='true'></input>
+      <image src='../../../images/position/jt_gray.png' class='b_input_icon'></image>
+    </view>
+  </navigator>
+  <navigator class='b_input' hover-class='none' url='/pages/fill/inputFill?placeholder=请输入&num=20&dataName=wx_code&content={{wx_code}}'>
+    <text class='b_input_title_01'>微信号</text>
+    <view class='b_input_right'>
+      <input type='text' id='b_input_up' value='{{wx_code}}' name='wx_code' disabled='true'></input>
+      <image src='../../../images/position/jt_gray.png' class='b_input_icon'></image>
+    </view>
+  </navigator>
+  <navigator class='b_input_02' hover-class='none' url='/pages/fill/inputFill?placeholder=请输入&num=20&dataName=mail&content={{mail}}'>
+    <text class='b_input_title_01'>接收简历邮箱</text>
+    <view class='b_input_right'>
+      <input type='text' id='b_input_up' value='{{mail}}' name='mail' disabled='true'></input>
+      <image src='../../../images/position/jt_gray.png' class='b_input_icon'></image>
+    </view>
+  </navigator>
+</view>
+<view class='b_content'>
+  <view class='b_input'>
+    <text class='b_input_title_01'>所在公司</text>
+    <view class='b_input_right'>
+      <!-- <input type='text' id='b_input_up' value='{{company}}' name='company' ></input> -->
+      <text class='b_input_title_02'>{{company}}</text>
+      <image src='../../../images/position/jt_gray.png' class='b_input_icon'></image>
+    </view>
+  </view>
+  <navigator class='b_input_02' hover-class='none' url='/pages/fill/inputFill?placeholder=请输入&num=20&dataName=job&content={{job}}'>
+    <text class='b_input_title_01'>我的职务</text>
+    <view class='b_input_right'>
+      <input type='text' id='b_input_up' value='{{job}}' name='job' disabled='true'></input>
+      <image src='../../../images/position/jt_gray.png' class='b_input_icon'></image>
+    </view>
+  </navigator>
+</view>
+ <button class='btn' form-type='submit'>保存</button>
+</form>

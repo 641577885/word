@@ -1,0 +1,21 @@
+<view class='cantainer'>
+  <navigator url='/pages/business/demand' open-type="reLaunch">
+    <text class='cancelBtn'>取消</text>
+  </navigator>
+  <text class='publishtypeTitle'>选择发布类型</text>
+  <text class='publishtypeDescript'>请选择您要发布的对应类型</text>
+  <view class='publishtypeItem worker' bindtap='recruit'>
+    <image src='../../../images/member/workIcon.png'></image>
+    <view class='publishtypeDetail'>
+      <text class='publishtypeIdent'>招人入职</text>
+      <text class='publishtypeInfo'>招人入职</text>
+    </view>
+  </view>
+  <view class='publishtypeItem boss' bindtap='findJob'>
+    <image src='../../../images/member/bossIcon.png'></image>
+    <view class='publishtypeDetail'>
+      <text class='publishtypeIdent'>找人做项目</text>
+      <text class='publishtypeInfo'>找人做项目</text>
+    </view>
+  </view>
+</view>

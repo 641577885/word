@@ -1,0 +1,8 @@
+<!--pages/setting/hideCompany.wxml-->
+<view class='companyItemCantainer'>
+  <view class='companyItem' wx:for="{{companyList}}" wx:for-index="idx" wx:key="co">
+    <text>{{item.name}}</text>
+    <view class='deleteIcon' data-id="{{item.id}}" data-index="{{idx}}" bindtap='DeleteCo'></view>
+  </view>
+  <button class='Background' plain bindtap='addNewCo'>+添加新公司</button>
+</view>

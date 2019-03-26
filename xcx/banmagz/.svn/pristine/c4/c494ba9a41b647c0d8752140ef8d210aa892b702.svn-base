@@ -1,0 +1,59 @@
+// business/demand/demand01.js
+var app = getApp()
+const bm = require('../../utils/common.js')
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    id:0,
+    list:[],
+    pick_id:null,
+    next_data:null,
+    name:''
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    var that = this
+    bm.requsetData('/c/config/demand_cat', 'post','', function (data) {
+      console.log(data)
+      that.setData({
+        list:data.data
+      })
+    })
+  },
+
+  selct_click: function (event){
+    var that = this
+    var list = that.data.list
+    var id = event.currentTarget.id
+    that.setData({
+      pick_id:id,
+      next_data:list[id].son,
+      name: list[id].name
+    })
+  },
+  submit:function(){
+    var that = this
+    var pick_id = that.data.pick_id
+    var next_data = that.data.next_data
+    var name = that.data.name
+    if (pick_id == null){
+      wx.showToast({
+        title: '请选择您要做什么',
+        icon:'none'
+      })
+      return false
+    }
+    app.Demandid = pick_id
+    app.Demanddata = next_data
+    app.Demandonename = name
+    wx.navigateTo({
+      url: '/business/demand/demand02',
+    })
+  }
+})

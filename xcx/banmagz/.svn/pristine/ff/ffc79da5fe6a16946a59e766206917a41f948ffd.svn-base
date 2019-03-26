@@ -1,0 +1,41 @@
+<!--pages/business/position/linkup.wxml-->
+<scroll-view class='scrolls' scroll-y  bindscrolltolower="bottom" >
+<view class='top' hidden="{{flag==1?true:false}}">以下{{list_num}}人沟通过该职位</view>
+<view class='list'>
+  <view class='list_main' wx:for='{{list}}' wx:key='list' bindtap='resumeClick' data-uid='{{item.id}}'>
+    <view class='list_main_01'>
+      <view class='content_left'>
+        <view class='avatar'>
+          <image src='{{item.avatar}}'></image>
+        </view>
+        <view class='info'>
+          <view class='name'>{{item.name}}</view>
+          <view class='position'>{{item.position}}</view>
+          <view class='position'>{{item.education_name}}</view>
+        </view>
+      </view>
+      <view class='content_right'>
+        <view class='price'>{{item.drop_time}}</view>
+      </view>
+    </view>
+    <view class='list_main_02'>
+    {{item.content}}
+    </view>
+    <view class='list_main_03'>
+      <view class='icon_01'><image src='/images/worklist/taolun.jpg'></image></view>
+      <view class='num'>{{item.projects}}</view>
+      <view class='icon_02'><image src='/images/worklist/ydl.jpg'></image></view>
+      <view class='num'>{{item.marks}}</view>
+    </view>
+  </view>
+</view>
+</scroll-view>
+<view class='explainCantainer' hidden='{{hiddens?false:true}}'>
+      <view class='explain'>
+      您还未收到过任何简历
+      </view>
+      <view class='bg'>
+        <image src='https://bm.jiangcdn.com/banma/empty/empty.png'></image>
+      </view>
+      <button class='btn' bindtap='sendDemand'>立即找人</button>
+    </view>

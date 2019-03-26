@@ -1,0 +1,19 @@
+/* pages/worker/job_wanted/job_wanted.wxss */
+page{ background: #f4f4f4;}
+.top_title{width: 690rpx;padding: 0 30rpx;height: 78rpx;font-size: 28rpx;color: #888888;line-height: 78rpx;}
+
+.b_content{width: 716rpx;background: #fff;padding-left: 34rpx;}
+.b_input{width: 686rpx;height:87rpx;border-bottom: 1rpx solid #e5e5e5;display: flex;justify-content: space-between;align-items: center;padding-right: 30rpx;}
+.b_input_02{width: 686rpx;height:87rpx;display: flex;justify-content: space-between;align-items: center;padding-right: 30rpx;}
+.b_input_right{display: flex;align-items: center}
+.b_input_title_01{font-size: 30rpx;color: #000}
+.b_input_title_02{font-size: 30rpx;color: #888888;height: 87rpx;width: 500rpx;line-height: 87rpx;text-align: right}
+.b_input_title_02 picker{height: 87rpx;width:500rpx;}
+.picker{height: 87rpx;width: 500rpx;overflow: hidden;}
+.b_input_icon{width: 16rpx;height: 25rpx;margin-left: 30rpx;}
+.b_input_icon_02{font-size: 30rpx;color: #72777e}
+.bottom{width: 100%;position: fixed;bottom: 0;left: 0;}
+.bottom_title{font-size: 24rpx;color: #72777e;line-height: 44rpx;text-align: center}
+.bottom_btn button{width: 690rpx;height: 95rpx;background: #000;line-height: 95rpx;font-size: 30rpx;color: #fff;margin: 30rpx auto 45rpx}
+
+.input_number{width: 460rpx;height: 87rpx;line-height: 87rpx;font-size: 30rpx;color: #72777e;padding: 0 20rpx;}

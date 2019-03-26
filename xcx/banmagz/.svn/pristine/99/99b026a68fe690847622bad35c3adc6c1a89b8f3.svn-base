@@ -1,0 +1,35 @@
+<!--pages/business/auth/busAuth.wxml-->
+<view class='top'>企业资质认证后职位可在平台展示</view>
+<view class='info_main' style='margin-left:0;padding-left:30rpx;background:#fff;'>
+    <view class='info_title'>公司地址</view>
+      <input placeholder="请输入公司地址"  class='info_content' value='{{address}}' bindinput='searchAddress' name='address'/>
+    </view>
+      <view class='searchList' wx:if='{{showList}}'>
+        <view wx:for='{{searchList}}' wx:key wx:for-index="idx" data-index='{{idx}}' bindtap='checkAddress'>
+          <text class='adresTitle'>{{item.title}}</text>
+          <text class='cityTxt'>{{item.province}}-{{item.city}}</text>
+        </view>
+  </view>
+<view class='content'>
+  <view class='upimg' bindtap='upimg'>
+    <image src='../../images/business/img_bg.png' class='upimgicon'></image>
+    <text>营业执照正面照片</text>
+    <image class='yl_img' src='{{yl_img}}@!235*140'></image>
+  </view>
+  <text class='content_text'>接受拍摄复印件，黑白复印件需要加盖公章，大小不超过5M</text>
+</view>
+
+<view class='info' wx:if='{{show}}'>
+  <view class='info_main'>
+    <view class='info_title'>企业全称</view>
+    <input class='info_content' value='{{company_name}}' bindinput='nameinput' style='width: 400rpx;'></input>
+  </view>
+
+  <view class='info_main'>
+    <view class='info_title'>有效期</view>
+    <input class='info_content' value='{{validity}}' bindinput='timeinput' style='width: 400rpx;'></input>
+  </view>
+
+</view>
+
+<view class='btn' bindtap='submit'>确认提交</view>

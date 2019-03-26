@@ -1,0 +1,13 @@
+/* pages/report/report.wxss */
+.report{width: 690rpx;height: 292rpx;margin: 30rpx auto;}
+.report textarea{width: 628rpx;height: 242rpx;border: 1rpx solid #dae2f8;background: #f4f4f4;border-radius: 9rpx;padding: 24rpx 30rpx;line-height: 50rpx;font-size: 30rpx;color: #8e9091}
+.report textarea::placeholder{line-height: 50rpx;font-size: 30rpx;color: #8e9091}
+.reprot_title{line-height: 42rpx;font-size: 30rpx;color: #8e9091;padding-left: 30rpx;}
+.reprot_photo{width: 690rpx;margin: 18rpx auto;display: flex;flex-wrap: wrap;}
+.upload_btn{width: 160rpx;height: 160rpx;border: 1rpx dashed #d9d9d9;border-radius: 8rpx;background: #f4f4f4;position: relative;margin: 0 65rpx 30rpx 0}
+.upload_btn_h{width: 60rpx;height: 2rpx;position: absolute;left: 50%;top: 50%;margin-left: -30rpx;margin-top: -1rpx;background: #d9d9d9}
+.upload_btn_s{width: 2rpx;height: 60rpx;position: absolute;left: 50%;top: 50%;margin-left: -1rpx;margin-top: -30rpx;background: #d9d9d9}
+.reprot_photo_show{width: 160rpx;height: 160rpx;border: 1rpx dashed #d9d9d9;border-radius: 8rpx;background: #f4f4f4;position: relative;margin: 0 30rpx 30rpx 0;overflow: hidden}
+.reprot_photo_show image{width: 160rpx;height: 160rpx}
+.report_btn{width: 100%;position: fixed;bottom: 0;left: 0;padding: 30rpx 0}
+.report_btn button{width: 690rpx;height: 96rpx;background: #000;font-size: 29rpx;color: #fff;line-height: 96rpx}

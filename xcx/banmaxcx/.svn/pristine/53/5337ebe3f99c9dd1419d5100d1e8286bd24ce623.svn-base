@@ -1,0 +1,153 @@
+<!--pages/demandList/index.wxml-->
+<view wx:if="{{showCantainer}}">
+  <view class='{{pullup==true?"position_fixed":""}}'>
+    <view class='tapbar'>
+      <picker range='{{fwlist}}' value='{{fwindex}}' range-key="name" bindchange='checkfw'>
+        <view class='pickerItem'>{{skills.length>1?'搜索结果':fwlist[fwindex].name}}
+          <image mode='aspectFill' src='/images/worklist/xia.png'></image>
+        </view>
+      </picker>
+      <view class='screenBoth'>
+        <!-- <view class='screenSeach fright' bindtap='checkBoxfirst'>
+          <image class='shanglist float_right  margin_left15 ' mode='aspectFill' src='../../images/listCard_03.png'></image>
+        </view> -->
+        <view class='screenSeach' bindtap='checkBox'>
+          <image mode='aspectFill' src='/images/worklist/screen.png'></image>
+        </view>
+      </view>
+    </view>
+    <view class='screenCantainer'>
+      <picker range='{{sortlist}}' value='{{sortidx}}' range-key='data' bindchange='checksoft'>
+        <text>{{sortlist[sortidx].data}}</text>
+        <image mode='aspectFill' src='/images/worklist/sanjiao.jpg'></image>
+      </picker>
+      <picker range='{{priceList}}' value='{{priceidx}}' range-key='data' bindchange='checkprice'>
+        <text>{{priceList[priceidx].data}}</text>
+        <image mode='aspectFill' src='/images/worklist/sanjiao.jpg'></image>
+      </picker>
+    </view>
+  </view>
+
+  <view class='{{showcontanier==true?"":"nonelist"}}'>
+    <view class='{{pullup==true?"viewCantainer":""}}'>
+      <block wx:if="{{list.length>0}}">
+        <navigator url='/pages/details/xqDetails?id={{item.id}}' hover-class='none' wx:for="{{list}}" wx:key>
+          <view class='viewItemCantainer'>
+            <view class='viewItem'>
+              <view class='viewTitle'>
+                <text class='titleTxt'>{{item.title}}</text>
+                <text class='prices'>外包预算</text>
+                <text class='priceTxt'><text> ￥{{item.price}}</text> </text>
+              </view>
+              <view class='viewTag'>
+                <view class='tagCantainer'>
+                  <view class='tagItem'>{{item.cat_name}}</view>
+                </view>
+                <view class='timeTxt'>{{item.ctime}}</view>
+              </view>
+              <view class='contentTxt'>{{item.content}}</view>
+              <view class='companyItem' hidden='{{item.seller.company_name.length>0?false:true}}'>{{item.seller.company_name}}</view>
+              <view class='sellerCantainer'>
+                <view class='sellerInfo'>
+                  <view class='border_s'>
+                    <image mode='aspectFill' src='{{item.seller.avatar}}'></image>
+                  </view>
+                  <view>
+                    <view class='font_sise'>{{item.seller.name}}</view>
+
+                  </view>
+                </view>
+                <view class='fong_sise'>{{item.seller.active_degree}}</view>
+              </view>
+            </view>
+          </view>
+        </navigator>
+      </block>
+      <block wx:else>
+        <view class='empty_icons'>
+          <image src='https://bm.jiangcdn.com/guide/wykzp/bmjx/info/xiaoma.png'></image>
+        </view>
+        <view class='empty_texts'>
+          <view class='empty_text_a'>{{empty_text_01}}</view>
+          <view class='empty_text_a'>{{empty_text_02}}</view>
+        </view>
+        <button class='bt'>邀请好友发布外包需求</button>
+      </block>
+    </view>
+  </view>
+
+  <!-- 添加 -->
+
+  <view class='{{showlist==true?"list":"nonelist"}}'>
+    <view class='{{pullup==true?"viewCantainer":""}}'>
+      <!-- 此处对应卡片布局 -->
+      <view class='list' hidden='{{template}}'>
+        <view class='swipers-wrap'>
+          <swiper class="swipers" autoplay="{{false}}" previous-margin="{{'64rpx'}}" current='{{zero}}' next-margin="{{'64rpx'}}" bindchange="swiperChange">
+            <block wx:for="{{list}}" wx:key="{{index}}">
+              <navigator hover-class="none" url='/pages/details/xqDetails?id={{item.id}}' bindtap="huancun">
+                <swiper-item class="swipers-item">
+                  <view class="slide-image">
+                    <view class='header'>
+                      <view class='header_top_r'>发布时间</view>
+                      <view class='header_top_t'>{{item.ctime}}</view>
+                      <view class='header_top'>{{item.title}}</view>
+                      <view class='header_content_bottom'>{{item.content}}</view>
+                      <view class='header_price'>{{item.price}}</view>
+                      <view class='header_price_text'>外包预算</view>
+
+                    </view>
+                    <view class='bottom'>
+                      <view class='bottomImg'>
+                        <image src='https://bm.jiangcdn.com/banma/demandList/message_02.png'></image>
+                      </view>
+                      <view class='swipersimg'>
+                        <image src='{{item.seller.avatar}}'></image>
+                      </view>
+                      <view class='swipercontent'>
+                        <text class='content_text01'>{{item.name}}</text>
+                        <text class='content_text02'>{{item.seller.company_name}}</text>
+                      </view>
+                    </view>
+                  </view>
+                </swiper-item>
+              </navigator>
+            </block>
+
+          </swiper>
+          <!-- <view class='bottoms' bindtap='F5Click' hidden='{{F5flag}}'>
+            <image src='/images/business/pagenumber.jpg'></image>
+        </view> -->
+        </view>
+
+      </view>
+      <!-- 卡片布局结束 -->
+      <view class='bottoms' bindtap='F5Click' hidden='{{F5flag}}'>
+        <image src='/images/business/pagenumber.jpg'></image>
+      </view>
+    </view>
+  </view>
+
+</view>
+<view class='silderCantainer' wx:if="{{showBox}}">
+  <view class='cancelView' bindtap='closeBox'></view>
+  <view class='firstView'>
+    <view class='{{item.id==demandId?"action":""}}' wx:for="{{demandList}}" wx:key id="{{item.id}}" bindtap="checkdemand">{{item.name}}</view>
+  </view>
+  <view class='secondView'>
+    <scroll-view scroll-y style='height:100%'>
+      <view class='secviewItem' wx:for="{{demandList[demandId].son}}" wx:key data-id='{{item.id}}' catchtap="checkItem">
+        <view class='viewicon '>
+          <icon type='success' size='24' wx:if='{{item.checked}}'></icon>
+        </view>
+        <view class='secviewTxt'>{{item.name}}</view>
+      </view>
+    </scroll-view>
+  </view>
+  <form report-submit='true' bindsubmit='getFormId'>
+    <view class='silderButton'>
+      <button class='reset' hover-class='none' form-type='submit' bindtap="resetCheck">重置</button>
+      <button class='submit' hover-class='none' form-type='submit' bindtap='submitCheck'>确定</button>
+    </view>
+  </form>
+</view>

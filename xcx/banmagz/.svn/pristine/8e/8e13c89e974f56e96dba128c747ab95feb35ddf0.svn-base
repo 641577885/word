@@ -1,0 +1,15 @@
+/* pages/login/dialog.wxss */
+/* .loginCover{ position: absolute; top: 0; left: 0; bottom:0;right: 0; display: flex; justify-content: space-around; align-items: center; background: rgba(0,0,0,0.5); box-sizing: border-box; z-index: 11;} 
+.loginDialog{ position: absolute; left: 50%; top: 50%; margin-left: -280rpx; margin-top: -200rpx; width: 560rpx; height: 400rpx; background: #fff; border-radius: 10rpx; z-index: 11}
+.loginTitle{ display: block; width: 100%; text-align: center; font-size: 36rpx; color: #000; margin-top: 55rpx;}
+.loginDialog button{ width: 80%; margin-top:30rpx; font-size: 36rpx;}
+.green{ background: #09bb07 !important; color: #fff;} */
+
+/* pages/login/dialog.wxss */
+.loginCover{ position: absolute; top: 0; left: 0; bottom:0;right: 0; display: flex; justify-content: space-around; align-items: center; background: rgba(0,0,0,0.5); box-sizing: border-box; z-index: 11;} 
+/* .loginDialog{ display: block; width: 560rpx; height: 400rpx; background: #fff; border-radius: 10rpx;} */
+.loginDialog{width: 608rpx;height: 531rpx;background-image: url(//bm.jiangcdn.com/login/login_bg_02.png);background-size: 100% 100%;}
+.loginTitle{ display: block; width: 100%; text-align: center; font-size: 36rpx; color: #000; margin-top: 55rpx;}
+.green{ background: #09bb07 !important; color: #fff;margin-top:324rpx;width: 390rpx;height: 88rpx;font-size: 30rpx;line-height: 88rpx;display: flex;align-items: center;text-align: center;justify-content: center}
+.login_icon{width: 42rpx;height: 34rpx;margin-right: 12rpx;}
+.phone_login{width: 100%;height: 70rpx;line-height: 70rpx;text-align: center;font-size: 30rpx;color: #999999;margin-top: 16rpx;}

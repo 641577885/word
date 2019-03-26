@@ -1,0 +1,130 @@
+// pages/worker/resume/resumeAccessory.js
+const bm = require('../../utils/common.js')
+const aliUploader = require("../../utils/oss/uploadAliyun.js");
+const app = getApp();
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    nowtime:'',
+    name:'',
+    imgurl:'',
+    yl_show:false,
+  },
+  onLoad: function (options){
+    var that = this
+    bm.requsetData('/w/resume/detail?scene=annex', 'post','', function (data) {
+      that.setData({
+        imgurl:data.data.annex
+      })
+    })
+    that.gettime()
+    if (app.globalData.auth) {
+      var name = app.globalData.name
+      that.setData({
+        name: name,
+      })
+    }else{
+      app.authCallback = auth => {
+        var name = app.globalData.name   
+      that.setData({
+        name:name,
+      })
+      }
+    }
+  },
+  //开启预览
+  openyl:function(){
+    var that = this
+    that.setData({
+      yl_show:true
+    })
+  },
+  //关闭预览
+  closeyl: function () {
+    var that = this
+    that.setData({
+      yl_show: false
+    })
+  },
+  //重新上传
+  againchoose:function(){
+    var that = this;
+    wx.chooseImage({
+      count: 1, // 默认9
+      sizeType: ['original', 'compressed'],
+      sourceType: ['album', 'camera'],
+      success: function (res) {
+        let tempFilePaths = res.tempFilePaths[0];
+        let date = new Date();
+        var dir = 'resumeFile/' + app.globalData.uid;
+        aliUploader(tempFilePaths, dir, date.getTime(),
+          function () {
+            var imgurl = '//bm.jiangcdn.com/' + dir + '/' + date.getTime() + '.' + tempFilePaths.split(".").pop()
+            that.gettime()
+            that.setData({
+              imgurl: imgurl,
+            })
+            wx.showToast({
+              title: '上传成功',
+            })
+          }, function (res) {
+            wx.showToast({
+              title: '图片添加失败',
+              icon: 'none'
+            })
+          });
+      }
+    })
+  },
+  //提交
+  button:function(){
+    var that = this
+    var imgurl = that.data.imgurl
+    bm.requsetData('/w/resume/annex', 'post', { annex: imgurl }, function (data) {
+      console.log(data)
+      if(data.data.errcode == 0){
+        wx.showToast({
+          title: data.data.errmsg,
+        })
+        setTimeout(function(){
+          wx.navigateBack({
+            delta: 1,
+          })
+        },1500)
+      }else{
+        wx.showToast({
+          title:data.data.errmsg,
+          icon:'none'
+        })
+      }
+    })
+  },
+  gettime:function(){
+    var that = this
+    var myDate = new Date();
+    var y = myDate.getFullYear();    //获取完整的年份(4位,1970-????)
+    var m = myDate.getMonth();       //获取当前月份(0-11,0代表1月)
+    if (m < 10) {
+      var m = '0' + myDate.getMonth()
+    }
+    var d = myDate.getDate();        //获取当前日(1-31)
+    if (d < 10) {
+      var d = '0' + myDate.getDate()
+    }
+    var h = myDate.getHours();       //获取当前小时数(0-23)
+    if (h < 10) {
+      var h = '0' + myDate.getHours();
+    }
+    var min = myDate.getMinutes();     //获取当前分钟数(0-59)
+    if (min < 10) {
+      var min = '0' + myDate.getMinutes();
+    }
+    var time = y + '/' + (parseInt(m)+1) + '/' + d + ' ' + h + ':' + min
+    that.setData({
+      nowtime:time
+    })
+  }
+})

@@ -1,0 +1,16 @@
+<!--pages/picker/areaPicker.wxml-->
+<form report-submit='true' bindsubmit='getFormId'>
+  <view class='t_title'>公司地址</view>
+  <view class="section">
+    <input placeholder="请输入公司地址" class='company' value='{{address}}' bindinput='searchAddress' name='address' />
+    <view class='searchList' wx:if='{{showList}}'>
+      <view wx:for='{{searchList}}' wx:key wx:for-index="idx" data-index='{{idx}}' bindtap='checkAddress'>
+        <text class='adresTitle'>{{item.title}}</text>
+        <text class='cityTxt'>{{item.province}}-{{item.city}}</text>
+      </view>
+    </view>
+  </view>
+  <view class='btnCantainer'>
+    <button form-type='submit' bindtap='saveAddress'>保存</button>
+  </view>
+</form>

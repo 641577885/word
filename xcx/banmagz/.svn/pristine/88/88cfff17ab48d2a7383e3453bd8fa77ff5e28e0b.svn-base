@@ -1,0 +1,79 @@
+const bm = require('../../utils/common.js')
+var app = getApp();
+Page({
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    title:'',
+    jobData: { jobId:'', jobIdTwo:'', jobName:''},
+    period:3,
+    periodarr: ['1周','2周', '3周', '1个月', '2个月','3个月'],
+    price:''
+
+  },
+  bindPickerperiod:function(e){
+    this.setData({ period: e.detail.value })
+  },
+  inputtext:function(e){
+    this.setData({ title:e.detail.value});
+  },
+  checkTitle:function(e){
+    this.setData({title:e.detail.value})
+  },
+  //价格
+  checkPrice:function(e){
+    this.setData({price:e.detail.value})
+  },
+  //不确定需求
+  notsure:function(){
+    wx.navigateTo({
+      url: 'notSure',
+    })
+  },
+  next:function(){
+    var that=this;
+    if (!that.data.title){
+        wx.showToast({
+          title: '请输入你要做什么',
+          icon:'none'
+        })
+      return false;
+    }
+    if (!that.data.jobData.jobId) {
+       wx.showToast({
+         title: '请选择创客类型',
+         icon: 'none'
+       })
+       return false;
+    }
+    if (!that.data.period) {
+       wx.showToast({
+         title: '请选择项目周期',
+         icon: 'none'
+       })
+       return false;
+    }
+    if (that.data.price == "") {
+       wx.showToast({
+         title: '请输入价格',
+         icon: 'none'
+       })
+       return false;
+    }
+    app.demandTitle = that.data.title;
+    app.demandJobId = that.data.jobData.jobId;
+    app.demandPeriod = that.data.period;
+    app.demandPrice = that.data.price;
+    app.demandTypeId = that.data.jobData.jobIdTwo;
+    app.demandJobName = that.data.jobData.jobName;
+    wx.navigateTo({
+      url: 'fillTag',
+    })
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {}
+})

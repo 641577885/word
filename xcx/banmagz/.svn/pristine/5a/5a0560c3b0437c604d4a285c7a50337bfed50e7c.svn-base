@@ -1,0 +1,202 @@
+// pages/business/position/demand.js
+const bm=require('../../utils/common.js')
+const Page = require('../../utils/ald-stat.js').Page;
+var app = getApp();
+Page({
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    showBox:false,
+    typearray: ['职位', '需求'],
+    typeindex: 0,
+    statearray: [
+      {
+        id: 0,
+        name: '全部'
+      },
+      {
+        id: 1,
+        name: '审核中'
+      },
+      {
+        id: 2,
+        name: '已开放'
+      },
+      {
+        id: 3,
+        name: '已关闭'
+      },
+    ],
+    stateindex: 0,
+    stateId:0,
+    list: [],
+    pages:1,
+    allpage:1,
+    is_auth:false,
+    auth_top:88
+  },
+  go2Detail:function(e){
+    var _url;
+    var _id = e.currentTarget.dataset.id
+    if (this.data.typeindex==0){
+      _url = '/pages/details/zwDetails?id=' + _id
+    }else{
+      _url = '/pages/details/xqDetails?id=' + _id
+    }
+    wx.navigateTo({
+      url: _url,
+    })
+  },
+  link2List:function(){
+    wx.switchTab({
+      url: '/pages/publish/loading',
+    })
+  },
+  //获取数据
+  getListData: function () {
+    var that=this;
+    wx.showLoading({
+      title: '数据加载中',
+    })
+    var query;
+    if (that.data.stateindex==0){
+      query = { limit: 10, page: that.data.pages}
+    }else{
+      query = { limit: 10, page: that.data.pages, status: that.data.stateId }
+    }
+    if (this.data.typeindex == 0) {
+      bm.requsetData('/b/position/mylist', 'get', query, function (res) {
+        if (!res.data.errcode) {
+          setTimeout(function(){
+            wx.hideLoading();
+            that.setData({
+              list: that.data.list.concat(res.data.list),
+              allpage: res.data.pages.allpage,
+              showBox: true
+            })
+          },1000)
+        } else {
+          wx.showToast({
+            title: res.data.errmsg,
+            icon: 'none'
+          })
+        }
+      })
+    } else {
+      bm.requsetData('/b/demand/mylist', 'get', query, function (res) {
+        if (!res.data.errcode) {
+          setTimeout(function () {
+            wx.hideLoading();
+            that.setData({
+              list: that.data.list.concat(res.data.list),
+              allpage: res.data.pages.allpage,
+              showBox: true
+            })
+          }, 1000)
+        } else {
+          wx.showToast({
+            title: res.data.errmsg,
+            icon: 'none'
+          })
+        }
+      })
+    }
+  },
+  showDefault:function(){
+    var that=this;
+    bm.requsetData("/b/demand/exist_dem_pos","get","",function(res){
+      if(!res.data.errcode){
+        if (res.data.type=='position'){
+          that.setData({ typeindex:0})
+        }else{
+          that.setData({ typeindex: 1 })
+        }
+        that.getListData();
+      }
+    })
+  },
+  //获取更多
+  getMoreData:function(){
+    var that=this;
+    var allpage = that.data.allpage;
+    that.setData({ peges: that.data.pages++})
+    that.getListData();
+    var peges = that.data.peges
+    if (peges > allpage) {
+      wx.showToast({
+        title: '已没有更多数据',
+        icon: 'none',
+        duration: 1000
+      })
+    }
+  },
+  //类型
+  bindTypeChange: function (e) {
+    this.setData({
+      showBox: false,
+      typeindex: e.detail.value,
+      stateindex: 0,
+      pages:1,
+      list:[]
+    })
+    this.getListData();
+  },
+  //状态
+  bindStateChange: function (e) {
+    this.setData({
+      showBox:false,
+      stateindex: e.detail.value,
+      stateId: this.data.statearray[e.detail.value].id,
+      pages: 1,
+      list: []
+    })
+    this.getListData();
+  },
+  //发布
+  sendDemand:function(){
+    wx.navigateTo({
+      url: '/business/publishJob/publishType'
+    })
+  },
+  autoStatus:function(){
+    var that = this
+    bm.requsetData('/b/seller/auth_status', 'get', '', function (data) {
+      if (data.data.data.company == 2) {
+        that.setData({
+          is_auth: false,
+          auth_top: 88
+        })
+      } else {
+        that.setData({
+          is_auth: true,
+          auth_top: 187
+        })
+      }
+    })
+  },
+  onLoad: function () {
+    var that = this;
+    that.setData({ list: [], showBox: false })
+    if (app.globalData.auth) {
+      that.showDefault();
+      that.autoStatus();
+    } else {
+      app.authCallback = auth => {
+        that.showDefault();
+        that.autoStatus();
+      }
+    }
+  },
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onShow() { //返回显示页面状态函数
+    var that = this;
+    var isRefresh = wx.getStorageSync("isRefresh");
+    if (isRefresh) {
+      wx.removeStorageSync("isRefresh");
+      that.onLoad();
+    }
+  },
+})

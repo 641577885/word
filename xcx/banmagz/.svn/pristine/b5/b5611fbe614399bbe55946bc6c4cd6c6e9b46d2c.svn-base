@@ -1,0 +1,119 @@
+// pages/business/my/personInfo.js
+var app = getApp();
+var bm = require('../../utils/common.js')
+const aliUploader = require("../../utils/oss/uploadAliyun.js");
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    avatar:'',
+    name:'林芝羽',
+    wx_code:'liuqi9452',
+    mail:'liuqi9452@126.com',
+    company:'kaisan',
+    job:'aaa'
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    var that = this
+    bm.requsetData('/b/seller/index', 'post','', function (data) {
+      console.log(data)
+      that.setData({
+        avatar: data.data.sell_info.avatar,
+        name: data.data.sell_info.name,
+        wx_code: data.data.sell_info.wx,
+        mail: data.data.sell_info.email,
+        company: data.data.sell_info.company_name,
+        job: data.data.sell_info.position
+      })
+    })
+  },
+  //上传头像
+  upavatar:function(){
+    var that = this
+    wx.chooseImage({
+      count:1,
+      count: 1,
+      sizeType: ['original', 'compressed'],
+      sourceType: ['album', 'camera'],
+      success: function(res) {
+        let tempFilePaths = res.tempFilePaths[0];
+        let date = new Date();
+        let dir = 'avatar';
+        aliUploader(tempFilePaths, dir, date.getTime(),
+          function () {
+            that.setData({
+              avatar: '//bm.jiangcdn.com/' + dir + '/' + app.globalData.uid + '/' + date.getTime() + '.' + tempFilePaths.split(".").pop(),
+              globalData:{
+                avatar: '//bm.jiangcdn.com/' + dir + '/' + app.globalData.uid + '/' + date.getTime() + '.' + tempFilePaths.split(".").pop()
+              }
+            })
+          }, function (res) {
+            common.msg("图片添加失败")
+          });
+      },
+    })
+  },
+  //提交
+  submitinfo:function(e){
+    var that = this
+    var name = e.detail.value.name
+    var wx_code = e.detail.value.wx_code
+    var mail = e.detail.value.mail
+    var company = e.detail.value.company
+    var job = e.detail.value.job
+    var avatar = that.data.avatar
+    var query = { email: mail, name: name, avatar: avatar, wx: wx_code, position: job }
+    if(name.length == 0){
+      wx.showToast({
+        title: '请填写姓名',
+        icon:'none'
+      })
+      return false
+    }
+    if (wx_code.length == 0) {
+      wx.showToast({
+        title: '请填写微信号',
+        icon: 'none'
+      })
+      return false
+    }
+    if (mail.length == 0) {
+      wx.showToast({
+        title: '请填写邮箱',
+        icon: 'none'
+      })
+      return false
+    }
+    if (job.length == 0) {
+      wx.showToast({
+        title: '请填写职务',
+        icon: 'none'
+      })
+      return false
+    }
+    bm.requsetData('/b/seller/update','post',query, function (data)  {
+      if(data.data.errcode == 0){
+        wx.showToast({
+          title: '保存成功',
+          icon: 'sueecss',
+          duration: 2000,
+          success: function () {
+            setTimeout(function () {
+              wx.navigateBack({})
+            }, 2000)
+          }
+        })
+      }else{
+        wx.showToast({
+          title: data.data.errmsg
+        })
+      }
+    })
+  },
+})

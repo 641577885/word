@@ -1,0 +1,107 @@
+// pages/worker/job_wanted/job_wanted.js
+const common =require('../../utils/common.js')
+var app = getApp()
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    cityData:null,  //城市
+    jobData: {jobId:0},   //职位
+    sex:["男","女"],
+    sexIndex:0,  //性别
+    birthday: "1990-01",  //出生年化月
+    indusnum:0,    //选中行业数
+    indusData:[],  //选中数据
+    price:'',      //薪资要求
+    select_list:null,
+    fwData: '',
+    fw_num: 0
+  },
+  bindAccountChange: function(e) {
+    this.setData({
+        sexIndex: e.detail.value
+    })
+  },
+  bindDateChange: function (e) {
+    this.setData({
+      birthday: e.detail.value
+    })
+  },
+  fillPrice:function(e){
+    this.setData({price:e.detail.value})
+  },
+  formSubmit:function(e){
+    var that=this;
+    var sex = parseInt(that.data.sexIndex) + 1;
+    var industry_open =[];
+    var indusname=[];
+    for (var i in that.data.select_list){
+      industry_open.push(parseInt(that.data.select_list[i].id))
+    }
+    that.setData({ industry: industry_open });
+    var fwID = []
+    var fwData = that.data.fwData.data
+    for (var key in fwData) {
+      fwID.push(fwData[key].id)
+    }
+    
+    if (!that.data.jobData.jobId || industry_open.length <= 0 || !that.data.cityData.id || !that.data.price || fwID.length == 0){
+      wx.showToast({
+        title: '请填写完整的求职意向',
+        icon:'none'
+      })
+      return false;
+    }
+    common.requsetData('/w/user/job/intention', 'post', { profession: that.data.jobData.jobId, industry: industry_open, city: that.data.cityData.id, price: that.data.price, service_tag: fwID},function(res){
+      if(!res.data.errcode){
+        wx.reLaunch({
+          url: '/pages/worker/list',
+        })
+      }else{
+        wx.showToast({
+          title: res.data.errmsg,
+          icon: 'none'
+        })
+      }
+    })
+  },
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+  },
+  //行业选择
+  selecthy: function (e) {
+    var that = this
+    var indata = that.data.select_list
+    var hy = JSON.stringify(indata)
+    wx.navigateTo({
+      url: '/pages/picker/indusPicker?hy=' + hy,
+    })
+  },
+  //选择服务标签
+  bindfw: function () {
+    var that = this
+    if (that.data.fwData) {
+      var fw = JSON.stringify(that.data.fwData.data)
+      wx.navigateTo({
+        url: '/pages/picker/fwPicker?fw=' + fw + '&fw_type=0',
+      })
+    } else {
+      wx.navigateTo({
+        url: '/pages/picker/fwPicker?fw_type=0',
+      })
+    }
+  },
+  onShow: function () {
+    var that = this
+    console.log(that.data.fwData)
+    if (that.data.fwData) {
+      that.setData({
+        fw_num: that.data.fwData.data.length
+      })
+    }
+  }
+})

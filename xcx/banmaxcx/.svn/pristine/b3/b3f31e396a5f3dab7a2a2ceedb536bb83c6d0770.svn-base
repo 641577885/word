@@ -1,0 +1,11 @@
+<!--pages/worker/fastResume.wxml-->
+<view class='fastResume'>
+  <view class='fastResume_jdt' style='width:{{fastResume_rate}}%'></view>
+  <view class='fastResume_content'>
+    <view class='fastResume_content_left'>还差{{rest}}%可投递简历</view>
+    <view class='fastResume_content_right'>
+      <text>{{fastResume_text?"快速填写":'快速填写中...'}}</text>
+      <image src='/images/right.png'></image>
+    </view>
+  </view>
+</view>

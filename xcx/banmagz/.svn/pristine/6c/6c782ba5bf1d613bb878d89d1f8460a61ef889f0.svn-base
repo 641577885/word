@@ -1,0 +1,86 @@
+<!--wallet/mocDetail.wxml-->
+<view class="mocContainer">
+  <view class='tab'>
+      <view class='tab-nav'>
+          <view class='{{active==0?"on":""}}' data-current="0" bindtap='tab'>全部</view>
+          <view class='{{active==1?"on":""}}' data-current="1" bindtap='tab'>已获取</view>
+          <view class='{{active==2?"on":""}}' data-current="2" bindtap='tab'>已使用</view>
+      </view>
+      <swiper class='tab-box' current="{{active}}" bindchange="eventchange">
+        <swiper-item>
+          <view class='asdasd'>
+            <scroll-view class='box' scroll-y bindscrolltoupper="evupper" bindscrolltolower="evlower">
+             <view class='explainCantainer {{hiddenpart==true?"display_none":""}}' >
+                  <view class='empty_icon'>
+                            <image src='/images/empty/empty_bg.png'></image>
+                        </view>
+                        <view class='empty_text'>
+                          <view class='empty_text_01'>当前数据为空</view>
+                          <!-- <view class='empty_text_02'>当前{{empty_text_02}}</view> -->
+                        </view>
+                  </view>
+              <view class='mocList' wx:for='{{lists}}' wx:for-item='vo' wx:key='{{lists}}'>
+                <view class='mocBoth'>
+                    <view class='mocName'>{{vo.ltype_name}}</view>
+                    <view class='mocNum'>{{vo.pay_type}}{{vo.pay_money}}</view>
+                </view>
+                <view class='mocTime'>{{vo.pay_time}}</view>
+              </view>
+               <!-- <view class='text_align {{hiddentext==false?"display_none":""}}'>~~亲，已经到底了~~</view> -->
+            </scroll-view>
+          </view>
+        </swiper-item>
+        <swiper-item>
+         <view class='asdasd'>
+           <!-- <view class='count'> 已获取 {{addCount}} 个红包</view>
+          </view> -->
+           <scroll-view class='box' scroll-y bindscrolltoupper="evupper" bindscrolltolower="evlower">
+            <view class='explainCantainer {{hiddenpart==true?"display_none":""}}' >
+                  <view class='empty_icon'>
+                            <image src='/images/empty/empty_bg.png'></image>
+                        </view>
+                        <view class='empty_text'>
+                          <view class='empty_text_01'>当前{{empty_text_01}}为空</view>
+                          <!-- <view class='empty_text_02'>当前{{empty_text_02}}</view> -->
+                        </view>
+                  </view>
+              <view class='mocList' wx:for='{{lists}}' wx:for-item='vo' wx:key='{{lists}}'>
+              
+                <view class='mocBoth' >
+                    <view class='mocName'>{{vo.ltype_name}}</view>
+                    <view class='mocNum'>{{vo.pay_type}}{{vo.pay_money}}</view>
+                </view>
+                <view class='mocTime'>{{vo.pay_time}}</view>
+             
+              </view>
+            </scroll-view>
+           </view>
+        </swiper-item>
+        <swiper-item>
+         <view class='asdasd'>
+            <!-- <view class='count'>已使用 {{desCount}} 个红包</view> -->
+            <scroll-view class='box' scroll-y bindscrolltoupper="evupper" bindscrolltolower="evlower">
+
+                <view class='explainCantainer {{hiddenpart==true?"display_none":""}}' >
+                  <view class='empty_icon'>
+                            <image src='/images/empty/empty_bg.png'></image>
+                        </view>
+                        <view class='empty_text'>
+                         <!-- <view class='empty_text_01'>当前{{empty_text_01}}为空</view> -->
+                          <view class='empty_text_01'>当前{{empty_text_02}}为空</view>
+                        </view>
+                  </view>
+              <view class='mocList' wx:for='{{lists}}' wx:for-item='vo' wx:key='{{lists}}'>
+                <view class='mocBoth'>
+                    <view class='mocName'>{{vo.ltype_name}}</view>
+                    <view class='mocNum'>{{vo.pay_type}}{{vo.pay_money}}</view>
+                </view>
+                <view class='mocTime'>{{vo.pay_time}}</view>
+             
+              </view>
+            </scroll-view>
+            </view>   
+        </swiper-item>
+    </swiper>
+  </view>
+</view>  

@@ -1,0 +1,20 @@
+// pages/login/login.js
+const bm = require('../utils/common.js')
+const Page = require('../utils/ald-stat.js').Page
+const app=getApp()
+Page({
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    isShowDialog:true
+  },
+  checkRole: function () {
+    var that = this;
+    if (app.globalData.auth == 0) {
+      that.setData({
+        isShowDialog: false
+      })
+    }
+  }
+})

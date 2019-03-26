@@ -1,0 +1,54 @@
+<view class='mocContanier'>
+  <view class='mocMain'>
+    <view class='mocMainCon'>
+      <view class='mocBoth'>
+        <view class='mocName'>{{order.title}}</view>
+        <view class='mocNum'>￥{{order.allprice}}</view>
+      </view>
+      <view class='order'>订单号：{{order.ordersn}}</view>
+      <!-- <view class='close' wx:if='{{ctype == "vip"}}'><text decode='true'>&nbsp;</text></view>
+      <view class='close' wx:else>订单将于<text></text>后关闭，请尽快支付</view> -->
+      <view class='close'><text decode='true'>&nbsp;</text></view>
+      <view class='section' bindtap='choosemethd' open-type="online" data-current="0" wx:if='{{ctype!="recharge"}}'>
+        <view class="group">
+              <icon type="success" class='{{current==0?"show":"hide"}}'  size="26"/>
+        </view>
+        <view class='balan'>余额</view>
+        <view class='money'>(<text> ¥{{accInfo.userb}}</text> )</view>
+      </view>
+      <view class='section' bindtap='choosemethd' open-type="online" data-current="1">
+          <view class="group">
+                 <icon type="success" class='{{current==1?"show":"hide"}}' size="26"/>
+          </view>
+          <view class='balan'>微信</view>
+      </view>
+      <!-- <view class='section' bindtap='choosemethd' open-type="online" data-current="2">
+        <view class="group">
+             <icon type="success"  class='{{current==2?"show":"hide"}}'  size="26"/>
+          </view>
+          <view class='balan'>银行卡</view>
+      </view>   -->
+      <view class='moc_money'>
+        <view class='moc_money_left'>实际支付</view>
+        <view class='moc_money_right'>￥{{order.allprice}}</view>
+      </view>
+    </view>
+   <view class='rnameBottom'>
+       <button bindtap="nextbtn" class='nextbtn'>下一步</button>
+    </view>
+   </view> 
+   <view class='bottom_info'>班马佳薪基于腾讯云区块链服务TBaaS</view>
+</view> 
+<view class="dialog_screen" wx:if='{{showCode}}' bindtap='showCover'></view>
+<view class='dialog_box' wx:if='{{showCode}}'>
+  <view class='telInfo'>
+    <text class='lxtelNumber'>{{lxtel}}</text>
+    <button class='codeResend' size='mini' disabled='{{disabled}}' wx:if='{{disabled}}'>{{clock}}s重新发送</button>
+    <button class='codeResend' size='mini' bindtap='sendCell' wx:else>发送验证码</button>
+  </view>
+  <view class='fillcodecantainer' catchtap='focusSet'>
+    <view wx:for="{{tcode_arr}}" class='codeItem' wx:key>{{tcode_arr[index]}}</view>
+  </view>
+  <input class='codeInp' type='number' maxlength='6' focus='{{focus_flag}}' value='' bindinput='setCode' />
+  <button class='btnBlack' bindtap='payMoney'>下一步</button>
+</view>

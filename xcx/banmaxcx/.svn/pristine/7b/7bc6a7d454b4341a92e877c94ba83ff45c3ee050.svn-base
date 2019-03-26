@@ -1,0 +1,194 @@
+// wallet/invited.js
+const bm = require('../utils/common.js')
+const Page = require('../utils/ald-stat.js').Page;
+var app = getApp()
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    active: 0,//当前所在滑块的 index
+    // hiddentext:false,
+    current: 1,
+    history:[],
+    inv_num:'',
+    rank:[],
+    empty_text_01: '列表',
+    inviter_name:'',
+    invitee_name:'',
+    money:'',
+
+
+
+
+
+    text: null,
+    marqueePace: 1,
+    marqueeDistance: 0,
+    marquee_margin: 30,
+    size: 12,
+    interval: 20,
+    length:'',
+    windowWidth:''
+
+
+
+   
+  },
+  tab: function (event) {
+    this.setData({ active: event.target.dataset.current })
+
+    // this.getlistData()
+  },
+  // 滑动事件
+  eventchange: function (event) {
+    this.setData({ active: event.detail.current })
+
+  },
+  wechart:function(){
+     wx.navigateTo({
+       url: '../pages/share/shareck',
+     })
+  },
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    var role = app.globalData.role;
+    var that = this
+var type;
+    bm.requsetData('/c/action/invreg_info', 'get',{type:role}, function (data) {
+       console.log(data)
+       if (!data.data.errcode) {
+         that.setData({ 
+           history: data.data.inv_history,
+           inv_num: data.data.inv_num*5,
+           rank: data.data.inv_rank
+         })
+         let length = 0
+         for (var i = 0; i < that.data.history.length;i++){
+           that.setData({
+             inviter_name: that.data.history[i].inviter_name,
+             invitee_name: that.data.history[i].invitee_name,
+             money: that.data.history[i].money
+           })
+          var arr=[]
+         
+          var sum=0
+          // length= (that.data.history[i].inviter_name.length + that.data.history[i].invitee_name.length + that.data.history[i].money.toString().length + 12) * that.data.size;
+          length += (that.data.inviter_name.length + that.data.invitee_name.length + that.data.money.toString().length + 12) * that.data.size;
+          console.log(length)
+         }
+         length+=length
+         that.setData({
+           length: length,
+           windowWidth: 50
+         });
+         that.scrolltxt();
+
+       } else {
+         wx.showToast({
+           title: data.data.errmsg,
+           icon: 'none',
+           duration: 2000
+         })
+       }
+    })
+  },
+                                   
+  scrolltxt: function () {
+    var that = this;
+    var length = that.data.length;
+    var windowWidth = that.data.windowWidth;
+    if (length > windowWidth) {
+      var interval = setInterval(function () {
+        var maxscrollwidth = length + that.data.marquee_margin;
+        var crentleft = that.data.marqueeDistance;
+        if (crentleft < maxscrollwidth) {
+          that.setData({
+            marqueeDistance: crentleft + that.data.marqueePace
+          })
+        }
+        else {
+          that.setData({
+            marqueeDistance: 0
+          });
+          clearInterval(interval);
+          that.scrolltxt();
+        }
+      }, that.data.interval);
+    }
+    else {
+      that.setData({ marquee_margin: "0" });
+    }
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+  
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    
+  },
+ 
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+  
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+  
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+  
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+  
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function (res) {
+    if (res.from === 'button') {
+      // 来自页面内转发按钮
+      console.log(res.target)
+    }
+     return{
+       title:'转发',
+       path:'/pages/login/loading',
+       imageUrl:'https://bm.jiangcdn.com/banma/share/sharef.png',
+       success:function(e){
+         wx.showShareMenu({
+           withShareTicketa:true
+         })
+       },
+       fail(e){
+
+       },
+       complete(){}
+     }
+  },
+
+
+})

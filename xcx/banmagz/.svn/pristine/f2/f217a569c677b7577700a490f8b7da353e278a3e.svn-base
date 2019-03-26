@@ -1,0 +1,87 @@
+<!--wallet/invited.wxml-->
+<view class='inviteTip'>
+   <view class='report'>斑马快报</view>
+   <view class='bannerText'>白衣邀请老鬼注册。获得20元的红包</view>
+</view>
+<view class='inviteBanner'><image src='../images/inbanner_02.png'></image></view>
+<view class='inMainTop'>
+  <view class='inMainMain'>
+     <view class='mainBoth'>
+        <text class='record'>我的邀请记录</text>
+        <navigator class='situation' url='rules'>规则说明</navigator>
+     </view>
+     <view class='inNav'> <progress percent="20"  stroke-width='10' color="#fede01" /></view>
+     <view class='numBoth'>
+       <text>0</text>
+       <text>5位</text>
+       <text>10位</text>
+       <text>15位</text>
+       <text>20位</text>
+     </view>
+  </view>
+</view>
+ <!-- <view class='inMianCenter'>
+  <view class='inCenterBoth'> 
+   </view>
+</view>  -->
+
+
+<view class="mocContainer"  >
+  <view class='tab'>
+      <view class='tab-nav'>
+          <view class='{{active==0?"on":""}}' data-current="0" bindtap='tab'>全国PK榜</view>
+          <view class='{{active==1?"on":""}}' data-current="1" bindtap='tab'>好友PK榜</view>
+      </view>
+      <swiper class='tab-box' current="{{active}}" bindchange="eventchange">
+        <swiper-item>
+          <view class='asdasd'>
+            <scroll-view class='box' scroll-y bindscrolltoupper="evupper" bindscrolltolower="evlower">
+            <view class='discount'>排行邀请人数每月更新，重新计算</view>
+            <view class='inList'>
+              <view class='listLeft'><image src='../images/ban_av_03.png'></image></view>
+              <view class='listRight'>
+                 <view class='listname'>白衣</view>
+                 <view class='listfriend'>共邀约18名好友</view>
+              </view>
+            </view>
+             <view class='inList'>
+              <view class='listLeft'><image src='../images/ban_av_03.png'></image></view>
+              <view class='listRight'>
+                 <view class='listname'>白衣</view>
+                 <view class='listfriend'>共邀约18名好友</view>
+              </view>
+            </view>
+            </scroll-view>
+          </view>
+        </swiper-item>
+        <swiper-item>
+         <view class='asdasd'>
+           <scroll-view class='box' scroll-y bindscrolltoupper="evupper" bindscrolltolower="evlowerget">
+               <view class='discount'>排行邀请人数每月更新，重新计算</view>
+                <view class='inList'>
+                  <view class='listLeft'><image src='../images/ban_av_03.png'></image></view>
+                  <view class='listRight'>
+                    <view class='listname'>白衣</view>
+                    <view class='listfriend'>共邀约18名好友</view>
+                  </view>
+                </view>
+                <view class='inList'>
+                  <view class='listLeft'><image src='../images/ban_av_03.png'></image></view>
+                  <view class='listRight'>
+                    <view class='listname'>白衣</view>
+                    <view class='listfriend'>共邀约18名好友</view>
+                  </view>
+                </view>
+            </scroll-view>
+           </view>
+        </swiper-item>
+      
+    </swiper>
+  </view>
+</view>  
+<view class='inBottom'>
+ <view class='inBottomMain'>
+   <button class='friends'>分享给好友</button>
+   <button class='wechart active' bindtap='wechart'>分享朋友圈</button>
+ </view>
+</view>

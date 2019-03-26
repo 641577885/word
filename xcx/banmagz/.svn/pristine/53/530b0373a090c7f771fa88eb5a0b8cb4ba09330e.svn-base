@@ -1,0 +1,19 @@
+// pages/bank/bank.js
+var app=getApp()
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    
+    
+  },
+  onLoad: function (options) {
+    var tk = app.globalData.token
+    var role = app.globalData.role
+    var host = app.globalData.host
+    var url = host+'/html/bank/bank.html?tk=' + tk + '&role=' + role 
+    this.setData({ url: url })
+  },
+})

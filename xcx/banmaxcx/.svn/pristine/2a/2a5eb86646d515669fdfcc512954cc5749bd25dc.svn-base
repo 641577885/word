@@ -1,0 +1,80 @@
+<!--pages/demandList/index.wxml-->
+<view class='tapbar'>
+  <picker range='{{fwlist}}' value='{{fwindex}}' range-key="name" bindchange='checkfw'>
+    <view class='pickerItem'>{{skills.length>1?'搜索结果':fwlist[fwindex].name}}
+      <image mode='aspectFill' src='/images/worklist/xia.png'></image>
+    </view>
+  </picker>
+  <view class='screenSeach' bindtap='checkBox'>
+    <image mode='aspectFill' src='/images/worklist/screen.png'></image>
+  </view>
+</view>
+<view class='screenCantainer'>
+  <picker range='{{sortlist}}' value='{{sortidx}}' range-key='data' bindchange='checksoft'>
+    <text>{{sortlist[sortidx].data}}</text>
+    <image mode='aspectFill' src='/images/worklist/sanjiao.jpg'></image>
+  </picker>
+  <picker range='{{priceList}}' value='{{priceidx}}' range-key='data' bindchange='checkprice'>
+    <text>{{priceList[priceidx].data}}</text>
+    <image mode='aspectFill' src='/images/worklist/sanjiao.jpg'></image>
+  </picker>
+</view>
+<view class='viewCantainer' wx:if="{{showCantainer}}">
+<block wx:if="{{list.length>0}}">
+    <navigator url='/pages/details/xqDetails?id={{item.id}}' hover-class='none' wx:for="{{list}}" wx:key>
+      <view class='viewItemCantainer'>  
+        <view class='viewItem'>
+          <view class='viewTitle'>
+            <view class='titleTxt'>{{item.title}}</view>
+            <view class='priceTxt'>￥{{item.price}}</view>
+          </view>
+          <view class='viewTag'>
+            <view class='tagCantainer'>
+              <view class='tagItem'>{{item.cat_name}}</view>
+            </view>
+            <view class='timeTxt'>{{item.ctime}}</view>
+          </view>
+          <view class='contentTxt'>{{item.content}}</view>
+          <view class='sellerCantainer'>
+            <view class='sellerInfo'>
+              <image mode='aspectFill' src='{{item.seller.avatar}}'></image>
+              <text>{{item.seller.name}}－{{item.seller.active_degree}}</text>
+            </view>
+            <view class='companyItem'>{{item.seller.company_name}}</view>
+          </view>
+        </view>
+      </view>
+    </navigator>
+    </block>
+  <block wx:else>
+    <view class='empty_icon' style='top:380rpx'>
+      <image src='/images/empty/empty_bg.png'></image>
+    </view>
+    <view class='empty_text' style='top:860rpx'>
+      <view class='empty_text_01'>当前标签下没有需求发布</view>
+      <view class='empty_text_02'>请选择其他标签搜索</view>
+    </view>
+  </block>
+</view>
+<view class='silderCantainer' wx:if="{{showBox}}">
+  <view class='cancelView' bindtap='closeBox'></view>
+  <view class='firstView'>
+    <view class='{{item.id==demandId?"action":""}}' wx:for="{{demandList}}" wx:key id="{{item.id}}" bindtap="checkdemand">{{item.name}}</view>
+  </view>
+  <view class='secondView'>
+    <scroll-view scroll-y style='height:100%'>
+      <view class='secviewItem' wx:for="{{demandList[demandId].son}}" wx:key data-id='{{item.id}}' catchtap="checkItem">
+        <view class='viewicon '>
+          <icon type='success' size='24' wx:if='{{item.checked}}'></icon>
+        </view>
+        <view class='secviewTxt'>{{item.name}}</view>
+      </view>
+    </scroll-view>
+  </view>
+  <form report-submit='true' bindsubmit='getFormId'>
+    <view class='silderButton'>
+      <button class='reset' hover-class='none' form-type='submit' bindtap="resetCheck">重置</button>
+      <button class='submit' hover-class='none' form-type='submit' bindtap='submitCheck'>确定</button>
+    </view>
+  </form>
+</view>

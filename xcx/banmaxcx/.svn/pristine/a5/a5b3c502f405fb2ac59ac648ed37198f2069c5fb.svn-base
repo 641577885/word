@@ -1,0 +1,33 @@
+<!--pages/worker/resume/resumeAccessory.wxml-->
+<!--简历图片  -->
+<view class='margin_top90 display_flex center'>
+  <image class='whjianli' src='../../images/worklist/jianli.jpg'></image>
+</view>
+<view class='text_align_center margin_top90'>
+  <!-- <view class='font_size40 {{show==true?"display_none":""}}'>上传成功！</view> -->
+  <view class='font_size40 margin_top20'>{{name}}的个人简历</view>
+  <view class='font_size25 color999 margin_top20'>
+    <!-- <text>256.6KB</text> -->
+    <text> {{nowtime}} </text>
+  </view>
+  <view class='width95 auto font_size35 margin_top70 color999 {{show==0?"display_none":""}}'>
+    <view class='width40 inline_block border_radius50  backgroundbtffffff border_5e5e5 padding15'>
+      <navigator hover-class="none" url='/worker/resume/Email'>
+        <image class=' wh45 float_left margin_left30' src='../../images/worklist/xib.png'></image>
+        <text>转发邮箱</text>
+      </navigator>
+    </view>
+    <view class='margin_left25 width40 inline_block border_radius50 backgroundbtffffff border_5e5e5 padding15' bindtap='openyl'>
+      <image class='wh30 float_left margin_top10 margin_left50' src='../../images/worklist/ss2.png'></image>
+      <text class='.margin_right30'>在线预览</text>
+    </view>
+  </view>
+</view>
+<view>
+  <button class='backgroundbt width90 border_radius50 margin_top60 letter_spacing5' bindtap='againchoose'>重新上传</button>
+</view>
+<view class='yl_main'wx:if='{{yl_show}}' bindtap='closeyl'>
+<scroll-view class='yl'  scroll-y>
+  <image src='{{imgurl}}' mode='widthFix'></image>
+</scroll-view>
+</view>

@@ -1,0 +1,110 @@
+/* pages/demandList/index.wxss */
+page{ background: #fafafa; position: absolute; top: 0; right: 0; bottom: 0; left: 0;}
+ .tapbar{/*position: fixed;*/ top: 0; left: 0; right: 0; display: flex; align-items: center; justify-content: space-between; height: 90rpx; padding: 0 35rpx; background: #fede01;} 
+.pickerItem{ display: flex; align-items: center; font-size: 38rpx; color: #000000;}
+.pickerItem image{ display: block; width: 28rpx; height: 16rpx; margin-left: 15rpx;}
+.screenSeach image{ width: 37rpx; height: 35rpx;}
+.screenCantainer{ /*position: fixed;*/ left: 0; right: 0; top: 90rpx; display: flex; align-items: center; justify-content: space-between; width: 100%; height: 88rpx; border-bottom: 1rpx solid #dadada; background: #fff; }
+.screenCantainer picker{ display: flex; justify-content: center; align-items: center; height: 100%; flex: 1; text-align: center; font-size: 30rpx; color: #353535;}
+.screenCantainer picker:last-child{ border-left: 1rpx solid #dadada;}
+.screenCantainer picker image{ width: 24rpx; height: 20rpx; margin-left: 15rpx;}
+.viewCantainer{padding-top: 180rpx;} 
+.viewItemCantainer{ padding:30rpx 0 0 30rpx; }
+.viewItem{ padding:0 30rpx 30rpx 0; border-bottom: 1rpx solid #eeeeee; }
+.viewTitle,.viewTag,.sellerCantainer{ display: flex; align-items: center; justify-content: space-between;}
+.viewTag,.sellerCantainer{ margin-top: 30rpx;}
+.titleTxt{ display: block; width: 80%; font-size: 34rpx; color: #000;}
+.priceTxt{ font-size: 34rpx; color: #fe5a01;}
+.tagCantainer{ display: flex; align-items: center; justify-content: flex-start; width: 80%;}
+.tagItem{height: 42rpx; line-height: 40rpx; border-radius: 8rpx; border: 1rpx solid #dfdfdf; padding: 0 15rpx; box-sizing: border-box; margin-right: 15rpx; font-size: 26rpx;}
+.timeTxt{ font-size: 24rpx; color: #bfbfbf;}
+.contentTxt{ color: #666666; font-size: 28rpx; margin-top: 20rpx}
+.sellerInfo{ display: flex; align-items: center; justify-content: flex-start; width:50%;}
+.sellerInfo image{ width: 58rpx; height: 58rpx;}
+.sellerInfo text{ font-size: 26rpx; color: #000; margin-left: 25rpx;}
+.companyItem{ font-size: 24rpx; color: #bfbfbf}
+
+.silderCantainer{ display: flex; justify-content: space-around; position: absolute;width: 100%; top: 0; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.6); }
+.cancelView{ width: 20%;}
+.firstView{ width: 35%; background: #f5f5f5; padding-bottom: 112rpx;}
+.secondView{ width: 45%; background: #fff; padding-bottom: 112rpx;}
+.firstView view{ display: flex; align-items: center; justify-content: center; height: 91rpx; text-align: center; font-size: 26rpx; color: #000; border-right: 1rpx solid #e5e5e5; box-sizing: border-box;}
+.firstView view.action{ background: #fff; border-bottom: 1rpx solid #e5e5e5; border-right: 1rpx solid #fff;}
+.silderButton{ display: flex; align-items: center; justify-content: space-between; position: absolute; right: 0; bottom: 0; background: #fff; width: 80%; padding: 10rpx; box-sizing: border-box;}
+.reset{ width: 270rpx; background: #fdc100 linear-gradient(to right,#fedd01 , #fdc100)}
+.submit{ width: 360rpx; color: #fff; background: #ff5d3e;}
+.reset::after,.submit::after{ border: 0 none; margin: 0}
+.viewicon{ position: relative; width: 44rpx;height: 44rpx;border: 1rpx solid #c9c9c9;border-radius: 50%; box-sizing: border-box}
+.viewicon icon{ position: absolute; top: -1rpx; left: -1rpx;}
+
+.secviewItem{ display: flex; align-items: center; padding-left: 24rpx; height: 91rpx;}
+.secviewTxt{ height: 100%; width: 289rpx; line-height: 90rpx; font-size: 30rpx; color: #000; border-bottom: 1rpx solid #e5e5e5; margin-left: 26rpx;}.position_fixed{position:fixed; width: 100%}
+
+
+
+/* 添加 */
+.screenBoth{display: flex}
+.fright{padding-right: 20rpx}
+.nonelist{display: none}
+
+page{height:100%;background: #f4f4f4}swiper {height: 83%;}
+.padding_top27{padding-top: 27rpx}.padding_bottom27{padding-bottom: 27rpx}
+.padding10{padding: 5rpx 20rpx 5rpx 20rpx;}.padding105{padding: 20rpx 5px 10rpx 5rpx;}
+.display_flex_center{display: flex; justify-content: center;}.display_flex_flex_end{display: flex;justify-content: flex-end}
+.display_flex_space_between{display: flex;justify-content: space-between;}
+.auto{margin-left: auto;margin-right: auto;}
+.margin_right15{margin-right:15rpx}
+ .margin_top20{margin-top: 20rpx;} 
+/* 黄色 */  .backgroundfede01{background: #fede01;}.backgroundfafafa{background: #fafafa;}
+/*logo图片  */.logo{width: 300rpx;height: 85rpx;}.content{width: 100%;padding-bottom: 20rpx;}
+.inline_block{display: inline-block;}
+.width90{width: 90%;}.width100{width: 100%}
+ .shangxi{width: 25rpx;height: 16rpx;}
+ .shanglist{width: 33rpx;height: 31rpx}  
+swiper {width: 100%;height: 1060rpx;margin: 0 auto;position: fixed}
+swiper-item {padding-top: 90rpx;}
+.slide-image {width: 90%;box-shadow: 0rpx 0rpx 2rpx #d6d6d6; border-radius: 7px;padding: 2rpx;
+background: url(http://img.jiangcdn.com/bmjx/info/infobg_03.png) no-repeat;background-size: contain;
+margin: 0 auto;display: block;position: relative}
+.slide-image.active .prompt-textwrap {display: block;}
+.slogan {color: #d4d2d3;font-size: 47rpx;position: absolute;bottom: -90rpx;left: 0;display: none;}
+.slide-image.active .slogan {display: block;}
+.showblock{top:20px;z-index:999;}
+.slide{width:580rpx;height:790px;background:#fff;}
+.shownum{display: flex;float: right;margin: 42rpx 42rpx 0 0;color: #666666;font-size: 26rpx}
+.icon{width: 20rpx;height: 23rpx;padding-right: 11rpx}
+.title{text-align: center;font-size: 48rpx;color: #686868;margin-top:130rpx;font-weight: bold}
+.entitle{text-align:center;font-size:16rpx;color:#cccccc;letter-spacing:4rpx;text-transform:uppercase;margin-top:7px;}
+.contitle{text-align: center;font-size: 20rpx;color: #666666;padding: 28rpx 0 40rpx 0}
+.contents{font-size: 24rpx;color: #9a9a9a;text-indent: 50rpx;padding: 0 40rpx}
+.skillall{display: flex;font-size: 20rpx;color: #666666;text-align: center; justify-content: center;padding: 45rpx 0 48rpx 0}
+.skillall view{margin-right: 39rpx}
+.price{text-align: center;font-size: 36rex;color: #fe5b03;padding-bottom: 44rpx}
+.infobottom{width: 100%;background: #333333;display: flex;border-bottom-left-radius: 7rpx;border-bottom-right-radius: 7rpx;justify-content:space-between;}
+.showimg{width: 100rpx;height: 100rpx;background: #fff;border-radius: 50%;overflow: hidden;margin: 25rpx 34rpx 25rpx 30rpx}
+.showimg image{width: 100rpx;height: 100rpx;border-radius: 50%} 
+.infomation{font-size: 30rpx;color: #cccccc}
+.name{padding-top:39rpx}
+.telicon{display: flex}
+.telicon image{width:20rpx;height:20rpx;margin-top:10rpx;}
+.infoboth{display: flex;}
+.messge image{width: 52rpx;height: 50rpx;padding:19rpx 18rpx 0 0;}
+
+.bottoms{
+  background: #fff;
+  position: fixed;
+  width: 70rpx;
+  height: 70rpx;
+  bottom: 100rpx;
+  right: 60rpx;
+  font-size: 20rpx;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1rpx solid #cecece;
+}
+.bottoms image{
+  margin-left: 10rpx;
+  margin-top: 10rpx;
+  width: 50rpx;
+  height: 50rpx;
+}

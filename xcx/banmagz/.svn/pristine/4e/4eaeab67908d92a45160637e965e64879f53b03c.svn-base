@@ -1,0 +1,38 @@
+<view class='fillContanier'>
+  <view class='fillTop showbottom'>
+    <view class='fillTopCon'>
+       <view class='fillInfo'>
+          <view class='fillText'>请简要描述你的需求</view>
+          <view class='cancel' bindtap='cancel'>取消</view>
+       </view>
+       <view class='warn'>我们将会安排专业人员与你联系</view>
+    </view>
+  </view>
+  <view class='fillTop'>
+     <view class='fillList'>
+       <view class=' instruct'>您想要做的是什么</view>
+       <view class="section">
+          <input placeholder-class='placeholder' placeholder="例如：我想要做小程序" bindinput='inputtext' />
+        </view>
+     </view>
+      <picker bindchange='bindPickerperiod' value='{{index}}' range='{{periodarr}}'>
+          <view class='fillList'>
+          <view class=' instruct'>项目周期多久</view>
+          <view class="section">
+              <view class='sectionText' wx:if='{{period==0}}'>请选择</view>
+              <view wx:else>{{periodarr[period]}}</view>
+              <image class='img'  mode="" src="../../../images/business/select_03.png"></image>
+            </view>
+        </view>
+    </picker>
+      <view class='fillList'>
+       <view class=' instruct'>愿意出多少钱</view>
+       <view class="section">
+          <input placeholder-class='placeholder' bindinput='price'  placeholder="0元" />
+        </view>
+     </view>
+  </view>
+  <view class='Bottom'>
+       <button bindtap="next" class='next'>确定提交</button>
+    </view>
+</view>

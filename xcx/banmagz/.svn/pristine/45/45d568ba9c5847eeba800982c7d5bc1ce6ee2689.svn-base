@@ -1,0 +1,56 @@
+<!--pages/business/position/demand.wxml-->
+<view class='top' wx:if="{{ispublish == true}}">
+  <view class='type'>
+    <picker bindchange="bindTypeChange" value="{{typeindex}}" range="{{typearray}}" class='type_picker'>
+      <view class='type_view'>{{typearray[typeindex]}}<image src='/images/jt.png' class='jt'></image></view>
+    </picker>
+  </view>
+  <view class='fg'></view>
+  <view class='state'>
+    <picker bindchange="bindStateChange" value="{{stateindex}}" range="{{statearray}}" range-key='{{"name"}}' class='state_picker'>
+      <view class='state_view' wx:if='{{stateindex > 0}}'>{{statearray[stateindex].name}}<image src='/images/jt.png' class='jt'></image></view>
+      <view class='state_view' wx:else>状态<image src='/images/jt.png' class='jt'></image></view>
+    </picker>
+  </view>
+</view>
+<scroll-view class='list' bindscrolltolower='getMoreData' wx:if="{{ispublish == true}}" scroll-y>
+  <view wx:if='{{list.length>0}}' style='margin-bottom:50rpx;'>
+    <view class='list_main' wx:for='{{list}}' wx:key='list' data-id='{{item.id}}' bindtap='go2Detail'>
+      <view class='content_01'>
+        <view class='title'>
+          <text class='titleName' wx:if='{{typeindex==0}}'>{{item.profession_name}}</text>
+          <text class='titleName' wx:else>{{item.title}}</text><text class='titleTag' wx:if='{{item.work_way==1}}'>支持在线</text>
+        </view>
+        <view class='open'>
+          <block wx:if="{{item.status == 1}}"><text class='open_color_01'>审核中 ></text></block>
+          <block wx:elif="{{item.status == 2}}"><text class='open_color_01'>已开放 ></text></block>
+          <block wx:else><text class='open_color_02'>已关闭 ></text></block>
+        </view>
+      </view>
+      <view class='content_02'>
+        <view class='icon_01'><image class='icon_img' src='/images/eye.jpg'></image></view>
+        <view class='num'>{{item.clicks}}</view>
+        <view class='icon_02'><image class='icon_img' src='/images/taolun.jpg'></image></view>
+        <view class='num'>{{item.chats}}</view>
+        <view class='icon_03'><image class='icon_img' src='/images/xjt.jpg'></image></view>
+        <view class='num'>{{item.shares}}</view>
+      </view>
+    </view>
+  </view>
+  <view wx:else>
+    <view class='empty_icon'><image src='/images/empty/empty_bg.png'></image></view>
+    <view class='empty_text'>
+      <view class='empty_text_01'>斑马还未找到适合的人才</view>
+      <view class='empty_text_02'>我们将尽快开发相关优秀人才加入</view>
+    </view>
+  </view>
+</scroll-view>
+<view class='explainCantainer' wx:else>
+  <view class='explain'>
+    你还未发布过任何需求和职位
+  </view>
+  <view class='bg'>
+    <image src='../../../images/business/firstpublish.png'></image>
+  </view>
+  <button class='btn' bindtap='sendDemand'>发布你的第一个职位/需求吧</button>
+</view>

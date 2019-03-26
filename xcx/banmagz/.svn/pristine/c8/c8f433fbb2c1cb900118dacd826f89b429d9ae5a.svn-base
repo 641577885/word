@@ -1,0 +1,11 @@
+<dialog dialog-hidden="{{isShowDialog}}"></dialog>
+<view class='loginCantianer'>
+  <view class='identityTitle'>您当前的身份是雇主</view>
+  <view class='identityTip'>您可以发布职位/兼职需求挑选创客</view>
+  <view class='identityTip'>实现在线办公</view>
+  <view class='identityImage'><image src='/images/member/gzIcon.png' mode='widthFix'></image></view>
+  <view class='goMinProject'>
+    <navigator target="miniProgram" open-type="navigate" app-id="wxd1e27439a32965eb" path="" extra-data="" version="trial" hover-class='none'>我是创客我要找工作</navigator>
+  </view>
+  <button class='btnBlack sureBtn' hover-class='none' bindtap='checkRole'>确定，下一步</button>
+</view>

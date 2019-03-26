@@ -1,0 +1,271 @@
+// pages/worker/my/workExper.js
+const bm = require('../../utils/common.js')
+var app = getApp()
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    jobData: {jobId:null,jobName:'',jobIdTwo:null},
+    indusData:[],
+    // indusData: { data: {id:null, indusName:''}},
+
+    profession:[],
+    position_name: "",
+    company: '',
+    // industry: '',
+    skills:[],
+    stime: bm.formatMonth(),
+    etime: bm.formatMonth(),
+    department: '',
+    content: '',
+    profit: '',
+    placeholder:'',
+    num: '100',
+    tagData: [],
+    typeId:'',
+    type: '',
+    industry:[],
+    zhewei:'',
+    indusnum:0,
+    /**行业传递的数据 */
+    select_list:null,
+    //当前日期
+    date: bm.formatToday(),
+    //组件简历百分比
+    fastResume_rate: 0,
+    fastResumeshow: false,
+    rest: 0,
+    fast_step: []
+  },
+  /**
+  * 生命周期函数--监听页面加载
+  */
+  onLoad: function (options) {
+    var id = options.id
+    var type = options.type
+    this.setData({
+      id: id,
+      type: type
+    })
+    var that=this
+    if (type == 2) {
+      var that = this
+      bm.requsetData('/w/resume/worker_exper?scene=detail', 'post', { id: id }, function (data) {
+        var da = data.data.data  
+        var list = []
+        for (var i in da.industry_list) {
+          var arr = { id: i, indusName: da.industry_list[i] }
+          list.push(arr)
+        }   
+        that.setData({ 
+          jobData: { jobId: da.profession, jobName: da.profession_name, jobIdTwo: null },
+          zhewei: da.profession,
+          position_name: da.position_name,
+          company: da.company,
+          indusData: da.industry_list,
+          select_list: list,
+          indusnum: Object.keys(da.industry_list).length,
+          tagData: da.skill_list,
+          stime: da.stime_date,
+          etime: da.etime_date,
+          department: da.department,
+          profit: da.profit,
+          content: da.content,
+          type: 3   
+        })
+      })
+      
+    }
+    //快速填写
+    if (options.fill_type == 'show') {
+      that.setData({
+        fastResumeshow: true
+      })
+      bm.requsetData("/w/resume/fill_state", "post", '', function (data) {
+        that.setData({
+          fastResume_rate: parseInt(data.data.resume_status.score),
+          rest: data.data.resume_status.rest,
+          fast_step: data.data.resume_status.fast_step
+        })
+      })
+    } else {
+      that.setData({
+        fastResumeshow: false
+      })
+    }
+    
+  },
+
+  //选择入职时间
+  bindStarDateChange: function (e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      stime: e.detail.value
+    })
+  },
+  //选择离职时间
+  bindEndDateChange: function (e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      etime: e.detail.value
+    })
+  },
+  pickerskill:function(){
+  
+    if (this.data.jobData==null){
+      wx.showToast({
+        title: '请先选择职位类型',
+        icon: 'none'
+      })
+      return false;
+       }else{
+      wx.navigateTo({
+        url: '/pages/picker/abilityPicker?tagData=' + JSON.stringify(this.data.tagData) + '&typeId=' + this.data.jobData.jobIdTwo,
+      })
+       }
+  },
+  
+  workExper:function(){
+    
+    var that=this;
+    var industry=[]
+    var induname = []
+    //var industry =that.data.select_list
+    
+    for (var i in that.data.select_list) {
+      // industry.push(that.data.indusData.data[i].id);
+      // induname.push(that.data.indusData.data[i].indusName);
+      industry.push(that.data.select_list[i].id)
+    }
+    that.setData({ industry: industry})
+    var type = this.data.type
+    if (that.data.jobData==null) {
+      wx.showToast({
+        title: '请输入职位类型',
+        icon: 'none'
+      })
+      return false;
+    } 
+    
+    if (that.data.position_name == 0) {
+      wx.showToast({
+        title: '请选择职位名称',
+        icon: 'none'
+      })
+      return false;
+    }
+    if (!that.data.company) {
+      wx.showToast({
+        title: '请选择公司名称',
+        icon: 'none'
+      })
+      return false;
+    }
+    if (that.data.indusData==null) {
+      wx.showToast({
+        title: '请选择公司行业',
+        icon: 'none'
+      })
+      return false;
+    }
+   
+    if (that.data.tagData.length==0) {
+      wx.showToast({
+        title: '请选择技能标签',
+        icon: 'none'
+      })
+      return false;
+    }
+    if (that.data.stime == 0 && that.data.etime == 0) {
+  
+      wx.showToast({
+        title: '请输入时间段',
+        icon: 'none'
+      })
+      return false;
+    }
+    if (that.data.stime > that.data.etime) {
+      wx.showToast({
+        title: '起始时间必须小于结束时间',
+        icon: 'none'
+      })
+      return false;
+    }
+    if (that.data.department == 0) {
+      wx.showToast({
+        title: '请选所属部门',
+        icon: 'none'
+      })
+      return false;
+    }
+    if (!that.data.profit) {
+      wx.showToast({
+        title: '请填写工作业绩',
+        icon: 'none'
+      })
+      return false;
+    }
+    if (!that.data.content) {
+      wx.showToast({
+        title: '请输入工作内容',
+        icon: 'none'
+      })
+      return false;
+    }
+    var ad=''
+    var id=''
+    if(type==1){
+       ad='add'
+    }else if(type==3){
+       ad='edit',
+       id=that.data.id
+    }
+    bm.requsetData("/w/resume/worker_exper?scene=" + ad, "post", { profession: that.data.jobData.jobId, position_name: that.data.position_name, company: that.data.company, industry:that.data.industry, skills: that.data.tagData, content: that.data.content, profit: that.data.profit, department: that.data.department, stime: that.data.stime, etime: that.data.etime,id}, function (res) {
+        if (!res.data.errcode) {
+          wx.showToast({
+            title: '保存成功',
+            duration:2000,
+            success:function(){
+              setTimeout(function(){
+                var fastResumeshow = that.data.fastResumeshow
+                var fast_step = that.data.fast_step
+                if (fastResumeshow == true){
+                  if (fast_step.project_exp == 0) {
+                    wx.redirectTo({
+                      url: '/worker/my/projectExper?type=1&fill_type=show&id=',
+                    })
+                  }else{
+                    wx.redirectTo({
+                      url: '/worker/my/myresume',
+                    })
+                  }
+                }else{
+                  wx.navigateBack({
+                    
+                  })
+                }
+              },2000)
+            }
+          })
+          
+        } else {
+          wx.showToast({
+            title: res.data.errmsg,
+            icon: 'none'
+          })
+        }
+      }) 
+  },
+  //行业选择
+  selecthy: function (e) {
+    var that = this
+    var indata = that.data.select_list
+    var hy = JSON.stringify(indata)
+    wx.navigateTo({
+      url: '/pages/picker/indusPicker?hy=' + hy,
+    })
+  },
+  
+})

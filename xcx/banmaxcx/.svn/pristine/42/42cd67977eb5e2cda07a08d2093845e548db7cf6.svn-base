@@ -1,0 +1,189 @@
+// pages/worker/details/job.js
+const bm = require('../../utils/common.js')
+const webim = require('../../utils/webim.js');
+const Page = require('../../utils/ald-stat.js').Page;
+const app = getApp();
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    id:Number,
+    role:0,
+    isShowDialog: true,
+    position:{},
+    company:{},
+    seller:{},
+    company_add:'',
+    rec:[],
+    edu_name:'',
+    lx_flag:true
+
+  },
+  link2Dialog: function () {
+    var that = this;
+    if (that.data.lx_flag) {
+      that.setData({ lx_flag: false })
+    }
+    wx.setStorageSync('relationship', { sid: that.data.seller.id, id: that.data.id, profession: that.data.position.profession, type: 1 })
+    that.sendChatInfo();
+    var add_friend_item = [
+      {
+        'To_Account': (that.data.seller.id).toString(),  //用户Id
+        "AddSource": "AddSource_Type_Unknow",
+        "AddWording": "" //加好友附言，可为空
+      }
+    ];
+    var options = {
+      'From_Account': (app.globalData.loginInfo.identifier).toString(),
+      'AddFriendItem': add_friend_item
+    };
+    webim.applyAddFriend(
+      options,
+      function (resp) {
+        app.getAllFriend();
+        wx.navigateTo({
+          url: '/message/dialog?skipid=' + that.data.seller.id,
+          success: function () {
+            that.setData({ lx_flag: true })
+          }
+        })
+      },
+      function (err) {
+        if (err.ErrorInfo.indexOf('SNS_FRD_ADD_FRD_EXIST')) {
+          app.getAllFriend();
+          wx.navigateTo({
+            url: '/message/dialog?skipid=' + that.data.seller.id,
+            success: function () {
+              that.setData({ lx_flag: true })
+            }
+          })
+        } else {
+          console.warn(err);
+        }
+      }
+    );
+  },
+  golocation:function(){
+    var _that = this
+    var add = _that.data.company_add
+    if(add.length >0){
+      wx.request({
+        url: 'http://apis.map.qq.com/ws/geocoder/v1/?address=' + add + '&key=7WUBZ-6XNCG-RD7QM-I6DB4-U7UGS-WUFGB',
+        success: function (data) {
+          wx.openLocation({
+            latitude: data.data.result.location.lat,
+            longitude: data.data.result.location.lng,
+            name: add,
+            scale: 28
+          })
+        }
+      })
+    }
+  },
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    var that = this;
+    that.setData({ id: options.id})
+    if (app.globalData.auth) {
+      that.getdata()
+    } else {
+      app.authCallback = auth => {
+        if (app.globalData.auth == 0) {
+          that.setData({
+            isShowDialog: false
+          })
+        }
+      }
+      that.getdata()
+    }
+  },
+  sendChatInfo:function(){
+    var that = this;
+    bm.requsetData("/c/action/sendChatInfo", "post", { to_uid: that.data.seller.id, obj_id: that.data.id, type: "position" },      function (res) {
+      if (!res.data.errcode) {
+      }else{
+        wx.showToast({
+          title: res.data.errmsg,
+          icon:"none"
+        })
+      }
+    })
+  },
+  getdata:function(){
+    var that = this
+    bm.requsetData('/c/position/get', 'get', { id: that.data.id }, function (res) {
+      console.log(res)
+      if (!res.data.errcode) {
+        if (res.data.position.work_address.length == 0) {
+          var add = '不限'
+        } else {
+          var add = res.data.position.work_address
+        }
+        if (res.data.position.education_name.length == 0) {
+          var edu_name = '不限'
+        } else {
+          var edu_name = res.data.position.education_name
+        }
+        if (res.data.position.work_way!=1){
+          res.data.position.lowsalary = res.data.position.lowsalary / 1000;
+          res.data.position.highsalary = res.data.position.highsalary / 1000;
+        }
+        that.setData({
+          position: res.data.position,
+          seller: res.data.seller,
+          company: res.data.company,
+          company_add: add,
+          edu_name: edu_name
+        })
+        wx.setNavigationBarTitle({
+          title: res.data.position.profession_name,
+        })
+      } else {
+        if (res.data.errcode==11211){
+          wx.showModal({
+            title: '提示',
+            content: res.data.errmsg,
+            showCancel:false,
+            confirmText:'立即开通',
+            success:function(res){
+              if (res.confirm) {
+                wx.redirectTo({
+                  url: '/pages/openvip/vipExplain',
+                })
+              }
+            }
+          })
+        }else{
+          wx.showToast({
+            title: res.data.errmsg,
+            icon: 'none',
+            success: function () {
+              setTimeout(function () {
+                wx.navigateBack()
+              }, 1000)
+            }
+          })
+        }
+        
+      }
+    })
+  },
+  onShareAppMessage: function (ops) {
+    return {
+      title: '',
+      path: 'pages/details/zwDetails?id=' + this.data.id,
+      success: function (res) {
+        // 转发成功
+        console.log("转发成功:" + JSON.stringify(res));
+      },
+      fail: function (res) {
+        // 转发失败
+        console.log("转发失败:" + JSON.stringify(res));
+      }
+    }
+  }
+})

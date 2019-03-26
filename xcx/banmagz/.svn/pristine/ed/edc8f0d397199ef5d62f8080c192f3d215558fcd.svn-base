@@ -1,0 +1,141 @@
+// pages/resume/pjResume.js
+var bm = require('../utils/common.js');
+const webim = require('../utils/webim.js');
+const Page = require('../utils/ald-stat.js').Page;
+var app = getApp()
+Page({
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    uid: null,
+    isShowDialog: true,
+    pjList: [],
+    userInfo: {},
+    markInfo: {},
+    resumeInfo: {},
+    page:1,
+    lx_flag: true,
+    showBox:false
+  },
+  getInfo: function () {
+    var that = this;
+    bm.requsetData('/c/worker/resume', 'get', { uid: that.data.uid }, function (res) {
+      if (!res.data.errcode) {
+        that.setData({ userInfo: res.data.user, markInfo: res.data.mark, resumeInfo: res.data.resume })
+      }
+    }, true)
+    that.getMarkList();
+  },
+  getMarkList:function(){
+    var that=this;
+    var list = that.data.pjList||[];
+    bm.requsetData('/c/worker/mark/list', 'get', { uid: that.data.uid, limit: 10, page: that.data.page }, function (res) {
+      if (!res.data.errcode) {
+        if (res.data.list.length!=0){
+          list = list.concat(res.data.list);
+          that.data.page++;
+          that.setData({
+            pjList: list,
+            page: that.data.page,
+            showBox: false
+          })
+        }else{
+          if (that.data.page == 1) {
+            that.setData({ showBox: true })
+          } else {
+            wx.showToast({
+              title: '已没有更多评价',
+              icon: 'none'
+            })
+          }
+        }
+      }
+    })
+  },
+  onReachBottom: function () {
+    this.getMarkList();
+  },
+  checkContact: function () {
+    var that = this;
+    if (that.data.lx_flag) {
+      that.setData({ lx_flag: false })
+    }
+    bm.requsetData("/b/seller/contact", "post", '', function (res) {
+      if (!res.data.errcode) {
+        that.applyAddFriend();
+      } else {
+        wx.showToast({
+          title: res.data.errmsg,
+          icon: 'none'
+        })
+      }
+    })
+  },
+  applyAddFriend: function () {
+    var that = this;
+    var add_friend_item = [
+      {
+        'To_Account': (that.data.uid).toString(),  //用户Id
+        "AddSource": "AddSource_Type_Unknow",
+        "AddWording": "" //加好友附言，可为空
+      }
+    ];
+    var options = {
+      'From_Account': (app.globalData.loginInfo.identifier).toString(),
+      'AddFriendItem': add_friend_item
+    };
+    app.getAllFriend();
+    webim.applyAddFriend(
+      options,
+      function (resp) {
+        that.sendChatInfo()
+        wx.navigateTo({
+          url: '/message/dialog?skipid=' + that.data.uid,
+          success: function () {
+            that.setData({ lx_flag: true })
+          }
+        })
+      },
+      function (err) {
+        if (err.ErrorInfo.indexOf('SNS_FRD_ADD_FRD_EXIST')) {
+          wx.navigateTo({
+            url: '/message/dialog?skipid=' + that.data.uid,
+            success: function () {
+              that.setData({ lx_flag: true })
+            }
+          })
+        } else {
+          console.warn(err);
+        }
+      }
+    );
+  },
+  sendChatInfo: function () {
+    var that = this;
+    bm.requsetData("/c/action/sendChatInfo", "post", { to_uid: that.data.uid, obj_id: 0, type: "default" }, function (res) {
+      if (!res.data.errcode) {
+
+      } else {
+        wx.showToast({
+          title: res.data.errmsg,
+          icon: "none"
+        })
+      }
+    })
+  },
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    this.setData({
+      uid: options.uid
+    })
+    if (app.globalData.auth == 0) {
+      that.setData({
+        isShowDialog: false
+      })
+    }
+    this.getInfo();
+  },
+})

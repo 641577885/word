@@ -1,0 +1,98 @@
+<view class='posDetailContanier'>
+  <view class='posDetailMain'>
+    <view class='posDetailList'>
+      <view class='listTop'>
+        <view class='listTopimg'>
+          <image src='{{userInfo.avatar}}' mode='aspectFill'></image>
+        </view>
+        <view class='between'>
+          <view class='content'>
+            <view class='listBottomname'>{{userInfo.name}}</view>
+            <view class='listBottomtime showpd'>{{proInfo.begintime}}~{{proInfo.endtime}}</view>
+          </view>
+          <view class='listTopprice'>￥{{proInfo.allprice}}</view>
+        </view>
+      </view>
+      <view class='listToptxt'>{{proInfo.beizhu}}</view>
+    </view>
+    <view class='posDetailper'>
+      <view class='posboth'>
+        <view class='posperson'>协作者</view>
+        <view class='photoimg padtop'>
+          <view wx:for='{{memberInfo}}' class='showleft' wx:key>
+            <image class='circle' mode="widthFix" src="{{item.avatar}}" mode='aspectFill'></image>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class='workStatusCantainer' wx:if="{{proInfo.state == 'complaining' || proInfo.state == 'firing'}}">
+      <view class='workStatusTitle'>
+        <view class='workStatusTxt'>工作状态：
+          <text>{{proInfo.state_name}}</text>
+          <navigator url='addExplain?id={{proInfo.ycData.id}}&type=fire' hover-class='none'wx:if="{{proInfo.state == 'firing'}}"class='evaluate'> 上传解释</navigator>
+          <navigator url='addExplain?id={{proInfo.ycData.id}}&type=complaining' hover-class='none'wx:if="{{proInfo.state == 'complaining'}}"class='evaluate'> 上传解释</navigator>
+        </view>
+        <view class='workStatusTxt' wx:if="{{proInfo.state == 'firing'}}">支付工资：<text>{{proInfo.ycData.wages}}元</text></view>
+      </view>
+      <view class='workStatusNote'>
+        <view class="workbody">{{proInfo.ycData.content}}</view>
+        <view class='workImgCantainer' wx:if='{{proInfo.ycData.filesrc.length > 0}}'>
+          <view class='workImgItem' wx:for='{{proInfo.ycData.filesrc}}'><image src='{{item}}' mode='aspectFill' bindtap='imgYu'  data-list='{{proInfo.ycData.filesrc}}' data-src="{{item}}"></image></view>
+        </view>
+      </view>
+      <view class='complain' wx:if='{{proInfo.state == "firing"}}'>雇主发起解雇申请，请主动和雇主联系并协商解决方案，72小时后不操作将默认同意。 <navigator class='gohelp' url='/help/problem' hover-class='none'>如何处理解雇</navigator></view>
+      <view class='complain' wx:if='{{proInfo.state == "complaining"}}'>被雇主投诉，请主动和雇主联系并协商解决方案，超过48小时未处理完成可能会被处罚。<navigator class='gohelp' url='/help/problem' hover-class='none'>如何处理投诉</navigator></view>
+      <block wx:if="{{ proInfo.ycData.explain_data.length!=0}}">
+        <view class='explainCantainer'>
+          <view class='explaintxt'>创客解释：</view>
+          <view class='explaintxt'>{{proInfo.ycData.explain_data.content}}</view>
+          <view class='workImgCantainer' wx:if='{{proInfo.ycData.explain_data.filesrc.length > 0}}'>
+            <view class='workImgItem' wx:for='{{proInfo.ycData.explain_data.filesrc}}'><image src='{{item}}' mode='aspectFill' bindtap='imgYu' data-list='{{proInfo.ycData.explain_data.filesrc}}' data-src="{{item}}"></image></view>
+          </view>
+        </view>
+      </block>
+    </view>
+    <view class='workContent' wx:if='{{workRecord.length > 0}}'>
+      <view class='posDetailwork'>
+        <view class='poswork'>工作汇报</view>
+      </view>
+      <block wx:for='{{workRecord}}' wx:key>
+        <view class='poscontent'>{{item.content}}</view>
+        <view class='workImgCantainer' wx:if='{{item.filelist.length > 0}}'>
+          <view class='workImgItem' wx:for='{{item.filelist}}' wx:for-item='fl'><image src='{{fl}}' mode='aspectFill' bindtap='imgYu' data-list='{{item.filelist}}' data-src="{{fl}}"></image></view>
+        </view>
+        <view class='posshare'>
+          <view class='sharatime'>{{item.ctime}}</view>
+        </view>
+      </block>
+    </view>
+    <view class='addbtn' wx:if='{{proInfo.state == "normal"}}'>
+      <navigator url='addRecord?pid={{pid}}' hover-class='none'>
+        <image mode="widthFix" class='addbtnimg' src="/images/worker/addbtn_03.png"></image>
+      </navigator>
+    </view>
+    <view class='posbottoms' wx:if='{{proInfo.state == "noconfirm"}}'>
+      <view class='posconfirm'>
+        <button class='evaluate' bindtap="refuseOrder">拒绝入职</button>
+        <button class='hireonce' bindtap="acceptOrder">确认入职</button>
+      </view>
+    </view>
+    <view class='posbottoms' wx:if='{{proInfo.state == "renewing"}}'>
+      <view class='posconfirm'>
+        <button class='evaluate' bindtap="refuseRenew">拒绝续签</button>
+        <button class='hireonce' bindtap="acceptRenew">同意续签</button>
+      </view>
+    </view>
+    <view class='posbottoms' wx:if='{{proInfo.state == "complaining" && proInfo.ycData.explain_data.length==0}}'>
+      <view class='posconfirm'>
+        
+      </view>
+    </view>
+    <view class='posbottoms' wx:if='{{proInfo.state == "firing" && proInfo.ycData.explain_data.length==0}}'>
+      <view class='posconfirm'>  
+        
+        <button class='hireonce' bindtap="acceptFire">同意</button>
+      </view>
+    </view>
+  </view>
+</view>

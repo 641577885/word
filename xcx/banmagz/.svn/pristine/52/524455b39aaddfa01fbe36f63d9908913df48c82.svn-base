@@ -1,0 +1,55 @@
+var app = getApp()
+const bm = require('../../utils/common.js')
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    title:'',
+    skills:[],
+    period:null,
+    price:null,
+    content:'',
+    skillsid:null,
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    this.setData({
+      title: app.Demandtitle,
+      skills: app.Demandskillname,
+      period: app.Demandperiod,
+      price: app.Demandprice,
+      content: app.Demandcontent,
+      skillsid: [app.Demandskill],
+    })
+  },
+  demandSubmit:function(){
+    var that = this
+    console.log(that.data.skillsid)
+    bm.requsetData('/b/demand/create', 'post', { title: that.data.title, skills: that.data.skillsid, period: that.data.period, price: that.data.price, content:that.data.content }, function (res) {
+      if (!res.data.errcode) {
+        wx.showToast({
+          title: '发布需求成功',
+          icon: 'success',
+          success: function (res) {
+            setTimeout(function () {
+              wx.reLaunch({
+                url: '/business/findProject/pubSuccess',
+              })
+            }, 1000)
+          }
+        })
+      } else {
+        wx.showToast({
+          title: res.data.errmsg,
+          icon: 'none'
+        })
+      }
+    })
+  }
+  
+})

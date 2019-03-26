@@ -1,0 +1,10 @@
+<view class='bindPhoneCantainer'>
+  <text class='bindPhoneTitle'>绑定手机号码</text>
+  <button class='wechatLogin' plain open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">微信账号登录</button>
+  <view class='bindPhoneInp'>
+    <view class='phoneZone'>中国（+86）</view>
+    <input type='number' value='{{lxtel}}' bindinput='bindKeyInputTel' bindblur='checkCell' />
+  </view>
+  <button class='btnBlack bindBtn' size='default' hover-class='none' bindtap='sendCell' id="{{lxtel}}">下一步</button>
+  <view class='bindTip'>绑定代表您已同意<text>《班马佳薪用户协议》</text></view>
+</view>

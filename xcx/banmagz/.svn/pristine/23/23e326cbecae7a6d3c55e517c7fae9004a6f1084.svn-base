@@ -1,0 +1,5 @@
+/* pages/fill/inputFill.wxss */
+page{ background: #f5f5f5;}
+.textnum{ padding: 20rpx; font-size: 30rpx; text-align: right;}
+input{ width: 100%; background: #fff; height: 64rpx; font-size: 28rpx; padding: 0 20rpx; box-sizing: border-box;}
+.fillBtn{ width: 90%; height: 80rpx; line-height: 80rpx; margin: 50rpx auto; border-radius: 40rpx; border: 0 none !important;background: linear-gradient(to right,#fede01,#fdc100);color: #000000;}

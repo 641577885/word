@@ -1,0 +1,28 @@
+/* pages/business/my/mycompany.wxss */
+page{background: #f4f4f4}
+.content_01{width: 100%;height:330rpx;background: #fff;border-bottom: 1rpx solid #e5e5e5;padding-top: 10rpx;}
+.company_logo{width:200rpx;height: 200rpx;border-radius: 9rpx;margin: 0 auto;overflow: hidden;display: flex;align-items: center;}
+.company_logo image{width: 100%;}
+.company_name{width: 100%;height: 50rpx;line-height: 50rpx;color: #000;text-align: center;font-size: 30rpx;font-weight: bold;margin-top: 20rpx;overflow: hidden}
+.company_name_02{width: 100%;height: 36rpx;line-height: 36rpx;color: #000;text-align: center;font-size: 24rpx;margin-top: 4rpx;}
+.content_02{width: 100%;height: 180rpx;background: #fff;}
+.content_02_main{width: 716rpx;padding-left: 34rpx;}
+.content_02_title{width: 100%;height: 80rpx;display: flex;align-items: center;}
+.content_02_title_main{font-size: 30rpx;color: #000}
+.content_02_title_num{font-size: 24rpx;color: #888888;margin-left: 20rpx;}
+.content_02_member{width: 100%;height: 80rpx;display:flex;white-space: nowrap}
+.member_list{width: 80rpx;height: 80rpx;border-radius: 50%;background: #ccc;margin-right: 20rpx;overflow: hidden;display: inline-block;padding: 0}
+.member_list image{width: 80rpx;height: 80rpx;}
+button::after {
+  border: 0;
+} 
+.b_content{width: 716rpx;background: #fff;margin-top: 20rpx;padding-left: 34rpx;}
+.b_input{width: 686rpx;height:87rpx;border-bottom: 1rpx solid #e5e5e5;display: flex;justify-content: space-between;align-items: center;padding-right: 30rpx;}
+.b_input_02{width: 686rpx;height:87rpx;display: flex;justify-content: space-between;align-items: center;padding-right: 30rpx;}
+.b_input_right{display: flex;align-items: center}
+.b_input_title_01{font-size: 30rpx;color: #000}
+.b_input_title_02{font-size: 24rpx;color: #888888}
+.b_input_icon{width: 16rpx;height: 25rpx;margin-left: 30rpx;}
+
+.b_content button{width: 580rpx;height: 76rpx;border-radius: 38rpx;margin: 37rpx auto 0;background: linear-gradient(to right, #fede01 , #fdc100);line-height: 76rpx;font-size: 30rpx;}
+.b_content_02{padding-bottom: 20rpx;}

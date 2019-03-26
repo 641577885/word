@@ -1,0 +1,25 @@
+<view class='positiontype3Container'>
+   <view class='positiontype3Main'>
+      <view class='positiontype3MainTop'>
+        <view class='positiontype3MainTopC'>
+          <view class='positiontype3Title'>3/3完善职位描述</view>
+          <navigator class='cancelBtn' open-type='reLaunch' hover-class='none' url='/pages/business/demand'>取消</navigator>
+        </view>
+        <view class='positiontype3look'>与职位类型匹配的描述可以提升报名效果</view>
+      </view>
+      <view class='positiontype3Map'>
+        <view class="section"><input placeholder="请输入职位标题" class='wages' bindinput='inputtitle' auto-focus/></view>
+        <view class="section noborder" >
+            <textarea bindinput='inputcontent' placeholder='这里描述一下工作内容，岗位的要求，如公司福利公司工资公司规模等'></textarea>
+        </view>
+        <view class='bottomCantainer'>
+          <!-- <view class='camara'  bindtap="gotoShow" >
+              <image style="width: 48rpx; height: 42rpx;" mode="" src="../../../images/business/camara.gif"></image>
+              <view class='camaratext'> 拍照智能识别岗位描述</view>
+          </view>  -->
+          <navigator class='more' url='/pages/details/jobEdit?type=1' hover-class='none'>+更多要求</navigator>
+          <button class='comfirmnext' plain="{{plain}}" bindtap="comfirmnext">下一步 </button>
+        </view>
+      </view>
+   </view>
+</view>

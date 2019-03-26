@@ -1,0 +1,56 @@
+var Filter={
+  GetEduExp:function(num){
+    switch (num) {
+      case 1:
+        return "中专及以下";
+        break;
+      case 2:
+        return "高中";
+        break;
+      case 3:
+        return "大专";
+        break;
+      case 4:
+        return "本科";
+        break;
+      case 5:
+        return "硕士";
+        break;
+      case 6:
+        return "博士";
+        break;
+      default:
+        return "未填写";
+    }
+  },
+  GetWorkExp:function(num){
+    switch(num){
+      case 1:
+        return "应届生";
+        break;
+      case 2:
+        return "1年以内";
+        break;
+      case 3:
+        return "1-3年";
+        break;
+      case 4:
+        return "3-5年";
+        break;
+      case 5:
+        return "5-10年";
+        break;
+      case 6:
+        return "10年以上";
+        break;
+      default:
+        return "未填写"
+    }
+  }
+}
+
+
+module.exports={
+  GetEduExp: Filter.GetEduExp,
+  GetWorkExp: Filter.GetWorkExp
+}

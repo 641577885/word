@@ -1,0 +1,15 @@
+/* pages/business/search/search.wxss */
+page{background: #fafafa;}
+.search{width: 100%; background: #fede01;height: 70rpx;display: flex;justify-content:center;padding-top: 10rpx}
+.search_content{width: 718rpx;height: 56rpx;border-radius: 9rpx;background: #fff;position: relative;}
+.search_icon{position: absolute;top: 17rpx;left: 50%;margin-left: -90rpx; }
+.search_icon_02{position: absolute;top: 17rpx;left: 20rpx; }
+.search_input{display: block;width: 100%;height: 56rpx;font-size: 26rpx;color: #b2b2b2;line-height: 56rpx;text-align: center;}
+.search_input_02{display: block;width: 93%;height: 56rpx;font-size: 26rpx;color: #b2b2b2;line-height: 56rpx;text-align: left;padding-left: 50rpx;}
+.main{width: 100%;background: #fff;padding: 28rpx 0;}
+.main_content{width: 704rpx;margin:0 auto;border-bottom: 1rpx solid #e8e8e8}
+.main_content_02{width: 704rpx;margin-left: 46rpx;margin-top: 28rpx}
+.main_title{line-height: 48rpx;font-size: 26rpx;color: #b2b2b2}
+.main_list{width: 100%;display: flex;padding-bottom: 22rpx;flex-wrap: wrap}
+.main_list_info{height: 58rpx;border-radius: 29rpx;border: 1rpx solid #e8e8e8 !important;padding: 0 20rpx;font-size: 26rpx;line-height: 58rpx;color: #686868 !important;margin: 20rpx 20rpx 20rpx 0;text-align: center}
+.display{display: none}

@@ -1,0 +1,2 @@
+<!--pages/openvip/vipExplain.wxml-->
+<web-view src='{{url}}'></web-view>

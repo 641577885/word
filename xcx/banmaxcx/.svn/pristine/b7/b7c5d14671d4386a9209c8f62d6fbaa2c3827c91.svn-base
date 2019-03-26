@@ -1,0 +1,44 @@
+<!--/worker/jobwanted/addpost.wxml-->
+<!--列表3  -->
+<view class='width90 auto  overflow_x'>
+  <navigator class='b_input' url='/pages/picker/jobPicker' hover-class='none'>
+    <view class='border_bottome5e5e5 padding_top20 padding_bottom20 font_size30 display_flex space_between'>
+      <view>期望职位</view>
+      <view class=' display_flex align_items_center  '>
+        <text class='float_left margin_top5 letter_spacing2'>{{jobData.jobName}}</text>
+        <image class=' wh2030 margin_top10 margin_left10' src='/images/right.png'></image>
+      </view>
+    </view>
+  </navigator>
+  <view class='b_input' url='/pages/picker/indusPicker' bindtap='selecthy'>
+    <view class='border_bottome5e5e5 padding_top20 padding_bottom20 font_size30 display_flex space_between'>
+      <view>期待行业</view>
+      <view class=' display_flex align_items_center '>
+        <text class='float_left margin_top5 letter_spacing2'> 你已选中{{indusnum}}个</text>
+        <image class=' wh2030 margin_top10 margin_left10' src='/images/right.png'></image>
+      </view>
+    </view>
+  </view>
+  <navigator class='b_input' url='/pages/picker/cityPicker' hover-class='none'>
+    <view class='border_bottome5e5e5 padding_top20 padding_bottom20 font_size30 display_flex space_between'>
+      <view>工作城市</view>
+      <view class=' display_flex align_items_center  '>
+        <text class='float_left margin_top5 letter_spacing2'>{{cityData.cityName}}</text>
+        <image class=' wh2030 margin_top10 margin_left10' src='/images/right.png'></image>
+      </view>
+    </view>
+  </navigator>
+  <navigator class='b_input' url='/pages/fill/inputFill?placeholder=请输入期望薪资&num=8&dataName=price&content={{price}}' hover-class='none'>
+    <view class='border_bottome5e5e5 padding_top20 padding_bottom20 font_size30 display_flex space_between'>
+      <view>远程办公月薪要求</view>
+      <view class=' display_flex align_items_center  '>
+        <text class='float_left margin_top5 letter_spacing2'>{{price}}元/月</text>
+        <image class=' wh2030 margin_top10 margin_left10' src='/images/right.png'></image>
+      </view>
+    </view>
+  </navigator>
+  <form report-submit='true' bindsubmit='getFormId'>
+    <button form-type='submit' class='backgroundbt width90 border_radius50 margin_top60 letter_spacing5 showbottom'bindtap='finishJob'>完成</button>
+    <button form-type='submit' class='backgroundred width90 border_radius50 margin_top60 letter_spacing5 showbottom02' wx:if='{{del_show}}' bindtap='del_position'>删除</button>
+  </form>
+</view>

@@ -1,0 +1,77 @@
+const bm = require('../utils/common.js')
+const Page = require('../utils/ald-stat.js').Page;
+var app=getApp();
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    page:1,
+    lists: [],
+    showBox: false,
+    empty:false
+  },
+  linkToUrl:function(e){
+    var _index = e.currentTarget.dataset.index;
+    var _pid = this.data.lists[_index].pro.id;
+    wx.navigateTo({
+        url: '/olwork/posDetail?id=' + _pid,
+    })
+  },
+  getSellList: function () {
+    wx.showLoading({ title: '加载中' })
+    var that=this;
+    var array = that.data.lists;
+    bm.requsetData('/w/project/mylist', 'get', { page: that.data.page, limit: 10 }, function (res) {
+      if (!res.data.errcode) {
+        if (res.data.list.length != 0) {
+          for (var i in res.data.list) {
+            var dataArray = res.data.list[i];
+            dataArray.pro.begintime = bm.formatDate(dataArray.pro.begintime);
+            dataArray.pro.endtime = bm.formatDate(dataArray.pro.endtime);
+            array.push(dataArray)
+          }
+          that.data.page++;
+          that.setData({ lists: array, page: that.data.page,empty:false })
+        } else {
+          that.setData({ empty: true })
+          if (that.data.page>1){
+            wx.showToast({
+              title: '没有更多数据',
+              icon: 'none'
+            })
+          }
+        }
+      }
+    })
+    that.setData({showBox: true })
+    wx.hideLoading();
+  },
+  //跳转至列表
+  link2List: function (e) {
+    var formid = e.detail.formId;
+    app.addformId(formid);
+    wx.switchTab({
+      url: '/pages/worker/list',
+    })
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    var that = this;
+    that.setData({ page: 1, lists: [], showBox: false });
+    that.getSellList();
+    
+  },
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+    var that = this;
+    that.getSellList();
+  },
+ 
+})

@@ -1,0 +1,220 @@
+<!--pages/worker/search/search.wxml-->
+<!--有数据时显示此页面  -->
+<view style='height:100%'>
+  <view class='backgroundfede01 padding_bottom35 position_fixed width100'>
+    <view class='width95 border_radius5 backgroundfff auto'>
+      <view style='width:100%' class='display_flex_center padding15' bindtap='butreturn'>
+        <icon type="search" class='margin_top8 ' color='#a9a9a9' size="13" />
+        <view class='margin_left10 font_size28 colorfea9a9a9'>{{sousuo}}</view>
+      </view>
+    </view>
+  </view>
+  <!-- 切换路由 -->
+  <view class='backgroundfede01 tab-nav display_flex_center position_fixed top85'>
+    <view class='{{current1==0?"on":""}} margin_right90' data-current="0" bindtap='tabBut'>支持远程</view>
+    <view class='{{current1==1?"on":""}} margin_right90' data-current="1" bindtap='tabBut'>需要驻场</view>
+    <view class='{{current1==2?"on":""}}' data-current="2" bindtap='tabBut'>相关公司</view>
+  </view>
+  <swiper class='tab-box;' current="{{current1}}" bindchange="eventchange">
+    <swiper-item>
+      <!--分类选择 -->
+      <view class='position_fixed top_5 backgroundfff ' style='width:100%;z-index: 999;'>
+        <view class="backgroundfff">
+          <view class='display_flex_center padding_top27 padding_bottom27 border_bottom'>
+            <picker class='head' bindchange="tuijianBut" value="{{indexs}}" range-key="data" range="{{tuijian}}">
+              <view class='font_size30 display_flex_center' data-current="0">
+                <text>{{tuijian[indexs].data}}</text>
+                <image mode='aspectFill' class='daosanjiao' src='/images/worklist/sanjiao.jpg'></image>
+              </view>
+            </picker>
+            <!-- <picker class='head border_left' bindchange="jinengButo" value="{{jineng}}" range="{{jn}}">
+              <view class='font_size30 display_flex_center' data-current="0">
+                <text>{{jineng==0?'技能':jn[jineng]}}</text>
+                <image class='daosanjiao' src='/images/worklist/sanjiao.jpg'></image>
+              </view>
+            </picker> -->
+            <picker class='head border_left' bindchange="jineBut" value="{{jines}}" range-key="data" range="{{jine}}">
+              <view class=' font_size30 display_flex_center' data-current="0">
+                <text>{{jines==0?'金额':jine[jines].data}}</text>
+                <image mode='aspectFill' class='daosanjiao' src='/images/worklist/sanjiao.jpg'></image>
+              </view>
+            </picker>
+          </view>
+        </view>
+      </view>
+      <view class='xiala'>
+        <scroll-view class='box' scroll-y bindscrolltolower="getpullData1">
+          <view class='explainCantainer {{hiddenpart1==true?"display_none":""}}'>
+            <view class='empty_icon'>
+              <image mode='aspectFill' style='width:450rpx;height:320rpx;' src='/images/worklist/xiaoma.png'></image>
+            </view>
+            <view class='empty_text' style='top:559rpx'>
+              <view class='empty_text_01'>{{empty_text_01}}</view>
+              <view class='empty_text_02'>{{empty_text_02}}</view>
+            </view>
+          </view>
+          <!--可循环内容1  -->
+          <view wx:for="{{list1}}" wx:key="id" wx:key="unique" class='{{hiddenpart1==true?"":"display_none"}} content border_top'>
+            <navigator hover-class="none" url="/pages/details/zwDetails?id={{item.id}}">
+              <view class='display_flex_space_between width90 auto'>
+                <view class='display_flex_space_between'>
+                  <text class='font_size34 padding_leftright20'>{{item.profession_name}}</text>
+                </view>
+                <view>
+                  <text class='wbys'>外包预算</text>
+                  <text class='colorfe5a01'> {{item.pricestr}}</text>
+                  <!-- <text class='colorfe5a01 {{item.negotiate==1?"display_none":""}}'>{{item.lowsalary==item.highsalary?item.lowsalary:item.lowsalary+'-'+item.highsalary}}元</text>
+                  <text class='colorfe5a01 {{item.negotiate==0?"display_none":""}}'>面议</text> -->
+                </view>
+              </view>
+              <view class='width90 auto display_flex_left font_size28 margin_top15'>
+                <text class='padding_leftright20 margin_right15 bordereeeeee border_radius5' wx:for="{{item.skills_name}}" wx:key="unique">{{item}}</text>
+              </view>
+              <view class='margin_top15 font_size28 coloradadad width90 auto '>
+                <text>{{item.content}}</text>
+              </view>
+              <view class=' display_flex_space_between width90 auto'>
+                <view class=' width70 display_flex_around margin_top15 '>
+                  <image mode='aspectFill' class='circle60  float_left' src='{{item.seller.avatar}}'></image>
+                  <view class='dxcassa'>
+                    <text class='{{item.seller.name==""?"display_none":""}}'>{{item.seller.name}}</text>
+                    <text class='{{item.seller.company_short_name==""?"display_none":""}}'>{{'-'+item.seller.company_short_name}}</text>
+                    <text class='{{item.seller.position==""?"display_none":""}}'>{{'-'+item.seller.position}}</text>
+                  </view>
+                </view>
+                <text class='margin_top10 colorfea9a9a9 font_size30'>{{item.ctime}}</text>
+              </view>
+            </navigator>
+          </view>
+          <view class='text_align {{hiddentext==false?"display_none":""}}'>~~亲，已经到底了~~</view>
+        </scroll-view>
+      </view>
+    </swiper-item>
+    <swiper-item>
+      <!--分类选择 -->
+      <view class='position_fixed top_5 backgroundfff ' style='width:100%;z-index: 999;'>
+        <view class="backgroundfff">
+          <view class='display_flex_center padding_top27 padding_bottom27 border_bottom backgroundfff'>
+            <picker class='head' bindchange="tuijianBut2" value="{{indexss}}" range-key="data" range="{{tuijian}}">
+              <view class='font_size30 display_flex_center' data-current="0">
+                <text>{{tuijian[indexss].data}}</text>
+                <image mode='aspectFill' class='daosanjiao' src='/images/worklist/sanjiao.jpg'></image>
+              </view>
+            </picker>
+            <!-- <picker class='head border_left' bindchange="jinengButo2" value="{{jineng2}}" range="{{jn}}">
+              <view class='font_size30 display_flex_center' data-current="0">
+                <text>{{jineng2==0?'技能':jn[jineng2]}}</text>
+                <image class='daosanjiao' src='/images/worklist/sanjiao.jpg'></image>
+              </view>
+            </picker> -->
+            <picker class='head border_left' bindchange="jineBut2" value="{{jiness}}" range-key="data" range="{{jine}}">
+              <view class=' font_size30 display_flex_center' data-current="0">
+                <text>{{jiness==0?'金额':jine[jiness].data}}</text>
+                <image mode='aspectFill' class='daosanjiao' src='/images/worklist/sanjiao.jpg'></image>
+              </view>
+            </picker>
+          </view>
+        </view>
+      </view>
+      <view class='xiala'>
+        <scroll-view class='box' scroll-y bindscrolltolower="getpullData2">
+          <view class='explainCantainer {{hiddenpart2==true?"display_none":""}}'>
+            <view class='empty_icon'>
+              <image mode='aspectFill' style='width:450rpx;height:320rpx;' src='/images/worklist/xiaoma.png'></image>
+            </view>
+            <view class='empty_text' style='top:559rpx'>
+              <view class='empty_text_01'>{{empty_text_01}}</view>
+              <view class='empty_text_02'>{{empty_text_02}}</view>
+            </view>
+          </view>
+          <!--可循环内容2  -->
+          <view wx:for="{{list2}}" wx:key="unique" class='content border_top {{hiddenpart2==true?"":"display_none"}}'>
+            <navigator hover-class="none" url="/pages/details/zwDetails?id={{item.id}}">
+              <view class='display_flex_space_between width90 auto '>
+                <view class='display_flex_space_between'>
+                  <text class='font_size34 padding_leftright20'>{{item.profession_name}}</text>
+                </view>
+                <view>
+                  <text class='wbys'>外包预算</text>
+                  <text class='colorfe5a01'> {{item.pricestr}}</text>
+                  <!-- <text class='colorfe5a01'>{{item.negotiate==1?"面议":item.lowsalary/1000+"k-"+item.highsalary/1000+"k"}}</text> -->
+                </view>
+              </view>
+              <view class='width90 auto display_flex_left font_size28 margin_top15'>
+                <text class='padding_leftright20 margin_right15 bordereeeeee border_radius5' wx:for="{{item.skills_name}}" wx:key="unique">{{item}}</text>
+              </view>
+              <view class='particularsLayout'>
+                <view class='particulars'>
+                  <view>{{item.city_name==""?"不限":item.city_name}}</view>
+                  <view>{{item.work_year_name}}</view>
+                  <view>{{item.education_name==''?"不限":item.education_name}}</view>
+                </view>
+                <view class='particularss'>
+                  <text>{{item.content}}</text>
+                </view>
+              </view>
+              <view class=' display_flex_space_between width90 auto'>
+                <view class=' width70 margin_top15 display_flex_around'>
+                  <image mode='aspectFill' class='circle60  float_left' src='{{item.seller.avatar}}'></image>
+                  <view class='dxcassa'>
+                    <text class='{{item.seller.name==""?"display_none":""}}'>{{item.seller.name}}</text>
+                    <text class='{{item.seller.company_short_name==""?"display_none":""}}'>{{'-'+item.seller.company_short_name}}</text>
+                    <text class='{{item.seller.position==""?"display_none":""}}'>{{'-'+item.seller.position}}</text>
+                  </view>
+                </view>
+                <text class='margin_top10 colorfea9a9a9 font_size30'>{{item.ctime}}</text>
+              </view>
+            </navigator>
+
+
+          </view>
+          <view class='text_align {{hiddentext==false?"display_none":""}}'>~~亲，已经到底了~~</view>
+        </scroll-view>
+      </view>
+    </swiper-item>
+    <swiper-item>
+      <view class='xiala3'>
+        <scroll-view class='box' scroll-y bindscrolltolower="getpullData2">
+          <view class='explainCantainer {{hiddenpart3==true?"display_none":""}}'>
+            <view class='empty_icon'>
+              <image mode='aspectFill' style='width:450rpx;height:320rpx;' src='/images/worklist/xiaoma.png'></image>
+            </view>
+            <view class='empty_text' style='top:559rpx'>
+              <view class='empty_text_01'>{{empty_text_01}}</view>
+              <view class='empty_text_02'>{{empty_text_02}}</view>
+            </view>
+          </view>
+          <!--可循环内容3  -->
+          <view wx:for="{{list3}}" wx:key="unique" class='border_bottom backgroundfff{{hiddenpart3==true?"":"display_none"}}'>
+            <view class='height30 backgroundfafafa'></view>
+            <navigator hover-class="none" url="/pages/details/company?goodValue={{item.id}}">
+              <view class='width90 auto  padding_top30 display_flex_space_between padding_bottom10'>
+                <image mode='aspectFill' class='circle145 ' src='{{item.logo}}'></image>
+                <view class='width75'>
+                  <view class=' display_flex_space_between padding_bottom15'>
+                    <text class='font_size34 width100'>{{item.name}}</text>
+                  </view>
+                  <view class='  padding_bottom15'>
+                    <text class='font_size28 colorfea9a9a9'>{{item.address}}</text>
+                  </view>
+                </view>
+              </view>
+
+              <view class='textbox font_size30 border_bottom colorbababa auto'>
+                <view class='asdasd {{item.staff_size_name==""?"display_none":""}}'>{{item.staff_size_name}}</view>
+                <view class='asdasd {{item.finance_stage_name==""?"display_none":""}}'>{{item.finance_stage_name}}
+                </view>
+                <view class='asdasd {{item.industry_name==""?"display_none":""}}'>{{item.industry_name}}</view>
+              </view>
+            </navigator>
+            <view class='width90 auto padding_top20 padding_bottom20 font_size30'>
+              <image mode='aspectFill' class='huore inline_block' src='/images/worklist/huomiao.jpg'></image>
+              <text class='margin_left10'>热招:{{item.hotpos==""?"暂无发布":item.hotpos}}</text>
+            </view>
+          </view>
+          <view class='text_align {{hiddentext==false?"display_none":""}}'>~~亲，已经到底了~~</view>
+        </scroll-view>
+      </view>
+    </swiper-item>
+  </swiper>
+</view>

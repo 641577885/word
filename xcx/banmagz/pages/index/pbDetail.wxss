@@ -1,0 +1,16 @@
+/* pages/index/pbDetail.wxss */
+page{ background: #f4f4f4;}
+.lingCantainer{ display: flex; align-items: center; justify-content: flex-start; width: 714rpx; height: 82rpx; background: #fff; border-radius: 4rpx; box-shadow: 0px 2px 15px 0px rgba(0, 0, 0, 0.1); margin: 20rpx auto; padding: 30rpx; box-sizing: border-box}
+.ling{ width: 23rpx; height: 26rpx;}
+.lingTxt{ font-size: 24rpx; color: #333; margin-left: 15rpx;}
+
+.detailCantainer{ width: 714rpx; height: auto; margin: 0 auto; padding-bottom: 30rpx; background: #fff; border-radius: 4rpx;box-shadow: 0px 2px 15px 0px rgba(0, 0, 0, 0.1);}
+.detailItem{ width: 654rpx;display: flex; align-items: center; justify-content: space-between; padding: 0 30rpx; height: 88rpx; border-bottom: 1rpx solid #e5e5e5;}
+.title,.positionDetail{white-space: nowrap; font-size: 34rpx; color: #000;width:50%}
+.titleInp{ width: 300rpx;text-align: right; font-size: 30rpx; color: #000;}
+.DetailCantainer{ padding: 30rpx;}
+.areaCantainer{ position: relative; border: 1rpx solid #dae2f8; background: #f4f4f4; border-radius: 10rpx; margin-top: 40rpx }
+.detailsArea{ width: 100%; height:400rpx; font-size: 30rpx; color: #8e9091; padding: 30rpx 35rpx 0; line-height: 40rpx; box-sizing: border-box; }
+.detailNums{ padding: 0 35rpx; font-size: 24rpx; color: #8e9091; line-height: 58rpx; text-align: right;}
+.detailsTip{ font-size: 22rpx; color: #999; padding: 0 40rpx; text-align: center; margin-top: 20rpx;}
+.openBtn{ position: absolute; bottom: 030rpx; left: 50%; margin-left: -350rpx; width: 700rpx; height: 96rpx; background: #000000;  color: #fff;}

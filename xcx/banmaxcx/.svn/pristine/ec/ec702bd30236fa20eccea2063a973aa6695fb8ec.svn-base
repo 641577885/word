@@ -1,0 +1,42 @@
+<!--record/uprecord.wxml-->
+<view class="deliver">
+		  <view class='explainCantainer {{hiddenpart==true?"display_none":""}}' >
+            <view class='empty_icon'>
+                <image src='/images/empty/empty_bg.png'></image>
+            </view>
+            <view class='empty_text'>
+              <view class='empty_text_01'>{{empty_text_01}}为空</view>
+              <view class='empty_text_02'>{{empty_text_02}}</view>
+            </view>
+      </view>
+		<view class="deliverAll showscoller">
+    <scroll-view scroll-y class='box' bindscrolltolower="lower">  
+		<navigator class="deliver_list" hover-class='none' url='' wx:for='{{lists}}' wx:for-item='vo' wx:key>
+			<view class="deliver_list_info">
+				<view class="list_job">
+					<view class='title'>{{vo.title}}</view>
+					<view class='online' wx:if='{{vo.type==1}}'>接受在线工作</view>
+            <view class="plat_right" wx:if='{{vo.type==2}}'></view>
+				</view>
+				<view class="list_price">{{vo.price}}</view>
+			</view>
+			<view class="deliver_list_company">{{vo.name}}</view>
+			<view class="deliver_list_company">工作经验：{{vo.work_year}} | 学历：{{vo.education}}</view>
+			<view class="deliver_list_x"></view>
+			<view class="deliver_list_person">
+       <view class='deliver_both'>
+          <view class="list_avatar">
+           <image class='img' src='{{vo.avatar}}' ></image>
+          </view>
+          <view class="list_name">{{vo.sname}}</view>
+       </view>
+          <view class="list_time"></view>
+      
+			</view>
+		</navigator> 
+   </scroll-view> 
+
+		</view>
+	</view>
+
+

@@ -1,0 +1,6 @@
+<!--worker/my/myFill.wxml-->
+<fastResume fastResume_rate='{{fastResume_rate}}'rest='{{rest}}' wx:if='{{fastResumeshow}}'fastResume_text='{{fastResume_text}}'></fastResume>
+<view class='textnum'>{{numPrint}}/{{num}}</view>
+<textarea placeholder='{{placeholder}}' value='{{content}}' bindinput='fillTxt' maxlength='{{num}}'></textarea>
+<button class='fillBtn' plain bindtap='gonext' wx:if='{{fastResumeshow}}'>下一步</button>
+<button class='fillBtn' plain bindtap='checkFill' wx:else>确定</button>

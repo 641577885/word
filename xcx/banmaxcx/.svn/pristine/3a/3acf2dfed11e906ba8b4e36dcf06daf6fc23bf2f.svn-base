@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "职位" ,
+    "enablePullDownRefresh": true,
+    "onReachBottomDistance": 50
+}
+ 

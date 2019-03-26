@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>测试你的加班狗等级</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=meta, minimum-scale=1.0"/>
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="msapplication-TileColor" content="#000"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="format-detection" content="email=no">
+    <meta name="renderer" content="webkit">
+    <link rel="stylesheet" href="../css/jiabangou/jiabandog.css">
+</head>
+<body>
+<div class="box">
+    <div class="list">
+        <div id="lunbo">
+            <li class="p1">
+                <div class="div"></div>
+            </li>
+            <li class="img1 p2">
+                <div class="div p">
+                    <div class="buju">
+                        <div class="imgbiaoti1 auto"></div>
+                        <div class="imgbiaoti2 auto"></div>
+                        <div class="frameInput auto">
+                            <input class="input" type="text" placeholder="请输入你的名字"/>
+                        </div>
+                        <div class="dianjibut"></div>
+                        <div class="button">
+                            <div class="zhuangshi"></div>
+                            <div class="zhuangshitext"></div>
+                        </div>
+                        <div class="jiabantext"></div>
+                        <div style="position: absolute;width:90%;bottom:0.5rem;">
+                            <a href="">
+                                <div href="" class="logo auto"></div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="img1 p3">
+                <div class="div p">
+                    <div class="buju">
+                        <div class="headline Gender auto"></div>
+                        <div class="select auto" id="select">
+                            <div class="man"></div>
+                            <div class="woman"></div>
+                        </div>
+                        <div class="button">
+                            <div class="zhuangshi"></div>
+                            <div class="zhuangshitext"></div>
+                        </div>
+                        <div style="position: absolute;width:90%;bottom:0.5rem;">
+                            <a href="">
+                                <div href="" class="logo auto"></div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="img2 p4">
+                <div class="div p">
+                    <div class="buju">
+                        <div class="headline issue1 auto"></div>
+                        <div class="button_select auto colorfff" id="time1">
+                            <div class="button_select_but auto">
+                                <div id="1" class="answer colorfff">别人还在睡觉，我已经在公司报到</div>
+                            </div>
+                            <div class="button_select_but auto">
+                                <div id="2" class="answer colorfff">一般九点左右</div>
+                            </div>
+                            <div class="button_select_but auto">
+                                <div id="3" class="answer colorfff">老板是上帝，上班随时随地都可以</div>
+                            </div>
+                        </div>
+                        <div class="button2">
+                            <div class="zhuangshi2"></div>
+                            <div class="zhuangshitext2"></div>
+                        </div>
+                        <div style="position: absolute;width:90%;bottom:0.5rem;">
+                            <a href="">
+                                <div href="" class="logo2 auto"></div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="img3 p4">
+                <div class="div p">
+                    <div class="buju">
+                        <div class="headline issue2 auto"></div>
+                        <div class="button_select auto">
+                            <div class="button_select_but2 auto">
+                                <div id="1" class="answer">与加班无缘，6点准时下班</div>
+                            </div>
+                            <div class="button_select_but2 auto">
+                                <div id="2" class="answer">没见过12点之前的晚高峰</div>
+                            </div>
+                            <div class="button_select_but2 auto">
+                                <div id="3" class="answer">一直在上班状态，从未下过班</div>
+                            </div>
+                        </div>
+                        <div class="button2">
+                            <div class="zhuangshis3"></div>
+                            <div class="zhuangshitext"></div>
+                        </div>
+                        <div style="position: absolute;width:90%;bottom:0.5rem;">
+                            <a href="">
+                                <div href="" class="logo auto"></div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="img4 p4">
+                <div class="div p">
+                    <div class="buju">
+                        <div class="headline issue3 auto"></div>
+                        <div class="button_select auto">
+                            <div class="button_select_but2 auto">
+                                <div id="1" class="answer">超过48小时</div>
+                            </div>
+                            <div class="button_select_but2 auto">
+                                <div id="2" class="answer">周一到周五单身，周六周日有对象</div>
+                            </div>
+                            <div class="button_select_but2 auto">
+                                <div id="3" class="answer">单身狗一只，无恋爱日程</div>
+                            </div>
+                        </div>
+                        <div class="button2">
+                            <div class="zhuangshi4"></div>
+                            <div class="zhuangshitext"></div>
+                        </div>
+                        <div style="position: absolute;width:90%;bottom:0.5rem;">
+                            <a href="">
+                                <div href="" class="logo auto"></div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="img51 p4" id="time4">
+                <div class="div p">
+                    <div class="buju">
+                        <div class="headline issue41 auto"></div>
+                        <div class="button_select auto">
+                            <div class="button_select_but2 auto">
+                                <div id="1" class="answer">想玩多久就玩多久</div>
+                            </div>
+                            <div class="button_select_but2 auto">
+                                <div id="2" class="answer">与上厕所的时间同步</div>
+                            </div>
+                            <div class="button_select_but2 auto">
+                                <div id="3" class="answer">太奢侈，完全没时间</div>
+                            </div>
+                        </div>
+                        <div class="button2">
+                            <div class="zhuangshi51"></div>
+                            <div class="zhuangshitext"></div>
+                        </div>
+                        <div style="position: absolute;width:90%;bottom:0.5rem;">
+                            <a href="">
+                                <div href="" class="logo auto"></div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="img52 p4" id="time5">
+                <div class="div p">
+                    <div class="buju">
+                        <div class="headline issue42 auto"></div>
+                        <div class="button_select auto">
+                            <div class="button_select_but auto">
+                                <div id="1" class="answer colorfff">想看就看，我的时间我做主</div>
+                            </div>
+                            <div class="button_select_but auto">
+                                <div id="2" class="answer colorfff">每天一个小时，不能再多了</div>
+                            </div>
+                            <div class="button_select_but auto">
+                                <div id="3" class="answer colorfff">不追剧，太浪费了</div>
+                            </div>
+                        </div>
+                        <div class="button2">
+                            <div class="zhuangshi52"></div>
+                            <div class="zhuangshitext2"></div>
+                        </div>
+                        <div style="position: absolute;width:90%;bottom:0.5rem;">
+                            <a href="">
+                                <div href="" class="logo2 auto"></div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="img6 p4">
+                <div class="div p">
+                    <div class="buju">
+                        <div class="headline issue6 auto"></div>
+                        <div class="button_select auto">
+                            <div class="button_select_but2 auto">
+                                <div id="4" class="answer">超过48个小时</div>
+                            </div>
+                            <div class="button_select_but2 auto">
+                                <div id="5" class="answer">每周会有一两次机会</div>
+                            </div>
+                            <div class="button_select_but2 auto">
+                                <div id="6" class="answer">健身从来只是嘴巴的事情</div>
+                            </div>
+                        </div>
+                        <div class="button2">
+                            <div class="zhuangshi6"></div>
+                            <div class="zhuangshitext"></div>
+                        </div>
+                        <div style="position: absolute;width:90%;bottom:0.5rem;">
+                            <a href="">
+                                <div href="" class="logo auto"></div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="img7 p4">
+                <div class="div p2">
+                    <div class="imgshengcheng"></div>
+                    <div class="jatzt">
+                        <div class="jzbiankuang auto">
+                            <div class="jut"></div>
+                        </div>
+                        <div class="textjt" id="textjt">--%</div>
+                    </div>
+                </div>
+                <div style="position: absolute;width:90%;bottom:0.5rem;">
+                    <a href="">
+                        <div href="" class="logo2 auto"></div>
+                    </a>
+                </div>
+            </li>
+            <!--黄金-->
+            <li class="imgcim duanwei1 p4" id="li1">
+                <div class="div p">
+                    <div class="buju">
+                        <div class="zhuangshi1 hjzhuangshi"></div>
+                        <div class="zhuangshia hjyinying"></div>
+                        <div class="zhuangshi3 hjpaihang"></div>
+                    </div>
+                </div>
+                <div class="duanweiimg1 hjduanwei"></div>
+                <div class="textname color583e25" id="textname">西瓜</div>
+                <div class="zhuangshitextimg1 huangjin">
+                    <div class="answer2 color583e25">你每年加班时间将超过
+                        <text id="answer2" class="colorhong">----</text>
+                        个小时
+                    </div>
+                </div>
+                <div class="zhuangshitextimg_1 huangjin color583e25">
+                    <div class="answer2 color583e25">打败
+                        <text id="answer1" class="colorhong">----</text>
+                        名互联网加班狗
+                    </div>
+                </div>
+                <div class="textjieshao colorzong" id="textjieshao">这是一大堆文字这是一大堆文字这是一大堆文字这是一大堆文字</div>
+                <div class="biankuanger hjbiankuang">
+                    <div class="erweima"></div>
+                </div>
+                <div class="changan1 hjchangan1"></div>
+                <div class="logoimg">
+                    <a href="">
+                        <div href="" class="logo auto"></div>
+                    </a>
+                </div>
+                <div class="changan2 hjchangan2"></div>
+            </li>
+            <!--白金-->
+            <li class="imgcim bjduanwei1 p4" id="li2">
+                <div class="div p">
+                    <div class="buju">
+                        <div class="zhuangshi1 bjzhuangshi"></div>
+                        <div class="zhuangshia bjyinying"></div>
+                        <div class="zhuangshi3 bjpaihang"></div>
+                    </div>
+                </div>
+                <div class="duanweiimg1 bjduanwei"></div>
+                <div class="textname color3f77a8" id="textname">西瓜</div>
+                <div class="zhuangshitextimg1 bjhuangjin">
+                    <div class="answer2 color3f77a8">你每年加班时间将超过
+                        <text id="answer2" class="colorjv">----</text>
+                        个小时
+                    </div>
+                </div>
+                <div class="zhuangshitextimg_1 bjhuangjin">
+                    <div class="answer2 color3f77a8">打败
+                        <text id="answer1" class="colorjv">----</text>
+                        名互联网加班狗
+                    </div>
+                </div>
+                <div class="textjieshao colorlan" id="textjieshao">这是一大堆文字这是一大堆文字这是一大堆文字这是一大堆文字</div>
+                <div class="biankuanger bjbiankuang">
+                    <div class="erweima"></div>
+                </div>
+                <div class="changan1 bjchangan1"></div>
+                <div class="logoimg">
+                    <a href="">
+                        <div href="" class="logo auto"></div>
+                    </a>
+                </div>
+                <div class="changan2 bjchangan2"></div>
+            </li>
+            <!--钻石-->
+            <li class="imgcim zsduanwei1 p4" id="li3">
+                <div class="div p">
+                    <div class="buju">
+                        <div class="zhuangshi1 zszhuangshi"></div>
+                        <div class="zhuangshia zsyinying"></div>
+                        <div class="zhuangshi3 zspaihang"></div>
+                    </div>
+                </div>
+                <div class="duanweiimg1 zsduanwei"></div>
+                <div class="textname" id="textname color583e25">西瓜</div>
+                <div class="zhuangshitextimg1 zshuangjin">
+                    <div class="answer2 color583e25">你每年加班时间将超过
+                        <text id="answer2" class="colorhong">----</text>
+                        个小时
+                    </div>
+                </div>
+                <div class="zhuangshitextimg_1 zshuangjin">
+                    <div class="answer2 color583e25">打败
+                        <text id="answer1" class="colorhong">----</text>
+                        名互联网加班狗
+                    </div>
+                </div>
+                <div class="textjieshao colora2938c" id="textjieshao">这是一大堆文字这是一大堆文字这是一大堆文字这是一大堆文字</div>
+                <div class="biankuanger zsbiankuang">
+                    <div class="erweima"></div>
+                </div>
+                <div class="changan1 zschangan1"></div>
+                <div class="logoimg">
+                    <a href="">
+                        <div href="" class="logo auto"></div>
+                    </a>
+                </div>
+                <div class="changan2 zschangan2"></div>
+            </li>
+            <!--星耀-->
+            <li class="imgcim xyduanwei1 p4" id="li4">
+                <div class="div p">
+                    <div class="buju">
+                        <div class="zhuangshi1 xyzhuangshi"></div>
+                        <div class="zhuangshia xyyinying"></div>
+                        <div class="zhuangshi3 xypaihang"></div>
+                    </div>
+                </div>
+                <div class="duanweiimg1 xyduanwei"></div>
+                <div class="textname colorfff" id="textname">西瓜</div>
+                <div class="zhuangshitextimg1 xyhuangjin">
+                    <div class="answer2 colorfff">你每年加班时间将超过
+                        <text id="answer2" class="colorhuang">----</text>
+                        个小时
+                    </div>
+                </div>
+                <div class="zhuangshitextimg_1 xyhuangjin">
+                    <div class="answer2 colorfff">打败
+                        <text id="answer1" class="colorhuang">----</text>
+                        名互联网加班狗
+                    </div>
+                </div>
+                <div class="textjieshao colorqianhui" id="textjieshao">这是一大堆文字这是一大堆文字这是一大堆文字这是一大堆文字</div>
+                <div class="biankuanger xybiankuang">
+                    <div class="erweima"></div>
+                </div>
+                <div class="changan1 xychangan1"></div>
+                <div class="logoimg">
+                    <a href="">
+                        <div href="" class="logo2 auto"></div>
+                    </a>
+                </div>
+                <div class="changan2 xychangan2"></div>
+            </li>
+            <!--王者-->
+            <li class="imgcim wzduanwei1" id="li5">
+                <div class="div p">
+                    <div class="buju">
+                        <div class="zhuangshi1 wzzhuangshi"></div>
+                        <div class="zhuangshia wzyinying"></div>
+                        <div class="zhuangshi3 wzpaihang"></div>
+                    </div>
+                </div>
+                <div class="duanweiimg1 wzduanwei"></div>
+                <div class="textname colorfff" id="textname">西瓜</div>
+                <div class="zhuangshitextimg1 wzhuangjin">
+                    <div class="answer2 colorfff">你每年加班时间将超过
+                        <text id="answer2" class="colorhuang">----</text>
+                        个小时
+                    </div>
+                </div>
+                <div class="zhuangshitextimg_1 wzhuangjin">
+                    <div class="answer2 colorfff">打败
+                        <text id="answer1" class="colorhuang">----</text>
+                        名互联网加班狗
+                    </div>
+                </div>
+                <div class="textjieshao colorqianhui" id="textjieshao">这是一大堆文字这是一大堆文字这是一大堆文字这是一大堆文字</div>
+                <div class="biankuanger wzbiankuang">
+                    <div class="erweima"></div>
+                </div>
+                <div class="changan1 wzchangan1"></div>
+                <div class="logoimg">
+                    <a href="">
+                        <div href="" class="logo2 auto"></div>
+                    </a>
+                </div>
+                <div class="changan2 wzchangan2"></div>
+            </li>
+        </div>
+        <img id="imgData" class="display" src=""/>
+    </div>
+</div>
+<div class="asdadsdasd">
+    <div class="asdastext">正在加载
+        <text id="asdqwe">--%</text>
+    </div>
+</div>
+<script type="text/javascript" src="../js/jiabangou/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="../js/layer.js"></script>
+<script src="../js/jiabangou/html2canvas.js"></script>
+<!--<script type="text/javascript" src="../js/html2canvas-0.4.1/build/html2canvas.min.js"></script>-->
+</body>
+<script type="text/javascript">
+    var j = 0;
+    //加载进度条
+    var qweq = setInterval(function () {
+        console.log(123);
+        $("#asdqwe").html(j + '%');
+        j++;
+        if (j == 101) {
+            clearInterval(qweq);
+            $(".asdadsdasd").hide();
+        }
+    }, 10);
+    var i = 0, name, sex, judge = 0;
+    //第一张
+    $(".dianjibut").click(function () {
+        var val = $('.input').val();
+        if (val == '') {
+            alert('不能为空！')
+        } else {
+            name = val;
+            clickData();
+        }
+
+    });
+    //第二张
+    $("#select div").click(function () {
+        sex = $(this).index();
+        if (sex == 0) {
+            $("#time5").remove();
+        } else {
+            $("#time4").remove();
+        }
+        clickData();
+    });
+    //第三张
+    $(".answer").click(function () {
+        if (this.id >= 4) {
+            console.log(123);
+            judgeData(3);
+            var i = 0;
+            $(this).addClass('clickbut');
+            dataProcessor();
+            //加载进度条
+            setTimeout(function () {
+                clickData();
+                var jsq = setInterval(function () {
+                    $("#textjt").html(i + '%');
+                    $(".jut").css("width", i + '%');
+                    i++;
+                    if (i == 101) {
+                        clearInterval(jsq);
+                        clickData();
+                        setTimeout(function () {
+//                            //画图
+//                            html2canvas(document.querySelector("#li3")).then(
+//                                    function (canvas) {
+//                                        console.log(123);
+//                                        document.body.appendChild(canvas);
+//                                        var canvas = document.createElement('canvas');
+//                                         var image = canvas.toDataURL("image/png");
+//                                        $('.lunbo').hide();
+//                                        $("#imgData").attr("src", image).show();
+//                                    });
+                        }, 3000);
+
+
+                    }
+                }, 10);
+            }, 200);
+        } else {
+            judgeData(this.id);
+            $(this).addClass('clickbut');
+            setTimeout(function () {
+                clickData();
+            }, 300);
+        }
+        event.stopPropagation();
+    });
+
+    $(".duanwei1").click(function () {
+        getData();
+    });
+
+    //页内动画
+    function clickData() {
+        var b = $("#lunbo li").length;
+        if (i < b - 2) {
+            $("#lunbo li").eq(i).addClass('display');
+            i = i + 1;
+            $("#lunbo li").removeClass('p1').addClass('p4');
+            $("#lunbo li").removeClass('p2').addClass('p4');
+            $("#lunbo li").removeClass('p3').addClass('p4');
+            $("li").eq(i).addClass('p1').removeClass('p4');
+            $("li").eq(i + 1).addClass('p2').removeClass('p4');
+            $("li").eq(i + 2).addClass('p3').removeClass('p4');
+        }
+    }
+    ;
+    //记录选项结果
+    function judgeData(data) {
+        if (data == 3) {
+            judge = judge + 1;
+            console.log("第" + judge + "个c");
+        }
+    }
+    //数据处理
+    function dataProcessor() {
+        var number, time;
+        switch (judge) {
+            case 0:
+                number = randomData(730, 1095);
+                time = randomData(20001, 30000);
+                $("#li2").remove();
+                $("#li3").remove();
+                $("#li4").remove();
+                $("#li5").remove();
+                break;
+            case 1:
+                number = randomData(1095, 1460);
+                time = randomData(50000, 60000);
+                $("#li1").remove();
+                $("#li3").remove();
+                $("#li4").remove();
+                $("#li5").remove();
+                break;
+            case 2:
+                number = randomData(1461, 1825);
+                time = randomData(80000, 90000);
+                $("#li1").remove();
+                $("#li2").remove();
+                $("#li4").remove();
+                $("#li5").remove();
+                break;
+            case 3:
+                number = randomData(1826, 2190);
+                time = randomData(100000, 110000);
+                $("#li1").remove();
+                $("#li2").remove();
+                $("#li3").remove();
+                $("#li5").remove();
+                break;
+            default:
+                number = randomData(2191, 2555);
+                time = randomData(190000, 200000);
+                $("#li1").remove();
+                $("#li2").remove();
+                $("#li3").remove();
+                $("#li4").remove();
+        }
+        $("#answer1 ").html(number);
+        $("#answer2 ").html(time);
+        $("#textname").html(name);
+        getData();
+    }
+    //随机函数
+    function randomData(lowerValue, upperValue) {
+        return Math.floor(Math.random() * (upperValue - lowerValue + 1) + lowerValue);
+    }
+    //取json数据
+    function getData() {
+        console.log(123);
+        $.getJSON("text.json", "", function (data) {
+            console.log(data);
+            var textHtml = '';
+            var i = randomData(0, 6);
+            console.log(i);
+            if (sex == 0) {
+                textHtml += name + data.nan[i].value
+            } else {
+                textHtml += name + data.nv[i].value
+            }
+            console.log(textHtml);
+            $("#textjieshao").html(textHtml);
+        });
+    }
+
+    $(".imgcim").click(function(){
+        console.log(123);
+        //画图
+        html2canvas(document.querySelector("#li5")).then(
+                function (canvas) {
+                    document.body.appendChild(canvas);
+                    //var canvas = document.createElement('canvas');
+                    //var image = canvas.toDataURL("image/png");
+                    $("#lunbo").hide();console.log(image);
+                    $("#imgData").attr("src", image).show();
+                });
+
+    })
+</script>
+<script>
+    /*做自适应函数*/
+    (function () {
+        function fontFun() {
+            var winW = document.documentElement.clientWidth;//浏览器可视宽度
+            document.documentElement.style.fontSize = (winW / 750 * 625) + "%";
+        }
+
+        fontFun();
+        window.onresize = fontFun;
+    })();
+</script>
+</html>

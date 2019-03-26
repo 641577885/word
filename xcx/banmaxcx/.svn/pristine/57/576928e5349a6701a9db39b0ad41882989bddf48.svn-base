@@ -1,0 +1,92 @@
+<scroll-view scroll-y class='detailCantainer'>
+  <view class='position_top'>
+    <view class='position_title'>
+      <view class='title_content'>
+        <text class='title_content_01'>{{demand.title}}</text>
+        <text class='title_content_02 '>{{demand.price}}元<text class='prices'>外包预算</text></text>
+      </view>
+      <view class='position_info'>
+        <image src='../../images/position/icon_02.png' class='info_icon'></image>
+        <text>{{demand.cat_name}}</text>
+        <image src='../../images/position/clock.png' class='info_icon'></image>
+        <text wx:if="{{demand.period==0}}">不限</text>
+        <text wx:elif="{{demand.period==1}}">1周</text>
+        <text wx:elif="{{demand.period==2}}">2周</text>
+        <text wx:elif="{{demand.period==3}}">3周</text>
+        <text wx:elif="{{demand.period==4}}">1月</text>
+        <text wx:elif="{{demand.period==5}}">2月</text>
+        <text wx:else>3月</text>
+      </view>
+    </view>
+    <view class='publisher'>
+        <view class='publisher_left'>
+          <view class='avatar'><image src="{{seller.avatar}}"></image></view>
+          <view class='publisher_info'>
+            <view class='publisher_name'>{{seller.name}}</view>
+            <view class='publisher_company'>{{seller.company_name}}－{{seller.position}}</view>
+          </view>
+        </view>
+        <view class='publisher_right'>{{seller.active_degree}}</view>
+      </view>
+  </view>
+  <!-- 需求详情 -->
+  <view class='work_experience'>
+    <view class='common_title'>
+      <view class='common_title_main'>需求详情</view>
+    </view>
+    <view class='experience_list'>
+      <view class='experience_list_main'>
+        <view class='list_content'>{{demand.content}}</view>
+      </view>
+    </view>
+  </view>
+  <!-- 公司名 -->
+  <view class='company' wx:if="{{company.id}}">
+    <view class='company_info'>
+      <view class='company_name'>{{company.name}}</view>
+      <view class='company_ss'>{{company.finance_stage_name}}－{{company.staff_size_name}}－{{company.industry_name}}</view>
+    </view>
+    <view class='company_logo'>
+      <image src='{{company.logo}}' mode='widthFix'></image>
+    </view>
+  </view>
+  <!-- 地图 -->
+  <view class='address'>
+    <image src='../../images/position/address_bg.jpg' class='address_bg'></image>
+    <view class='address_main' bindtap='golocation'>
+      <image src='../../images/position/dinwei.png' class='address_dw'></image>
+      <view class='address_title'>工作地点</view>
+      <view class='address_content'>{{company_add}}</view>
+    </view>
+  </view>
+  <!-- 推荐职位 -->
+  <!-- <view class='rec'>
+    <view class='common_title'>
+      <view class='common_title_main'>推荐职位</view>
+    </view>
+    <view class='rec_content'>
+      <view class='rec_list' wx:for='{{rec}}' wx:key='rec'>
+          <view class='rec_list_01'>
+            <view class='rec_list_01_left'>
+              <view class='rec_name'>{{item.rec_name}}</view>
+              <view class='rec_js' wx:if='{{item.rec_online}}'>接受在线工作</view>
+            </view>
+            <view class='rec_list_01_right'>{{item.rec_price}}</view>
+          </view>
+          <view class='rec_list_02'>{{item.rec_info}}</view>
+          <view class='rec_list_02'>{{item.rec_company}}</view>
+          <view class='rec_list_03'>
+            <view class='rec_list_03_left'>
+              <view class='rec_avatar'><image></image></view>
+              <view class='rec_pos'>{{item.rec_pos}}</view>
+            </view>
+            <view class='rec_list_03_right'>{{item.rec_time}}</view>
+          </view>
+      </view>
+    </view>
+  </view> -->
+</scroll-view>
+ <!-- 按钮 -->
+<cover-view class='position_btn'>
+  <cover-view class='worker_btn' bindtap="link2Dialog">立即沟通</cover-view>
+</cover-view> 

@@ -1,0 +1,4 @@
+<!--worker/my/myFill.wxml-->
+<view class='textnum'>{{numPrint}}/{{num}}</view>
+<textarea placeholder='请输入' value='{{content}}' bindinput='fillTxt' maxlength='100'></textarea>
+<button class='fillBtn' plain bindtap='checkFill'>确定</button>

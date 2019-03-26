@@ -1,0 +1,13 @@
+<!--guide/done.wxml-->
+<image class='background' src='{{bg_img}}'></image>
+<view class='entirety'>
+  <view class='entirety_conts'>
+    <image class='conts' src='{{conts_img}}'></image>
+  </view>
+  <!-- bindtap='understandbm' bindgetuserinfo="bindGetUserInfo" -->
+  <button class='card_but_text'  hover-class='none'  data-current="0"  open-type='getUserInfo' bindgetuserinfo="bindGetUserInfo">了解班马加薪</button>
+  <!-- bindtap='clickGet'  -->
+  <button class='entirety_conts' hover-class='none'   data-current="1" open-type='getUserInfo' bindgetuserinfo="bindGetUserInfo">
+    <image class='button' src='{{but_img}}' ></image>
+  </button>
+</view>

@@ -1,0 +1,114 @@
+// pages/worker/details/job.js
+const bm = require('../../utils/common.js')
+const webim = require('../../utils/webim.js');
+const app = getApp();
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    id:Number,
+    role:0,
+    position:{},
+    company:{},
+    seller:{},
+    company_add:'',
+    rec:[]
+  },
+  checkContact: function () {
+    var that = this;
+    bm.requsetData("/w/position/contact", "post", {id:that.data.id}, function (res) {
+      if (!res.data.errcode) {
+        that.link2Dialog();
+      } else {
+        wx.showToast({
+          title: res.data.errmsg,
+          icon: 'none'
+        })
+      }
+    })
+  },
+  link2Dialog: function () {
+    var that = this;
+    var add_friend_item = [
+      {
+        'To_Account': hat.data.seller.id,  //用户Id
+        "AddSource": "AddSource_Type_Unknow",
+        "AddWording": "" //加好友附言，可为空
+      }
+    ];
+    var options = {
+      'From_Account': app.globalData.loginInfo.identifier,
+      'AddFriendItem': add_friend_item
+    };
+    webim.applyAddFriend(
+      options,
+      function (resp) {
+        wx.navigateTo({
+          url: '/message/dialog?skipid=' + that.data.seller.id,
+        })
+      },
+      function (err) {
+        if (err.ErrorInfo.indexOf('SNS_FRD_ADD_FRD_EXIST')) {
+          app.getAllFriend();
+          wx.navigateTo({
+            url: '/message/dialog?skipid=' + that.data.seller.id,
+          })
+        } else {
+          console.warn(err);
+        }
+      }
+    );
+  },
+  golocation:function(){
+    var _that = this
+    var add = _that.data.company_add
+    if(add.length >0){
+      wx.request({
+        url: 'http://apis.map.qq.com/ws/geocoder/v1/?address=' + add + '&key=XBNBZ-NDECV-4V4PQ-UFNJY-B6E5Q-FBBGB',
+        success: function (data) {
+          console.log(data)
+          wx.openLocation({
+            latitude: data.data.result.location.lat,
+            longitude: data.data.result.location.lng,
+            name: add,
+            scale: 28
+          })
+        }
+      })
+    }
+  },
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    var that = this;
+    that.setData({ id: options.id})
+    bm.requsetData('/c/position/get','get',{id:options.id},function(res){
+      if(!res.data.errcode){
+        if (res.data.position.work_address.length == 0) {
+          var add = '暂未填写地址'
+        } else {
+          var add = res.data.position.work_address
+        }
+        that.setData({
+          position: res.data.position,
+          seller: res.data.seller,
+          company: res.data.company,
+          company_add: add
+        })
+      }else{
+        wx.showToast({
+          title: res.data.errmsg,
+          icon:'none',
+          success:function(){
+            setTimeout(function(){
+              wx.navigateBack()
+            },1000)
+          }
+        })
+      }
+    })
+  }
+})

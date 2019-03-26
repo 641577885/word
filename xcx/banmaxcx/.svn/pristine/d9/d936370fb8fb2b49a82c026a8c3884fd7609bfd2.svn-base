@@ -1,0 +1,2 @@
+<!--pages/applyTicket/pages/moc/mocRechange.wxml-->
+<web-view src='{{url}}' bindmessage="msgHandler"></web-view>

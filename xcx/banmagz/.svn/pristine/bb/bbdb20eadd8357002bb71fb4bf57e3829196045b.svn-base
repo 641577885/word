@@ -1,0 +1,58 @@
+.posDetailContanier{width: 100%;height: 100%}
+.posDetailMain{width: 687rpx;margin: 0 auto}
+ .box{height: 100%} 
+ .showtop{margin-top: 30rpx}
+ .posDetailList{width: 100%}
+ .listTopimg{width: 138rpx;height: 138rpx;border-radius: 2rpx;border: 1rpx solid #dfdfdf;margin-right: 26rpx; overflow: hidden;}
+ .listTopimg image{ width: 100%;}
+.between{display: flex;justify-content: space-between;width:549rpx;}
+ .listTop{padding: 34rpx 0 38rpx 0;display: flex}
+ .listToptxt{font-size: 34rpx;padding-right: 26rpx;color: #666666;padding-bottom:33rpx;border-bottom:1rpx solid #eeeeee;}
+ .listBottom{display: flex;justify-content: space-between;padding-bottom:18px;border-bottom:1rpx solid #eeeeee;}
+ .listTopprice{font-size: 36rpx;color: #fe5a01;padding-right: 0}
+ .listBottomname,.listBottomtime{font-size: 26rpx;color: #a9a9a9}
+ .showpd{padding-top: 22rpx}
+ .posDetailper{display: flex;border-bottom: 1rpx solid #eeeeee;justify-content:space-between;
+}
+ .posperson{font-size: 28rpx;color: #666666;line-height: 90rpx}
+   .posimg{display: flex}  
+ .posboth{display: flex;justify-content: space-between; align-items: center}
+ .posDetailwork{padding-top: 39rpx;border-bottom: 1rpx solid #eeeeee }
+ .poswork{width: 104rpx;font-size: 26rpx;color: #333333;line-height: 68rpx;border-bottom: 1rpx solid #fede01}
+ .poscontent{font-size: 26rpx;color: #333333;margin: 43rpx 0}
+ .posshare{display: flex;justify-content: space-between}
+ .add,.share{width: 28rpx;height: 28rpx}
+ /* 照片 */
+ .padtop{margin-left:26px;vertical-align:middle;}
+ .photoimg{ display: flex;position: relative}
+ .showleft{ width: 46rpx;height: 46rpx;border-radius: 50%; background: #000;border: 3rpx solid #fff; overflow: hidden; margin-left: -10rpx;}
+.circle{ width: 100%;}
+.shareboth{display: flex;justify-content: space-between}
+ .sharatime{font-size: 26rpx;color: #8b8b8b;line-height:56rpx} 
+ .posbottom{display: flex;position:fixed;bottom: 10rpx}
+ .confirm{background: #000;color: #fff;width: 645rpx;height: 70rpx;line-height: 70rpx;font-size: 29rpx}
+ .dot{width: 43rpx;height: 12rpx;margin-right: 27rpx;}
+ /* 评价 */
+ .posbottoms{position:fixed;bottom:96rpx;left:13rpx;}
+.evaluate{width: 727rpx;height: 76rpx;background: #000;color: #fff;line-height: 70rpx;font-size: 29rpx}
+
+.hireonce{width: 727rpx;height: 76rpx;background: #fedd01;color: #000;line-height: 70rpx;font-size: 29rpx;position:absolute;
+margin-top:10rpx;} 
+.showblock{display: flex}
+.shownone{display: none}
+
+.manageCantainer{ position: fixed; width: 100%; bottom: 0; left: 0; padding:20rpx;  background: #fff; box-sizing: border-box; }
+.manageCantainer button{ font-size: 34rpx;}
+
+button::after{border: none}
+button{background: #fff}
+.addbtn{position: absolute;right: 56rpx;bottom: 55rpx;}
+.addbtnimg{width: 110rpx;height: 110rpx;box-shadow:4rpx 15rpx 100rpx #fed401;border-radius:50%;}
+
+.sharebutton::after{
+  border:none;
+  }
+action-sheet{background: #fff}
+.action_item{ height: 100rpx;width: 690rpx;margin: 0 auto; padding: 0; border-bottom: 1rpx solid #ccc;}
+.action_item:last-child{ border-bottom: 0 none}
+.sharebutton{ height: 100%; line-height: 100rpx; text-align: center; color: #333;}

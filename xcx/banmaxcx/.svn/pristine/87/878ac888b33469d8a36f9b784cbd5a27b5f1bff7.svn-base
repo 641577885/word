@@ -1,0 +1,9 @@
+<!--help/help.wxml-->
+<view class='help'>
+  <view class='title'>意见反馈</view>
+  <textarea></textarea>
+  <button class='btn'>提交</button>
+</view>
+<view class='kf_btn'>
+  <button open-type="contact">联系客服</button>
+</view>

@@ -1,0 +1,10 @@
+<!--auth/autherr.wxml-->
+<view class='icon'>
+  <icon type='warn' size='100'></icon>
+</view>
+<view class='title_01'>认证失败</view>
+<view class='title_02' wx:if='{{type_show==0}}'>{{title}}</view>
+<view class='title_02' wx:if='{{type_show==1}}'>您已超过三次认证失败，请联系客服人工认证</view>
+<button class='btn' wx:if='{{type_show==0}}' bindtap='auth_again'>重新认证</button>
+<button class='btn' open-type='contact' wx:if='{{type_show==1}}'>联系客服</button>
+

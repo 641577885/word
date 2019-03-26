@@ -1,0 +1,2 @@
+<!--pages/share/share.wxml-->
+<canvas canvas-id="shareCanvas" style="width:{{cwidth}}px;height:{{cheight}}px" bindtouchstart="mytouchstart"bindtouchend="mytouchend"></canvas>

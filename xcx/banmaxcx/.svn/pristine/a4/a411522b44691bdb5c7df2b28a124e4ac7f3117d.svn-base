@@ -1,0 +1,52 @@
+<!--wallet/task.wxml-->
+<view class="moneyMain">
+  <view class="moneyMainCon">
+    <view class="moneyTitle">日常任务</view>
+    <view class="memberall">
+      <view class="member">
+        <view class="gold"></view>
+        <view class='bmmember'>邀请好友加入</view>
+        <button class="getmoc {{active==1?'light':''}}" data-id='10'  disabled="{{disabled1}}"  bindtap='getmoney' data-current='1'>领取10红包</button>
+        	<view class='upnum'>每月上限60人</view>
+      </view>
+      <view class="member">
+        <sviewan class="submit"></sviewan>
+        <view class='bmmember'>登 陆</view>
+        <button class="getmoc {{active==2?'light':''}}" data-id='5' disabled="{{disabled2}}"   bindtap='getmoney' data-current='2'>领取5红包</button>
+      </view>
+      <view class="member">
+        <view class="share"></view>
+        <view class='bmmember'>完结金额</view> 
+        <button class="getmoc {{active==3?'light':''}}" data-id='1' disabled="{{disabled3}}"  bindtap='getmoney' data-current='3'>领取1红包</button>
+        	<view class='upnum'>完结金额大于200有效</view>
+      </view>
+      <view class="member">
+        <view class="hire"></view>
+        <view class='bmmember'>首次汇报工作 </view>
+        <!-- <view class="getmoc" tyviewe="5">领取5红包</view> -->
+         <button class="getmoc {{active==4?'light':''}}" data-id='5' disabled="{{disabled4}}"  bindtap='getmoney' data-current='4'>领取5红包</button>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="moneyMain">
+  <view class="moneyMainCon showtop">
+    <view class="moneyTitle">奖励任务</view>
+    <view class="memberall">
+      <view class="member">
+        <view class="gold"></view>
+        <view class='bmmember'>开通区块链简历</view>
+        <!-- <view class="getmoc" tyviewe="10">领取10红包</view> -->
+         <button class="getmoc {{active==5?'light':''}}" data-id='10' disabled="{{disabled5}}"  bindtap='getmoney' data-current='5'>领取10红包</button>
+      </view>
+      <view class="member">
+        <sviewan class="submit"></sviewan>
+        <view class='bmmember'>完善个人简历</view>
+        <!-- <view class="getmoc" tyviewe="5">领取5红包</view> -->
+         <button class="getmoc {{active==6?'light':''}}" data-id='5' disabled="{{disabled6}}"  bindtap='getmoney' data-current='6'>领取5红包</button>
+      </view>
+    </view>
+  </view>
+</view>
+  <view class="bottomText">班马佳薪基于腾讯云区块链服务TBaaS</view>
+  

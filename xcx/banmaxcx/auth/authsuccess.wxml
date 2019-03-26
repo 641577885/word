@@ -1,0 +1,8 @@
+<!--auth/autherr.wxml-->
+<view class='icon'>
+  <icon type='success' size='100'></icon>
+</view>
+<view class='title_01'>认证成功</view>
+<view class='title_02'>您的账号已经完成实名认证请继续前往绑定银行卡，银行卡信息需要跟实名认证信息相同</view>
+<button class='btn' bindtap='go_bank'>绑定银行卡</button>
+

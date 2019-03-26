@@ -1,0 +1,326 @@
+<!--pages/worker/search/search.wxml-->
+<!--有数据时显示此页面  -->
+  <view style='height:100%'>
+        <view class='backgroundfede01 padding_bottom35 position_fixed width100'>
+              <view class='width95 border_radius5 backgroundfff auto'>
+                 <view style='width:100%' class='display_flex_center padding15' bindtap='butreturn'>
+                   <icon type="search" class='margin_top8 ' color='#a9a9a9' size="13"/>
+                   <view class='margin_left10 font_size28 colorfea9a9a9'>{{sousuo}}</view>
+                 </view>
+              </view>
+        </view>
+        <!-- 切换路由 -->
+        <view class='backgroundfede01 tab-nav display_flex_center position_fixed top85'>
+            <view class='{{current1==0?"on":""}} margin_right90' data-current="0" bindtap='tabBut'>相关职位</view>
+            <view class='{{current1==1?"on":""}} margin_right90' data-current="1" bindtap='tabBut'>相关需求</view>
+            <view class='{{current1==2?"on":""}}' data-current="2" bindtap='tabBut'>相关公司</view>
+        </view>
+        <swiper class='tab-box;' current="{{current1}}" bindchange="eventchange">
+              <swiper-item>
+                     <!--分类选择 -->
+                  <view class="section backgroundfff">
+                      <view class='display_flex_center padding_top27 padding_bottom27 border_bottom'>
+                        <view class='head font_size30' bindtap='tabBut1' data-current="0">类型
+                            <image class='daosanjiao'  src='/images/worklist/sanjiao.jpg'></image> 
+                        </view>
+                        <view class='head font_size30 border_left' bindtap='tabBut2' data-current="1">公司
+                            <image class='daosanjiao'  src='/images/worklist/sanjiao.jpg'></image> 
+                        </view>
+                        <view class='head font_size30 border_left' bindtap='tabBut3' data-current="2">需求
+                            <image class='daosanjiao'  src='/images/worklist/sanjiao.jpg'></image> 
+                        </view>
+                      </view>
+                  </view>
+                    <!--下拉内容  -->
+                    <view  style='height:75%' class=' backgroundfff {{hidden==false?"display_none":""}}'>
+                      <swiper style='height:100%' current="{{tabtab}}">
+                            <!--内容1  -->
+                            <swiper-item>
+                                <view  class='padding_top38 overflow padding_bottom38 backgroundfff'>
+                                    <view class='width85 auto padding_bottom100'>
+                                     <!--类型  -->
+                                      <view>
+                                        <view class='font_size28 colorc3c3c3'>类型</view>
+                                        <view class='font_size30 padding_top25 color828282'>
+                                        <view  wx:for="{{leixing}}" wx:key="id" class='padding_1020 border_radius30 inline_block margin_right30 margin_botton30 {{leixings==item.id?"background borderafff":"bordera9a9a9"}}' bindtap='typeBut'  id='{{item.id}}'>{{item.data}}</view>
+                                        </view>
+                                      </view>
+                                    </view>
+                                </view>
+                            </swiper-item>
+                            <!--内容2  -->
+                            <swiper-item>
+                                <view class='padding_top38 overflow padding_bottom38 backgroundfff'>
+                                    <view class='width85 padding_bottom100 auto'>
+                                        <!--融资  -->
+                                      <view>
+                                        <view class='font_size28 colorc3c3c3'>融资</view>
+                                        <view class='font_size30 padding_top25 color828282'>
+                                        <view  wx:for="{{rongzi}}" wx:key='id' class='padding_1020 border_radius30 inline_block margin_right30 margin_botton30 {{rongz==item.id?"background borderafff":"bordera9a9a9"}}' bindtap='rongziButto'  id='{{item.id}}'>{{item.data}}</view>
+                                        </view>
+                                      </view>
+                                        <!--规模  -->
+                                      <view>
+                                        <view class='font_size28 colorc3c3c3'>规模</view>
+                                        <view class='font_size30 padding_top25 color828282'>
+                                        <view wx:for="{{guimo}}" wx:key='id' class='padding_1020 border_radius30 inline_block margin_right30 margin_botton30 {{guim==item.id?"background borderafff":"bordera9a9a9"}}'bindtap='guimoBut' id='{{item.id}}'>{{item.data}}</view>
+                                      </view>
+                                      </view>
+                                        <!-- 行业  -->
+                                      <view>
+                                        <view class='font_size28 colorc3c3c3'>行业</view>
+                                        <view class='font_size30 padding_top25 color828282'>
+                                        <view wx:for="{{hangye}}" wx:key='id' class='padding_1020 border_radius30 inline_block margin_right30 margin_botton30 {{hany==item.id?"background borderafff":"bordera9a9a9"}}'bindtap='hangyeBut' id='{{item.id}}'>{{item.data}}</view>
+                                        </view> 
+                                      </view>
+                                    </view>
+                                </view>
+                            </swiper-item>
+                            <!--内容3  -->
+                            <swiper-item>
+                                <view class='padding_top38 overflow padding_bottom38 backgroundfff'>
+                                    <view class='width85 padding_bottom100 auto'>
+                                        <!--学历  -->
+                                      <view>
+                                        <view class='font_size28 colorc3c3c3'>学历</view>
+                                        <view class='font_size30 padding_top25 color828282'>
+                                        <view  wx:for="{{xueli}}" wx:key='id' class='padding_1020 border_radius30 inline_block margin_right30 margin_botton30 {{but==item.id?"background borderafff":"bordera9a9a9"}}' bindtap='butto'  id='{{item.id}}'>{{item.data}}</view>{{item.id}}
+                                        </view>
+                                      </view>
+                                        <!--经验  -->
+                                      <view>
+                                        <view class='font_size28 colorc3c3c3'>经验</view>
+                                        <view class='font_size30 padding_top25 color828282'>
+                                        <view wx:for="{{jingyan}}" wx:key='id' class='padding_1020 border_radius30 inline_block margin_right30 margin_botton30 {{experience==item.id?"background borderafff":"bordera9a9a9"}}'bindtap='experienceBut' id='{{item.id}}'>{{item.data}}</view>
+                                      </view>
+                                      </view>
+                                        <!-- 薪水  -->
+                                      <view>
+                                        <view class='font_size28 colorc3c3c3'>薪水</view>
+                                        <view class='font_size30 padding_top25 color828282'>
+                                        <view wx:for="{{xinshui}}" wx:key='id' class='padding_1020 border_radius30 inline_block margin_right30 margin_botton30 {{salary==item.id?"background borderafff":"bordera9a9a9"}}'bindtap='salaryBut' id='{{item.id}}'>{{item.data}}</view>
+                                        </view> 
+                                      </view>
+                                    </view>
+                                </view>
+                            </swiper-item>
+                      </swiper>
+                      <!--底部导航  -->
+                      <view style='width:100% ' class='position_fixed bottom100'>
+                      <view class=' width97 auto'>
+                        <button class='width40 inline_block backgroundblack colorfff' bindtap='Reset1'>重置</button>
+                        <button class='width60 inline_block background' bindtap='Submit1'>确认</button>
+                      </view>
+                      </view>
+                    </view>
+                    <view class='xiala {{hidden==true?"display_none":""}}'>
+                      <scroll-view class='box' scroll-y bindscrolltolower="getpullData1"bindscrolltoupper="getpull">
+                      <view class='explainCantainer {{hiddenpart1==true?"display_none":""}}' >
+                            <view class='empty_icon'>
+                                <image src='/images/empty/empty_bg.png'></image>
+                            </view>
+                            <view class='empty_text'>
+                              <view class='empty_text_01'>{{empty_text_01}}为空</view>
+                              <view class='empty_text_02'>{{empty_text_02}}</view>
+                            </view>
+                      </view>
+                          <!--可循环内容1  -->
+<view wx:for="{{list1}}" wx:key="id" wx:key="unique" class='{{hiddenpart1==true?"":"display_none"}} content border_bottom margin_top35'>
+                                <navigator hover-class="none" url="/pages/details/zwDetails?id={{item.id}}">
+                                  <view class='display_flex_space_between width90 auto'>
+                                        <view class='display_flex_space_between'>
+                                              <text class='font_size34 padding_leftright20'>{{item.
+profession_name}}</text>
+                                              <view class='padding10 background font_size28 inline_block border_radius5'>{{item.work_way_name}}</view>
+                                          </view>
+                                          <text class='colorfe5a01 font_size34 font_weight600'>{{item.lowsalary}}k-{{item.highsalary}}k</text>
+                                  </view>
+                                  <view class='margin_top15 font_size28 colorfea9a9a9 width90 auto '>
+                                    <text class='padding_leftright20 border_right'>暂未开启</text>
+                                    <text class='padding_leftright20 border_right'>{{item.work_year==0?item.work_year_name:item.work_yea}}</text>
+                                    <text class='padding_leftright20'>{{item.education_name}}</text>
+                                  </view>
+                                  <view class='margin_top35 font_size28 colorfea9a9a9 width90 auto display_flex_space_between '>
+                                    <view>
+                                         <text class='padding_leftright20'>{{item.name}}</text>
+                                         <text>{{item.finance_stage_name}}</text>
+                                    </view>
+                                    <view>{{item.unit==0?"":""}}{{item.unit==1?item.unit+"/月":""}}{{item.unit==2?item.unit+"/日":""}}{{item.unit==3?item.unit+"/时":""}}</view>
+                                  </view>
+                                  <view class='margin_top12 display_flex_space_between width90 auto'>
+                                          <view class=' width70 margin_top35'>
+                                              <image class='circle60  float_left' src='{{item.seller.avatar}}'></image>
+                                              <text class='padding10 font_size30 '>{{item.seller.name}}-{{item.seller.position}}</text>
+                                          </view>
+                                          <text class='margin_top45 colorfea9a9a9 font_size30'>{{item.ctime}}</text>
+                                  </view>
+                                </navigator>
+                            </view>
+                       <view class='text_align {{hiddentext==false?"display_none":""}}'>~~亲，已经到底了~~</view>
+                      </scroll-view>
+                    </view>
+              </swiper-item>
+              <swiper-item>
+                   <!--分类选择 -->
+                  <view class="section backgroundfff">
+                    <view class='display_flex_center padding_top27 padding_bottom27 border_bottom'>
+                      <view class='head font_size30' bindtap='tabBut1' data-current="0">推荐
+                          <image class='daosanjiao'  src='/images/worklist/sanjiao.jpg'></image> 
+                      </view>
+                      <view class='head font_size30 border_left' bindtap='tabBut2' data-current="1">行业
+                          <image class='daosanjiao'  src='/images/worklist/sanjiao.jpg'></image> 
+                      </view>
+                      <view class='head font_size30 border_left' bindtap='tabBut3' data-current="2">金额
+                          <image class='daosanjiao'  src='/images/worklist/sanjiao.jpg'></image> 
+                      </view>
+                    </view>
+                  </view>
+                  <!--下拉内容  -->
+                  <view  style='height:75%' class=' backgroundfff {{hidden==false?"display_none":""}}'>
+                    <swiper style='height:100%' current="{{tabtab}}">
+                            <!--内容1  -->
+                            <swiper-item>
+                              <view  class='padding_top38 overflow padding_bottom38 backgroundfff'>
+                                  <view class='width85 auto padding_bottom100'>
+                                    <!--推荐  -->
+                                    <view>
+                                      <view class='font_size28 colorc3c3c3'>推荐</view>
+                                      <view  class='font_size30 padding_top25 color828282'>
+                                        <view wx:for="{{tuijian}}" wx:key="id" class='padding_1020 border_radius30 inline_block margin_right30 margin_botton30 {{tuijia==item.id?"background borderafff":"bordera9a9a9"}}' bindtap='tuijianBut' id='{{item.id}}'>{{item.data}}</view>
+                                      </view>
+                                    </view>
+                                  </view>
+                              </view>
+                            </swiper-item>
+                            <!--内容2  -->
+                            <swiper-item>
+                              <view class='padding_top38 overflow padding_bottom38 backgroundfff'>
+                                  <view class='width85 padding_bottom100 auto'>
+                                      <!--行业  -->
+                                    <view>
+                                      <view class='font_size28 colorc3c3c3'>行业</view>
+                                      <view class='font_size30 padding_top25 color828282'>
+                                      <view  wx:for="{{hangye}}" wx:key="id" class='padding_1020 border_radius30 inline_block margin_right30 margin_botton30 {{hangye2==item.id?"background borderafff":"bordera9a9a9"}}' bindtap='hangyeButo'  id='{{item.id}}'>{{item.data}}</view>{{item.id}}
+                                      </view>
+                                    </view>
+                                  </view>
+                              </view>
+                            </swiper-item>
+                              <!--内容3  -->
+                            <swiper-item>
+                                <view class='padding_top38 overflow padding_bottom38 backgroundfff'>
+                                    <view class='width85 padding_bottom100 auto'>
+                                        <!-- 金额  -->
+                                      <view>
+                                        <view class='font_size28 colorc3c3c3'>金额</view>
+                                        <view class='font_size30 padding_top25 color828282'>
+                                        <view wx:for="{{jine}}" wx:key="id" class='padding_1020 border_radius30 inline_block margin_right30 margin_botton30 {{salary2==item.id?"background borderafff":"bordera9a9a9"}}'bindtap='jineBut' id='{{item.id}}'>{{item.data}}</view>
+                                        </view> 
+                                      </view>
+                                    </view>
+                                </view>
+                            </swiper-item>
+                    </swiper>
+                    <!--底部导航  -->
+                    <view style='width:100% ' class='position_fixed bottom100'>
+                    <view class=' width97 auto'>
+                      <button class='width40 inline_block backgroundblack colorfff' bindtap='Reset2'>重置</button>
+                      <button class='width60 inline_block background' bindtap='Submit2'>确认</button>
+                    </view>
+                    </view>
+                  </view>
+                  <view class='xiala {{hidden==true?"display_none":""}}'>
+                        <scroll-view class='box' scroll-y bindscrolltolower="getpullData2"bindscrolltoupper="getpull2">
+                        <view class='explainCantainer {{hiddenpart2==true?"display_none":""}}' >
+                              <view class='empty_icon'>
+                                  <image src='/images/empty/empty_bg.png'></image>
+                              </view>
+                              <view class='empty_text'>
+                                <view class='empty_text_01'>{{empty_text_01}}为空</view>
+                                <view class='empty_text_02'>{{empty_text_02}}</view>
+                              </view>
+                        </view>
+                            <!--可循环内容2  -->
+                            <view  wx:for="{{list2}}" wx:key="unique" class='content border_bottom margin_top35 {{hiddenpart2==true?"":"display_none"}}'>
+                                <navigator hover-class="none" url="/pages/details/xqDetails?id={{item.id}}">
+                                  <view class='display_flex_space_between width90 auto'>
+                                        <view class='width60'>
+                                              <text class='font_size34 padding_leftright20'>{{item.title}}123213</text>
+                                              <!-- <view class='padding10 backgroundff6940 font_size30 inline_block border_radius5 colorffffff'>{{item.index_name}}</view> -->
+                                          </view>
+                                          <text class='colorfe5a01 font_size34 font_weight600'>￥{{item.price}}</text>
+                                  </view>
+                                  <view class='margin_top15 font_size26 colorfea9a9a9 width90 auto display_flex_space_between'>
+                                        <view class='width55 display_flex_left'>
+                                            <text class='padding_leftright20 margin_right15 bordereeeeee border_radius5' wx:for="{{item.skills}}" wx:key="unique">{{item}}</text>
+                                        </view>
+                                        <text class=' colorfea9a9a9 font_size30'>{{item.ctime}}</text>
+                                  </view>
+                                  <view class='margin_top12 font_size30 colorfea9a9a9 width90 auto '>
+                                    <view class='padding_leftright20 textbox'>{{item.content}}
+                                    </view>
+                                  </view>
+                                  <view class='display_flex_space_between width90 auto'>
+                                        <view class=' width55 margin_top35'>
+                                              <image class='circle60  float_left' src='{{item.seller.avatar}}'></image>
+                                              <text class='padding10 font_size30 '>{{item.seller.name}}-{{item.seller.position}}</text>
+                                        </view>
+                                        <view class=' width45 margin_top45 display_flex_flex_end '>
+                                          <view class=' colorfea9a9a9 font_size30 buhuanhang'>{{item.seller.name}}-</view>
+                                          <view class=' colorfea9a9a9 font_size30 buhuanhang'>{{item.finance_stage_name}}</view>
+                                        </view>
+                                  </view>
+                                </navigator>
+                            </view>
+                         <view class='text_align {{hiddentext==false?"display_none":""}}'>~~亲，已经到底了~~</view>
+                        </scroll-view>
+                  </view>
+              </swiper-item>
+              <swiper-item>
+                <view class='xiala3'>
+                       <scroll-view class='box' scroll-y bindscrolltolower="getpullData2"bindscrolltoupper="getpull3">
+                      <view class='explainCantainer {{hiddenpart3==true?"display_none":""}}' >
+                            <view class='empty_icon'>
+                                <image src='/images/empty/empty_bg.png'></image>
+                            </view>
+                            <view class='empty_text'>
+                              <view class='empty_text_01'>{{empty_text_01}}为空</view>
+                              <view class='empty_text_02'>{{empty_text_02}}</view>
+                            </view>
+                      </view>
+                        <!--可循环内容3  -->
+                        <view  wx:for="{{list3}}" wx:key="unique" class='border_bottom {{hiddenpart3==true?"":"display_none"}}'>
+                        <view class='height30 backgroundfafafa'></view>
+                        <navigator hover-class="none" url="/pages/details/company?goodValue={{item.id}}">
+                          <view class='width90 auto margin_top12 padding_top30 display_flex_space_between'>
+                                    <image class='circle145 '  src='{{item.logo}}'></image>
+                                    <view class='width75'>
+                                    <view class=' display_flex_space_between padding_bottom15'>
+                                          <text class='font_size34 width55'>{{item.industry_name}}</text>
+                                    </view>
+                                    <view class='  padding_bottom15'>
+                                          <text class='font_size28 colorfea9a9a9'>{{item.address}}</text>
+                                    </view>
+                                    </view>
+                          </view>
+                          <view class='textbox font_size30 border_bottom margin_top12 colorbababa auto'>
+                            <view class='padding510 border_radius5 inline_block margin_left10 bordereeeeee'>{{tem.staff_size_name}}</view>
+                            <view class='padding510 border_radius5 inline_block margin_left10 bordereeeeee'>{{item.
+finance_stage_name}}</view>
+                            <view class='padding510 border_radius5 inline_block margin_left10 bordereeeeee'>{{item.industry_name}}</view>
+                          </view>
+                        </navigator>
+                        <view class='width90 auto padding_top20 padding_bottom20 font_size30'>
+                        <image class='huore inline_block'  src='/images/worklist/huomiao.jpg'></image> 
+                        <text class='margin_left10'>热招:啦啦啦德玛西亚！</text>
+                        </view>
+                        </view>
+                         <view class='text_align {{hiddentext==false?"display_none":""}}'>~~亲，已经到底了~~</view>
+                        </scroll-view>
+                  </view>
+              </swiper-item>
+        </swiper>
+  </view> 
+<!--尾部导航-->
+<!-- <import src="/pages/tabbar/tabbar.wxml"/>
+<template is='tabbar' data="{{tabbar}}"></template> -->

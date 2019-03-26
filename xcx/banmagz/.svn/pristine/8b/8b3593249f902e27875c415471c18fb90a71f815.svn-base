@@ -1,0 +1,21 @@
+<!--pages/business/search/search.wxml-->
+<view class='search'>
+  <view class='search_content'>
+    <icon type='search' size='12' color='#b2b2b2' class='search_icon_02'></icon>
+    <input placeholder='{{lists}}' type='text' maxlength='20' confirm-type='search' class='search_input_02' bindconfirm='searchbtn'></input>
+  </view>
+</view>
+<view class='main'>
+  <view class='main_content'>
+    <view class='main_title'>历史搜索</view>
+    <view class='main_list'>
+        <view class='main_list_info {{history==null?display:""}}' wx:for='{{history}}' wx:key="id" id='{{item}}' bindtap='getDatalist' wx:key='history'>{{item}}</view>  
+    </view>
+  </view>
+    <!-- <view class='main_content_02'>
+     <view class='main_title'>猜你要搜</view>
+     <view class='main_list'>
+       <view class='main_list_info' wx:for='{{guess}}' wx:key='guess'>{{item}}</view> 
+     </view>
+    </view>   -->
+</view>

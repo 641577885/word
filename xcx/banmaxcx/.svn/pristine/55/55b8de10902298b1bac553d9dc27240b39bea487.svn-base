@@ -1,0 +1,29 @@
+/* wallet/task.wxss */
+page{height: 100%;background: #f4f4f4}
+.moneyMain{width: 100%;background: #FFFFFF;    padding-bottom: 40rpx;}
+.moneyTitle{font-size: 30rpx;line-height: 83rpx;border-bottom: 1rpx solid #e5e5e5;}
+/*moneyMainCon*/
+.moneyMainCon{width: 690rpx;margin: 0 auto;}
+.memberall{display: flex;    flex-flow: row wrap;}
+.member{width: 33%;text-align: center;    font-size: 0;}
+.light{background: #FEDE01;border: 1rpx solid #fede01;color: #000000 !important;}
+.bmmember{font-size: 30rpx;}
+.getmoc{font-size: 24rpx;display:inline-block;width: 200rpx;height: 52rpx;    margin-top: 22rpx;color: #666;border: 1rpx solid #cccccc;text-align: center;line-height: 52rpx;border-radius: 22rpx;}
+/* .light{background: #FEDE01;border: none !important;color: #000000 !important;} */
+
+ .gold{width: 68rpx;height: 59rpx;display: inline-block;    margin: 43rpx 0 36rpx 0;
+ /* background: url(../img/moc_gold_07.png) no-repeat;background-size: contain; */
+ }
+.submit{width: 68rpx;height: 59rpx;display: inline-block; margin: 43rpx 0 36rpx 0;
+/* background: url(../img/moc_fly_09.png) no-repeat;background-size: contain; */
+}
+.share{width: 68rpx;height: 59rpx;display: inline-block; margin: 43rpx 0 36rpx 0;
+/* background: url(../img/moc_share_12.png) no-repeat;background-size: contain; */
+}
+.hire{width: 68rpx;height: 59rpx;display: inline-block; margin: 43rpx 0 36rpx 0;
+/* background: url(../img/moc_savafile_18.png) no-repeat;background-size: contain; */
+} 
+.showtop{margin-top: 19rpx;}
+.upnum{font-size: 22rpx;color: #fe5a01;display: block;padding-top: 10rpx;white-space:nowrap}
+.bottomText{text-align: center;line-height: 109rpx;font-size: 30rpx;color: #888888;}
+button{background-color: none;}

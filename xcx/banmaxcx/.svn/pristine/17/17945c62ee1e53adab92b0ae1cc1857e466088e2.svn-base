@@ -1,0 +1,113 @@
+// wallet/task.js
+const bm = require('../utils/common.js')
+var app = getApp()
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    current:0,
+    active:'',
+    currentid:'',
+    // disabled:false,
+    disabled1:false,
+    disabled2: false,
+    disabled3: false,
+    disabled4: false,
+    disabled5: false,
+    disabled6: false
+
+  },
+  getmoney:function(e){
+    this.setData({ active: e.target.dataset.current})
+    this.setData({ currentid: e.target.dataset.id })
+   
+    var that=this
+    // bm.requsetData('', 'post', { currentid: that.data.currentid }, function (res) {
+      //  if(res.data.error==0){
+         wx.showToast({
+           title: '已成功领取' + that.data.currentid+'元红包',
+           icon:'none',
+         })
+         setTimeout(function(){
+           if(that.data.active==1){
+             that.setData({ disabled1: !that.data.disabled1 })
+           }
+           if (that.data.active == 2) {
+             that.setData({ disabled2: !that.data.disabled2 })
+           }
+           if (that.data.active == 3) {
+             that.setData({ disabled3: !that.data.disabled3 })
+           }
+           if (that.data.active == 4) {
+             that.setData({ disabled4: !that.data.disabled4 })
+           }
+           if (that.data.active == 5) {
+             that.setData({ disabled5: !that.data.disabled5 })
+           }
+           if (that.data.active == 6) {
+             that.setData({ disabled6: !that.data.disabled6 })
+           }
+           that.setData({ active: 0 })
+         },2000)
+      //  }
+    // })
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+  
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+  
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+  
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+  
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+  
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+  
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+  
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+  
+  }
+})

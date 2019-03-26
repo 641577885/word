@@ -1,0 +1,104 @@
+// wallet/invited.js
+const bm = require('../utils/common.js')
+const Page = require('../utils/ald-stat.js').Page;
+var app = getApp()
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    active: 0,//当前所在滑块的 index
+    // hiddentext:false,
+    current: 1,
+  },
+  tab: function (event) {
+    this.setData({ active: event.target.dataset.current })
+
+    // this.getlistData()
+  },
+  // 滑动事件
+  eventchange: function (event) {
+    this.setData({ active: event.detail.current })
+
+  },
+  wechart:function(){
+     wx.navigateTo({
+       url: '../pages/share/shareImg',
+     })
+  },
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    var role = app.globalData.role;
+    var that = this
+    var type;
+    bm.requsetData('/c/action/invreg_info', 'get', { type: role }, function (data) {
+      console.log(data)
+      if (!data.data.errcode) {
+        that.setData({
+          history: data.data.inv_history,
+          inv_num: data.data.inv_num * 5,
+          rank: data.data.inv_rank
+        })
+      } else {
+        wx.showToast({
+          title: data.data.errmsg,
+          icon: 'none',
+          duration: 2000
+        })
+      }
+    })
+  },
+
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+  
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+  
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+  
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+  
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+  
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+  
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+  
+  }
+})

@@ -1,0 +1,173 @@
+// pages/pay/setpay.js
+const bm = require('../utils/common.js');
+var app=getApp();
+Page({
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    role:2,
+    uid:'',
+    textarea_num:0,
+    work_content:'',
+    // tab切换 
+    currentTab: 0,
+    periodArray: ['1个月', '2个月', '3个月', '4个月', '5个月', '6个月', '7个月', '8个月', '9个月', '10个月', '11个月','12个月'],
+    periodindex:0,
+    byprice: '',
+    dzprice: '',
+    minDate:'',
+    start_time:'',
+    dzStime:'',
+    dzEtime: '',
+    month:1,
+    showRed:false,
+    bymaxcount: 0, //最大抵扣
+    dzmaxcount: 0, //最大抵扣
+    countMoney:Number, //红包值
+    byServiceFee:0,
+    dzServiceFee: 0,
+    byAllPrice: 0,
+    dzAllPrice: 0
+  },
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    var that=this;
+    var date = new Date();
+    that.setData({ minDate: bm.formatToday(), start_time: bm.formatToday(), dzStime: bm.formatToday(), dzEtime: bm.formatToday(1), uid:options.uid})
+  },
+  /**textarea输入 */
+  bindTextAreaChange:function(e){
+    this.setData({ textarea_num: e.detail.value.length, work_content: e.detail.value})
+  },
+  choosePeriod:function(e){
+    this.setData({ month: parseInt(e.detail.value)+1, periodindex: e.detail.value})
+  },
+  //选择日期
+  chooseStart:function(e){
+    this.setData({ start_time: e.detail.value });
+  },
+  chooseDzStart:function(e){
+    this.setData({ dzStime: e.detail.value, dzEtime: e.detail.value });
+  },
+  chooseDzEnd: function (e) {
+    this.setData({ dzEtime: e.detail.value });
+  },
+  checkboxChange:function(e){
+    var that=this;
+    if (e.detail.value.length!=0){
+      that.setData({showRed:true})
+    }else{
+      that.setData({showRed:false})
+    }
+    that.countAllPrice();
+  },
+  //价格
+  fillPrice:function(e){
+    var that=this;
+    var _type=e.target.dataset.type;
+    var _price = e.detail.value;
+    var maxcount = (_price * 0.05).toFixed(2);
+    if (maxcount >= Number(that.data.countMoney)) {
+      maxcount = that.data.countMoney
+    }
+    if (_type=='by'){
+      that.setData({ byprice: _price, bymaxcount: maxcount, byServiceFee: (_price * 0.05).toFixed(2)})
+    }else{
+      that.setData({ dzprice: _price, dzmaxcount: maxcount, dzServiceFee: (_price * 0.05).toFixed(2)})
+    }
+    that.countAllPrice();
+  },
+
+  countAllPrice:function(){
+    if (this.data.currentTab == 0){
+      var byAllPrice = Number(this.data.byprice) + Number(this.data.byServiceFee); 
+      this.setData({ byAllPrice: byAllPrice })
+    }else{
+      var dzAllPrice = Number(this.data.dzprice) + Number(this.data.dzServiceFee);
+      this.setData({ dzAllPrice: dzAllPrice })
+    }
+  },
+
+  /**选项切换 */
+  bindqh: function (e) {
+    var that = this;
+    that.setData({ currentTab: e.detail.current });
+    that.countAllPrice();
+  },
+  swichNav: function (e) {
+    var that = this;
+    if (this.data.currentTab === e.target.dataset.current) {
+      return false;
+    } else {
+      that.setData({
+        currentTab: e.target.dataset.current
+      })
+      that.countAllPrice();
+    }
+  },
+  ckorder:function(){
+    var that = this;
+    if (!that.data.work_content) {
+      wx.showToast({
+        title: '请输入工作内容',
+        icon: 'none'
+      })
+      return false;
+    }
+    if (that.data.currentTab == 0) {
+      if (!that.data.byprice) {
+        wx.showToast({
+          title: '请输入雇佣金额',
+          icon: 'none'
+        })
+        return false;
+      }
+      var query = { rtype: 1, receive_id: that.data.uid, allprice: that.data.byprice, begintime: that.data.start_time, month: that.data.month, beizhu: that.data.work_content,}
+    } else {
+      if (!that.data.dzprice) {
+        wx.showToast({
+          title: '请输入托管金额',
+          icon: 'none'
+        })
+        return false;
+      }
+      var query = { rtype: 2, receive_id: that.data.uid, allprice: that.data.dzprice, begintime: that.data.dzStime, endtime: that.data.dzStime, beizhu: that.data.work_content,}
+    }
+    bm.requsetData('/w/resume/ckorder/create', 'post', query, function (res) {
+      if (!res.data.errcode) {
+        wx.showToast({
+          title: "生成订单成功",
+          icon:"success",
+          success:function(){
+            setTimeout(function(){
+                wx.navigateBack()
+            },100)
+          }
+        })
+      } else {
+        if (res.data.errcode==11401){
+          wx.showModal({
+            content: '非会员同时只能被1位雇主雇佣，开通会员提升上限。立即开通',
+            success: function (res) {
+              if (res.confirm) {
+                wx.navigateTo({
+                  url: '/pages/openvip/vipExplain',
+                })
+              } else if (res.cancel) {
+                console.log('用户点击取消')
+              }
+            }
+          })
+        }else{
+          wx.showToast({
+            title: res.data.errmsg,
+            icon: 'none'
+          })
+        }
+      }
+    })
+  }
+})

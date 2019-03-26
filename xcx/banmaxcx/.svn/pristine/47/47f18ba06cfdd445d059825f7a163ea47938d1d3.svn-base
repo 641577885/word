@@ -1,0 +1,21 @@
+/* wallet/aboutMoc.wxss */
+page{height: 100%}
+.mocContanier{width: 100%;background: #f4f4f4}
+.mocMain{width: 100%;background: #ffffff;margin-bottom: 30rpx}
+.mainbg{width: 100%;height: 750rpx;}
+.mocTitle{font-size: 36rpx;color: #000000;text-align: center;padding-top: 39rpx}
+.showtxt{line-height: 234rpx;}
+.content{font-size: 36rpx;color: #cfcfcf;padding: 0 66rpx 32rpx 66rpx;text-align: justify;position: relative}
+.mocMainCon{display: flex;background: #FFFFFF;border-radius:28rpx;position: absolute;left: 45rpx;top: 366rpx;width: 660rpx;box-shadow: 0rpx 0rpx 180rpx #424040;}
+.totalnum{width: 250rpx;border-right: 1rpx solid #eeeeee;text-align: center;margin: 21rpx 0 27rpx 0}
+.moctotal{font-size: 22rpx;line-height: 45rpx}
+.billion{font-size: 38rpx}
+.stop{font-size: 22rpx;color: #888888;padding: 14rpx 0  14rpx 0}
+.mocDetail{width: 690rpx;margin: 0 auto}
+.mocpos{text-align: left;padding: 38rpx 40rpx 0 33rpx;}
+.showright{border-bottom:1rpx solid #e5e5e5;padding: 28rpx 40rpx 40rpx 78rpx;font-size: 28rpx;color: #888888}
+.content .text{margin-bottom: 10rpx;line-height: 40rpx}
+.getmoc{margin-top: 30rpx;}
+.bottom{font-size: 30rpx;color: #888888;line-height: 108rpx;text-align: center}
+.contentext{text-indent: 70rpx;}
+.showbottom{margin-top: 139rpx;background: #fff;} 

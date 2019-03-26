@@ -1,0 +1,18 @@
+<!--pages/applyTicket/pages/moc/mocRechange.wxml-->
+<!-- <web-view src='{{url}}' bindmessage="msgHandler"></web-view> -->
+
+<view class='mocContanier'>
+    <view class='mocMain'>
+        <view class='mocMainCon'>
+            <!--<div class='mocNum'>充值金额</div>-->
+            <view class="section">
+                <!-- <input class='inputnum' type="tel" bindinput='inputnum'  placeholder="请输入充值金额" placeholder-class='place-holder' auto-focus/> -->
+                  <input class='inputnum' bindinput='inputnum' placeholder="请输入充值金额" auto-focus/>
+            </view>
+        </view>
+
+    </view>
+    <view class='rnameBottom'>
+        <button catchtap='nextbtn'  id="nextbtn" class='nextbtn'>下一步</button>
+    </view>
+</view>

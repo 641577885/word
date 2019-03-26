@@ -1,0 +1,8 @@
+<view class='fillcode'>
+  <view class='fillcodecantainer' catchtap='focusSet'>
+    <view wx:for="{{tcode_arr}}" class='codeItem {{index==tcode_index?"action":""}}' wx:key="id">{{tcode_arr[index]}}</view>
+  </view>
+  <input class='codeInp' type='number' maxlength='6' auto-focus='{{true}}' focus='{{focus_flag}}' value='{{tcode}}' bindinput='setCode' />
+  <view class='codeCountDown' wx:if="{{showClock}}"><text>{{clock}}s</text>后重新发送</view>
+  <button class='codeResend btnBlack' wx:if="{{showResend}}" bindtap='sendCell'>重新发送</button>
+</view>

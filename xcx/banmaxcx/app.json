@@ -1,0 +1,219 @@
+{
+  "pages": [
+    "pages/login/loading",
+    "pages/index/loading",
+    "pages/index/index",
+    "pages/business/list",
+    "pages/worker/list",
+    "pages/worker/follow",
+    "pages/message/message",
+    "pages/worker/mycentre",
+    "pages/details/zwDetails",
+    "pages/details/xqDetails",
+    "pages/details/company",
+    "pages/tcash/wallet",
+    "pages/tcash/problem",
+    "pages/tcash/tcash",
+    "pages/tcash/banlance",
+    "pages/tcash/meichai",
+    "pages/bank/bankcard",
+    "pages/bank/bank",
+    "pages/picker/jobPicker",
+    "pages/picker/abilityPicker",
+    "pages/picker/indusPicker",
+    "pages/picker/cityPicker",
+    "pages/fill/inputFill",
+    "pages/fill/textareaFill",
+    "pages/pay/pay",
+    "pages/yzm/yzm",
+    "pages/openvip/openvip",
+    "pages/openvip/vipExplain",
+    "pages/share/share",
+    "pages/share/share02",
+    "pages/share/share03",
+    "pages/share/shareck",
+    "pages/share/sharegu",
+    "pages/search/search",
+    "pages/applyTicket/apply",
+    "pages/applyTicket/mocRechange",
+    "pages/tcash/taxesExplain",
+    "pages/picker/fwPicker",
+    "pages/demandList/index",
+    "pages/worker/fastResume",
+    "pages/fill/priceFill",
+    "pages/demandList/inform",
+    "pages/applyTicket/history",
+    "pages/applyTicket/eleticket",
+    "pages/applyTicket/applysuccess",
+    "pages/worker/resumelist",
+    "pages/share/shareresume",
+    "pages/share/shareposition",
+    "pages/share/sharedemand"
+  ],
+  "subPackages": [
+    {
+      "root": "message",
+      "pages": [
+        "dialog",
+        "bmDialog"
+      ]
+    },
+    {
+      "root": "olwork",
+      "pages": [
+        "addRecord",
+        "addExplain",
+        "onlineList",
+        "posDetail"
+      ]
+    },
+    {
+      "root": "order",
+      "pages": [
+        "setpay"
+      ]
+    },
+    {
+      "root": "worker",
+      "pages": [
+        "my/jobWanted",
+        "my/workExper",
+        "my/projectExper",
+        "my/eduExper",
+        "my/slcg",
+        "resume/uploading",
+        "resume/resumeAccessory",
+        "resume/Email",
+        "resume/computerRedact",
+        "my/myresume",
+        "jobwanted/manage",
+        "jobwanted/addpost",
+        "my/workinfo",
+        "search/search",
+        "search/maskinglist",
+        "my/myFill"
+      ]
+    },
+    {
+      "root": "member",
+      "pages": [
+        "bindPhone",
+        "fillCode"
+      ]
+    },
+    {
+      "root": "setting",
+      "pages": [
+        "coSearch",
+        "hideCompany",
+        "mySetting",
+        "secretSetting",
+        "say",
+        "sayInput",
+        "modifyPhone"
+      ]
+    },
+    {
+      "root": "resume",
+      "pages": [
+        "gyResume",
+        "pjResume",
+        "resume"
+      ]
+    },
+    {
+      "root": "record",
+      "pages": [
+        "uprecord",
+        "concern"
+      ]
+    },
+    {
+      "root": "report",
+      "pages": [
+        "report"
+      ]
+    },
+    {
+      "root": "wallet",
+      "pages": [
+        "money",
+        "mocDetail",
+        "aboutMoc",
+        "task",
+        "invited",
+        "rules",
+        "mission"
+      ]
+    },
+    {
+      "root": "help",
+      "pages": [
+        "help",
+        "problem",
+        "agreement",
+        "privacy"
+      ]
+    },
+    {
+      "root": "guide",
+      "pages": [
+        "activity",
+        "done"
+      ]
+    },
+    {
+      "root": "auth",
+      "pages": [
+        "camera",
+        "authinfo",
+        "autherr",
+        "authsuccess"
+      ]
+    }
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#fede01",
+    "navigationBarTitleText": "班马佳薪",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#7f8389",
+    "selectedColor": "#7f8389",
+    "borderStyle": "#cccccc",
+    "backgroundColor": "#f7f7fa",
+    "list": [
+      {
+        "pagePath": "pages/worker/list",
+        "iconPath": "/images/worker/job_01.png",
+        "selectedIconPath": "/images/worker/job_02.png",
+        "text": "职位"
+      },
+      {
+        "pagePath": "pages/demandList/index",
+        "iconPath": "/images/worker/resume_01.png",
+        "selectedIconPath": "/images/worker/resume_02.png",
+        "text": "需求"
+      },
+      {
+        "pagePath": "pages/index/loading",
+        "iconPath": "/images/worker/add.png",
+        "selectedIconPath": "/images/worker/add.png",
+        "text": "发布"
+      },
+      {
+        "pagePath": "pages/message/message",
+        "iconPath": "/images/worker/message_01.png",
+        "selectedIconPath": "/images/worker/message_02.png",
+        "text": "消息"
+      },
+      {
+        "pagePath": "pages/worker/mycentre",
+        "iconPath": "/images/worker/my_01.png",
+        "selectedIconPath": "/images/worker/my_02.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "debug": false
+}

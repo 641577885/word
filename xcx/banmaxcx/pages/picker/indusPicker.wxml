@@ -1,0 +1,20 @@
+<!--pages/picker/indusPicker.wxml-->
+   <view class='indusPosition' id='mjltest'>
+    <view class='indusTitle_02'>已选行业</view>
+    <view class='indusPositionTxt_02'>
+      <view class='color indusItem ' wx:for='{{select_list}}' bindtap='delclick' wx:key='select_list'wx:for-index="index" data-index="{{index}}">{{item.indusName}}<view class='delstyle'>×</view></view>
+    </view>
+  </view>
+<view class='indusCantianer'  style='margin-top:{{height}}rpx'>
+
+  <view class='indusItemCantainer' wx:for='{{indusList}}' wx:for-item='vo' wx:key>
+    <view class='indusTitle'><text>{{vo.name}}</text></view>
+    <view class='indusItemList'>
+      <view class='indusItem {{ct.checked?"clickstyle":""}}' wx:for='{{vo.sub}}'  wx:for-item='ct' wx:key data-id='{{ct.id}}' data-indusname='{{ct.name}}'  bindtap='addclick'>{{ct.name}}</view>
+    </view>
+  </view>
+  <view class='btn_content'>
+  <button class='btn' bindtap='checkindus'>保存</button>
+  </view>
+</view>
+

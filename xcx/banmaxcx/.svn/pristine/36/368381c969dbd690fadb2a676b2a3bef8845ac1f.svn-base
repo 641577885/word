@@ -1,0 +1,70 @@
+<!--pages/openvip/openvip.wxml-->
+<view class='top'>
+  <view class='vipcard {{vipcard_style}}'>
+    <view class='title'>班马佳薪会员</view>
+    <view class='opennum'>{{opennum}}</view>
+    <view class='vipicon'>
+      <image src='/images/worker/{{vip_icon}}.png'></image>
+      <text style='color:{{font_style}}'>VIP</text>
+    </view>
+  </view>
+</view>
+<view class='content'>
+  <view class='content_01'>
+  <view class='content_01_main'>
+    <view class='radio_main' bindtap='bindradio' data-id='1'>
+      <view class='vip_price'>
+        <text class='price_text_01'>{{year_price}}</text>
+        <text class='price_text_02'>元/年</text>
+      </view>
+      <view class='vip_type'>年度会员</view>
+      <view class='radio_icon'>
+        <view class='icon'>
+          <icon type='success' size='23' wx:if='{{vip_type == 1?true:false}}'></icon>
+        </view>
+      </view>
+    </view>
+    <view class='radio_fg'></view>
+    <view class='radio_main'  bindtap='bindradio' data-id='3'>
+      <view class='vip_price'>
+        <text class='price_text_01'>{{month_price}}</text>
+        <text class='price_text_02'>元/月</text>
+      </view>
+      <view class='vip_type'>月度会员</view>
+      <view class='radio_icon'>
+        <view class='icon'>
+          <icon type='success' size='23'wx:if='{{vip_type == 3?true:false}}'></icon>
+        </view>
+      </view>
+    </view>
+    </view>
+    <view class='content_02'>
+      <view class='vip_time'><text>会员时间：</text><text>{{viptime}}~{{endtime}}</text></view>
+      <view class='yh_type'>
+        <text>优惠方式</text>
+        <view class='yh_type_content'>
+          <view class='yh_select'>
+            <view class='yh_icon'><icon type='success'></icon></view>
+            <text>限时优惠价</text>
+          </view>
+          <view class='yh_select'>
+            <view class='yh_icon'><icon type='success'></icon></view>
+            <text>红包抵扣115元</text>
+          </view>
+        </view>
+      </view>
+      <view class='hb'wx:if='{{vip_type == 1?true:false}}'><text>会员周期：</text><text>12个月</text></view>
+      <view class='hb'wx:if='{{vip_type == 1?false:true}}'><text>会员周期：</text><text>1个月</text></view>
+      <view class='yjprice'><text>原价：</text><text>{{nozhe}}元</text></view>
+      <view class='allprice'>
+        <text>总价：</text>
+        <text>{{allprice}}元</text>
+      </view>
+    </view>
+  </view>
+  
+</view>
+<view class='bottom'>
+  <navigator url='/pages/openvip/vipExplain' class='vipExplain' hover-class='none'>了解会员详情</navigator>
+  <button bindtap='submit'>确认开通</button>
+</view>

@@ -1,0 +1,94 @@
+/* pages/worker/details/job.wxss */
+/* pages/business/position/details.wxss */
+page{background: #fafafa;font-size: 26rpx;}
+.detailCantainer{ position: absolute; top: 0; right: 0; bottom: 100rpx; left: 0;}
+.position_top{background: #fff;}
+.position_title{width: 670rpx;height: 165rpx;border-bottom: 1rpx solid #eeeeee;padding-top: 36rpx;margin: 0 auto;}
+.title_content{width: 100%;height: 90rpx;display: flex;justify-content: space-between;line-height: 90rpx;}
+.title_content_01{font-size: 48rpx;font-weight: bold;color: #353535;}
+.title_content_02{color: #ff4040;}
+.salary{height: 20rpx;line-height: 20rpx;margin-top: 17rpx;color: #353535;}
+.position_info{width: 690rpx;height: 78rpx;margin: 0 auto;line-height: 78rpx;display: flex;align-items: center;}
+.info_icon{width: 26rpx;height: 26rpx;margin-right: 6rpx;}
+.info_icon_02{width: 120rpx;height: 34rpx;}
+.position_info text{margin-right: 31rpx;}
+/*需求详情*/
+.work_experience{width: 100%;background: #fff;margin-top: 30rpx;}
+.common_title{width: 720rpx;height: 68rpx;margin-left: 30rpx;border-bottom: 1rpx solid #eeeeee;padding-top: 20rpx;z-index: 0;}
+.common_title_main{width: 110rpx;height: 66rpx;border-bottom: 3rpx solid #fede01;line-height: 66rpx;text-align: center;z-index: 1;}
+.experience_list{width: 100%;}
+.experience_list_main{width: 690rpx;margin: 0 auto;padding-top: 24rpx;padding-bottom: 27rpx;}
+.list_title{line-height: 60rpx;display: flex;justify-content: space-between;}
+.list_title_01{font-size: 34rpx;font-weight: bold;}
+.list_title_02{color: #999999;}
+.list_content{width: 100%;overflow: hidden;line-height: 36rpx;color: #333333;margin-top: 13rpx;}
+.list_company{width: 100%;height: 38rpx;line-height: 38rpx;color: #8b8b8b;margin-top: 22rpx;}
+.skill{width: 100%;background: #fff;margin-top: 20rpx;}
+.skill_content{width: 690rpx;margin: 0 auto;}
+.skill_htype{display: inline-block;width: auto;height: 60rpx;border: 1rpx solid #eaeaea;border-radius: 30rpx;line-height: 60rpx;padding: 0 23rpx;margin: 37rpx 30rpx 40rpx 0;font-size: 30rpx;color: #686868;}
+/* 公司 */
+.company{width: 100%;height: 156rpx;background: #fff;margin-top: 30rpx;display: flex;justify-content: space-between;padding-top: 50rpx;}
+.company_info{width: 584rpx;margin-left: 30rpx;}
+.company_logo{width: 88rpx;height: 101rpx;margin-right: 47rpx;display: flex;align-items: center;overflow: hidden}
+.company_logo image{width: 100%;}
+.company_name{line-height: 56rpx;font-size: 36rpx;color: #353535;font-weight: bold;}
+.company_ss{line-height: 50rpx;color: #353535;}
+/*发布人*/
+.publisher{padding-left: 45rpx;padding-right: 36rpx;display: flex;justify-content: space-between;height: 99rpx;padding-top: 33rpx}
+.publisher_left{display: flex;}
+.avatar{width: 62rpx;height: 62rpx;border-radius: 50%;background: #fff;display: flex;align-items: center;overflow: hidden}
+.avatar image{width: 100%}
+.publisher_info{margin-left: 27rpx;}
+.publisher_name{font-size: 30rpx;color: #333;line-height: 30rpx;}
+.publisher_company{font-size: 24rpx;color: #333;line-height: 26rpx;margin-top: 7rpx;}
+.publisher_right{font-size: 24rpx;color: #999999;line-height: 43rpx;margin-top: 28rpx}
+/* 地图 */
+.map{width: 690rpx;height: 80rpx;position: relative;background: #fff;padding: 0 30rpx;font-size: 30rpx;color: #999999;padding-bottom: 30rpx;margin: 0 auto}
+/*推荐职位*/
+.rec{margin-top: 30rpx;}
+.rec_content{width: 100%;background: #fff}
+.rec_list{width: 690rpx;height: 313rpx;border-bottom: 1rpx solid #eeeeee;margin-left: 30rpx;padding-top: 34rpx;padding-right: 30rpx;align-items: center;}
+.rec_list_01{width: 100%;height: 42rpx;display: flex;justify-content: space-between;}
+.rec_list_01_left{display: flex;}
+.rec_name{font-size: 34rpx;color: #000}
+.rec_js{width: 188rpx;height: 42rpx;background: linear-gradient(to right, #fede01 , #fdc100);font-size: 26rpx;text-align: center;line-height: 42rpx;border-radius: 3rpx;margin-left: 20rpx;}
+.rec_list_01_right{font-size: 36rpx;color: #fe5a01}
+.rec_list_02{line-height: 40rpx;margin-top: 25rpx;font-size: 26rpx;color: #a9a9a9;}
+.rec_list_03{display: flex;justify-content: space-between;height: 58rpx;align-items: center;margin-top: 45rpx;}
+.rec_list_03_left{display: flex;}
+.rec_avatar{width: 58rpx;height: 58rpx;border-radius: 50%;background: #dfdfdf;overflow: hidden}
+.rec_avatar image{width: 58rpx;height: 58rpx;}
+.rec_pos{line-height: 58rpx;font-size: 26rpx;margin-left: 22rpx;}
+.rec_list_03_right{font-size: 24rpx;color: #bfbfbf}
+
+/*按钮*/
+.position_btn{width: 100%;padding: 10rpx;background: #fafafa;position: fixed;bottom: 0;left: 0;}
+/*创客按钮*/
+.worker_btn{width: 730rpx;height: 76rpx;background: #fdc100 linear-gradient(to right,#fede01,#fdc100);border-radius:9rpx;line-height: 76rpx;text-align: center;font-size: 30rpx}
+/*boss按钮*/
+.boss_btn{width: 730rpx;height: 76rpx;display: flex;justify-content: space-between;}
+.boss_btn_left{width: 74rpx;height: 76rpx;}
+.boss_btn_img{width: 74rpx;height: 50rpx;}
+.boss_btn_left_num{width: 100%;height: 26rpx;text-align: center;font-size: 22rpx;line-height: 26rpx}
+.boss_btn_midd{width: 385rpx;height: 76rpx;background: #000;color: #fff;text-align: center;line-height: 76rpx;border-radius: 9rpx;font-size: 29rpx;}
+.boss_btn_right{width: 250rpx;height: 76rpx;background:#fdc100 linear-gradient(to right,#fede01,#fdc100);color: #000;text-align: center;line-height: 76rpx;border-radius: 9rpx;font-size: 29rpx;}
+
+.sharebutton::after{
+  border:none;
+  }
+action-sheet{background: #fff}
+.action_item{height: 140rpx;width: 690rpx;margin: 0 auto;border-bottom: 1rpx solid #ccc;padding: 0;}
+.action_item_02{height: 140rpx;width: 690rpx;margin: 0 auto;padding: 0}
+.sharebutton{background: #fff;height: 100%;line-height: 140rpx;display: flex;align-items: center;}
+.sharebutton image{width: 86rpx;height: 86rpx;}
+.sharebutton text{margin-left: 42rpx;font-size: 36rpx;}
+canvas{width: 100%;height:100%;background: #000;z-index: 6}
+
+.address{width: 100%;height: 244rpx;margin-top: 30rpx;position: relative;}
+.address_bg{width: 100%;height: 100%;}
+.address_main{width: 610rpx;padding: 30rpx 40rpx;background: #fff;position: absolute;top: 30rpx;left: 50%;margin-left: -345rpx;border-radius: 6rpx;}
+.address_dw{width: 76rpx;height: 76rpx;position: absolute;top: 37rpx;right: 39rpx}
+.address_title{font-size: 30rpx;line-height: 42rpx;font-weight: bold}
+.address_content{font-size: 24rpx;width: 500rpx;color: #666666;margin-top: 15rpx;line-height: 36rpx;}
+
+.indexback{position: fixed;bottom: 150rpx;right: 43rpx;z-index: 9999}

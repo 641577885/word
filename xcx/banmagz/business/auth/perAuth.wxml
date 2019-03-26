@@ -1,0 +1,2 @@
+<!--pages/business/auth/perAuth.wxml-->
+<web-view src="{{url}}"></web-view>

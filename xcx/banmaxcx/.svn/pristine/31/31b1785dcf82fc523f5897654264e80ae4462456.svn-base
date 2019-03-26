@@ -1,0 +1,37 @@
+<!--pages/index/index.wxml-->
+<view class='topbar'>
+  <view class='topbarLeft'>
+    <view class='topbarTxt {{checkIndex==item.id?"action":""}}' wx:for="{{selectList}}" wx:key data-check="{{item.id}}"><navigator appId="wxc334d30284ddd9c6" open-type="navigate"  target="miniProgram" path="" version="trial" hover-class='none'>{{item.name}}</navigator></view>
+  </view>
+</view>
+<block wx:if="{{checkIndex==0 || checkIndex==2}}">
+  <view class='mapCantainer'>
+    <map
+      id='myMap' 
+      latitude="{{latitude}}" 
+      longitude="{{longitude}}"
+      markers='{{markers}}' 
+      show-location 
+      include-points
+      scale='14'
+      style='width:100%; height:100%'
+    ></map>
+    <cover-view class='lingCantainer' wx:if="{{showtip}}">
+      <cover-image class='ling' src='/images/index/ling.png' mode='aspectFill'></cover-image>
+      <cover-view class='lingTxt'>已为您找到{{pnums}}位合适的创客，完善招聘信息</cover-view>
+    </cover-view>
+    <cover-view class='boxCantainer' wx:if="{{showLoad}}">
+      <cover-view class='boxItem'>
+        <cover-view class="sing-com one"></cover-view>
+        <cover-view class="sing-com two"></cover-view>
+        <cover-view class="sing-com three"></cover-view>
+        <cover-view class="sing-com four"></cover-view>
+      </cover-view>
+    </cover-view>
+  </view>
+  <view class='demandCantainer'>
+      <navigator appId="wxc334d30284ddd9c6" open-type="navigate"  target="miniProgram" path="" version="trial" class='findBtn' hover-class='none'>一键召唤人才</navigator>
+      <view class='back' bindtap='backtoLast'><image src='/images/back.png' mode='aspectFill'></image></view>
+  </view>
+</block>
+

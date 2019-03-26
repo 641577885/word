@@ -1,0 +1,12 @@
+<!--setting/modifyPhone.wxml-->
+<form bindsubmit="{{bind}}">
+<text>新手机</text>
+<input type='text' value='' name='newlxtel'></input>
+<button formType="submit"><text wx:if='{{codeshow}}'>发送验证码</text><text wx:else>{{time}}s后重新发送</text></button>
+</form>
+<form bindsubmit="vcode">
+<text>验证码</text>
+<input type='text' value='' name='vcode'></input>
+<button formType="submit">提交</button>
+</form>
+

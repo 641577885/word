@@ -1,0 +1,8 @@
+/* pages/worker/fastResume.wxss */
+.fastResume{width: 100%;height: 96rpx;background: #fff;border-bottom:1rpx solid #e5e5e5;}
+.fastResume_jdt{height: 8rpx;background: linear-gradient(to right, #fec611 , #fd600c);border-radius: 4rpx;}
+.fastResume_content{height: 88rpx;width: 690rpx;margin: 0 auto;display: flex;align-items: center;justify-content: space-between;}
+.fastResume_content_left{font-size: 26rpx;}
+.fastResume_content_right{display: flex;align-items: center;}
+.fastResume_content_right text{font-size: 30rpx;color: #ffa200;margin-right: 24rpx;}
+.fastResume_content_right image{width: 16rpx;height: 25rpx;}

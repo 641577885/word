@@ -1,0 +1,181 @@
+// auth/auth.js
+var app = getApp();
+var bm = require('../utils/common.js')
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    video_bind: 'star',
+    video_text: '开始识别',
+    time:'',
+    title_show:0,
+    btn_show:1,
+    //验证码
+    validate_data:'',
+    //	签名验签
+    authorization:'',
+    //当前应用APPID
+    appid:'',
+    //大于等于3时跳转到联系客服实名认证
+    auth_times:null,
+    name:'',
+    idcard:'',
+    title:'开始识别后请大声朗读数字'
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    var that = this
+    var name = app.auth_name
+    var idcard = app.auth_idcard
+    that.setData({
+      name:name,
+      idcard:idcard
+    })
+    bm.requsetData('/c/action/get_tencode', 'get', '', function (data) {
+      if (data.data.auth_times>=3){
+        wx.redirectTo({
+          url: '/auth/autherr?errtype=2',
+        })
+      }
+    })
+  },
+
+  star: function () {
+    var that = this
+    var ctx = wx.createCameraContext(this)
+    var time = 8
+    //获取验证码
+    bm.requsetData('/c/action/get_tencode', 'get', '', function (data) {
+      console.log(data)
+      that.setData({
+        title_show:1,
+        validate_data: data.data.validate_data,
+        authorization: data.data.authorization,
+        appid: data.data.appid,
+      })
+    })
+    ctx.startRecord({
+      success: function (data) {
+        console.log(data)
+        that.setData({
+          video_bind: 'end',
+          video_text: '结束识别'
+        })
+      }
+    })
+    var _send=setInterval(function(){
+      time -=1
+      console.log(time)
+      if(time > 0 ){
+        that.setData({
+          time:time
+        })
+      }else{
+        clearInterval(_send)
+        that.end()
+        that.setData({
+          time: ''
+        })
+      }
+    },1000)
+    
+  },
+  end: function () {
+    var that = this
+    var ctx = wx.createCameraContext(this)
+    //验证码
+    var validate_data=that.data.validate_data
+    //	签名验签
+    var authorization = that.data.authorization
+    //当前应用APPID
+    var appid = that.data.appid
+    //大于等于3时跳转到联系客服实名认证
+    var auth_times = that.data.auth_times
+    var idcard = that.data.idcard
+    var name = that.data.name
+    var auth_times = that.data.auth_times
+    var endtime = 10
+    var _djs =setInterval(function () {
+      endtime -= 1
+      that.setData({
+        title_show: 0,
+        btn_show: 0,
+        title: '识别中' + endtime,
+      })
+      if (endtime == 0){
+        clearInterval(_djs)
+        wx.redirectTo({
+          url: '/auth/autherr?errtype=1&errcode=3',
+        })
+      }
+    }, 1000)
+    
+    ctx.stopRecord({
+      success: function (data) {
+        var video_path = data.tempVideoPath//本地视频地址
+        console.log(data, authorization, appid, validate_data, video_path, idcard, app.auth_name)
+        wx.uploadFile({
+          url: 'https://recognition.image.myqcloud.com/face/idcardlivedetectfour',
+          header:{
+            'host':'recognition.image.myqcloud.com',
+            'content-type':'multipart/form-data',
+            'authorization': authorization
+          },
+          filePath: video_path,
+          name:'video',
+          formData:{
+            'appid': appid,
+            'validate_data': validate_data,
+            'idcard_number':idcard,
+            'idcard_name':app.auth_name,
+            'video': video_path
+          },
+          success:function(res){
+            var _res = JSON.parse(res.data)
+
+            if (_res.code !=0){
+              bm.requsetData('/w/user/auth', 'post', { scene: 2, auth_name: name, auth_code: idcard, status:3 }, function (data) {
+                console.log(data, '记录失败1')
+              })
+              wx.redirectTo({
+                url: '/auth/autherr?errtype=1&errcode=' + _res.code,
+              }) 
+            }else{
+              if (_res.data.live_status == 0) {
+                if (_res.data.compare_status == 0) {
+                  bm.requsetData('/w/user/auth', 'post', { scene: 2, auth_name: name, auth_code: idcard, status: 2 }, function (data) {
+                    console.log(data, '记录成功')
+                  })
+                  wx.redirectTo({
+                    url: '/auth/authsuccess',
+                  })
+                } else {
+                  bm.requsetData('/w/user/auth', 'post', { scene: 2, auth_name: name, auth_code: idcard, status: 3 }, function (data) {
+                    console.log(data, '记录失败2')
+                  })
+                  wx.redirectTo({
+                    url: '/auth/autherr?errtype=1&errcode=' + _res.data.compare_status,
+                  }) 
+                }
+              } else {
+                bm.requsetData('/w/user/auth', 'post', { scene: 2, auth_name: name, auth_code: idcard, status: 3 }, function (data) {
+                  console.log(data,'记录失败3')
+                })
+                wx.redirectTo({
+                  url: '/auth/autherr?errtype=1&errcode=' + _res.data.live_status,
+                }) 
+              }
+              
+            }
+          }
+        })
+      }
+    })
+  },
+
+})

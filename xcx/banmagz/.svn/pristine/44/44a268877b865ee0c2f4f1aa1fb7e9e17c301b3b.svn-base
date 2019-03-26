@@ -1,0 +1,20 @@
+<view class='cantainer'>
+  <text class='chooseRoleTitle'>请选择您的身份</text>
+  <text class='chooseRoleDescript'>班马佳薪基于腾讯云区块链服务TBaaS</text>
+  <navigator target="miniProgram" open-type="navigate" app-id="wxc334d30284ddd9c6" path="" extra-data="" version="trial" hover-class='none'>
+    <view class='chooseRoleItem worker'>
+      <image src='../../images/member/workIcon.png'></image>
+      <view class='chooseRoleDetail'>
+        <text class='chooseRoleIdent'>我是创客</text>
+        <text class='chooseroleInfo'>正在寻求合适工作</text>
+      </view>
+    </view>
+  </navigator>
+  <view class='chooseRoleItem boss' data-role="2" bindtap='chooseRole'>
+    <image src='../../images/member/bossIcon.png'></image>
+    <view class='chooseRoleDetail'>
+      <text class='chooseRoleIdent'>我是雇主</text>
+      <text class='chooseroleInfo'>正在急聘相关人才</text>
+    </view>
+  </view>
+</view>

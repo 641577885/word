@@ -1,0 +1,6 @@
+{ 
+  "navigationBarTitleText": "创客",
+  "usingComponents": {
+    "dialog": "/pages/login/dialog"
+  }
+}

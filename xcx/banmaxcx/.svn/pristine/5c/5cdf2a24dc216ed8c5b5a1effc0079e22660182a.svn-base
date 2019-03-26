@@ -1,0 +1,125 @@
+//mocklist 模拟数据库数据表数据
+const bm = require('../../utils/common.js')
+var app = getApp();
+Page({
+  data: {
+    uhide: 0,
+    current1: 0,
+    current2: 0,
+    xin:true,
+    ispro: false,//是否在请求中
+    current: 1,//页数，开始是1从第一页开始请求
+    size: 12,//请求的个数，可自定义设置
+    isnext: true,//是否有下一页
+    list: [],//接口公司信息数据
+    list2: [],//接口坐班列表数据
+    list3: [],//接口在线列表数据
+    list4: [],//接口在线列表数据
+    id:0,
+  },
+  // 切换选项
+  tab: function (event) {
+    this.setData({ current1: event.target.dataset.current })
+  },
+  //滑动事件
+  eventchange: function (event) {
+    this.setData({ current1: event.detail.current })
+  },
+    //生命周期函数--监听页面加载
+  onLoad: function (options) {
+    var that = this;
+    that.setData({
+      id: options.goodValue
+   })
+    that.getDataUrl();
+    that.getDataUrl2(); 
+    that.getDataUrl3();
+  },
+  //切换隐藏和显示 
+  toggleBtn: function (event) {
+    var that = this;
+    var toggleBtnVal = that.data.uhide;
+    var itemId = event.currentTarget.id;
+    if (toggleBtnVal == itemId) {
+      that.setData({
+        uhide: 0
+      })
+    } else {
+      that.setData({
+        uhide: itemId
+      })
+    }
+  },
+  getDataUrl: function () {
+    var that = this,
+    url='/w/company/info';
+    console.log(that.data.id,url);
+    bm.requsetData(url, 'get', {id:that.data.id}, function (data) {
+      console.log(data.data);
+      that.setData({ list: that.listData(data.data).company})
+      console.log(that.data.list.is_praise);
+      that.setData({ xin: that.data.list.is_praise })
+    })
+  },
+  getDataUrl2: function () {
+    var that = this,
+      url = '/w/position/lists';
+   bm.requsetData(url, 'get', {company_id:that.data.id,work_way:1},function(data) {
+     console.log(data.data);
+     that.setData({ list2: that.listData(data.data)})
+    })
+  },
+  getDataUrl3: function () {
+    var that = this,
+      url = '/w/position/lists';
+    bm.requsetData(url, 'get', { company_id: that.data.id, work_way: 2 }, function (data) {
+      console.log(data.data);
+      that.setData({ list3: that.listData(data.data) })
+    })
+  },
+  getDataUrl4: function (ispraise) {
+    var that = this,
+      url = '/w/company/praiseComp';
+    bm.requsetData(url, 'post',{id: that.data.id, ispraise: ispraise}, function (data) {
+      console.log(data);
+      //that.setData({ list3: that.listData(data.data) })
+    })
+  },
+  listData: function (data){
+    if (data.errcode == 0) {
+      wx.showToast({
+        mask: true,
+        title: '加载中...',
+        icon: 'loading',
+        duration: 500
+      })
+      //that.listData(data);
+      //that.setData({ list:data.company })
+      return data;
+    } else {
+      console.log(data);
+      wx.showToast({
+        mask: true,
+        title: data.errmsg,
+        icon: 'none',
+        duration: 3000
+      })
+    }
+  },
+  //心形切换
+  xinData:function(){
+    var that = this;
+    that.setData({ xin: (!that.data.xin)})
+    if(that.data.xin){
+      var ispraise=1;
+      that.getDataUrl4(ispraise);
+      //var a = that.data.list;
+      //that.setData({ 'list.praises': list.praises+1})
+    }else{
+      var ispraise =0;
+      that.getDataUrl4(ispraise);
+      //that.setData({ list: list.praises -1 })
+    }
+  }
+})
+

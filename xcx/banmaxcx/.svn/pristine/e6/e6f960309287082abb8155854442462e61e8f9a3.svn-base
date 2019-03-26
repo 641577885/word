@@ -1,0 +1,153 @@
+// pages/index/index.js
+var app = getApp();
+const bm = require('../../utils/common.js')
+Page({
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    jobData: { jobId: '', jobIdTwo: '', jobName: '' },
+    selectList: [{ id: 0, workWay: 1, name: "远程办公" }, { id: 1, workWay: 3, name: "发布需求" }, { id: 2, workWay: 2,name:"驻场办公"}],
+    checkIndex:0,
+    showSilde:false, //显示侧边
+    latitude:Number,
+    longitude: Number,
+    markers: [],
+    latitudeArr:[],
+    longitudeArr:[],
+    priceList: [ //金额
+      {
+        id: 0,
+        data: "面议",
+        low: '',
+        high: ''
+      },
+      {
+        id: 1,
+        data: "1K以下",
+        low: '',
+        high: '1000'
+      },
+      {
+        id: 2,
+        data: "1K-5K",
+        low: '1000',
+        high: '5000'
+      },
+      {
+        id: 3,
+        data: "5K-10K",
+        low: '5000',
+        high: '10000'
+      },
+      {
+        id: 4,
+        data: "10K-20K",
+        low: '10000',
+        high: '20000'
+      },
+      {
+        id: 5,
+        data: "20K-50K",
+        low: '20000',
+        high: '50000'
+      },
+      {
+        id: 6,
+        data: "50K以上",
+        low: '50000',
+        high: ''
+      }
+    ],
+    priceidx:0,
+    negotiate:1,   //是否面议
+    lowsalary: "1K", //最低价格
+    highsalary: "2K", ///最高价格
+    //总页面切换
+    current: 2,
+    //需求页面切换
+    demand_curr: 1,
+    //需求页01数据
+    demand01_list: [],
+    demand_c_id: null,
+    //需求页02数据
+    demand02_list: [],
+    //需求页02标题
+    demand02_title: '',
+    //需求页03数据
+    demand_03_array: ['不限', '1周', '2周', '3周', '1个月', '2个月', '3个月'],
+    index: 0,
+    mb_list: [
+      {
+        click: true,
+        content: '模版1'
+      },
+      {
+        click: false,
+        content: '模版2'
+      }
+    ],
+    xq_val: '需要此方面的专业人士完成此工作，具体需求细节、工期、价格可详谈',
+    textarea_length: 0,
+    skills: '',
+    isShowDialog: true,
+    showRz:false,
+    showLoad:false,
+    showtip:false,
+    pnums:125
+
+  },
+
+  //获取当前位置
+  getLocation:function(){
+    var that=this;
+    wx.getLocation({
+      success: function(res) {
+        that.setData({ latitude: res.latitude, longitude:res.longitude})
+        that.getMarkers(30, -15, 15)
+      },
+    })
+  },
+  backtoLast:function(){
+    wx.switchTab({
+      url: '/pages/worker/list',
+    })
+  },
+  //获取随机分布点
+  getMarkers: function(num, from, to) {
+    var that=this;
+    var arr = [], markers=[];
+    for (var i = from; i <= to; i++){
+      if(i>2 || i<-2){
+        arr.push(i/10);
+      }
+      arr.sort(function () {
+        return 0.5 - Math.random();
+      });
+    }
+    for(var j=1;j<10;j++){
+      markers.push({
+        id: j,
+        latitude: that.data.latitude+arr[j-1]*0.0115,
+        longitude: that.data.longitude+arr[j]*0.0112,
+        iconPath: '/images/worker/icon.png',
+        width: 45,
+        height: 50
+      })
+    }
+    that.setData({ markers: markers})
+  },
+  fillPrice:function(e){
+    var _price=e.detail.value;
+    this.setData({ price: _price})
+  },
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    var that=this;
+    var num = (Math.random() * 10)*(Math.random() * 10)+100;
+    that.setData({ pnums: parseInt(num)})
+    that.getLocation();
+  }
+})
